@@ -9,18 +9,12 @@ pipeline {
 
     stages {
 
-        // =========================
-        // Checkout Source
-        // =========================
         stage('Checkout Code') {
             steps {
                 checkout scm
             }
         }
 
-        // =========================
-        // Maven Build
-        // =========================
         stage('Build Maven Project') {
             steps {
                 sh 'mvn clean package -DskipTests'
@@ -28,47 +22,34 @@ pipeline {
         }
 
         // =========================
-        // Build UserService Image
+        // Build User Service Image
         // =========================
-        stage('Build UserService Docker Image') {
+        stage('Build UserService Image') {
             steps {
+                sh """
+                    docker rm -f user-service || true
+                    docker rmi $USER_IMAGE || true
 
-                sh '''
-                docker rmi $USER_IMAGE || true
-
-                docker build \
-                --no-cache \
-                --build-arg JAR_FILE=services/UserService/target/userservice-0.0.1-SNAPSHOT.jar \
-                -t $USER_IMAGE .
-                '''
+                    docker build --no-cache \
+                    --build-arg JAR_FILE=services/UserService/target/userservice-0.0.1-SNAPSHOT.jar \
+                    -t $USER_IMAGE .
+                """
             }
         }
 
         // =========================
-        // Build LocationService Image
+        // Build Location Service Image
         // =========================
-        stage('Build LocationService Docker Image') {
+        stage('Build LocationService Image') {
             steps {
+                sh """
+                    docker rm -f location-service || true
+                    docker rmi $LOCATION_IMAGE || true
 
-                sh '''
-                docker rmi $LOCATION_IMAGE || true
-
-                docker build \
-                --no-cache \
-                --build-arg JAR_FILE=services/LocationService/target/locationservice-0.0.1-SNAPSHOT.jar \
-                -t $LOCATION_IMAGE .
-                '''
-            }
-        }
-
-        // =========================
-        // Stop & Remove Old Containers
-        // =========================
-        stage('Cleanup Old Containers') {
-            steps {
-
-                sh 'docker rm -f user-service || true'
-                sh 'docker rm -f location-service || true'
+                    docker build --no-cache \
+                    --build-arg JAR_FILE=services/LocationService/target/locationservice-0.0.1-SNAPSHOT.jar \
+                    -t $LOCATION_IMAGE .
+                """
             }
         }
 
@@ -77,14 +58,13 @@ pipeline {
         // =========================
         stage('Run UserService') {
             steps {
-
-                sh '''
-                docker run -d \
-                --restart unless-stopped \
-                --name user-service \
-                -p 5004:5004 \
-                $USER_IMAGE
-                '''
+                sh """
+                    docker run -d \
+                    --restart unless-stopped \
+                    --name user-service \
+                    -p 5005:5005 \
+                    $USER_IMAGE
+                """
             }
         }
 
@@ -93,19 +73,18 @@ pipeline {
         // =========================
         stage('Run LocationService') {
             steps {
-
-                sh '''
-                docker run -d \
-                --restart unless-stopped \
-                --name location-service \
-                -p 5005:5005 \
-                $LOCATION_IMAGE
-                '''
+                sh """
+                    docker run -d \
+                    --restart unless-stopped \
+                    --name location-service \
+                    -p 5004:5004 \
+                    $LOCATION_IMAGE
+                """
             }
         }
 
         // =========================
-        // Verify Containers
+        // Verify
         // =========================
         stage('Verify Running Containers') {
             steps {
@@ -115,7 +94,6 @@ pipeline {
     }
 
     post {
-
         success {
             echo 'Deployment Successful!'
         }
