@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Enum" />
+        <option value="package-info" />
+        <option value="Exception" />
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/common-lib/pom.xml" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="3D1FxMcXZuRfLyGDzPhuFsM6Dmf" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CommonLibApplication.executor": "Run",
+    "Application.LocationserviceApplication.executor": "Run",
+    "Application.UserserviceApplication.executor": "Run",
+    "JUnit.AirportTest.testAirportCreation.executor": "Run",
+    "JUnit.AirportTest.testDetailedName.executor": "Run",
+    "JUnit.CityTest.testCityCreation.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testBuilder.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testExpiryLogic.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
+    "JUnit.UserRepositoryTest.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor": "Run",
+    "JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor": "Run",
+    "JUnit.UserServiceTest.test_getUserByEmail_Success.executor": "Run",
+    "JUnit.UserTest.testSettersAndGetters.executor": "Run",
+    "JUnit.UserTest.testUserBuilder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindow.documentation.v2.ShowToolbar": "false",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Spring Boot/SpringAI",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
+    ]
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Spring Boot\airline\microservices\services\LocationService\src\main\java\com\locationservice" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.userservice.model" />
+      <recent name="com.userservice.service" />
+    </key>
+  </component>
+  <component name="RunManager" selected="JUnit.UserServiceTest.test_getUserByEmail_Success">
+    <configuration name="UserRepositoryTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepositoryTest.testFindByEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="testFindByEmail" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepositoryTest.testFindByEmail_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="testFindByEmail_NotFound" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserRepositoryTest.testUniqueEmailConstraint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.repository" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
+      <option name="METHOD_NAME" value="testUniqueEmailConstraint" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.test_getUserByEmail_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="test_getUserByEmail_Success" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.UserServiceTest.test_getUserByEmail_Success" />
+        <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail_NotFound" />
+        <item itemvalue="JUnit.UserRepositoryTest.testUniqueEmailConstraint" />
+        <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail" />
+        <item itemvalue="JUnit.UserRepositoryTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="" />
+      <created>1777441915170</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1777441915170</updated>
+    </task>
+    <servers />
+  </component>
+</project>
