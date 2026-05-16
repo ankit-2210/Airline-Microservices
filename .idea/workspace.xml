@@ -24,6 +24,21 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "ankit-2210"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/ankit-2210/Airline-Microservices.git",
+    "accountId": "a93fc3b9-84a3-47a8-bd20-7b094972708a"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/common-lib/pom.xml" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -55,6 +70,7 @@
     "JUnit.UserTest.testUserBuilder.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "ToolWindow.documentation.v2.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Spring Boot/SpringAI",

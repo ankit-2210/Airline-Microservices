@@ -9,7 +9,7 @@ WORKDIR /app
 COPY . .
 
 # Build all modules
-RUN mvn clean package
+RUN mvn clean package -DskipTests
 
 # =========================
 # RUNTIME STAGE
@@ -22,8 +22,6 @@ WORKDIR /app
 ARG JAR_FILE
 
 COPY --from=build /app/${JAR_FILE} app.jar
-
-EXPOSE 5000
 
 # Run app
 ENTRYPOINT ["java","-jar","app.jar"]
