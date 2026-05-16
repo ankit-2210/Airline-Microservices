@@ -1,14 +1,16 @@
-pipeline{
+pipeline {
+
     agent any
 
-     environment {
+    environment {
         USER_IMAGE = "user-service"
         LOCATION_IMAGE = "location-service"
-     }
+    }
 
-     stages{
+    stages {
+
         // =========================
-        // Pull Latest Code
+        // Checkout Source
         // =========================
         stage('Checkout Code') {
             steps {
@@ -30,10 +32,14 @@ pipeline{
         // =========================
         stage('Build UserService Docker Image') {
             steps {
+
                 sh '''
-                    docker build \
-                    --build-arg JAR_FILE=services/UserService/target/userservice-0.0.1-SNAPSHOT.jar \
-                    -t $USER_IMAGE .
+                docker rmi $USER_IMAGE || true
+
+                docker build \
+                --no-cache \
+                --build-arg JAR_FILE=services/UserService/target/userservice-0.0.1-SNAPSHOT.jar \
+                -t $USER_IMAGE .
                 '''
             }
         }
@@ -43,24 +49,26 @@ pipeline{
         // =========================
         stage('Build LocationService Docker Image') {
             steps {
+
                 sh '''
-                    docker build \
-                    --build-arg JAR_FILE=services/LocationService/target/locationservice-0.0.1-SNAPSHOT.jar \
-                    -t $LOCATION_IMAGE .
-                    '''
+                docker rmi $LOCATION_IMAGE || true
+
+                docker build \
+                --no-cache \
+                --build-arg JAR_FILE=services/LocationService/target/locationservice-0.0.1-SNAPSHOT.jar \
+                -t $LOCATION_IMAGE .
+                '''
             }
         }
 
         // =========================
-        // Stop Old Containers
+        // Stop & Remove Old Containers
         // =========================
-        stage('Stop Old Containers') {
+        stage('Cleanup Old Containers') {
             steps {
-                sh 'docker stop user-service || true'
-                sh 'docker rm user-service || true'
 
-                sh 'docker stop location-service || true'
-                sh 'docker rm location-service || true'
+                sh 'docker rm -f user-service || true'
+                sh 'docker rm -f location-service || true'
             }
         }
 
@@ -69,12 +77,14 @@ pipeline{
         // =========================
         stage('Run UserService') {
             steps {
+
                 sh '''
-                    docker run -d \
-                    --name user-service \
-                    -p 5004:5004 \
-                    $USER_IMAGE
-                    '''
+                docker run -d \
+                --restart unless-stopped \
+                --name user-service \
+                -p 5004:5004 \
+                $USER_IMAGE
+                '''
             }
         }
 
@@ -83,23 +93,35 @@ pipeline{
         // =========================
         stage('Run LocationService') {
             steps {
+
                 sh '''
-                    docker run -d \
-                    --name location-service \
-                    -p 5005:5005 \
-                    $LOCATION_IMAGE
-                    '''
+                docker run -d \
+                --restart unless-stopped \
+                --name location-service \
+                -p 5005:5005 \
+                $LOCATION_IMAGE
+                '''
             }
         }
-     }
 
-     post{
-        success{
+        // =========================
+        // Verify Containers
+        // =========================
+        stage('Verify Running Containers') {
+            steps {
+                sh 'docker ps'
+            }
+        }
+    }
+
+    post {
+
+        success {
             echo 'Deployment Successful!'
         }
-        failure{
+
+        failure {
             echo 'Deployment Failed!'
         }
-     }
-
+    }
 }

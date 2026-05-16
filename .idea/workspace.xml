@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="" />
+    <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="updation on Dockerfile">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/common-lib-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/common-lib-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/pom.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -27,18 +31,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "ankit-2210"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ankit-2210&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/ankit-2210/Airline-Microservices.git",
-    "accountId": "a93fc3b9-84a3-47a8-bd20-7b094972708a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/ankit-2210/Airline-Microservices.git&quot;,
+    &quot;accountId&quot;: &quot;a93fc3b9-84a3-47a8-bd20-7b094972708a&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/common-lib/pom.xml" root0="SKIP_HIGHLIGHTING" />
   </component>
@@ -50,41 +54,41 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.CommonLibApplication.executor": "Run",
-    "Application.LocationserviceApplication.executor": "Run",
-    "Application.UserserviceApplication.executor": "Run",
-    "JUnit.AirportTest.testAirportCreation.executor": "Run",
-    "JUnit.AirportTest.testDetailedName.executor": "Run",
-    "JUnit.CityTest.testCityCreation.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testBuilder.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testExpiryLogic.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
-    "JUnit.UserRepositoryTest.executor": "Run",
-    "JUnit.UserRepositoryTest.testFindByEmail.executor": "Run",
-    "JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor": "Run",
-    "JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor": "Run",
-    "JUnit.UserServiceTest.test_getUserByEmail_Success.executor": "Run",
-    "JUnit.UserTest.testSettersAndGetters.executor": "Run",
-    "JUnit.UserTest.testUserBuilder.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "ToolWindow.documentation.v2.ShowToolbar": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Spring Boot/SpringAI",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CommonLibApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AirportTest.testDetailedName.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CityTest.testCityCreation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testExpiryLogic.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testFindByEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.test_getUserByEmail_Success.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testUserBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;ToolWindow.documentation.v2.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Spring Boot/SpringAI&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Spring Boot\airline\microservices\services\LocationService\src\main\java\com\locationservice" />
@@ -193,6 +197,19 @@
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
     </task>
+    <task id="LOCAL-00001" summary="updation on Dockerfile">
+      <option name="closed" value="true" />
+      <created>1778918953047</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1778918953047</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="updation on Dockerfile" />
+    <option name="LAST_COMMIT_MESSAGE" value="updation on Dockerfile" />
   </component>
 </project>
