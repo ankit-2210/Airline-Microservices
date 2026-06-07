@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="updation on Dockerfile">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/common-lib-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/common-lib-0.0.1-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airport/AirportResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airport/AirportResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airport/AirportResponse$AirportResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airport/AirportResponse$AirportResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airport/AirportResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airport/AirportResponse.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +74,7 @@
     &quot;JUnit.UserTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.UserTest.testUserBuilder.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;ToolWindow.documentation.v2.ShowToolbar&quot;: &quot;false&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
@@ -215,7 +215,15 @@
       <option name="project" value="LOCAL" />
       <updated>1778921892924</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="updation on Dockerfile">
+      <option name="closed" value="true" />
+      <created>1778925719451</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1778925719451</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

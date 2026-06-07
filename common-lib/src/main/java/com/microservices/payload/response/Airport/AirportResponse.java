@@ -4,10 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.microservices.embeddable.Address;
 import com.microservices.embeddable.GeoCode;
 import com.microservices.payload.response.City.CityResponse;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.ZoneId;
 
