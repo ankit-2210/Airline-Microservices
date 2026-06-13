@@ -64,8 +64,8 @@ pipeline {
                     docker rmi $AIRLINE_IMAGE || true
 
                     docker build --no-cache \
-                    --build-arg JAR_FILE=services/LocationService/target/airlineservice-0.0.1-SNAPSHOT.jar \
-                    -t $LOCATION_IMAGE .
+                    --build-arg JAR_FILE=services/AirlineService/target/airlineservice-0.0.1-SNAPSHOT.jar \
+                    -t $AIRLINE_IMAGE .
                 """
             }
         }
@@ -104,7 +104,7 @@ pipeline {
         // =========================
         // Run AirlineService
         // =========================
-        stage('Run LocationService') {
+        stage('Run AirlineService') {
             steps {
                 sh """
                     docker run -d \
