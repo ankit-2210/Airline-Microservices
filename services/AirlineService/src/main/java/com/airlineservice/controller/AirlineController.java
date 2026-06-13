@@ -38,7 +38,7 @@ public class AirlineController {
     }
 
     // get airline by owner
-    public ResponseEntity<ApiResponse<AirlineResponse>> getAirportByOwner(@PathVariable Long ownerId){
+    public ResponseEntity<ApiResponse<AirlineResponse>> getAirportByOwner(@PathVariable Long ownerId) {
         AirlineResponse airlineResponse = airlineService.getAirlineByOwner(ownerId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline fetched successfully", airlineResponse));
     }
