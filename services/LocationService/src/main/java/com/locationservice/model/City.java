@@ -22,18 +22,22 @@ public class City {
     private Long id;
 
     @NotBlank
+    @Size(max = 100)
     @Column(nullable = false)
     private String name;
 
     @NotBlank
-    @Column(nullable = false)
+    @Size(max = 20)
+    @Column(nullable = false, unique = true, length = 20)
     private String cityCode;
 
     @NotBlank
+    @Size(max = 10)
     @Column(nullable = false)
     private String countryCode;
 
     @NotBlank
+    @Size(max = 100)
     @Column(nullable = false)
     private String countryName;
 

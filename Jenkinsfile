@@ -5,6 +5,7 @@ pipeline {
     environment {
         USER_IMAGE = "user-service"
         LOCATION_IMAGE = "location-service"
+        AIRLINE_IMAGE = "airline-service"
     }
 
     stages {
@@ -54,6 +55,23 @@ pipeline {
         }
 
         // =========================
+        // Build Airline Service Image
+        // =========================
+        stage('Build AirlineService Image') {
+            steps {
+                sh """
+                    docker rm -f airline-service || true
+                    docker rmi $AIRLINE_IMAGE || true
+
+                    docker build --no-cache \
+                    --build-arg JAR_FILE=services/LocationService/target/airlineservice-0.0.1-SNAPSHOT.jar \
+                    -t $LOCATION_IMAGE .
+                """
+            }
+        }
+
+
+        // =========================
         // Run UserService
         // =========================
         stage('Run UserService') {
@@ -79,6 +97,21 @@ pipeline {
                     --name location-service \
                     -p 5004:5004 \
                     $LOCATION_IMAGE
+                """
+            }
+        }
+
+        // =========================
+        // Run AirlineService
+        // =========================
+        stage('Run LocationService') {
+            steps {
+                sh """
+                    docker run -d \
+                    --restart unless-stopped \
+                    --name airline-service \
+                    -p 5006:5006 \
+                    $AIRLINE_IMAGE
                 """
             }
         }

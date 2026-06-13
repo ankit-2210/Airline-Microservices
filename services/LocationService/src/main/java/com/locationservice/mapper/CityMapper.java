@@ -8,7 +8,6 @@ public class CityMapper {
     public static City toEntity(CityRequest cityRequest){
         if(cityRequest == null)
             return null;
-
         return City.builder()
                 .name(cityRequest.getName())
                 .cityCode(cityRequest.getCityCode())
@@ -22,7 +21,6 @@ public class CityMapper {
     public static CityResponse toResponse(City city){
         if(city == null)
             return null;
-
         return CityResponse.builder()
                 .id(city.getId())
                 .name(city.getName())
