@@ -4,9 +4,11 @@ import com.locationservice.model.Airport;
 import com.microservices.payload.response.Airport.AirportResponse;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.*;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
+@Repository
 public interface AirportRepository extends JpaRepository<Airport, Long> {
     Optional<Airport> findByIataCode(String iataCode);
 

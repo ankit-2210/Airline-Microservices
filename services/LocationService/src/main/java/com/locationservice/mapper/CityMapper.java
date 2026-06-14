@@ -1,7 +1,7 @@
 package com.locationservice.mapper;
 
 import com.locationservice.model.City;
-import com.microservices.payload.request.City.CityRequest;
+import com.microservices.payload.request.Location.City.CityRequest;
 import com.microservices.payload.response.City.CityResponse;
 
 public class CityMapper {

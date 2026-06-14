@@ -1,10 +1,8 @@
 package com.locationservice.service;
 
-import com.microservices.payload.request.Airport.AirportRequest;
+import com.microservices.payload.request.Location.Airport.AirportRequest;
 import com.microservices.payload.response.Airport.AirportResponse;
 import org.springframework.data.domain.*;
-
-import java.util.*;
 
 public interface AirportService {
     AirportResponse createAirport(AirportRequest airportRequest);

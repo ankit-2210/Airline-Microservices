@@ -1,4 +1,4 @@
-package com.microservices.utils.Airport;
+package com.microservices.utils.Airline;
 
 public enum AirlineStatus {
     ACTIVE,

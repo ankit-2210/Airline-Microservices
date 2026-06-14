@@ -1,11 +1,8 @@
 package com.locationservice.mapper;
 
 import com.locationservice.model.Airport;
-import com.locationservice.model.City;
-import com.microservices.payload.request.Airport.AirportRequest;
-import com.microservices.payload.request.City.CityRequest;
+import com.microservices.payload.request.Location.Airport.AirportRequest;
 import com.microservices.payload.response.Airport.AirportResponse;
-import com.microservices.payload.response.City.CityResponse;
 
 public class AirportMapper {
     public static Airport toEntity(AirportRequest airportRequest){

@@ -1,9 +1,9 @@
 package com.airlineservice.service;
 
-import com.microservices.payload.request.Airline.AirlineRequest;
+import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
 import com.microservices.payload.response.Airline.AirlineDropdownItem;
 import com.microservices.payload.response.Airline.AirlineResponse;
-import com.microservices.utils.Airport.AirlineStatus;
+import com.microservices.utils.Airline.AirlineStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.*;

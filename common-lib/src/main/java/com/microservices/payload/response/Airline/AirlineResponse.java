@@ -3,7 +3,7 @@ package com.microservices.payload.response.Airline;
 import com.microservices.embeddable.Airline.Support;
 import com.microservices.payload.dto.UserDto;
 import com.microservices.payload.response.City.CityResponse;
-import com.microservices.utils.Airport.AirlineStatus;
+import com.microservices.utils.Airline.AirlineStatus;
 import lombok.*;
 
 import java.time.Instant;

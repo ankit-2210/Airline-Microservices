@@ -1,7 +1,7 @@
 package com.locationservice.controller;
 
 import com.locationservice.service.CityService;
-import com.microservices.payload.request.City.CityRequest;
+import com.microservices.payload.request.Location.City.CityRequest;
 import com.microservices.payload.response.ApiResponse;
 import com.microservices.payload.response.City.CityResponse;
 import jakarta.validation.Valid;

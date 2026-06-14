@@ -1,4 +1,4 @@
-package com.microservices.payload.request.City;
+package com.microservices.payload.request.Location.City;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

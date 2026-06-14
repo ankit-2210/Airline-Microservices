@@ -8,16 +8,13 @@ import com.locationservice.repository.CityRepository;
 import com.locationservice.service.AirportService;
 import com.microservices.exception.ResourceAlreadyExistsException;
 import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Airport.AirportRequest;
+import com.microservices.payload.request.Location.Airport.AirportRequest;
 import com.microservices.payload.response.Airport.AirportResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor

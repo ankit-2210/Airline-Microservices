@@ -1,6 +1,6 @@
-package com.microservices.payload.request.Airline;
+package com.microservices.payload.request.Airlines.Airline;
 
-import com.microservices.utils.Airport.AirlineStatus;
+import com.microservices.utils.Airline.AirlineStatus;
 import jakarta.validation.constraints.*;
 import lombok.*;
 

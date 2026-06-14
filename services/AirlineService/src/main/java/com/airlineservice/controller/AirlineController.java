@@ -1,11 +1,11 @@
 package com.airlineservice.controller;
 
 import com.airlineservice.service.AirlineService;
-import com.microservices.payload.request.Airline.AirlineRequest;
+import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
 import com.microservices.payload.response.Airline.AirlineDropdownItem;
 import com.microservices.payload.response.Airline.AirlineResponse;
 import com.microservices.payload.response.ApiResponse;
-import com.microservices.utils.Airport.AirlineStatus;
+import com.microservices.utils.Airline.AirlineStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -38,12 +38,14 @@ public class AirlineController {
     }
 
     // get airline by owner
+    @GetMapping("/owner/{ownerId}")
     public ResponseEntity<ApiResponse<AirlineResponse>> getAirportByOwner(@PathVariable Long ownerId) {
         AirlineResponse airlineResponse = airlineService.getAirlineByOwner(ownerId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline fetched successfully", airlineResponse));
     }
 
     // get all airlines
+    @GetMapping
     public ResponseEntity<ApiResponse<Page<AirlineResponse>>> getAllAirlines(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
                                                                                 @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
@@ -53,6 +55,7 @@ public class AirlineController {
     }
 
     // update airline
+    @PutMapping
     public ResponseEntity<ApiResponse<AirlineResponse>> updateAirline(@PathVariable Long airlineId, @Valid @RequestBody AirlineRequest airlineRequest, @RequestParam Long ownerId){
         AirlineResponse airlineResponse = airlineService.updateAirline(airlineId, airlineRequest, ownerId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline updated successfully", airlineResponse));
@@ -73,6 +76,7 @@ public class AirlineController {
     }
 
     // dropdown
+    @GetMapping("/dropdown")
     public ResponseEntity<ApiResponse<List<AirlineDropdownItem>>> getDropdown(){
         List<AirlineDropdownItem> airlines = airlineService.getAirlineDropdown();
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline dropdown fetched successfully", airlines));

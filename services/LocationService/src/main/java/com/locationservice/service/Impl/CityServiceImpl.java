@@ -5,7 +5,7 @@ import com.locationservice.model.City;
 import com.locationservice.repository.CityRepository;
 import com.locationservice.service.CityService;
 import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.City.CityRequest;
+import com.microservices.payload.request.Location.City.CityRequest;
 import com.microservices.payload.response.City.CityResponse;
 import lombok.*;
 import org.springframework.data.domain.Page;

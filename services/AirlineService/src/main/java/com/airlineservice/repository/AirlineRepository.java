@@ -2,8 +2,11 @@ package com.airlineservice.repository;
 
 import com.airlineservice.model.Airline;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import java.util.*;
 
+@Repository
 public interface AirlineRepository extends JpaRepository<Airline, Long> {
 
     Optional<Airline> findByOwnerId(Long ownerId);

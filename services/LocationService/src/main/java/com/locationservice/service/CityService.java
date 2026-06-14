@@ -1,6 +1,6 @@
 package com.locationservice.service;
 
-import com.microservices.payload.request.City.CityRequest;
+import com.microservices.payload.request.Location.City.CityRequest;
 import com.microservices.payload.response.City.CityResponse;
 import org.springframework.data.domain.*;
 

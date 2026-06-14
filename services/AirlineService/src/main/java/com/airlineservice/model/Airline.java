@@ -1,7 +1,7 @@
 package com.airlineservice.model;
 
 import com.microservices.embeddable.Airline.Support;
-import com.microservices.utils.Airport.AirlineStatus;
+import com.microservices.utils.Airline.AirlineStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -16,6 +16,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(
         name = "airlines",

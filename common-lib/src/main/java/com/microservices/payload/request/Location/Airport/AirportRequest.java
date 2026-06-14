@@ -1,8 +1,7 @@
-package com.microservices.payload.request.Airport;
+package com.microservices.payload.request.Location.Airport;
 
 import com.microservices.embeddable.Address;
 import com.microservices.embeddable.GeoCode;
-import jakarta.persistence.Column;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
