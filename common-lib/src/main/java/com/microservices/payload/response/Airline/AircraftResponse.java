@@ -1,8 +1,6 @@
 package com.microservices.payload.response.Airline;
 
 import com.microservices.utils.Airline.AircraftStatus;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.*;
 import lombok.*;
 
 import java.time.Instant;

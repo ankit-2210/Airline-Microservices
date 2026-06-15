@@ -1,4 +1,4 @@
-package com.microservices.utils;
+package com.microservices.utils.Users;
 
 public enum UserRole {
     ROLE_SYSTEM_ADMIN,

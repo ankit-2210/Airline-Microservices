@@ -1,6 +1,6 @@
 package com.microservices.payload.dto;
 
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

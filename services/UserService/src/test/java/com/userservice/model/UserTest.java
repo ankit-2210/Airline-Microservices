@@ -1,6 +1,6 @@
 package com.userservice.model;
 
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;

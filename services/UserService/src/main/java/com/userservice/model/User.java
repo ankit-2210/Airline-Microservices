@@ -1,6 +1,6 @@
 package com.userservice.model;
 
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;

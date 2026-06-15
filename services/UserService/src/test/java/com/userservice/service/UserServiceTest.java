@@ -2,7 +2,7 @@ package com.userservice.service;
 
 
 import com.microservices.payload.dto.UserDto;
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import com.userservice.model.User;
 import com.userservice.repository.UserRepository;
 import com.userservice.service.Impl.UserServiceImpl;

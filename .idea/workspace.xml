@@ -4,48 +4,36 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="added airline service">
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Airlines/Aircraft/AircraftRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airline/AircraftResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/Airline/AircraftStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/AircraftController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/mapper/AircraftMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/model/Aircraft.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/repository/AircraftRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/AircraftService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/Impl/AircraftServiceImpl.java" afterDir="false" />
+    <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="added flight service and controller">
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Flight/FlightRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Flight/FlightResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/Flight/FlightStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/controller/FlightController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/controller/HomeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/mapper/FlightMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/model/Flight.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/repository/FlightRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/FlightService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Airline/AirlineRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Airlines/Airline/AirlineRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Airport/AirportRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Location/Airport/AirportRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/City/CityRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Location/City/CityRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airline/AirlineResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airline/AirlineResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/Airport/AirlineStatus.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/Airline/AirlineStatus.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Airline/AirlineRequest$AirlineRequestBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Airline/AirlineRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Airport/AirportRequest$AirportRequestBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Airport/AirportRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/City/CityRequest$CityRequestBuilder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/City/CityRequest.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AirlineResponse$AirlineResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AirlineResponse$AirlineResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AirlineResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AirlineResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/utils/Airport/AirlineStatus.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/AirlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/AirlineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/mapper/AirlineMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/mapper/AirlineMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/model/Airline.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/model/Airline.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/repository/AirlineRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/repository/AirlineRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/AirlineService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/AirlineService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/Impl/AirlineServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/service/Impl/AirlineServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/AirportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/AirportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/CityController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/AirportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/CityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/CityMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/repository/AirportRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/repository/AirportRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/AirportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/AirportService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/CityService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/CityService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/AirportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/AirportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/CityServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/CityServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airline/AircraftResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/Airline/AircraftResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/utils/Users/UserRole.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto$UserDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto$UserDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AircraftResponse$AircraftResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AircraftResponse$AircraftResponseBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AircraftResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Airline/AircraftResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/utils/UserRole.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/AirlineserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/AirlineserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/service/UserServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,8 +48,8 @@
       <list>
         <option value="package-info" />
         <option value="Exception" />
-        <option value="Enum" />
         <option value="Interface" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
@@ -97,6 +85,7 @@
   &quot;keyToString&quot;: {
     &quot;Application.AirlineserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.CommonLibApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FlightserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
@@ -139,7 +128,7 @@
       <recent name="com.userservice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.AirlineserviceApplication">
+  <component name="RunManager" selected="Application.FlightserviceApplication">
     <configuration name="AirlineserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.airlineservice.AirlineserviceApplication" />
       <module name="airlineservice" />
@@ -153,18 +142,15 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRepositoryTest.testFindByEmail" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="userservice" />
+    <configuration name="FlightserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.flightservice.FlightserviceApplication" />
+      <module name="flightservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="PATTERN" value="com.flightservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.userservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindByEmail" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -219,11 +205,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.FlightserviceApplication" />
         <item itemvalue="Application.AirlineserviceApplication" />
         <item itemvalue="JUnit.UserServiceTest.test_getUserByEmail_Success" />
         <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail_NotFound" />
         <item itemvalue="JUnit.UserRepositoryTest.testUniqueEmailConstraint" />
-        <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail" />
       </list>
     </recent_temporary>
   </component>
@@ -308,7 +294,23 @@
       <option name="project" value="LOCAL" />
       <updated>1781346322431</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="added aircraft service and controller">
+      <option name="closed" value="true" />
+      <created>1781435604391</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435604391</updated>
+    </task>
+    <task id="LOCAL-00011" summary="added aircraft service and controller">
+      <option name="closed" value="true" />
+      <created>1781435663346</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1781435663346</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -325,6 +327,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="updation on Dockerfile" />
     <MESSAGE value="added airline service" />
-    <option name="LAST_COMMIT_MESSAGE" value="added airline service" />
+    <MESSAGE value="added aircraft service and controller" />
+    <option name="LAST_COMMIT_MESSAGE" value="added aircraft service and controller" />
   </component>
 </project>

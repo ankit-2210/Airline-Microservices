@@ -23,6 +23,7 @@
         <module>UserService</module>
         <module>LocationService</module>
         <module>AirlineService</module>
+        <module>FlightService</module>
     </modules>
 
 </project>

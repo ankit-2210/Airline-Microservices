@@ -3,7 +3,7 @@ package com.userservice.service.Impl;
 import com.microservices.exception.*;
 import com.microservices.payload.dto.UserDto;
 import com.microservices.payload.response.User.AuthResponse;
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import com.userservice.config.jwt.JwtUtils;
 import com.userservice.mapper.UserMapper;
 import com.userservice.model.PasswordResetToken;

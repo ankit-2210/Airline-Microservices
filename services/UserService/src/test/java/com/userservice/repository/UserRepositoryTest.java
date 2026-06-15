@@ -1,8 +1,7 @@
 package com.userservice.repository;
 
-import com.microservices.utils.UserRole;
+import com.microservices.utils.Users.UserRole;
 import com.userservice.model.User;
-import lombok.RequiredArgsConstructor;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
