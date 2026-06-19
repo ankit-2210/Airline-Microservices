@@ -11,7 +11,6 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.util.*;
 
 @Getter
 @Setter
@@ -33,9 +32,13 @@ public class FlightInstance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "flight_id", nullable = false)
     private Flight flight;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "schedule_id", nullable = false)
+    private FlightSchedule schedule;
 
     @Column(name = "departure_date_time", nullable = false)
     private LocalDateTime departureDateTime;
@@ -43,10 +46,10 @@ public class FlightInstance {
     @Column(name = "arrival_date_time", nullable = false)
     private LocalDateTime arrivalDateTime;
 
-    @Column(nullable = false)
+    @Column(name = "total_seats", nullable = false)
     private Integer totalSeats;
 
-    @Column(nullable = false)
+    @Column(name = "available_seats", nullable = false)
     private Integer availableSeats;
 
     @Enumerated(EnumType.STRING)
@@ -57,33 +60,21 @@ public class FlightInstance {
     private Integer maxAdvanceBookingDays;
 
     @Builder.Default
+    @Column(nullable = false)
     private Boolean active=true;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
     @Transient
     public String getFormatedDuration(){
-        if(departureDateTime == null || arrivalDateTime == null)
-            return null;
-
         Duration duration = Duration.between(departureDateTime, arrivalDateTime);
-        long hours = duration.toHours();
-        long minutes = duration.toMinutesPart();
-
-        StringBuilder sb = new StringBuilder();
-        if(hours>0){
-            sb.append(hours).append("h ");
-        }
-        if(minutes>0){
-            sb.append(minutes).append("m");
-        }
-        return sb.toString().trim();
+        return duration.toHours() + "h " + duration.toMinutesPart() + "m";
     }
 
     @Transient
@@ -105,8 +96,6 @@ public class FlightInstance {
 
     @Transient
     public Boolean canCheckIn(){
-        if(departureDateTime == null)
-            return false;
         return LocalDateTime.now().isAfter(departureDateTime.minusMinutes(24));
     }
 
@@ -124,7 +113,23 @@ public class FlightInstance {
     public Boolean isCancelled() {
         return FlightStatus.CANCELLED.equals(flightStatus);
     }
-
-
-
 }
+
+// flights
+//-------
+//AI101
+//DEL -> BOM
+
+
+//flight_schedules
+//----------------
+//AI101
+//MON WED FRI
+//08:00
+
+
+//flight_instances
+//----------------
+//AI101
+//2026-08-15 08:00
+//180 seats

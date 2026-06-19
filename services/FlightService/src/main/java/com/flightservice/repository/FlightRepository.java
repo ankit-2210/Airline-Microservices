@@ -21,8 +21,8 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     Optional<Flight> findByAirlineIdAndId(Long airlineId, Long id);
 
     Page<Flight> findByFlightStatus(FlightStatus flightStatus, Pageable pageable);
-    Page<Flight> findByDepartureAirportId(Long airlineId, Pageable pageable);
-    Page<Flight> findByArrivalAirportId(Long airlineId, Pageable pageable);
+    Page<Flight> findByDepartureAirportId(Long departureAirportId, Pageable pageable);
+    Page<Flight> findByArrivalAirportId(Long arrivalAirportId, Pageable pageable);
     Page<Flight> findByDepartureAirportIdAndArrivalAirportId(Long departureAirportId, Long arrivalAirportId, Pageable pageable);
 
     @Query("""

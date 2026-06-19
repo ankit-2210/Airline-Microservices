@@ -26,6 +26,7 @@ public class FlightResponse {
 
     private LocalDateTime scheduledDeparture;
     private LocalDateTime scheduledArrival;
+
     private LocalDateTime actualDeparture;
     private LocalDateTime actualArrival;
 
@@ -33,6 +34,8 @@ public class FlightResponse {
 
     private Boolean active;
     private Boolean delayed;
+
+    private Long delayMinutes;
 
     private Double lowestPrice;
     private Integer totalAvailableSeats;

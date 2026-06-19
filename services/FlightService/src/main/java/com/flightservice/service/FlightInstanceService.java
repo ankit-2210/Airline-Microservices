@@ -19,7 +19,7 @@ public interface FlightInstanceService {
     FlightInstanceResponse updateFlightInstance(Long airlineId, Long id, FlightInstanceRequest flightInstanceRequest);
     FlightInstanceResponse changeStatus(Long airlineId, Long id, FlightStatus flightStatus);
 
-    FlightInstanceResponse updateAvailableSeats(Long id, Integer availableSeats);
+    FlightInstanceResponse updateAvailableSeats(Long airlineId, Long id, Integer availableSeats);
     FlightInstanceResponse toggleActive(Long airlineId, Long id, Boolean active);
 
     void deleteFlightInstance(Long airlineId, Long id);

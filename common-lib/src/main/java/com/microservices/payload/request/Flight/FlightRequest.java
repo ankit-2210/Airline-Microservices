@@ -14,16 +14,16 @@ public class FlightRequest {
     @NotBlank(message = "Flight number is required")
     private String flightNumber;
 
-    @NotNull(message = "Airline is required")
+    @NotNull(message = "Airline id is required")
     private Long airlineId;
 
-    @NotNull(message = "Aircraft is required")
+    @NotNull(message = "Aircraft id is required")
     private Long aircraftId;
 
-    @NotNull(message = "Departure airport is required")
+    @NotNull(message = "Departure airport id is required")
     private Long departureAirportId;
 
-    @NotNull(message = "Arrival airport is required")
+    @NotNull(message = "Arrival airport id is required")
     private Long arrivalAirportId;
 
     @NotNull(message = "Scheduled departure is required")

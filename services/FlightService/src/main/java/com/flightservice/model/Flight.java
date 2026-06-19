@@ -63,20 +63,22 @@ public class Flight {
     private FlightStatus flightStatus;
 
     @Builder.Default
-    @Column(nullable = false)
+    @Column(name = "active", nullable = false)
     private Boolean active = true;
 
     @CreatedDate
-    @Column(nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
     @LastModifiedDate
-    @Column(nullable = false)
+    @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
     @Transient
     public Boolean getDelayed() {
-        return actualDeparture != null && scheduledDeparture != null && actualDeparture.isAfter(scheduledDeparture);
+        return actualDeparture != null &&
+                scheduledDeparture != null
+                && actualDeparture.isAfter(scheduledDeparture);
     }
 
     @Transient
