@@ -3,8 +3,10 @@ package com.flightservice.service.Impl;
 import com.flightservice.mapper.FlightInstanceMapper;
 import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
+import com.flightservice.model.FlightSchedule;
 import com.flightservice.repository.FlightInstanceRepository;
 import com.flightservice.repository.FlightRepository;
+import com.flightservice.repository.FlightScheduleRepository;
 import com.flightservice.service.FlightInstanceService;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Flight.FlightInstanceRequest;
@@ -29,21 +31,33 @@ import java.util.*;
 public class FlightInstanceServiceImpl implements FlightInstanceService {
     private final FlightInstanceRepository flightInstanceRepository;
     private final FlightRepository flightRepository;
+    private final FlightScheduleRepository flightScheduleRepository;
 
     private Flight findFlightById(Long flightId) {
         return flightRepository.findById(flightId)
                 .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId));
     }
 
-    private FlightInstance findFlightInstanceById(Long id) {
+    private Flight findFlight(Long id){
+        return flightRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + id));
+    }
+
+    private FlightSchedule findSchedule(Long id){
+        return flightScheduleRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Schedule not found with id: " + id));
+    }
+
+    private FlightInstance findInstance(Long id) {
         return flightInstanceRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Flight instance not found with id: " + id));
     }
 
-    private FlightInstance findByAirlineAndId(Long airlineId, Long instanceId) {
-        return flightInstanceRepository.findByIdAndFlightAirlineId(instanceId, airlineId)
+    private FlightInstance findByAirline(Long airlineId, Long id){
+        return flightInstanceRepository.findByIdAndFlightAirlineId(id, airlineId)
                 .orElseThrow(() -> new ResourceNotFoundException("Flight instance not found"));
     }
+
 
     @Transactional
     @Override
@@ -52,14 +66,15 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
         if(!flight.getAirlineId().equals(airlineId)){
             throw new ResourceNotFoundException("Flight does not belong to airline");
         }
-        FlightInstance flightInstance = FlightInstanceMapper.toEntity(flightInstanceRequest, flight);
+        FlightSchedule schedule = findSchedule(flightInstanceRequest.getScheduleId());
+        FlightInstance flightInstance = FlightInstanceMapper.toEntity(flightInstanceRequest, flight, schedule);
         FlightInstance savedFlightInstance = flightInstanceRepository.save(flightInstance);
         return convertToInstanceResponse(savedFlightInstance);
     }
 
     @Override
     public FlightInstanceResponse getFlightInstanceById(Long id) {
-        FlightInstance flightInstance = findFlightInstanceById(id);
+        FlightInstance flightInstance = findInstance(id);
         return convertToInstanceResponse(flightInstance);
     }
 
@@ -82,7 +97,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     @Transactional
     @Override
     public FlightInstanceResponse updateFlightInstance(Long airlineId, Long id, FlightInstanceRequest flightInstanceRequest) {
-        FlightInstance flightInstance = findByAirlineAndId(airlineId, id);
+        FlightInstance flightInstance = findByAirline(airlineId, id);
         FlightInstanceMapper.updateEntity(flightInstance, flightInstanceRequest);
 
         FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
@@ -92,7 +107,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     @Transactional
     @Override
     public FlightInstanceResponse changeStatus(Long airlineId, Long id, FlightStatus flightStatus) {
-        FlightInstance flightInstance = findByAirlineAndId(airlineId, id);
+        FlightInstance flightInstance = findByAirline(airlineId, id);
         flightInstance.setFlightStatus(flightStatus);
 
         FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
@@ -101,8 +116,8 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
 
     @Transactional
     @Override
-    public FlightInstanceResponse updateAvailableSeats(Long id, Integer availableSeats) {
-        FlightInstance flightInstance = findFlightInstanceById(id);
+    public FlightInstanceResponse updateAvailableSeats(Long airlineId, Long id, Integer availableSeats) {
+        FlightInstance flightInstance = findByAirline(airlineId, id);
         if(availableSeats < 0)
             availableSeats = 0;
         if(availableSeats > flightInstance.getTotalSeats()){
@@ -116,7 +131,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     @Transactional
     @Override
     public FlightInstanceResponse toggleActive(Long airlineId, Long id, Boolean active) {
-        FlightInstance flightInstance = findByAirlineAndId(airlineId, id);
+        FlightInstance flightInstance = findByAirline(airlineId, id);
         flightInstance.setActive(active);
 
         FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
@@ -126,7 +141,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     @Transactional
     @Override
     public void deleteFlightInstance(Long airlineId, Long id) {
-        FlightInstance flightInstance = findByAirlineAndId(airlineId, id);
+        FlightInstance flightInstance = findByAirline(airlineId, id);
         flightInstanceRepository.delete(flightInstance);
     }
 

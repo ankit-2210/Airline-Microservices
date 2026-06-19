@@ -23,17 +23,17 @@ import java.time.LocalDateTime;
 public class FlightServiceImpl implements FlightService {
     private final FlightRepository flightRepository;
 
-    private Flight findFlightById(Long id){
+    private Flight findFlight(Long id){
         return flightRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + id));
     }
 
-    private Flight findFlightByAirlineAndId(Long airlineId, Long flightId){
-        return flightRepository.findByAirlineIdAndId(airlineId, flightId)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId));
+    private Flight findFlightByAirline(Long airlineId, Long id){
+        return flightRepository.findByAirlineIdAndId(airlineId, id)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + id));
     }
 
-    private void validateFlight(FlightRequest flightRequest){
+    private void validate(FlightRequest flightRequest){
         if (flightRequest.getDepartureAirportId().equals(flightRequest.getArrivalAirportId())) {
             throw new IllegalArgumentException("Departure and arrival airport cannot be same");
         }
@@ -48,7 +48,7 @@ public class FlightServiceImpl implements FlightService {
         if(flightRepository.existsByFlightNumber(flightRequest.getFlightNumber().toUpperCase())){
             throw new ResourceAlreadyExistsException("Flight number already exist");
         }
-        validateFlight(flightRequest);
+        validate(flightRequest);
         Flight flight = FlightMapper.toEntity(flightRequest);
         flight.setAirlineId(airlineId);
 
@@ -68,20 +68,18 @@ public class FlightServiceImpl implements FlightService {
 
     @Override
     public FlightResponse getFlightById(Long id) {
-        return FlightMapper.toResponse(findFlightById(id));
+        return FlightMapper.toResponse(findFlight(id));
     }
 
     @Transactional
     @Override
     public FlightResponse updateFlight(Long airlineId, Long id, FlightRequest flightRequest) {
-        Flight flight = findFlightByAirlineAndId(airlineId, id);
-
+        Flight flight = findFlightByAirline(airlineId, id);
         if(flightRepository.existsByFlightNumberAndIdNot(flightRequest.getFlightNumber().toUpperCase(), id)){
             throw new ResourceAlreadyExistsException("Flight number already exists");
         }
 
-        validateFlight(flightRequest);
-
+        validate(flightRequest);
         FlightMapper.updateEntity(flight, flightRequest);
         Flight updatedFlight = flightRepository.save(flight);
         return FlightMapper.toResponse(updatedFlight);
@@ -90,9 +88,9 @@ public class FlightServiceImpl implements FlightService {
     @Transactional
     @Override
     public FlightResponse changeStatus(Long airlineId, Long id, FlightStatus flightStatus) {
-        Flight flight = findFlightByAirlineAndId(airlineId, id);
-
+        Flight flight = findFlightByAirline(airlineId, id);
         flight.setFlightStatus(flightStatus);
+
         if (flightStatus == FlightStatus.DEPARTED) {
             flight.setActualDeparture(LocalDateTime.now());
         }
