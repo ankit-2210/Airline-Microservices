@@ -4,9 +4,6 @@ import com.microservices.payload.response.Airline.AircraftResponse;
 import com.microservices.payload.response.Airline.AirlineResponse;
 import com.microservices.payload.response.Airport.AirportResponse;
 import com.microservices.utils.Flight.FlightStatus;
-import jakarta.persistence.Column;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import lombok.*;
 
 import java.time.Instant;

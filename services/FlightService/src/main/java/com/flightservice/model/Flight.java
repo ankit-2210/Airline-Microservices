@@ -7,6 +7,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import java.time.Duration;
 import java.time.Instant;
 import java.time.LocalDateTime;
 
@@ -30,7 +31,7 @@ public class Flight {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "flight_number", nullable = false, unique = true)
+    @Column(name = "flight_number", nullable = false, unique = true, length = 20)
     private String flightNumber;
 
     @Column(name = "airline_id", nullable = false)
@@ -62,6 +63,7 @@ public class Flight {
     private FlightStatus flightStatus;
 
     @Builder.Default
+    @Column(nullable = false)
     private Boolean active = true;
 
     @CreatedDate
@@ -75,6 +77,14 @@ public class Flight {
     @Transient
     public Boolean getDelayed() {
         return actualDeparture != null && scheduledDeparture != null && actualDeparture.isAfter(scheduledDeparture);
+    }
+
+    @Transient
+    public Long getDelayMinutes(){
+        if(!Boolean.TRUE.equals(getDelayed()))
+            return 0L;
+
+        return Duration.between(scheduledDeparture, actualDeparture).toMinutes();
     }
 
 }
