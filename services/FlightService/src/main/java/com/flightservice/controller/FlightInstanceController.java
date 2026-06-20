@@ -2,7 +2,6 @@ package com.flightservice.controller;
 
 import com.flightservice.service.FlightInstanceService;
 import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.Airport.AirportResponse;
 import com.microservices.payload.response.ApiResponse;
 import com.microservices.payload.response.Flight.FlightInstanceResponse;
 import com.microservices.utils.Flight.FlightStatus;
@@ -75,8 +74,8 @@ public class FlightInstanceController {
 
     // update available seats
     @PatchMapping("/{id}/available-seats")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> updateAvailableSeats(@PathVariable Long id, @RequestParam Integer availableSeats) {
-        FlightInstanceResponse response = flightInstanceService.updateAvailableSeats(id, availableSeats);
+    public ResponseEntity<ApiResponse<FlightInstanceResponse>> updateAvailableSeats(@RequestParam Long airlineId, @PathVariable Long id, @RequestParam Integer availableSeats) {
+        FlightInstanceResponse response = flightInstanceService.updateAvailableSeats(airlineId, id, availableSeats);
         return ResponseEntity.ok(new ApiResponse<>(true, "Flight seats updated successfully", response));
     }
 

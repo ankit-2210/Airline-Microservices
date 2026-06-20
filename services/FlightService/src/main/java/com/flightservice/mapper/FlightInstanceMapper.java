@@ -4,9 +4,9 @@ import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
 import com.flightservice.model.FlightSchedule;
 import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.Airline.AircraftResponse;
-import com.microservices.payload.response.Airline.AirlineResponse;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import com.microservices.payload.response.Flight.FlightInstanceResponse;
 
 public class FlightInstanceMapper {

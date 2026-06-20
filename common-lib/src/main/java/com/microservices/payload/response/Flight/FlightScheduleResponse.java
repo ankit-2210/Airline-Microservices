@@ -1,6 +1,5 @@
 package com.microservices.payload.response.Flight;
 
-import com.microservices.payload.response.Airport.AirportResponse;
 import lombok.*;
 
 import java.time.*;

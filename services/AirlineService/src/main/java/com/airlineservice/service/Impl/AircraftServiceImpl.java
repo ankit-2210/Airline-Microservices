@@ -9,7 +9,7 @@ import com.airlineservice.service.AircraftService;
 import com.microservices.exception.ResourceAlreadyExistsException;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airline.AircraftResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
 import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -56,6 +56,17 @@ public class AircraftServiceImpl implements AircraftService {
     public Page<AircraftResponse> allAircraftByOwner(Long ownerId, Pageable pageable) {
         return aircraftRepository.findByAirlineOwnerId(ownerId, pageable)
                 .map(AircraftMapper::toResponse);
+    }
+
+    @Override
+    public Page<AircraftResponse> getAircraftByAirline(Long airlineId, Pageable pageable) {
+        return aircraftRepository.findByAirlineId(airlineId, pageable)
+                .map(AircraftMapper::toResponse);
+    }
+
+    @Override
+    public Page<AircraftResponse> searchAircraft(String keyword, Pageable pageable) {
+        return null;
     }
 
     @Transactional

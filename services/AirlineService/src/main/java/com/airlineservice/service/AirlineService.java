@@ -1,8 +1,8 @@
 package com.airlineservice.service;
 
 import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airline.AirlineResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
 import com.microservices.utils.Airline.AirlineStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -14,6 +14,7 @@ public interface AirlineService {
     AirlineResponse getAirlineById(Long id);
 
     Page<AirlineResponse> getAllAirlines(Pageable pageable);
+    Page<AirlineResponse> searchAirlines(String keyword, Pageable pageable);
     AirlineResponse updateAirline(Long airlineId, AirlineRequest airlineRequest, Long ownerId);
     void deleteAirline(Long id, Long ownerId);
 

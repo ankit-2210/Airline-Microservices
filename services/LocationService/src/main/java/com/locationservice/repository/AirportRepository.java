@@ -1,7 +1,6 @@
 package com.locationservice.repository;
 
 import com.locationservice.model.Airport;
-import com.microservices.payload.response.Airport.AirportResponse;
 import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.stereotype.Repository;

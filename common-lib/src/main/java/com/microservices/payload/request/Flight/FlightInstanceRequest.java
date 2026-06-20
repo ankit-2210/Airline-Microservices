@@ -35,7 +35,7 @@ public class FlightInstanceRequest {
     private FlightStatus flightStatus;
 
     @Builder.Default
-    private Boolean active;
+    private Boolean active=true;
 
     @PositiveOrZero(message = "Minimum advance booking days cannot be negative")
     private Integer minAdvanceBookingDays;

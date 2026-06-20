@@ -7,8 +7,8 @@ import com.airlineservice.service.AirlineService;
 import com.microservices.exception.ResourceAlreadyExistsException;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airline.AirlineResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
 import com.microservices.utils.Airline.AirlineStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -60,20 +60,24 @@ public class AirlineServiceImpl implements AirlineService {
     @Override
     public AirlineResponse getAirlineByOwner(Long ownerId) {
         Airline airline = findAirlineByOwnerId(ownerId);
-
         return AirlineMapper.toResponse(airline);
     }
 
     @Override
     public AirlineResponse getAirlineById(Long id) {
         Airline airline = findAirlineById(id);
-
         return AirlineMapper.toResponse(airline);
     }
 
     @Override
     public Page<AirlineResponse> getAllAirlines(Pageable pageable) {
         return airlineRepository.findAll(pageable)
+                .map(AirlineMapper::toResponse);
+    }
+
+    @Override
+    public Page<AirlineResponse> searchAirlines(String keyword, Pageable pageable) {
+        return airlineRepository.findByNameContainingIgnoreCase(keyword, pageable)
                 .map(AirlineMapper::toResponse);
     }
 
@@ -93,7 +97,6 @@ public class AirlineServiceImpl implements AirlineService {
 
         AirlineMapper.updateEntity(airline, airlineRequest);
         Airline updatedAirline = airlineRepository.save(airline);
-
         return AirlineMapper.toResponse(updatedAirline);
     }
 
@@ -117,7 +120,6 @@ public class AirlineServiceImpl implements AirlineService {
 
         airline.setAirlineStatus(airlineStatus);
         Airline updatedAirline = airlineRepository.save(airline);
-
         return AirlineMapper.toResponse(updatedAirline);
     }
 

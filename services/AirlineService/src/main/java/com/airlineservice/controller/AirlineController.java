@@ -2,8 +2,8 @@ package com.airlineservice.controller;
 
 import com.airlineservice.service.AirlineService;
 import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airline.AirlineResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
 import com.microservices.payload.response.ApiResponse;
 import com.microservices.utils.Airline.AirlineStatus;
 import jakarta.validation.Valid;
@@ -32,7 +32,7 @@ public class AirlineController {
 
     // get airline by id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<AirlineResponse>> getAirlineById(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<AirlineResponse>> getById(@PathVariable Long id){
         AirlineResponse airlineResponse = airlineService.getAirlineById(id);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline fetched successfully", airlineResponse));
     }
@@ -46,7 +46,7 @@ public class AirlineController {
 
     // get all airlines
     @GetMapping
-    public ResponseEntity<ApiResponse<Page<AirlineResponse>>> getAllAirlines(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
+    public ResponseEntity<ApiResponse<Page<AirlineResponse>>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
                                                                                 @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
@@ -54,15 +54,22 @@ public class AirlineController {
         return ResponseEntity.ok(new ApiResponse<>(true, "All airlines fetched successfully", airlines));
     }
 
+    // search
+    @GetMapping("/search")
+    public ResponseEntity<ApiResponse<Page<AirlineResponse>>> search(@RequestParam String keyword, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="20") int size){
+        Pageable pageable = PageRequest.of(page,size);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Search completed", airlineService.searchAirlines(keyword, pageable)));
+    }
+
     // update airline
-    @PutMapping
+    @PutMapping("/{airlineId}")
     public ResponseEntity<ApiResponse<AirlineResponse>> updateAirline(@PathVariable Long airlineId, @Valid @RequestBody AirlineRequest airlineRequest, @RequestParam Long ownerId){
         AirlineResponse airlineResponse = airlineService.updateAirline(airlineId, airlineRequest, ownerId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline updated successfully", airlineResponse));
     }
 
     // change status (admin)
-    @PatchMapping
+    @PatchMapping("/{airlineId}/status")
     public ResponseEntity<ApiResponse<AirlineResponse>> changeStatus(@PathVariable Long airlineId, @RequestParam AirlineStatus airlineStatus){
         AirlineResponse airlineResponse = airlineService.changeStatusByAdmin(airlineId, airlineStatus);
         return ResponseEntity.ok(new ApiResponse<>(true, "Airline updated successfully", airlineResponse));

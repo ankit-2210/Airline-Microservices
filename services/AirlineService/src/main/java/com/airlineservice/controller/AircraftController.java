@@ -2,8 +2,7 @@ package com.airlineservice.controller;
 
 import com.airlineservice.service.AircraftService;
 import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airline.AircraftResponse;
-import com.microservices.payload.response.Airline.AirlineResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
 import com.microservices.payload.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,7 @@ public class AircraftController {
 
     // get aircraft by id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<AircraftResponse>> getAircraftById(@PathVariable Long id){
+    public ResponseEntity<ApiResponse<AircraftResponse>> getById(@PathVariable Long id){
         AircraftResponse aircraftResponse = aircraftService.getById(id);
         return ResponseEntity.ok(new ApiResponse<>(true, "Aircraft fetched successfully", aircraftResponse));
     }
@@ -44,7 +43,7 @@ public class AircraftController {
 
     // update aircraft
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<AircraftResponse>> updateAircraft(@PathVariable Long id, @Valid @RequestBody AircraftRequest aircraftRequest, @RequestParam Long ownerId) {
+    public ResponseEntity<ApiResponse<AircraftResponse>> updateAircraft(@PathVariable Long id, @RequestParam Long ownerId, @Valid @RequestBody AircraftRequest aircraftRequest) {
         AircraftResponse aircraft = aircraftService.updateAircraft(id, aircraftRequest, ownerId);
         return ResponseEntity.ok(new ApiResponse<>(true, "Aircraft updated successfully", aircraft));
     }

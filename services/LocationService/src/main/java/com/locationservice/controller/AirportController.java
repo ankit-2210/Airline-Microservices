@@ -2,7 +2,7 @@ package com.locationservice.controller;
 
 import com.locationservice.service.AirportService;
 import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import com.microservices.payload.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

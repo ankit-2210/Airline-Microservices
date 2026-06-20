@@ -37,21 +37,25 @@ public class Aircraft {
     @Column(nullable = false)
     private String model;
 
-    @Column(nullable = false, length=50)
+    @Column(nullable = false, length = 50)
     private String manufacturer;
 
     @Column(nullable = false)
     private Integer seatingCapacity;
 
+    @Builder.Default
     @Column(name = "economy_seats")
     private Integer economySeats = 0;
 
+    @Builder.Default
     @Column(name = "premium_economy_seats")
     private Integer premiumEconomySeats = 0;
 
+    @Builder.Default
     @Column(name = "business_seats")
     private Integer businessSeats = 0;
 
+    @Builder.Default
     @Column(name = "first_class_seats")
     private Integer firstClassSeats = 0;
 
@@ -71,8 +75,9 @@ public class Aircraft {
 
     private LocalDate nextMaintenanceDate;
 
+    @Builder.Default
     @Enumerated(EnumType.STRING)
-    @Column(name = "aircraft_status", nullable = false, length = 20)
+    @Column(name = "aircraft_status", nullable = false)
     private AircraftStatus aircraftStatus = AircraftStatus.ACTIVE;
 
     @Builder.Default
@@ -92,7 +97,6 @@ public class Aircraft {
     @LastModifiedDate
     @Column(nullable = false)
     private Instant updatedAt;
-
 
     @Transient
     public Integer getTotalSeats() {

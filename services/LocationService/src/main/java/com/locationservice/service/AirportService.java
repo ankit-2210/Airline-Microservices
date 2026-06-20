@@ -1,7 +1,7 @@
 package com.locationservice.service;
 
 import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import org.springframework.data.domain.*;
 
 public interface AirportService {

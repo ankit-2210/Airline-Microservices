@@ -1,8 +1,8 @@
-package com.microservices.payload.response.Airline;
+package com.microservices.payload.response.Airlines.Airline;
 
 import com.microservices.embeddable.Airline.Support;
 import com.microservices.payload.dto.UserDto;
-import com.microservices.payload.response.City.CityResponse;
+import com.microservices.payload.response.Location.City.CityResponse;
 import com.microservices.utils.Airline.AirlineStatus;
 import lombok.*;
 
@@ -30,14 +30,16 @@ public class AirlineResponse {
     private AirlineStatus airlineStatus;
     private String alliance;
 
-    private Instant createdAt;
-    private Instant updatedAt;
-
     private Long ownerId;
     private UserDto owner;
     private Long updatedById;
 
     private CityResponse headquartersCity;
     private Support support;
+
+    private Integer aircraftCount;
+
+    private Instant createdAt;
+    private Instant updatedAt;
 
 }

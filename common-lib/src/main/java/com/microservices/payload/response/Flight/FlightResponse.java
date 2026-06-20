@@ -1,8 +1,8 @@
 package com.microservices.payload.response.Flight;
 
-import com.microservices.payload.response.Airline.AircraftResponse;
-import com.microservices.payload.response.Airline.AirlineResponse;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import com.microservices.utils.Flight.FlightStatus;
 import lombok.*;
 

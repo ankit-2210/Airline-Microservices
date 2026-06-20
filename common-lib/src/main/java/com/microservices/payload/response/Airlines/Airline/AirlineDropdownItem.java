@@ -1,4 +1,4 @@
-package com.microservices.payload.response.Airline;
+package com.microservices.payload.response.Airlines.Airline;
 
 import lombok.*;
 

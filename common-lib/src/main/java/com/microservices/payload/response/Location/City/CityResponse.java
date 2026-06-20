@@ -1,4 +1,4 @@
-package com.microservices.payload.response.City;
+package com.microservices.payload.response.Location.City;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

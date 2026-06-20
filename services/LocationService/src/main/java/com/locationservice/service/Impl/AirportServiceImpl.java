@@ -9,7 +9,7 @@ import com.locationservice.service.AirportService;
 import com.microservices.exception.ResourceAlreadyExistsException;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

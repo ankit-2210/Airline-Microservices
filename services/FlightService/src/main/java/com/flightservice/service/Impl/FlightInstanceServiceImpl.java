@@ -10,9 +10,9 @@ import com.flightservice.repository.FlightScheduleRepository;
 import com.flightservice.service.FlightInstanceService;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.Airline.AircraftResponse;
-import com.microservices.payload.response.Airline.AirlineResponse;
-import com.microservices.payload.response.Airport.AirportResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
+import com.microservices.payload.response.Location.Airport.AirportResponse;
 import com.microservices.payload.response.Flight.FlightInstanceResponse;
 import com.microservices.utils.Flight.FlightStatus;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.*;
 
 
 @Service

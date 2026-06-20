@@ -12,6 +12,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 public class AircraftRequest {
     @NotBlank(message = "Aircraft code is required")
+    @Size(max = 30)
     private String code;
 
     @NotBlank(message = "Aircraft model is required")

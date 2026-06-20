@@ -3,26 +3,32 @@ package com.airlineservice.mapper;
 import com.airlineservice.model.Aircraft;
 import com.airlineservice.model.Airline;
 import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airline.AircraftResponse;
+import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.microservices.utils.Airline.AircraftStatus;
 
 public class AircraftMapper {
     public static Aircraft toEntity(AircraftRequest aircraftRequest, Airline airline){
-        Integer economySeats = aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats();
-        Integer premiumEconomySeats = aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats();
-        Integer businessSeats = aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats();
-        Integer firstClassSeats = aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats();
+        int economySeats = aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats();
+        int premiumEconomySeats = aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats();
+        int businessSeats = aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats();
+        int firstClassSeats = aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats();
+
+        int total = economySeats + premiumEconomySeats + businessSeats + firstClassSeats;
+        if(total == 0){
+            total = aircraftRequest.getSeatingCapacity();
+        }
 
         return Aircraft.builder()
                 .code(aircraftRequest.getCode().toUpperCase())
                 .model(aircraftRequest.getModel())
                 .manufacturer(aircraftRequest.getManufacturer())
 
+                .seatingCapacity(total)
+
                 .economySeats(economySeats)
                 .premiumEconomySeats(premiumEconomySeats)
                 .businessSeats(businessSeats)
                 .firstClassSeats(firstClassSeats)
-
-                .seatingCapacity(economySeats+premiumEconomySeats+businessSeats+firstClassSeats)
 
                 .rangeKm(aircraftRequest.getRangeKm())
                 .cruisingSpeedKmh(aircraftRequest.getCruisingSpeedKmh())
@@ -32,8 +38,8 @@ public class AircraftMapper {
                 .registrationDate(aircraftRequest.getRegistrationDate())
                 .nextMaintenanceDate(aircraftRequest.getNextMaintenanceDate())
 
-                .aircraftStatus(aircraftRequest.getAircraftStatus())
-                .isAvailable(aircraftRequest.getIsAvailable())
+                .aircraftStatus(aircraftRequest.getAircraftStatus() != null ? aircraftRequest.getAircraftStatus() : AircraftStatus.ACTIVE)
+                .isAvailable(aircraftRequest.getIsAvailable() != null ? aircraftRequest.getIsAvailable() : true)
 
                 .currentAirportId(aircraftRequest.getCurrentAirportId())
                 .airline(airline)
@@ -41,21 +47,17 @@ public class AircraftMapper {
     }
 
     public static void updateEntity(Aircraft aircraft, AircraftRequest aircraftRequest){
-        Integer economySeats = aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats();
-        Integer premiumEconomySeats = aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats();
-        Integer businessSeats = aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats();
-        Integer firstClassSeats = aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats();
 
         aircraft.setCode(aircraftRequest.getCode().toUpperCase());
         aircraft.setModel(aircraftRequest.getModel());
         aircraft.setManufacturer(aircraftRequest.getManufacturer());
 
-        aircraft.setEconomySeats(economySeats);
-        aircraft.setPremiumEconomySeats(premiumEconomySeats);
-        aircraft.setBusinessSeats(businessSeats);
-        aircraft.setFirstClassSeats(firstClassSeats);
+        aircraft.setEconomySeats(aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats());
+        aircraft.setPremiumEconomySeats(aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats());
+        aircraft.setBusinessSeats(aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats());
+        aircraft.setFirstClassSeats(aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats());
 
-        aircraft.setSeatingCapacity(economySeats+premiumEconomySeats+businessSeats+firstClassSeats);
+        aircraft.setSeatingCapacity(aircraft.getTotalSeats());
 
         aircraft.setRangeKm(aircraftRequest.getRangeKm());
         aircraft.setCruisingSpeedKmh(aircraftRequest.getCruisingSpeedKmh());
@@ -65,9 +67,12 @@ public class AircraftMapper {
         aircraft.setRegistrationDate(aircraftRequest.getRegistrationDate());
         aircraft.setNextMaintenanceDate(aircraftRequest.getNextMaintenanceDate());
 
-        aircraft.setAircraftStatus(aircraftRequest.getAircraftStatus());
-        aircraft.setIsAvailable(aircraftRequest.getIsAvailable());
-
+        if(aircraftRequest.getAircraftStatus() != null) {
+            aircraft.setAircraftStatus(aircraftRequest.getAircraftStatus());
+        }
+        if(aircraftRequest.getIsAvailable() != null) {
+            aircraft.setIsAvailable(aircraftRequest.getIsAvailable());
+        }
         aircraft.setCurrentAirportId(aircraftRequest.getCurrentAirportId());
     }
 

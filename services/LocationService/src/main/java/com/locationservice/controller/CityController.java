@@ -3,7 +3,7 @@ package com.locationservice.controller;
 import com.locationservice.service.CityService;
 import com.microservices.payload.request.Location.City.CityRequest;
 import com.microservices.payload.response.ApiResponse;
-import com.microservices.payload.response.City.CityResponse;
+import com.microservices.payload.response.Location.City.CityResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;

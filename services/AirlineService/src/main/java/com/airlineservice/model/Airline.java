@@ -10,6 +10,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.Instant;
+import java.util.*;
 
 @Getter
 @Setter
@@ -64,6 +65,11 @@ public class Airline {
     private Long headquartersCityId;
 
     private Long updatedById;
+
+    @OneToMany(mappedBy = "airline", fetch = FetchType.LAZY)
+    @Builder.Default
+    @ToString.Exclude
+    private List<Aircraft> aircraft = new ArrayList<>();
 
     @CreatedDate
     @Column(updatable = false, nullable = false)

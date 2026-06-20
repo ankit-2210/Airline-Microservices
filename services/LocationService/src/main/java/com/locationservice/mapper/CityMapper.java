@@ -2,7 +2,7 @@ package com.locationservice.mapper;
 
 import com.locationservice.model.City;
 import com.microservices.payload.request.Location.City.CityRequest;
-import com.microservices.payload.response.City.CityResponse;
+import com.microservices.payload.response.Location.City.CityResponse;
 
 public class CityMapper {
     public static City toEntity(CityRequest cityRequest){

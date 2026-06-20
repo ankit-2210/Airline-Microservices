@@ -1,9 +1,8 @@
-package com.microservices.payload.response.Airport;
+package com.microservices.payload.response.Location.Airport;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.microservices.embeddable.Address;
 import com.microservices.embeddable.GeoCode;
-import com.microservices.payload.response.City.CityResponse;
+import com.microservices.payload.response.Location.City.CityResponse;
 import lombok.*;
 
 import java.time.ZoneId;

@@ -3,8 +3,8 @@ package com.airlineservice.mapper;
 import com.airlineservice.model.Airline;
 import com.microservices.embeddable.Airline.Support;
 import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airline.AirlineResponse;
+import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
 
 public class AirlineMapper {
     public static Airline toEntity(AirlineRequest airlineRequest, Long ownerId){

@@ -14,9 +14,15 @@ public interface AircraftRepository extends JpaRepository<Aircraft, Long> {
     boolean existsByCodeAndIdNot(String code, Long id);
 
     List<Aircraft> findByAirlineId(Long airlineId);
+
     Page<Aircraft> findByAirlineOwnerId(Long ownerId, Pageable pageable);
+    Page<Aircraft> findByAirlineId(Long airlineId, Pageable pageable);
 
     List<Aircraft> findByCurrentAirportId(Long airportId);
+    Page<Aircraft> findByAircraftStatus(String status, Pageable pageable);
 
+    Page<Aircraft> findByIsAvailableTrue(Pageable pageable);
+
+    Optional<Aircraft> findByAirlineIdAndCode(Long airlineId, String code);
 
 }
