@@ -12,9 +12,12 @@ import lombok.NoArgsConstructor;
 public class CityResponse {
     private Long id;
     private String name;
+
     private String cityCode;
     private String countryCode;
+
     private String countryName;
     private String regionCode;
-    private String timeZoneOffset;
+
+    private String timeZoneId;
 }

@@ -13,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CityServiceImpl implements CityService {
@@ -25,28 +27,33 @@ public class CityServiceImpl implements CityService {
 
     @Transactional
     @Override
-    public CityResponse createCity(CityRequest cityRequest) throws Exception{
+    public CityResponse createCity(CityRequest cityRequest){
+        String code = cityRequest.getCityCode().toUpperCase().trim();
         if(cityRepository.existsByCityCode(cityRequest.getCityCode())){
-            throw new Exception("City with given code already exist");
+            throw new ResourceNotFoundException("City with given code already exist");
         }
+
         City city = CityMapper.toEntity(cityRequest);
+        city.setCityCode(code);
+
         City savedCity = cityRepository.save(city);
         return CityMapper.toResponse(savedCity);
     }
 
     @Override
-    public CityResponse getCityById(Long id) throws Exception{
+    public CityResponse getCityById(Long id){
         City city = findCityById(id);
         return CityMapper.toResponse(city);
     }
 
     @Transactional
     @Override
-    public CityResponse updateCity(Long id, CityRequest cityRequest) throws Exception{
+    public CityResponse updateCity(Long id, CityRequest cityRequest){
         City city = findCityById(id);
-        if(cityRepository.existsByCityCodeAndIdNot(cityRequest.getCityCode(), id)){
-            throw new Exception("City with given code already exists");
+        if(cityRequest.getCityCode() != null && cityRepository.existsByCityCodeAndIdNot(cityRequest.getCityCode(), id)){
+            throw new ResourceNotFoundException("City with given code already exists");
         }
+
         CityMapper.updateEntity(city, cityRequest);
         City updatedCity = cityRepository.save(city);
         return CityMapper.toResponse(updatedCity);
@@ -54,7 +61,7 @@ public class CityServiceImpl implements CityService {
 
     @Transactional
     @Override
-    public void deleteCity(Long id) throws Exception{
+    public void deleteCity(Long id){
         City city = findCityById(id);
         cityRepository.delete(city);
     }
@@ -75,6 +82,18 @@ public class CityServiceImpl implements CityService {
     public Page<CityResponse> getCitiesByCountryCode(String countryCode, Pageable pageable) {
         return cityRepository.findByCountryCodeIgnoreCase(countryCode, pageable)
                 .map(CityMapper::toResponse);
+    }
+
+    @Override
+    public List<CityResponse> getCityDropdown() {
+        return List.of();
+    }
+
+    @Override
+    public CityResponse getCityByCode(String cityCode){
+        City city = cityRepository.findByCityCode(cityCode)
+                .orElseThrow(() -> new ResourceNotFoundException("City not found"));
+        return CityMapper.toResponse(city);
     }
 
     @Override

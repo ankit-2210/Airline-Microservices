@@ -10,11 +10,14 @@ public class CityMapper {
             return null;
         return City.builder()
                 .name(cityRequest.getName())
+
                 .cityCode(cityRequest.getCityCode())
                 .countryCode(cityRequest.getCountryCode())
+
                 .countryName(cityRequest.getCountryName())
+
                 .regionCode(cityRequest.getRegionCode())
-                .timeZoneId(cityRequest.getTimeZoneOffset())
+                .timeZoneId(cityRequest.getTimeZoneId())
                 .build();
     }
 
@@ -24,15 +27,19 @@ public class CityMapper {
         return CityResponse.builder()
                 .id(city.getId())
                 .name(city.getName())
+
                 .cityCode(city.getCityCode())
                 .countryCode(city.getCityCode())
+
                 .countryName(city.getCountryName())
+
                 .regionCode(city.getRegionCode())
+                .timeZoneId(city.getTimeZoneId())
                 .build();
     }
-    public static City updateEntity(City city, CityRequest cityRequest){
+    public static void updateEntity(City city, CityRequest cityRequest){
         if(cityRequest.getName() != null){
-            city.setName(cityRequest.getName().trim());
+            city.setName(cityRequest.getName());
         }
         if(cityRequest.getCityCode() != null){
             city.setCityCode(cityRequest.getCityCode().toUpperCase().trim());
@@ -41,11 +48,13 @@ public class CityMapper {
             city.setCityCode(cityRequest.getCountryCode().toUpperCase().trim());
         }
         if(cityRequest.getCountryName() != null){
-            city.setCountryName(cityRequest.getCountryName().trim());
+            city.setCountryName(cityRequest.getCountryName());
         }
         if(cityRequest.getRegionCode() != null){
             city.setRegionCode(cityRequest.getRegionCode().toUpperCase().trim());
         }
-        return city;
+        if(cityRequest.getTimeZoneId() != null){
+            city.setTimeZoneId(cityRequest.getTimeZoneId());
+        }
     }
 }

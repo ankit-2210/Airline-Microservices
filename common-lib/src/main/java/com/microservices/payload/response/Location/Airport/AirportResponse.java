@@ -14,11 +14,15 @@ import java.time.ZoneId;
 public class AirportResponse {
     private Long id;
     private String iataCode;
+
     private String name;
     private String detailedName;
+
     private Address address;
     private GeoCode geoCode;
+
     private CityResponse city;
-    private ZoneId timeZone;
+
+    private String timeZoneId;
 
 }

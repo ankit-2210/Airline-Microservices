@@ -31,7 +31,7 @@ public class Airport {
     private Long id;
 
     @NotBlank
-    @Column(unique = true, nullable = false)
+    @Column(name = "iata_code", unique = true, nullable = false, length = 3)
     private String iataCode;
 
     @NotBlank
@@ -47,7 +47,7 @@ public class Airport {
     private GeoCode geoCode;
 
     @Column(name="time_zone_id", length = 50)
-    private ZoneId timeZoneId;
+    private String timeZoneId;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "city_id", nullable = false)

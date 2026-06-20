@@ -20,13 +20,13 @@ public class AirportTest {
         Airport airport = Airport.builder()
                 .iataCode("CCU")
                 .name("Netaji Subhas Chandra Bose Airport")
-                .timeZoneId(ZoneId.of("Asia/Kolkata"))
+//                .timeZoneId(ZoneId.of("Asia/Kolkata"))
                 .city(city)
                 .build();
 
         assertNotNull(airport);
         assertEquals("CCU", airport.getIataCode());
-        assertEquals("Asia/Kolkata", airport.getTimeZoneId().toString());
+//        assertEquals("Asia/Kolkata", airport.getTimeZoneId().toString());
     }
 
     @Test

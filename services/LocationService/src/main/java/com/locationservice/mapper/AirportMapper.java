@@ -10,11 +10,13 @@ public class AirportMapper {
             return null;
 
         return Airport.builder()
-                .iataCode(airportRequest.getIataCode())
-                .name(airportRequest.getName())
+                .iataCode(airportRequest.getIataCode().toUpperCase().trim())
+                .name(airportRequest.getName().trim())
+
                 .address(airportRequest.getAddress())
                 .geoCode(airportRequest.getGeoCode())
-                .timeZoneId(airportRequest.getTimeZone())
+
+                .timeZoneId(airportRequest.getTimeZoneId())
                 .build();
     }
 
@@ -24,13 +26,17 @@ public class AirportMapper {
 
         return AirportResponse.builder()
                 .id(airport.getId())
+
                 .iataCode(airport.getIataCode())
+
                 .name(airport.getName())
+                .detailedName(airport.getDetailedName())
+
                 .address(airport.getAddress())
                 .geoCode(airport.getGeoCode())
                 .city(CityMapper.toResponse(airport.getCity()))
-                .timeZone(airport.getTimeZoneId())
-                .detailedName(airport.getDetailedName())
+
+                .timeZoneId(airport.getTimeZoneId())
                 .build();
     }
 
@@ -39,16 +45,19 @@ public class AirportMapper {
             return;
 
         if(airportRequest.getIataCode() != null){
-            airport.setIataCode(airportRequest.getIataCode());
+            airport.setIataCode(airportRequest.getIataCode().toUpperCase().trim());
         }
         if(airportRequest.getName() != null){
-            airport.setName(airportRequest.getName());
+            airport.setName(airportRequest.getName().trim());
         }
         if(airportRequest.getAddress() != null){
             airport.setAddress(airportRequest.getAddress());
         }
         if(airportRequest.getGeoCode() != null){
             airport.setGeoCode(airportRequest.getGeoCode());
+        }
+        if(airportRequest.getTimeZoneId() != null){
+            airport.setTimeZoneId(airportRequest.getTimeZoneId());
         }
 
     }

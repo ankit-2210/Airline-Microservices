@@ -18,7 +18,7 @@ public class CityRequest {
     private String cityCode;
 
     @NotBlank(message = "Country code is required")
-    @Size(max = 5)
+    @Size(max = 10)
     private String countryCode;
 
     @NotBlank(message = "Country name is required")
@@ -28,6 +28,7 @@ public class CityRequest {
     @Size(max = 10)
     private String regionCode;
 
-    @Size(max = 10)
-    private String timeZoneOffset;
+    @NotBlank(message = "Timezone is required")
+    @Size(max = 50)
+    private String timeZoneId;
 }
