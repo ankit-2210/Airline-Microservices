@@ -22,45 +22,42 @@ public class CityController {
 
     // create city
     @PostMapping
-    public ResponseEntity<ApiResponse<CityResponse>> createCity(@Valid @RequestBody CityRequest cityRequest) throws Exception {
+    public ResponseEntity<ApiResponse<CityResponse>> createCity(@Valid @RequestBody CityRequest cityRequest) {
         CityResponse cityResponse = cityService.createCity(cityRequest);
-        ApiResponse<CityResponse> response = new ApiResponse<>(true, "City create successfully", cityResponse);
-        return new ResponseEntity<>(response, HttpStatus.CREATED);
+        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, "City create successfully", cityResponse));
     }
 
     // get city by id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<CityResponse>> getCityById(@PathVariable Long id) throws Exception {
+    public ResponseEntity<ApiResponse<CityResponse>> getCityById(@PathVariable Long id){
         CityResponse cityResponse = cityService.getCityById(id);
-        ApiResponse<CityResponse> response = new ApiResponse<>(true, "City fetched successfully", cityResponse);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "City fetched successfully", cityResponse));
     }
 
     // get all cities
     @GetMapping
     public ResponseEntity<ApiResponse<Page<CityResponse>>> getAllCities(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String sortDirection){
+                                                                        @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String sortDirection){
         Sort sort = Sort.by(Sort.Direction.fromString(sortDirection), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<CityResponse> cities = cityService.getAllCities(pageable);
-        ApiResponse<Page<CityResponse>> response = new ApiResponse<>(true, "Cities fetched successfully", cities);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Cities fetched successfully", cities));
     }
 
     // update city by id
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<CityResponse>> updateCity(@PathVariable Long id, @Valid @RequestBody CityRequest cityRequest) throws Exception {
         CityResponse cityResponse = cityService.updateCity(id, cityRequest);
-        ApiResponse<CityResponse> response = new ApiResponse<>(true, "City updated successfully", cityResponse);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "City updated successfully", cityResponse));
+
     }
 
     // delete city by id
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> deleteCityById(@PathVariable Long id) throws Exception {
         cityService.deleteCity(id);
-        ApiResponse<Void> response = new ApiResponse<>(true, "City deleted successfully", null);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "City deleted successfully", null));
+
     }
 
     //search cities
@@ -68,8 +65,7 @@ public class CityController {
     public ResponseEntity<ApiResponse<Page<CityResponse>>> searchCities(@RequestParam String keyword, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<CityResponse> result = cityService.searchCities(keyword, pageable);
-        ApiResponse<Page<CityResponse>> response = new ApiResponse<>(true, "Search results fetched successfully", result);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Search results fetched successfully", result));
     }
 
     // get cities by countryCode
@@ -77,16 +73,15 @@ public class CityController {
     public ResponseEntity<ApiResponse<Page<CityResponse>>> getCitiesByCountryCode(@PathVariable String countryCode, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<CityResponse> result = cityService.getCitiesByCountryCode(countryCode, pageable);
-        ApiResponse<Page<CityResponse>> response = new ApiResponse<>(true, "Cities fetched successfully by country code", result);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Cities fetched successfully by country code", result));
+
     }
 
     // check city is exist or not
     @GetMapping("/exists/{cityCode}")
     public ResponseEntity<ApiResponse<Boolean>> checkCityExists(@PathVariable String cityCode){
         boolean exists = cityService.cityExists(cityCode);
-        ApiResponse<Boolean> response = new ApiResponse<>(true, exists ? "City exists" : "City does not exist", exists);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(new ApiResponse<>(true, exists ? "City exists" : "City does not exist", exists));
     }
 
 
