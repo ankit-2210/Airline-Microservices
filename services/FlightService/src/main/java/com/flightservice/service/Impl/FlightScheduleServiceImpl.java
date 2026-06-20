@@ -2,13 +2,16 @@ package com.flightservice.service.Impl;
 
 import com.flightservice.mapper.FlightScheduleMapper;
 import com.flightservice.model.Flight;
+import com.flightservice.model.FlightInstance;
 import com.flightservice.model.FlightSchedule;
+import com.flightservice.repository.FlightInstanceRepository;
 import com.flightservice.repository.FlightRepository;
 import com.flightservice.repository.FlightScheduleRepository;
 import com.flightservice.service.FlightScheduleService;
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.request.Flight.FlightScheduleRequest;
 import com.microservices.payload.response.Flight.FlightScheduleResponse;
+import com.microservices.utils.Flight.FlightStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -24,6 +28,7 @@ import java.util.List;
 public class FlightScheduleServiceImpl implements FlightScheduleService {
     private final FlightScheduleRepository scheduleRepository;
     private final FlightRepository flightRepository;
+    private final FlightInstanceRepository flightInstanceRepository;
 
     private Flight findFlight(Long id){
         return flightRepository.findById(id)
@@ -92,10 +97,39 @@ public class FlightScheduleServiceImpl implements FlightScheduleService {
                 .toList();
     }
 
+    @Transactional
     @Override
     public void generateFlightInstances(Long scheduleId) {
+        FlightSchedule schedule = scheduleRepository.findById(scheduleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Schedule not found"));
+        LocalDate date = schedule.getStartDate();
+        while(!date.isAfter(schedule.getEndDate())){
+            if(schedule.getOperatingDays().contains(date.getDayOfWeek())){
+                boolean exists = flightInstanceRepository.existsByScheduleIdAndDepartureDateTime(scheduleId, schedule.getDepartureDateTime(date));
+                if(!exists){
+                    FlightInstance instance = FlightInstance.builder()
+                            .flight(schedule.getFlight())
+                            .schedule(schedule)
 
+                            .departureDateTime(schedule.getDepartureDateTime(date))
+                            .arrivalDateTime(schedule.getArrivalDateTime(date))
+
+                            .totalSeats(180)
+                            .availableSeats(180)
+
+                            .flightStatus(FlightStatus.SCHEDULED)
+
+                            .active(true)
+                            .build();
+
+                    flightInstanceRepository.save(instance);
+                }
+            }
+
+            date = date.plusDays(1);
+        }
     }
+
 
     @Transactional
     @Override

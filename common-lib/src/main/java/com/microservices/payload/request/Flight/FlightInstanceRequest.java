@@ -1,14 +1,11 @@
 package com.microservices.payload.request.Flight;
 
-
 import com.microservices.utils.Flight.FlightStatus;
-import jakarta.persistence.Column;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.*;
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.*;
+import java.util.*;
 
 @Data
 @Builder

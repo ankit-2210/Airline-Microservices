@@ -6,12 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="added flight instance service and controller">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Flight/FlightRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Flight/FlightRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Flight/FlightResponse$FlightResponseBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Flight/FlightResponse$FlightResponseBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Flight/FlightResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/Flight/FlightResponse.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightInstanceServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightInstanceServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Flight/FlightInstanceRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/Flight/FlightInstanceRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/controller/FlightScheduleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/controller/FlightScheduleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/repository/FlightInstanceRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/repository/FlightInstanceRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightScheduleServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightScheduleServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FlightService/src/main/java/com/flightservice/service/Impl/FlightServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -327,7 +325,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781885323940</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="added flight instance service and controller">
+      <option name="closed" value="true" />
+      <created>1781889851687</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1781889851687</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

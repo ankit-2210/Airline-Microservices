@@ -42,5 +42,6 @@ public interface FlightInstanceRepository extends JpaRepository<FlightInstance, 
     Page<FlightInstance> findByFlightId(Long flightId, Pageable pageable);
     Page<FlightInstance> findByFlightAirlineId(Long airlineId, Pageable pageable);
 
+    boolean existsByScheduleIdAndDepartureDateTime(Long scheduleId, LocalDateTime departureDateTime);
 
 }
