@@ -32,6 +32,7 @@ public class User {
     @Column(nullable = false)
     private UserRole userRole;
 
+    @Column(nullable = false)
     private String password;
 
     @CreationTimestamp
@@ -41,7 +42,5 @@ public class User {
     private LocalDateTime updatedAt;
 
     private LocalDateTime lastLogin;
-
-
 
 }

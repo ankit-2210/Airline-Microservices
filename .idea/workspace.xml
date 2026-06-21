@@ -5,12 +5,36 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/exception/MessagingException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/request/User/UserRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/User/UserResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/UserService/src/integration/java/com/userservice/UserserviceIntegrationTests.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/service/AuthServiceTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/Airport/AirportRequest$AirportRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/Airport/AirportRequest$AirportRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/Airport/AirportRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/Airport/AirportRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/City/CityRequest$CityRequestBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/City/CityRequest$CityRequestBuilder.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/City/CityRequest.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/request/Location/City/CityRequest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/CityController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/CityController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/dto/UserDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/User/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/microservices/payload/response/User/AuthResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/exception/GlobalExceptionHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto$UserDtoBuilder.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto$UserDtoBuilder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/dto/UserDto.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/User/AuthResponse.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/payload/response/User/AuthResponse.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/PasswordResetToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/PasswordResetToken.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/repository/UserRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/CustomUserDetailService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/utils/EmailUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/utils/EmailUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/PasswordResetTokenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/PasswordResetTokenTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/model/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/PasswordTokenRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/PasswordTokenRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/UserRepositoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/repository/UserRepositoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/service/UserServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/test/java/com/userservice/service/UserServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,9 +48,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Exception" />
         <option value="Enum" />
         <option value="Interface" />
+        <option value="Exception" />
         <option value="Class" />
       </list>
     </option>
@@ -65,46 +89,60 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AirlineserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CommonLibApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FlightserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirportTest.testDetailedName.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CityTest.testCityCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testBuilder.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testExpiryLogic.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testFindByEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.test_getUserByEmail_Success.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testUserBuilder.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;ToolWindow.documentation.v2.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Spring Boot/SpringAI&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AirlineserviceApplication.executor": "Run",
+    "Application.CommonLibApplication.executor": "Run",
+    "Application.FlightserviceApplication.executor": "Run",
+    "Application.LocationserviceApplication.executor": "Run",
+    "Application.UserserviceApplication.executor": "Run",
+    "JUnit.AirportTest.testAirportCreation.executor": "Run",
+    "JUnit.AirportTest.testDetailedName.executor": "Run",
+    "JUnit.AuthServiceTest.testChangePasswordSuccess.executor": "Run",
+    "JUnit.AuthServiceTest.testLoginSuccess.executor": "Run",
+    "JUnit.CityTest.testCityCreation.executor": "Run",
+    "JUnit.PasswordResetTokenTest.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testBuilder.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testExpiryLogic.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
+    "JUnit.PasswordTokenRepositoryTest.testFindByToken.executor": "Run",
+    "JUnit.UserRepositoryTest.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor": "Run",
+    "JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.UserServiceTest.testGetAllUsers.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserByEmail.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserByEmail_NotFound.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserById.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserById_NotFound.executor": "Run",
+    "JUnit.UserServiceTest.test_getUserByEmail_Success.executor": "Run",
+    "JUnit.UserTest.testNoArgsConstructor.executor": "Run",
+    "JUnit.UserTest.testSettersAndGetters.executor": "Run",
+    "JUnit.UserTest.testUpdateUser.executor": "Run",
+    "JUnit.UserTest.testUserBuilder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "ToolWindow.documentation.v2.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Spring Boot/airline/microservices/services/UserService/src/integration",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Git"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Spring Boot\airline\microservices\services\UserService\src\integration" />
       <recent name="C:\Spring Boot\airline\microservices\services\LocationService\src\main\java\com\locationservice" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
@@ -112,66 +150,40 @@
       <recent name="com.userservice.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FlightserviceApplication">
-    <configuration name="AirlineserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.airlineservice.AirlineserviceApplication" />
-      <module name="airlineservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.airlineservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="FlightserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.flightservice.FlightserviceApplication" />
-      <module name="flightservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.flightservice.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserRepositoryTest.testFindByEmail_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.AuthServiceTest.testLoginSuccess">
+    <configuration name="AuthServiceTest.testChangePasswordSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="userservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="PATTERN" value="com.userservice.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.userservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
-      <option name="METHOD_NAME" value="testFindByEmail_NotFound" />
+      <option name="PACKAGE_NAME" value="com.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.service.AuthServiceTest" />
+      <option name="METHOD_NAME" value="testChangePasswordSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRepositoryTest.testUniqueEmailConstraint" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="AuthServiceTest.testLoginSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="userservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.userservice.repository.*" />
+          <option name="PATTERN" value="com.userservice.service.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.userservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.userservice.repository.UserRepositoryTest" />
-      <option name="METHOD_NAME" value="testUniqueEmailConstraint" />
+      <option name="PACKAGE_NAME" value="com.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.service.AuthServiceTest" />
+      <option name="METHOD_NAME" value="testLoginSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceTest.test_getUserByEmail_Success" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceTest.testGetAllUsers" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="userservice" />
       <extension name="coverage">
         <pattern>
@@ -181,7 +193,39 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.userservice.service" />
       <option name="MAIN_CLASS_NAME" value="com.userservice.service.UserServiceTest" />
-      <option name="METHOD_NAME" value="test_getUserByEmail_Success" />
+      <option name="METHOD_NAME" value="testGetAllUsers" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.testGetUserById" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="testGetUserById" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceTest.testGetUserById_NotFound" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="userservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.userservice.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.userservice.service" />
+      <option name="MAIN_CLASS_NAME" value="com.userservice.service.UserServiceTest" />
+      <option name="METHOD_NAME" value="testGetUserById_NotFound" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -189,11 +233,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FlightserviceApplication" />
-        <item itemvalue="Application.AirlineserviceApplication" />
-        <item itemvalue="JUnit.UserServiceTest.test_getUserByEmail_Success" />
-        <item itemvalue="JUnit.UserRepositoryTest.testFindByEmail_NotFound" />
-        <item itemvalue="JUnit.UserRepositoryTest.testUniqueEmailConstraint" />
+        <item itemvalue="JUnit.AuthServiceTest.testLoginSuccess" />
+        <item itemvalue="JUnit.AuthServiceTest.testChangePasswordSuccess" />
+        <item itemvalue="JUnit.UserServiceTest.testGetUserById_NotFound" />
+        <item itemvalue="JUnit.UserServiceTest.testGetUserById" />
+        <item itemvalue="JUnit.UserServiceTest.testGetAllUsers" />
       </list>
     </recent_temporary>
   </component>
@@ -366,7 +410,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781936868652</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1781937955111</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1781937955111</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

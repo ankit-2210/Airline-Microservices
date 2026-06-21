@@ -39,7 +39,7 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public AuthResponse signup(UserDto userDto){
         // Check if email exists
-        if (userRepository.findByEmail(userDto.getEmail()).isPresent()) {
+        if (userRepository.existsByEmail(userDto.getEmail())) {
             throw new ResourceAlreadyExistsException("Email already registered");
         }
         // Prevent system admin signup
@@ -54,9 +54,6 @@ public class AuthServiceImpl implements AuthService {
                 .phone(userDto.getPhone())
                 .userRole(userDto.getUserRole())
                 .fullName(userDto.getFullName())
-                .lastLogin(LocalDateTime.now())
-                .createdAt(LocalDateTime.now())
-                .updatedAt(LocalDateTime.now())
                 .build();
         User savedUser = userRepository.save(user);
 
@@ -71,13 +68,12 @@ public class AuthServiceImpl implements AuthService {
         // Generate JWT
         String jwt = jwtUtils.generateToken(authentication, savedUser.getId());
 
-        // Build Response
-        AuthResponse authResponse = new AuthResponse();
-        authResponse.setJwt(jwt);
-        authResponse.setUserDto(UserMapper.toDto(savedUser));
-        authResponse.setTitle("Welcome " + savedUser.getFullName());
-        authResponse.setMessage("Registered Successfully");
-        return authResponse;
+        return AuthResponse.builder()
+                .jwt(jwt)
+                .userDto(UserMapper.toDto(savedUser))
+                .title("Welcome " + savedUser.getFullName())
+                .message("Registration successful")
+                .build();
     }
 
 //    Load user by email
@@ -103,12 +99,12 @@ public class AuthServiceImpl implements AuthService {
         String jwt = jwtUtils.generateToken(authentication, user.getId());
 
         // Response
-        AuthResponse authResponse = new AuthResponse();
-        authResponse.setJwt(jwt);
-        authResponse.setUserDto(UserMapper.toDto(user));
-        authResponse.setTitle("Welcome back " + user.getFullName());
-        authResponse.setMessage("Login Successfully");
-        return authResponse;
+        return AuthResponse.builder()
+                .jwt(jwt)
+                .userDto(UserMapper.toDto(user))
+                .title("Welcome " + user.getFullName())
+                .message("Login successful")
+                .build();
     }
 
     @Override
@@ -119,6 +115,7 @@ public class AuthServiceImpl implements AuthService {
         if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
             throw new UnauthorizedException("Old password is incorrect");
         }
+
         // set new password
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setUpdatedAt(LocalDateTime.now());
@@ -129,35 +126,40 @@ public class AuthServiceImpl implements AuthService {
     public void forgotPassword(String email, String baseUrl) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException("User not found"));
+
         String token = UUID.randomUUID().toString();
-        System.out.println("TOKEN: " + token);
+//        System.out.println("TOKEN: " + token);
         PasswordResetToken resetToken = PasswordResetToken.builder()
                 .token(token)
                 .user(user)
                 .expiryDate(LocalDateTime.now().plusMinutes(15))
                 .build();
+
         passwordResetTokenRepository.save(resetToken);
         String url = baseUrl + "/auth/reset-password?token="+token;
+
         try{
             emailUtil.sendResetMail(email, url);
         }
         catch (Exception e){
             throw new RuntimeException("Email sending failed");
         }
-
     }
 
     @Override
     public void resetPassword(String token, String newPassword) {
         PasswordResetToken resetToken = passwordResetTokenRepository.findByToken(token)
                 .orElseThrow(() -> new ResourceNotFoundException("Invalid token"));
+
         if(resetToken.getExpiryDate().isBefore(LocalDateTime.now())){
             throw new UnauthorizedException("Token expired");
         }
 
         User user = resetToken.getUser();
+
         user.setPassword(passwordEncoder.encode(newPassword));
         user.setUpdatedAt(LocalDateTime.now());
+
         userRepository.save(user);
         passwordResetTokenRepository.delete(resetToken);
     }

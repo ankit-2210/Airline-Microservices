@@ -20,6 +20,6 @@ public class PasswordResetToken {
 
     private LocalDateTime expiryDate;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
 }

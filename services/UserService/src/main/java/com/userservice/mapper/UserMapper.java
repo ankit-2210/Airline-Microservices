@@ -1,29 +1,42 @@
 package com.userservice.mapper;
 
 import com.microservices.payload.dto.UserDto;
+import com.microservices.payload.response.User.UserResponse;
 import com.userservice.model.User;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class UserMapper {
-    public static UserDto toDto(User user){
+    public static UserResponse toResponse(User user){
         if(user == null)
             return null;
-
-        return UserDto.builder()
+        return UserResponse.builder()
                 .id(user.getId())
-                .email(user.getEmail())
                 .fullName(user.getFullName())
-                .userRole(user.getUserRole())
+                .email(user.getEmail())
                 .phone(user.getPhone())
+                .userRole(user.getUserRole())
                 .lastLogin(user.getLastLogin())
+                .createdAt(user.getCreatedAt())
                 .build();
     }
 
-    public static List<UserDto> toDtoList(List<User> users){
+    public static UserDto toDto(User user){
+        if(user == null)
+            return null;
+        return UserDto.builder()
+                .id(user.getId())
+                .fullName(user.getFullName())
+                .email(user.getEmail())
+                .phone(user.getPhone())
+                .userRole(user.getUserRole())
+                .build();
+    }
+
+    public static List<UserResponse> toResponseList(List<User> users){
         return users.stream()
-                .map(UserMapper::toDto)
+                .map(UserMapper::toResponse)
                 .collect(Collectors.toList());
     }
 

@@ -24,9 +24,11 @@ public class UserRepositoryTest {
                 .userRole(UserRole.ROLE_USER)
                 .password("password")
                 .build();
+
         userRepository.save(user);
 
         Optional<User> foundUser = userRepository.findByEmail("john@example.com");
+
         assertTrue(foundUser.isPresent());
         assertEquals("John Deo", foundUser.get().getFullName());
         assertEquals("john@example.com", foundUser.get().getEmail());
@@ -47,11 +49,13 @@ public class UserRepositoryTest {
                 .email("duplicate@example.com")
                 .userRole(UserRole.ROLE_USER)
                 .build();
+
         User user2 = User.builder()
                 .fullName("User Two")
                 .email("duplicate@example.com")
                 .userRole(UserRole.ROLE_USER)
                 .build();
+
         userRepository.save(user1);
         assertThrows(Exception.class, () -> {
             userRepository.saveAndFlush(user2);

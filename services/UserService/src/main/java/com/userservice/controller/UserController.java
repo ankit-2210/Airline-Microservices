@@ -2,6 +2,7 @@ package com.userservice.controller;
 
 import com.microservices.payload.dto.UserDto;
 import com.microservices.payload.response.ApiResponse;
+import com.microservices.payload.response.User.UserResponse;
 import com.userservice.model.User;
 import com.userservice.service.UserService;
 import lombok.*;
@@ -17,27 +18,22 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/profile")
-    public ResponseEntity<ApiResponse<UserDto>> getUserProfile(Authentication authentication){
+    public ResponseEntity<ApiResponse<UserResponse>> getUserProfile(Authentication authentication){
         String email = authentication.getName();
-        System.out.println(userService.getUserByEmail(email));
-        UserDto userDto = userService.getUserByEmail(email);
-        ApiResponse<UserDto> apiResponse = new ApiResponse<>(true, "User profile fetched successfully", userDto);
-        return ResponseEntity.ok(apiResponse);
+        UserResponse userResponse = userService.getUserByEmail(email);
+        return ResponseEntity.ok(new ApiResponse<>(true, "User profile fetched successfully", userResponse));
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<ApiResponse<UserDto>> getUserById(@PathVariable Long userId){
-        UserDto userDto = userService.getUserById(userId);
-        ApiResponse<UserDto> apiResponse = new ApiResponse<>(true, "User fetch by id", userDto);
-        return ResponseEntity.ok(apiResponse);
+    public ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable Long userId){
+        UserResponse userResponse = userService.getUserById(userId);
+        return ResponseEntity.ok(new ApiResponse<>(true, "User fetch by id", userResponse));
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<UserDto>>> getUsers(){
-        List<UserDto> users = userService.getAllUsers();
-        ApiResponse<List<UserDto>> apiResponse = new ApiResponse<>(true, "Users fetched", users);
-        return ResponseEntity.ok(apiResponse);
+    public ResponseEntity<ApiResponse<List<UserResponse>>> getUsers(){
+        List<UserResponse> users = userService.getAllUsers();
+        return ResponseEntity.ok(new ApiResponse<>(true, "Users fetched", users));
     }
-
 
 }

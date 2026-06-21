@@ -1,24 +1,21 @@
-package com.microservices.payload.dto;
+package com.microservices.payload.response.User;
 
 import com.microservices.utils.Users.UserRole;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDateTime;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 @Builder
-public class UserDto {
+@AllArgsConstructor
+@NoArgsConstructor
+public class UserResponse {
     private Long id;
     private String fullName;
     private String email;
     private String phone;
-    private String password;   // only for auth input
     private UserRole userRole;
     private LocalDateTime lastLogin;
+    private LocalDateTime createdAt;
 
 }

@@ -3,6 +3,7 @@ package com.userservice.utils;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
@@ -13,25 +14,64 @@ import java.io.UnsupportedEncodingException;
 @RequiredArgsConstructor
 public class EmailUtil {
     private final JavaMailSender mailSender;
-    public void sendResetMail(String toEmail, String url) throws MessagingException, UnsupportedEncodingException {
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("aki.code22@gmail.com", "Airline Management");
-        helper.setTo(toEmail);
+    @Value("${spring.mail.username}")
+    private String fromEmail;
 
-        String content = """
-                <p>Hello,</p>
-                <p>You requested to reset your password.</p>
-                <p>Click below:</p>
-                <p><a href="%s">Reset Password</a></p>
-                <p>This link expires in 15 minutes.</p>
-                """.formatted(url);
+    @Value("${app.mail.from-name}")
+    private String senderName;
 
-        helper.setSubject("Password Reset");
-        helper.setText(content, true);
+    public void sendResetMail(String toEmail, String resetUrl){
+        try {
+            MimeMessage message = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(message, true, "UTF-8");
 
-        mailSender.send(message);
+            helper.setFrom(fromEmail, senderName);
+            helper.setTo(toEmail);
+            helper.setSubject("Password Reset Request");
+
+            String htmlContent = """
+                    <!DOCTYPE html>
+                        <html>
+                            <body style="font-family: Arial, sans-serif;">
+
+                            <h2>Password Reset</h2>
+                            <p>Hello,</p>
+                            <p>We received a request to reset your password.</p>
+                            <p>Click the button below to reset your password:</p>
+                           \s
+                            <a href="%s"\s
+                                style="
+                                display:inline-block; padding:12px 20px;
+                                background:#2563eb; color:white;
+                                text-decoration:none; border-radius:6px;">
+                                Reset Password
+                            </a>
+                              \s
+                            <p>This link will expire in <b>15 minutes</b>.</p>
+                            <p>If you did not request this password reset, you can safely ignore this email.</p>
+        \s
+                            <br>
+                   \s
+                            <p> Regards,<br> Airline Management Team </p>
+
+                            </body>
+                        </html>
+
+                       \s""".formatted(resetUrl);
+
+            helper.setText(htmlContent, true);
+            mailSender.send(message);
+        }
+        catch(MessagingException e){
+            throw new RuntimeException("Failed to create email: " + e);
+        }
+        catch (MatchException e){
+            throw new RuntimeException("Email sending failed: " + e);
+        }
+        catch (UnsupportedEncodingException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

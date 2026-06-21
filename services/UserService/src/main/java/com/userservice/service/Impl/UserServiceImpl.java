@@ -2,6 +2,7 @@ package com.userservice.service.Impl;
 
 import com.microservices.exception.ResourceNotFoundException;
 import com.microservices.payload.dto.UserDto;
+import com.microservices.payload.response.User.UserResponse;
 import com.userservice.mapper.UserMapper;
 import com.userservice.model.User;
 import com.userservice.repository.UserRepository;
@@ -16,25 +17,29 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
+    private User findUser(Long id){
+        return userRepository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
+    }
+
     @Override
-    public UserDto getUserByEmail(String email) {
+    public UserResponse getUserByEmail(String email) {
         User user = userRepository.findByEmail(email)
                 .orElseThrow(()-> new ResourceNotFoundException("User not found with email: " + email));
-        return UserMapper.toDto(user);
+        return UserMapper.toResponse(user);
     }
 
     @Override
-    public UserDto getUserById(Long id) {
-        User user = userRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("User not found with id: " + id));
-        return UserMapper.toDto(user);
+    public UserResponse getUserById(Long id) {
+        User user = findUser(id);
+        return UserMapper.toResponse(user);
     }
 
     @Override
-    public List<UserDto> getAllUsers() {
-        List<User> users = userRepository.findAll();
-        return UserMapper.toDtoList(users);
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll().stream()
+                .map(UserMapper::toResponse)
+                .toList();
     }
-
 
 }
