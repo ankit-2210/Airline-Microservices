@@ -1,7 +1,7 @@
 package com.flightservice.repository;
 
+import com.airlineportal.utils.Flight.FlightStatus;
 import com.flightservice.model.Flight;
-import com.microservices.utils.Flight.FlightStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

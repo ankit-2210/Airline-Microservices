@@ -14,12 +14,13 @@ import java.util.*;
 @Builder
 @Entity
 @Table(
-        name = "airports",
+        name = "cities",
         indexes = {
-                @Index(name = "idx_city_code", columnList = "city_ode"),
+                @Index(name = "idx_city_code", columnList = "city_code"),
                 @Index(name = "idx_country_id", columnList = "country_id")
         }
 )
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class City {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

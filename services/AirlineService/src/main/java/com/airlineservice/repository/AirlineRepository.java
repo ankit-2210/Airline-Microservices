@@ -1,31 +1,52 @@
 package com.airlineservice.repository;
 
-import com.airlineservice.model.Aircraft;
+import com.airlineportal.utils.Airline.AircraftStatus;
+import com.airlineportal.utils.Airline.AirlineStatus;
 import com.airlineservice.model.Airline;
-import com.microservices.utils.Airline.AircraftStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface AirlineRepository extends JpaRepository<Airline, Long> {
 
+    // Owner
     Optional<Airline> findByOwnerId(Long ownerId);
+    boolean existsByOwnerId(Long ownerId);
 
+    // IATA
+    Optional<Airline> findByIataCode(String iataCode);
     boolean existsByIataCode(String iataCode);
-    boolean existsByIcaoCode(String icaoCode);
-
     boolean existsByIataCodeAndIdNot(String iataCode, Long id);
+
+    // ICAO
+    Optional<Airline> findByIcaoCode(String icaoCode);
+    boolean existsByIcaoCode(String icaoCode);
     boolean existsByIcaoCodeAndIdNot(String icanCode, Long id);
 
+    // Status
     Page<Airline> findByAirlineStatus(AircraftStatus aircraftStatus, Pageable pageable);
-    Page<Airline> findByCountry(String country, Pageable pageable);
-    Page<Airline> findByNameContainingIgnoreCase(String name, Pageable pageable);
-    List<Airline> findByAirlineStatus(AircraftStatus aircraftStatus);
+    List<Airline> findByAirlineStatus(AirlineStatus airlineStatus);
 
-    Page<Airline> findByOwnerId(Long ownerId, Pageable pageable);
+    // Country
+    Page<Airline> findByCountryIgnoreCase(String country, Pageable pageable);
+
+    // Name
+    Page<Airline> findByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    // Search
+    Page<Airline> findByNameContainingIgnoreCaseOrIataCodeContainingIgnoreCaseOrIcaoCodeContainingIgnoreCase(String name, String iataCode, String icaoCode, Pageable pageable);
+
+    // Country + States
+    Page<Airline> findByCountryIgnoreCaseAndAirlineStatus(String country, AirlineStatus airlineStatus, Pageable pageable);
+
+
+    // Statistics
+    long countByAirlineStatus(AirlineStatus airlineStatus);
+    long countByCountryIgnoreCase(String country);
 
 }

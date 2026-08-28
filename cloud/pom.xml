@@ -7,22 +7,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.microservices</groupId>
-        <artifactId>airline-microservices</artifactId>
+        <groupId>com.airlineportal</groupId>
+        <artifactId>airline-portal-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>cloud</artifactId>
+    <artifactId>airlineportal-cloud</artifactId>
     <packaging>pom</packaging>
 
     <name>Cloud Infrastructure</name>
     <description>Aggregator for cloud infrastructure modules (Eureka, Config, Gateway)</description>
 
     <modules>
-<!--        <module>service-registry</module>-->
-<!--        <module>config-server</module>-->
-<!--        <module>api-gateway</module>-->
+        <module>EurekaServer</module>
+<!--        <module>apigateway</module>-->
+        <module>ConfigServer</module>
+
     </modules>
 
 </project>

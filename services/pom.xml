@@ -7,13 +7,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.microservices</groupId>
-        <artifactId>airline-microservices</artifactId>
+        <groupId>com.airlineportal</groupId>
+        <artifactId>airline-portal-system</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
 
-    <artifactId>services</artifactId>
+    <artifactId>airlineportal-services</artifactId>
     <packaging>pom</packaging>
 
     <name>Business Services</name>

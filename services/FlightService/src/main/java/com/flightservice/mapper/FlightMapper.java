@@ -1,50 +1,59 @@
 package com.flightservice.mapper;
 
+import com.airlineportal.payload.request.Flight.FlightRequest;
+import com.airlineportal.payload.response.Flight.FlightResponse;
 import com.flightservice.model.Flight;
-import com.microservices.payload.request.Flight.FlightRequest;
-import com.microservices.payload.response.Flight.FlightResponse;
+
 
 public class FlightMapper {
-    public static Flight toEntity(FlightRequest flightRequest){
+    private FlightMapper(){
+
+    }
+
+    public static Flight toEntity(FlightRequest request){
+        if(request == null)
+            return null;
+
         return Flight.builder()
-                .flightNumber(flightRequest.getFlightNumber().toUpperCase())
+                .flightNumber(request.getFlightNumber().trim().toUpperCase())
 
-                .airlineId(flightRequest.getAirlineId())
-                .aircraftId(flightRequest.getAircraftId())
+                .airlineId(request.getAirlineId())
+                .aircraftId(request.getAircraftId())
 
-                .departureAirportId(flightRequest.getDepartureAirportId())
-                .arrivalAirportId(flightRequest.getArrivalAirportId())
+                .departureAirportId(request.getDepartureAirportId())
+                .arrivalAirportId(request.getArrivalAirportId())
 
-                .scheduledDeparture(flightRequest.getScheduledDeparture())
-                .scheduledArrival(flightRequest.getScheduledArrival())
+                .scheduledDeparture(request.getScheduledDeparture())
+                .scheduledArrival(request.getScheduledArrival())
 
-                .actualDeparture(flightRequest.getActualDeparture())
-                .actualArrival(flightRequest.getActualArrival())
+                .actualDeparture(request.getActualDeparture())
+                .actualArrival(request.getActualArrival())
 
-                .flightStatus(flightRequest.getFlightStatus())
+                .flightStatus(request.getFlightStatus())
 
-                .active(flightRequest.getActive() != null ? flightRequest.getActive() : true)
+                .active(request.getActive() != null ? request.getActive() : true)
                 .build();
     }
 
-    public static void updateEntity(Flight flight, FlightRequest flightRequest){
-        flight.setFlightNumber(flightRequest.getFlightNumber().toUpperCase());
 
-        flight.setAircraftId(flightRequest.getAircraftId());
+    public static void updateEntity(Flight flight, FlightRequest request){
+        flight.setFlightNumber(request.getFlightNumber().trim().toUpperCase());
 
-        flight.setDepartureAirportId(flightRequest.getDepartureAirportId());
-        flight.setArrivalAirportId(flightRequest.getArrivalAirportId());
+        flight.setAircraftId(request.getAircraftId());
 
-        flight.setScheduledArrival(flightRequest.getScheduledArrival());
-        flight.setScheduledDeparture(flightRequest.getScheduledDeparture());
+        flight.setDepartureAirportId(request.getDepartureAirportId());
+        flight.setArrivalAirportId(request.getArrivalAirportId());
 
-        flight.setActualDeparture(flightRequest.getActualDeparture());
-        flight.setActualArrival(flightRequest.getScheduledArrival());
+        flight.setScheduledArrival(request.getScheduledArrival());
+        flight.setScheduledDeparture(request.getScheduledDeparture());
 
-        flight.setFlightStatus(flightRequest.getFlightStatus());
+        flight.setActualDeparture(request.getActualDeparture());
+        flight.setActualArrival(request.getActualArrival());
 
-        if(flightRequest.getActive() != null) {
-            flight.setActive(flightRequest.getActive());
+        flight.setFlightStatus(request.getFlightStatus());
+
+        if(request.getActive() != null) {
+            flight.setActive(request.getActive());
         }
     }
 
@@ -62,7 +71,9 @@ public class FlightMapper {
 
                 .flightStatus(flight.getFlightStatus())
                 .active(flight.getActive())
+
                 .delayed(flight.getDelayed())
+                .delayMinutes(flight.getDelayMinutes())
 
                 .createdAt(flight.getCreatedAt())
                 .updatedAt(flight.getUpdatedAt())

@@ -1,11 +1,18 @@
 package com.flightservice.mapper;
 
+import com.airlineportal.payload.request.Flight.FlightScheduleRequest;
+import com.airlineportal.payload.response.Flight.FlightScheduleResponse;
 import com.flightservice.model.FlightSchedule;
-import com.microservices.payload.request.Flight.FlightScheduleRequest;
-import com.microservices.payload.response.Flight.FlightScheduleResponse;
 
 public class FlightScheduleMapper {
+    private FlightScheduleMapper(){
+
+    }
+
     public static FlightSchedule toEntity(FlightScheduleRequest request){
+        if(request == null)
+            return null;
+
         return FlightSchedule.builder()
                 .departureTime(request.getDepartureTime())
                 .arrivalTime(request.getArrivalTime())
@@ -32,6 +39,7 @@ public class FlightScheduleMapper {
     }
 
     public static FlightScheduleResponse toResponse(FlightSchedule schedule){
+
         return FlightScheduleResponse.builder()
                 .id(schedule.getId())
 

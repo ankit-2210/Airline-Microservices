@@ -1,10 +1,9 @@
 package com.flightservice.controller;
 
+import com.airlineportal.payload.request.Flight.FlightInstanceRequest;
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.flightservice.service.FlightInstanceService;
-import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.ApiResponse;
-import com.microservices.payload.response.Flight.FlightInstanceResponse;
-import com.microservices.utils.Flight.FlightStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -15,82 +14,62 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/flights-instances")
+@RequiredArgsConstructor
 public class FlightInstanceController {
     private final FlightInstanceService flightInstanceService;
 
-    // create
-    @PostMapping
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> createFlightInstance(@RequestParam Long airlineId, @Valid @RequestBody FlightInstanceRequest request){
-        FlightInstanceResponse response = flightInstanceService.createFlightInstance(airlineId, request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, "Flight instance created successfully", response));
+    // Airline creates a concrete flight instance
+    @PostMapping("/flight/{flightId}/schedule/{scheduleId}/airline/{airlineId}")
+    public ApiResponse<FlightInstanceResponse> createInstance(@PathVariable Long flightId, @PathVariable Long scheduleId, @PathVariable Long airlineId,
+            @Valid @RequestBody FlightInstanceRequest request){
+        return ApiResponse.success(flightInstanceService.createInstance(flightId, scheduleId, request, airlineId));
     }
 
-    // get by id
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> getById(@PathVariable Long id) {
-        FlightInstanceResponse response = flightInstanceService.getFlightInstanceById(id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instance fetched successfully", response));
+    // Get instance by Id
+    @GetMapping("/{instanceId}")
+    public ApiResponse<FlightInstanceResponse> getById(@PathVariable Long instanceId) {
+        return ApiResponse.success(flightInstanceService.getById(instanceId));
     }
 
-    // Get by airline
-    @GetMapping
-    public ResponseEntity<ApiResponse<Page<FlightInstanceResponse>>> getByAirline(@RequestParam Long airlineId, @RequestParam(required = false) Long departureAirportId,
-                                                                                  @RequestParam(required = false) Long arrivalAirportId, @RequestParam(required = false) Long flightId,
-                                                                                  @RequestParam(required = false) LocalDate onDate,
-                                                                                  @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
-                                                                                  @RequestParam(defaultValue = "departureDateTime") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
-        Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
-        Page<FlightInstanceResponse> response = flightInstanceService.getByAirlineId(airlineId, departureAirportId, arrivalAirportId, flightId, onDate, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instances fetched successfully", response));
-    }
-
-    // get by flight
+    // Get instances of a flight
     @GetMapping("/flight/{flightId}")
-    public ResponseEntity<ApiResponse<Page<FlightInstanceResponse>>> getByFlight(@PathVariable Long flightId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size) {
-        Pageable pageable = PageRequest.of(page, size);
-        Page<FlightInstanceResponse> response = flightInstanceService.getByFlightId(flightId, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instances fetched successfully", response));
+    public ApiResponse<Page<FlightInstanceResponse>> getByFlight(@PathVariable Long flightId, Pageable pageable){
+        return ApiResponse.success(flightInstanceService.getByFlight(flightId, pageable));
     }
 
-    // update
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> updateFlightInstance(@RequestParam Long airlineId, @PathVariable Long id, @Valid @RequestBody FlightInstanceRequest request) {
-        FlightInstanceResponse response = flightInstanceService.updateFlightInstance(airlineId, id, request);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instance updated successfully", response));
+    // Get all instances of an airline
+    @GetMapping("/airline/{airlineId}")
+    public ApiResponse<Page<FlightInstanceResponse>> getByAirline(@PathVariable Long airlineId, Pageable pageable){
+        return ApiResponse.success(flightInstanceService.getByAirline(airlineId, pageable));
     }
 
-    // change status
-    @PatchMapping("/{id}/status")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> changeStatus(@RequestParam Long airlineId, @PathVariable Long id, @RequestParam FlightStatus flightStatus) {
-        FlightInstanceResponse response = flightInstanceService.changeStatus(airlineId, id, flightStatus);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight status updated successfully", response));
+    // Search instances
+    @GetMapping("/search")
+    public ApiResponse<Page<FlightInstanceResponse>> search(@RequestParam Long airlineId,
+            @RequestParam(required = false) Long departureAirportId, @RequestParam(required = false) Long arrivalAirportId,
+            @RequestParam(required = false) Long flightId,
+            @RequestParam(required = false) LocalDateTime dayStart, @RequestParam(required = false) LocalDateTime dayEnd,
+            Pageable pageable){
+        return ApiResponse.success(flightInstanceService.search(airlineId, departureAirportId, arrivalAirportId, flightId, dayStart, dayEnd, pageable));
     }
 
-    // update available seats
-    @PatchMapping("/{id}/available-seats")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> updateAvailableSeats(@RequestParam Long airlineId, @PathVariable Long id, @RequestParam Integer availableSeats) {
-        FlightInstanceResponse response = flightInstanceService.updateAvailableSeats(airlineId, id, availableSeats);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight seats updated successfully", response));
+    // Airline updates instance
+    @PutMapping("/{instanceId}/airline/{airlineId}")
+    public ApiResponse<FlightInstanceResponse> updateInstance(@PathVariable Long instanceId, @PathVariable Long airlineId,
+            @Valid @RequestBody FlightInstanceRequest request){
+        return ApiResponse.success(flightInstanceService.updateInstance(instanceId, request, airlineId));
     }
 
-    // toggle active
-    @PatchMapping("/{id}/active")
-    public ResponseEntity<ApiResponse<FlightInstanceResponse>> toggleActive(@RequestParam Long airlineId, @PathVariable Long id, @RequestParam Boolean active) {
-        FlightInstanceResponse response = flightInstanceService.toggleActive(airlineId, id, active);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instance status updated successfully", response));
+    // Airline deletes instance
+    @DeleteMapping("/{instanceId}/airline/{airlineId}")
+    public void deleteInstance(@PathVariable Long instanceId, @PathVariable Long airlineId){
+        flightInstanceService.deleteInstance(instanceId, airlineId);
     }
 
-    // delete
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteFlightInstance(@RequestParam Long airlineId, @PathVariable Long id) {
-        flightInstanceService.deleteFlightInstance(airlineId, id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instance deleted successfully", null));
-    }
 
 }

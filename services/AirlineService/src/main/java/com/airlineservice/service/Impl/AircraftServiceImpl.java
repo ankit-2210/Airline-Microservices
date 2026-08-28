@@ -1,15 +1,16 @@
 package com.airlineservice.service.Impl;
 
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.payload.request.Airlines.Aircraft.AircraftRequest;
+import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.airlineportal.utils.Airline.AircraftStatus;
+import com.airlineservice.helper.AircraftHelper;
 import com.airlineservice.mapper.AircraftMapper;
 import com.airlineservice.model.Aircraft;
 import com.airlineservice.model.Airline;
 import com.airlineservice.repository.AircraftRepository;
 import com.airlineservice.repository.AirlineRepository;
 import com.airlineservice.service.AircraftService;
-import com.microservices.exception.ResourceAlreadyExistsException;
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
 import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,78 +22,111 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional(readOnly = true)
 public class AircraftServiceImpl implements AircraftService {
     private final AircraftRepository aircraftRepository;
-    private final AirlineRepository airlineRepository;
+    private final AircraftHelper aircraftHelper;
 
-    private Aircraft findAircraftById(Long id){
-        return aircraftRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException( "Aircraft not found with id: " + id));
-    }
-    private Airline findAirlineByOwner(Long ownerId) {
-        return airlineRepository.findByOwnerId(ownerId)
-                .orElseThrow(() -> new ResourceNotFoundException("Airline not found for owner: " + ownerId));
-    }
-
+    // Create Aircraft
     @Transactional
     @Override
     public AircraftResponse createAircraft(AircraftRequest aircraftRequest, Long ownerId) {
-        if(aircraftRepository.existsByCode(aircraftRequest.getCode().toUpperCase())){
-            throw new ResourceAlreadyExistsException("Aircraft code already exists");
-        }
+        aircraftHelper.validateCreate(aircraftRequest, ownerId);
 
-        Airline airline = findAirlineByOwner(ownerId);
+        Airline airline = aircraftHelper.findAirlineByOwner(ownerId);
         Aircraft aircraft = AircraftMapper.toEntity(aircraftRequest, airline);
+
+        aircraftHelper.normalizeEntity(aircraft);
 
         Aircraft savedAircraft = aircraftRepository.save(aircraft);
         return AircraftMapper.toResponse(savedAircraft);
     }
 
+    // Get Aircraft By Id
     @Override
     public AircraftResponse getById(Long id) {
-        Aircraft aircraft = findAircraftById(id);
+        Aircraft aircraft = aircraftHelper.findById(id);
         return AircraftMapper.toResponse(aircraft);
     }
 
+    // Get Aircraft By Owner
     @Override
     public Page<AircraftResponse> allAircraftByOwner(Long ownerId, Pageable pageable) {
+        if(ownerId == null){
+            throw new IllegalArgumentException("Owner id cannot be null");
+        }
+
         return aircraftRepository.findByAirlineOwnerId(ownerId, pageable)
                 .map(AircraftMapper::toResponse);
     }
 
+    // Get Aircraft By Airline
     @Override
     public Page<AircraftResponse> getAircraftByAirline(Long airlineId, Pageable pageable) {
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+
         return aircraftRepository.findByAirlineId(airlineId, pageable)
                 .map(AircraftMapper::toResponse);
     }
 
+    // Search Aircraft
     @Override
     public Page<AircraftResponse> searchAircraft(String keyword, Pageable pageable) {
-        return null;
+        if(keyword == null || keyword.isBlank())
+            throw new IllegalArgumentException("Search keyword cannot be blank");
+
+        String searchKeyword = keyword.trim();
+        return aircraftRepository.findByCodeContainingIgnoreCaseOrModelContainingIgnoreCaseOrManufacturerContainingIgnoreCase(
+                searchKeyword,
+                searchKeyword,
+                searchKeyword,
+                pageable)
+                .map(AircraftMapper::toResponse);
     }
 
+    // Get Aircraft By Airport
+    @Override
+    public Page<AircraftResponse> getAircraftByAirport(Long airlineId, Pageable pageable){
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+
+        return aircraftRepository.findByCurrentAirportId(airlineId, pageable)
+                .map(AircraftMapper::toResponse);
+    }
+
+    // Get Available Aircraft
+    @Override
+    public Page<AircraftResponse> getAvailableAircraft(Pageable pageable){
+        return aircraftRepository.findByIsAvailableTrue(pageable)
+                .map(AircraftMapper::toResponse);
+    }
+
+    // Update Aircraft
     @Transactional
     @Override
     public AircraftResponse updateAircraft(Long id, AircraftRequest aircraftRequest, Long ownerId) {
-        Aircraft aircraft = findAircraftById(id);
-        if (!aircraft.getAirline().getOwnerId().equals(ownerId)) {
-            throw new ResourceNotFoundException("You are not authorized to update this aircraft");
-        }
-        if(aircraftRepository.existsByCodeAndIdNot(aircraftRequest.getCode().toUpperCase(), id)) {
-            throw new ResourceAlreadyExistsException("Aircraft code already exists");
-        }
+        Aircraft aircraft = aircraftHelper.findById(id);
+
+        aircraftHelper.validateUpdate(aircraft, aircraftRequest, ownerId);
 
         AircraftMapper.updateEntity(aircraft, aircraftRequest);
+        aircraftHelper.normalizeEntity(aircraft);
+
         Aircraft updatedAircraft = aircraftRepository.save(aircraft);
         return AircraftMapper.toResponse(updatedAircraft);
     }
 
+    // Delete Aircraft
     @Transactional
     @Override
     public void deleteAircraft(Long id, Long ownerId) {
-        Aircraft aircraft = findAircraftById(id);
-        if(!aircraft.getAirline().getOwnerId().equals(ownerId)){
-            throw new ResourceNotFoundException("You are not authorized to delete this aircraft");
-        }
-        aircraftRepository.delete(aircraft);
+        Aircraft aircraft = aircraftHelper.findById(id);
 
+        aircraftHelper.validateOwnership(aircraft, ownerId);
+        aircraftHelper.validateCanDelete(aircraft);
+
+        aircraftRepository.delete(aircraft);
     }
+
+
 }

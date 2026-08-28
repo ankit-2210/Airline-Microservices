@@ -1,7 +1,8 @@
 package com.airlineservice.service;
 
-import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
+
+import com.airlineportal.payload.request.Airlines.Aircraft.AircraftRequest;
+import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -13,8 +14,12 @@ public interface AircraftService {
     Page<AircraftResponse> getAircraftByAirline(Long airlineId, Pageable pageable);
     Page<AircraftResponse> searchAircraft(String keyword, Pageable pageable);
 
+    Page<AircraftResponse> getAircraftByAirport(Long airportId, Pageable pageable);
+    Page<AircraftResponse> getAvailableAircraft(Pageable pageable);
+
     AircraftResponse updateAircraft(Long id, AircraftRequest aircraftRequest, Long ownerId);
 
     void deleteAircraft(Long id, Long ownerId);
+
 
 }

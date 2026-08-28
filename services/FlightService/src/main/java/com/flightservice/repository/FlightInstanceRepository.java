@@ -1,6 +1,5 @@
 package com.flightservice.repository;
 
-import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

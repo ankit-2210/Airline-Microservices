@@ -11,6 +11,8 @@
         <option value="$PROJECT_DIR$/services/UserService/pom.xml" />
         <option value="$PROJECT_DIR$/services/AirlineService/pom.xml" />
         <option value="$PROJECT_DIR$/services/FlightService/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud/EurekaServer/pom.xml" />
+        <option value="$PROJECT_DIR$/cloud/ConfigServer/pom.xml" />
       </list>
     </option>
   </component>

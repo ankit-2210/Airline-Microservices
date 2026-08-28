@@ -1,11 +1,11 @@
 package com.airlineservice.controller;
 
+import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.utils.Airline.AirlineStatus;
 import com.airlineservice.service.AirlineService;
-import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
-import com.microservices.payload.response.ApiResponse;
-import com.microservices.utils.Airline.AirlineStatus;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -23,70 +23,128 @@ import java.util.*;
 public class AirlineController {
     private final AirlineService airlineService;
 
-    // create airline
+    private static final int DEFAULT_PAGE = 0;
+    private static final int DEFAULT_SIZE = 20;
+    private static final int MAX_PAGE_SIZE = 100;
+
+    private static final List<String> ALLOWED_SORT_FIELDS = List.of(
+            "id",
+            "iataCode",
+            "icaoCode",
+            "name",
+            "country",
+            "airlineStatus",
+            "alliance",
+            "createdAt",
+            "updatedAt"
+    );
+
+    // Create Airline
     @PostMapping
-    public ResponseEntity<ApiResponse<AirlineResponse>> createAirline(@Valid @RequestBody AirlineRequest airlineRequest, @RequestParam Long ownerId){
-        AirlineResponse airlineResponse = airlineService.createAirline(airlineRequest, ownerId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, "Airport created successfully", airlineResponse));
+    public ApiResponse<AirlineResponse> createAirline(@Valid @RequestBody AirlineRequest airlineRequest){
+        return ApiResponse.success(airlineService.createAirline(airlineRequest, airlineRequest.getOwnerId()));
     }
 
-    // get airline by id
+    // Get Airline By Id
     @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<AirlineResponse>> getById(@PathVariable Long id){
-        AirlineResponse airlineResponse = airlineService.getAirlineById(id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline fetched successfully", airlineResponse));
+    public ApiResponse<AirlineResponse> getById(@PathVariable Long id){
+        return ApiResponse.success(airlineService.getAirlineById(id));
     }
 
-    // get airline by owner
+    // Get Airline By Owner
     @GetMapping("/owner/{ownerId}")
-    public ResponseEntity<ApiResponse<AirlineResponse>> getAirportByOwner(@PathVariable Long ownerId) {
-        AirlineResponse airlineResponse = airlineService.getAirlineByOwner(ownerId);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline fetched successfully", airlineResponse));
+    public ApiResponse<AirlineResponse> getAirlineByOwner(@PathVariable Long ownerId) {
+        return ApiResponse.success(airlineService.getAirlineByOwner(ownerId));
     }
 
-    // get all airlines
+    // Get All Airlines
     @GetMapping
-    public ResponseEntity<ApiResponse<Page<AirlineResponse>>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
+    public ApiResponse<Page<AirlineResponse>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
                                                                                 @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
         Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
         Pageable pageable = PageRequest.of(page, size, sort);
-        Page<AirlineResponse> airlines = airlineService.getAllAirlines(pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "All airlines fetched successfully", airlines));
+        return ApiResponse.success(airlineService.getAllAirlines(pageable));
     }
 
-    // search
+    // Search Airlines
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<Page<AirlineResponse>>> search(@RequestParam String keyword, @RequestParam(defaultValue="0") int page, @RequestParam(defaultValue="20") int size){
+    public ApiResponse<Page<AirlineResponse>> searchAirline(@RequestParam String keyword,
+                                                            @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
+                                                            @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction){
         Pageable pageable = PageRequest.of(page,size);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Search completed", airlineService.searchAirlines(keyword, pageable)));
+        return ApiResponse.success(airlineService.searchAirlines(keyword, pageable));
     }
 
-    // update airline
+    // Update Airline
     @PutMapping("/{airlineId}")
-    public ResponseEntity<ApiResponse<AirlineResponse>> updateAirline(@PathVariable Long airlineId, @Valid @RequestBody AirlineRequest airlineRequest, @RequestParam Long ownerId){
-        AirlineResponse airlineResponse = airlineService.updateAirline(airlineId, airlineRequest, ownerId);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline updated successfully", airlineResponse));
+    public ApiResponse<AirlineResponse> updateAirline(@PathVariable Long airlineId, @Valid @RequestBody AirlineRequest airlineRequest, @RequestParam Long ownerId){
+        return ApiResponse.success(airlineService.updateAirline(airlineId, airlineRequest, ownerId));
     }
 
-    // change status (admin)
+    // Change Status - Admin
     @PatchMapping("/{airlineId}/status")
-    public ResponseEntity<ApiResponse<AirlineResponse>> changeStatus(@PathVariable Long airlineId, @RequestParam AirlineStatus airlineStatus){
-        AirlineResponse airlineResponse = airlineService.changeStatusByAdmin(airlineId, airlineStatus);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline updated successfully", airlineResponse));
+    public ApiResponse<AirlineResponse> changeStatus(@PathVariable Long airlineId, @RequestParam AirlineStatus airlineStatus){
+        return ApiResponse.success(airlineService.changeStatusByAdmin(airlineId, airlineStatus));
     }
 
-    // delete airline
+    // Delete Airline
     @DeleteMapping("/{airlineId}")
-    public ResponseEntity<ApiResponse<Void>> deleteAirline(@PathVariable Long airlineId, @RequestParam Long ownerId){
+    public ApiResponse<Void> deleteAirline(@PathVariable Long airlineId, @RequestParam Long ownerId){
         airlineService.deleteAirline(airlineId, ownerId);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline deleted successfully", null));
+        return ApiResponse.success(null);
     }
 
-    // dropdown
+    // Airline Dropdown
     @GetMapping("/dropdown")
-    public ResponseEntity<ApiResponse<List<AirlineDropdownItem>>> getDropdown(){
-        List<AirlineDropdownItem> airlines = airlineService.getAirlineDropdown();
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airline dropdown fetched successfully", airlines));
+    public ApiResponse<List<AirlineDropdownItem>> getDropdown(){
+        return ApiResponse.success(airlineService.getAirlineDropdown());
     }
+
+
+
+    private Pageable createPageable(int page, int size, String sortBy, String direction){
+        if(page < 0){
+            throw new IllegalArgumentException("Page cannot be negative");
+        }
+        if(size < 1){
+            throw new IllegalArgumentException("Page size must be greater than zero");
+        }
+
+        if(size > MAX_PAGE_SIZE){
+            throw new IllegalArgumentException("Page size cannot exceed " + MAX_PAGE_SIZE);
+        }
+
+        String validatedSortBy = validateSortField(sortBy);
+        Sort.Direction sortDirection = parseSortDirection(direction);
+
+        Sort sort = Sort.by(sortDirection, validatedSortBy);
+        return PageRequest.of(page, size, sort);
+    }
+
+    private String validateSortField(String sortBy){
+        if(sortBy == null || sortBy.isBlank()){
+            return "name";
+        }
+
+        if(!ALLOWED_SORT_FIELDS.contains(sortBy)){
+            throw new IllegalArgumentException("Invalid sort field: " + sortBy);
+        }
+
+        return sortBy;
+    }
+
+    private Sort.Direction parseSortDirection(String direction){
+        if(direction == null || direction.isBlank()){
+            return Sort.Direction.ASC;
+        }
+
+        try {
+            return Sort.Direction.fromString(direction);
+        }
+        catch (IllegalArgumentException ex){
+            throw new IllegalArgumentException("Invalid sort direction: " + direction + ". Use 'asc' or 'desc'.");
+        }
+    }
+
 
 }

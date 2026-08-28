@@ -43,8 +43,12 @@ public class AirportServiceImpl implements AirportService {
             throw new ResourceAlreadyExistsException("Airport with IATA code already exists");
         }
 
+        City city = findCity(airportRequest.getCityId());
+
         Airport airport = AirportMapper.toEntity(airportRequest);
         airport.setIataCode(code);
+        airport.setCity(city);
+
         Airport savedAirport = airportRepository.save(airport);
         return AirportMapper.toResponse(savedAirport);
     }

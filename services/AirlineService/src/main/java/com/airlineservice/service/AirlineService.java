@@ -1,9 +1,10 @@
 package com.airlineservice.service;
 
-import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
-import com.microservices.utils.Airline.AirlineStatus;
+
+import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
+import com.airlineportal.utils.Airline.AirlineStatus;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import java.util.*;

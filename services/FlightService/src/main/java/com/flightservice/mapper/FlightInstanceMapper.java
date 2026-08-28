@@ -1,16 +1,23 @@
 package com.flightservice.mapper;
 
+import com.airlineportal.payload.request.Flight.FlightInstanceRequest;
+import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
+import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
 import com.flightservice.model.FlightSchedule;
-import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
-import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
-import com.microservices.payload.response.Flight.FlightInstanceResponse;
 
 public class FlightInstanceMapper {
+    private FlightInstanceMapper(){
+
+    }
+
     public static FlightInstance toEntity(FlightInstanceRequest flightInstanceRequest, Flight flight, FlightSchedule schedule){
+        if(flightInstanceRequest == null)
+            return null;
+
         return FlightInstance.builder()
                 .flight(flight)
                 .schedule(schedule)
@@ -47,14 +54,15 @@ public class FlightInstanceMapper {
         flightInstance.setMaxAdvanceBookingDays(flightInstanceRequest.getMaxAdvanceBookingDays());
 
         if(flightInstanceRequest.getActive() != null){
-            flightInstanceRequest.setActive(flightInstanceRequest.getActive());
+            flightInstance.setActive(flightInstanceRequest.getActive());
         }
     }
 
-    public static FlightInstanceResponse toResponse(FlightInstance flightInstance, AircraftResponse aircraftResponse,
-                                                    AirlineResponse airlineResponse,
+    public static FlightInstanceResponse toResponse(FlightInstance flightInstance,  AircraftResponse aircraftResponse, AirlineResponse airlineResponse,
                                                     AirportResponse departureAirport, AirportResponse arrivalAirport){
+
         Flight flight = flightInstance.getFlight();
+
         return FlightInstanceResponse.builder()
                 .id(flightInstance.getId())
 
@@ -64,12 +72,12 @@ public class FlightInstanceMapper {
                 .scheduleId(flightInstance.getSchedule().getId())
 
                 .airlineId(flight.getAirlineId())
-                .airlineName(airlineResponse.getName())
-                .airlineLogo(airlineResponse.getLogoUrl())
+                .airlineName(airlineResponse != null ? airlineResponse.getName() : null)
+                .airlineLogo(airlineResponse != null ? airlineResponse.getLogoUrl() : null)
 
                 .aircraftId(flight.getAircraftId())
-                .aircraftModel(aircraftResponse.getModel())
-                .aircraftCode(aircraftResponse.getCode())
+                .aircraftModel(aircraftResponse != null ? aircraftResponse.getModel() : null)
+                .aircraftCode(aircraftResponse != null ? aircraftResponse.getCode() : null)
 
                 .departureAirport(departureAirport)
                 .arrivalAirport(arrivalAirport)
@@ -88,6 +96,7 @@ public class FlightInstanceMapper {
                 .canCheckIn(flightInstance.canCheckIn())
 
                 .flightStatus(flightInstance.getFlightStatus())
+
                 .minAdvanceBookingDays(flightInstance.getMinAdvanceBookingDays())
                 .maxAdvanceBookingDays(flightInstance.getMaxAdvanceBookingDays())
 

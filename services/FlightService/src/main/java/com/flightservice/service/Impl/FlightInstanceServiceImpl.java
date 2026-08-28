@@ -1,5 +1,13 @@
 package com.flightservice.service.Impl;
 
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.payload.request.Flight.FlightInstanceRequest;
+import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
+import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
+import com.airlineportal.utils.Flight.FlightStatus;
+import com.flightservice.helper.FlightInstanceHelper;
 import com.flightservice.mapper.FlightInstanceMapper;
 import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
@@ -8,13 +16,6 @@ import com.flightservice.repository.FlightInstanceRepository;
 import com.flightservice.repository.FlightRepository;
 import com.flightservice.repository.FlightScheduleRepository;
 import com.flightservice.service.FlightInstanceService;
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Flight.FlightInstanceRequest;
-import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
-import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
-import com.microservices.payload.response.Flight.FlightInstanceResponse;
-import com.microservices.utils.Flight.FlightStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,6 +23,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 
 @Service
@@ -32,117 +34,106 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
     private final FlightRepository flightRepository;
     private final FlightScheduleRepository flightScheduleRepository;
 
-    private Flight findFlightById(Long flightId) {
-        return flightRepository.findById(flightId)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId));
-    }
+    private final FlightInstanceHelper flightInstanceHelper;
 
-    private Flight findFlight(Long id){
-        return flightRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + id));
-    }
-
-    private FlightSchedule findSchedule(Long id){
-        return flightScheduleRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Schedule not found with id: " + id));
-    }
-
-    private FlightInstance findInstance(Long id) {
-        return flightInstanceRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight instance not found with id: " + id));
-    }
-
-    private FlightInstance findByAirline(Long airlineId, Long id){
-        return flightInstanceRepository.findByIdAndFlightAirlineId(id, airlineId)
-                .orElseThrow(() -> new ResourceNotFoundException("Flight instance not found"));
-    }
-
-
+    @Override
     @Transactional
-    @Override
-    public FlightInstanceResponse createFlightInstance(Long airlineId, FlightInstanceRequest flightInstanceRequest) {
-        Flight flight = findFlightById(flightInstanceRequest.getFlightId());
-        if(!flight.getAirlineId().equals(airlineId)){
-            throw new ResourceNotFoundException("Flight does not belong to airline");
+    public FlightInstanceResponse createInstance(Long flightId, Long scheduleId, FlightInstanceRequest request, Long airlineId){
+        validateIds(flightId, scheduleId, airlineId);
+
+        // Find flight
+        Flight flight = flightRepository.findById(flightId)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId));
+
+        validateFlightOwnership(flight, airlineId);
+
+        FlightSchedule schedule =
+                flightScheduleRepository.findById(scheduleId)
+                        .orElseThrow(() -> new ResourceNotFoundException("Flight schedule not found with id: " + scheduleId));
+
+        // Verify schedule belongs to flight
+        if(schedule.getFlight() == null || schedule.getFlight().getId() == null || !schedule.getFlight().getId().equals(flightId)) {
+            throw new ResourceNotFoundException("Schedule does not belong to this flight");
         }
-        FlightSchedule schedule = findSchedule(flightInstanceRequest.getScheduleId());
-        FlightInstance flightInstance = FlightInstanceMapper.toEntity(flightInstanceRequest, flight, schedule);
-        FlightInstance savedFlightInstance = flightInstanceRepository.save(flightInstance);
-        return convertToInstanceResponse(savedFlightInstance);
+
+        flightInstanceHelper.validateCreate(request, flight, schedule);
+        FlightInstance instance = FlightInstanceMapper.toEntity(request, flight, schedule);
+
+        FlightInstance saved = flightInstanceRepository.save(instance);
+        return convertToInstanceResponse(saved);
     }
 
     @Override
-    public FlightInstanceResponse getFlightInstanceById(Long id) {
-        FlightInstance flightInstance = findInstance(id);
+    public FlightInstanceResponse getById(Long instanceId) {
+        FlightInstance flightInstance = flightInstanceHelper.findById(instanceId);
+
         return convertToInstanceResponse(flightInstance);
     }
 
-    @Override
-    public Page<FlightInstanceResponse> getByAirlineId(Long airlineId, Long departureAirportId, Long arrivalAirportId, Long flightId, LocalDate onDate, Pageable pageable) {
-        return flightInstanceRepository.findByAirlineId(airlineId, departureAirportId, arrivalAirportId, flightId,
-                        onDate != null ? onDate.atStartOfDay() : null,
-                        onDate != null ? onDate.plusDays(1).atStartOfDay() : null,
-                        pageable
-                )
-                .map(this::convertToInstanceResponse);
-    }
 
     @Override
-    public Page<FlightInstanceResponse> getByFlightId(Long flightId, Pageable pageable) {
+    public Page<FlightInstanceResponse> getByFlight(Long flightId, Pageable pageable){
+        if(flightId == null){
+            throw new IllegalArgumentException("Flight id cannot be null");
+        }
+
         return flightInstanceRepository.findByFlightId(flightId, pageable)
                 .map(this::convertToInstanceResponse);
     }
 
-    @Transactional
     @Override
-    public FlightInstanceResponse updateFlightInstance(Long airlineId, Long id, FlightInstanceRequest flightInstanceRequest) {
-        FlightInstance flightInstance = findByAirline(airlineId, id);
-        FlightInstanceMapper.updateEntity(flightInstance, flightInstanceRequest);
-
-        FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
-        return convertToInstanceResponse(updatedFlightInstance);
-    }
-
-    @Transactional
-    @Override
-    public FlightInstanceResponse changeStatus(Long airlineId, Long id, FlightStatus flightStatus) {
-        FlightInstance flightInstance = findByAirline(airlineId, id);
-        flightInstance.setFlightStatus(flightStatus);
-
-        FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
-        return convertToInstanceResponse(updatedFlightInstance);
-    }
-
-    @Transactional
-    @Override
-    public FlightInstanceResponse updateAvailableSeats(Long airlineId, Long id, Integer availableSeats) {
-        FlightInstance flightInstance = findByAirline(airlineId, id);
-        if(availableSeats < 0)
-            availableSeats = 0;
-        if(availableSeats > flightInstance.getTotalSeats()){
-            availableSeats = flightInstance.getTotalSeats();
+    public Page<FlightInstanceResponse> getByAirline(Long airlineId, Pageable pageable) {
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
         }
-        flightInstance.setAvailableSeats(availableSeats);
+
+        return flightInstanceRepository.findByFlightAirlineId(airlineId, pageable)
+                .map(this::convertToInstanceResponse);
+    }
+
+    @Override
+    public Page<FlightInstanceResponse> search(Long airlineId, Long departureAirportId, Long arrivalAirportId, Long flightId,
+                                        LocalDateTime dayStart, LocalDateTime dayEnd, Pageable pageable){
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+        if(dayStart != null && dayEnd != null && !dayEnd.isAfter(dayStart)){
+            throw new IllegalArgumentException("Day end must be after day start");
+        }
+
+        return flightInstanceRepository.findByAirlineId(airlineId, departureAirportId, arrivalAirportId, flightId,
+                dayStart, dayEnd, pageable)
+                .map(this::convertToInstanceResponse);
+    }
+
+
+    @Override
+    @Transactional
+    public FlightInstanceResponse updateInstance(Long instanceId, FlightInstanceRequest request, Long airlineId){
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+
+        FlightInstance flightInstance = flightInstanceHelper.findByIdAndAirline(instanceId, airlineId);
+
+        FlightInstanceMapper.updateEntity(flightInstance, request);
+
         FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
         return convertToInstanceResponse(updatedFlightInstance);
     }
 
-    @Transactional
-    @Override
-    public FlightInstanceResponse toggleActive(Long airlineId, Long id, Boolean active) {
-        FlightInstance flightInstance = findByAirline(airlineId, id);
-        flightInstance.setActive(active);
 
-        FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);
-        return convertToInstanceResponse(updatedFlightInstance);
-    }
-
-    @Transactional
     @Override
-    public void deleteFlightInstance(Long airlineId, Long id) {
-        FlightInstance flightInstance = findByAirline(airlineId, id);
+    @Transactional
+    public void deleteInstance(Long instanceId, Long airlineId) {
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+
+        FlightInstance flightInstance = flightInstanceHelper.findByIdAndAirline(instanceId, airlineId);
         flightInstanceRepository.delete(flightInstance);
     }
+
 
     private FlightInstanceResponse convertToInstanceResponse(FlightInstance flightInstance){
         Flight flight = flightInstance.getFlight();
@@ -161,4 +152,27 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
                 .build();
         return FlightInstanceMapper.toResponse(flightInstance, aircraftResponse, airlineResponse, departureAirport, arrivalAirport);
     }
+
+
+
+
+    private void validateIds(Long flightId, Long scheduleId, Long airlineId){
+        if(flightId == null){
+            throw new IllegalArgumentException("Flight id cannot be null");
+        }
+        if(scheduleId == null){
+            throw new IllegalArgumentException("Schedule id cannot be null");
+        }
+        if(airlineId == null){
+            throw new IllegalArgumentException("Airline id cannot be null");
+        }
+    }
+
+    private void validateFlightOwnership(Flight flight, Long airlineId){
+        if(flight.getAirlineId() == null || !flight.getAirlineId().equals(airlineId)){
+            throw new ResourceNotFoundException("Flight not found or you are not authorized");
+        }
+    }
+
+
 }

@@ -1,21 +1,22 @@
 package com.airlineservice.mapper;
 
+import com.airlineportal.payload.request.Airlines.Aircraft.AircraftRequest;
+import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
+import com.airlineportal.utils.Airline.AircraftStatus;
 import com.airlineservice.model.Aircraft;
 import com.airlineservice.model.Airline;
-import com.microservices.payload.request.Airlines.Aircraft.AircraftRequest;
-import com.microservices.payload.response.Airlines.Aircraft.AircraftResponse;
-import com.microservices.utils.Airline.AircraftStatus;
+
 
 public class AircraftMapper {
-    public static Aircraft toEntity(AircraftRequest aircraftRequest, Airline airline){
-        int economySeats = aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats();
-        int premiumEconomySeats = aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats();
-        int businessSeats = aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats();
-        int firstClassSeats = aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats();
 
-        int total = economySeats + premiumEconomySeats + businessSeats + firstClassSeats;
-        if(total == 0){
-            total = aircraftRequest.getSeatingCapacity();
+    // Request -> Entity
+    public static Aircraft toEntity(AircraftRequest aircraftRequest, Airline airline){
+        if(aircraftRequest == null){
+            throw new IllegalArgumentException("Aircraft request cannot be null");
+        }
+
+        if(airline == null){
+            throw new IllegalArgumentException("Airline cannot be null");
         }
 
         return Aircraft.builder()
@@ -23,12 +24,11 @@ public class AircraftMapper {
                 .model(aircraftRequest.getModel())
                 .manufacturer(aircraftRequest.getManufacturer())
 
-                .seatingCapacity(total)
-
-                .economySeats(economySeats)
-                .premiumEconomySeats(premiumEconomySeats)
-                .businessSeats(businessSeats)
-                .firstClassSeats(firstClassSeats)
+                .seatingCapacity(aircraftRequest.getSeatingCapacity())
+                .economySeats(safeInt(aircraftRequest.getEconomySeats()))
+                .premiumEconomySeats(safeInt(aircraftRequest.getPremiumEconomySeats()))
+                .businessSeats(safeInt(aircraftRequest.getBusinessSeats()))
+                .firstClassSeats(safeInt(aircraftRequest.getFirstClassSeats()))
 
                 .rangeKm(aircraftRequest.getRangeKm())
                 .cruisingSpeedKmh(aircraftRequest.getCruisingSpeedKmh())
@@ -46,18 +46,26 @@ public class AircraftMapper {
                 .build();
     }
 
+    // Update Entity
     public static void updateEntity(Aircraft aircraft, AircraftRequest aircraftRequest){
+        if(aircraft == null){
+            throw new IllegalArgumentException("Aircraft cannot be null");
+        }
 
-        aircraft.setCode(aircraftRequest.getCode().toUpperCase());
-        aircraft.setModel(aircraftRequest.getModel());
-        aircraft.setManufacturer(aircraftRequest.getManufacturer());
+        if(aircraftRequest == null){
+            throw new IllegalArgumentException("Aircraft request cannot be null");
+        }
 
-        aircraft.setEconomySeats(aircraftRequest.getEconomySeats() == null ? 0 : aircraftRequest.getEconomySeats());
-        aircraft.setPremiumEconomySeats(aircraftRequest.getPremiumEconomySeats() == null ? 0 : aircraftRequest.getPremiumEconomySeats());
-        aircraft.setBusinessSeats(aircraftRequest.getBusinessSeats() == null ? 0 : aircraftRequest.getBusinessSeats());
-        aircraft.setFirstClassSeats(aircraftRequest.getFirstClassSeats() == null ? 0 : aircraftRequest.getFirstClassSeats());
 
-        aircraft.setSeatingCapacity(aircraft.getTotalSeats());
+        aircraft.setCode(normalizeCode(aircraftRequest.getCode()));
+        aircraft.setModel(normalizeText(aircraftRequest.getModel()));
+        aircraft.setManufacturer(normalizeText(aircraftRequest.getManufacturer()));
+
+        aircraft.setSeatingCapacity(aircraftRequest.getSeatingCapacity());
+        aircraft.setEconomySeats(safeInt(aircraftRequest.getEconomySeats()));
+        aircraft.setPremiumEconomySeats(safeInt(aircraftRequest.getPremiumEconomySeats()));
+        aircraft.setBusinessSeats(safeInt(aircraftRequest.getBusinessSeats()));
+        aircraft.setFirstClassSeats(safeInt(aircraftRequest.getFirstClassSeats()));
 
         aircraft.setRangeKm(aircraftRequest.getRangeKm());
         aircraft.setCruisingSpeedKmh(aircraftRequest.getCruisingSpeedKmh());
@@ -76,16 +84,20 @@ public class AircraftMapper {
         aircraft.setCurrentAirportId(aircraftRequest.getCurrentAirportId());
     }
 
+    // Entity -> Response
     public static AircraftResponse toResponse(Aircraft aircraft){
+        if(aircraft == null)
+            return null;
+
+        Airline airline = aircraft.getAirline();
+
         return AircraftResponse.builder()
                 .id(aircraft.getId())
-
                 .code(aircraft.getCode())
                 .model(aircraft.getModel())
                 .manufacturer(aircraft.getManufacturer())
 
                 .seatingCapacity(aircraft.getSeatingCapacity())
-
                 .economySeats(aircraft.getEconomySeats())
                 .premiumEconomySeats(aircraft.getPremiumEconomySeats())
                 .businessSeats(aircraft.getBusinessSeats())
@@ -102,9 +114,9 @@ public class AircraftMapper {
                 .aircraftStatus(aircraft.getAircraftStatus())
                 .isAvailable(aircraft.getIsAvailable())
 
-                .airlineId(aircraft.getAirline().getId())
-                .airlineName(aircraft.getAirline().getName())
-                .airlineIataCode(aircraft.getAirline().getIataCode())
+                .airlineId(airline != null ? airline.getId() : null)
+                .airlineName(airline != null ? airline.getName() : null)
+                .airlineIataCode(airline != null ? airline.getIataCode() : null)
 
                 .currentAirportId(aircraft.getCurrentAirportId())
 
@@ -117,5 +129,26 @@ public class AircraftMapper {
 
                 .build();
     }
+
+
+    private static String normalizeCode(String code){
+        if(code == null){
+            return null;
+        }
+        return code.trim().toUpperCase();
+    }
+
+    private static String normalizeText(String value){
+        if(value == null){
+            return null;
+        }
+        return value.trim();
+    }
+
+
+    private static int safeInt(Integer value){
+        return value == null ? 0 : value;
+    }
+
 
 }

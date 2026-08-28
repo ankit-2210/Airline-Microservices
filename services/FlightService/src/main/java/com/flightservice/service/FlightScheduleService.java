@@ -1,7 +1,7 @@
 package com.flightservice.service;
 
-import com.microservices.payload.request.Flight.FlightScheduleRequest;
-import com.microservices.payload.response.Flight.FlightScheduleResponse;
+import com.airlineportal.payload.request.Flight.FlightScheduleRequest;
+import com.airlineportal.payload.response.Flight.FlightScheduleResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -9,20 +9,20 @@ import java.time.DayOfWeek;
 import java.util.*;
 
 public interface FlightScheduleService {
-    FlightScheduleResponse createFlightSchedule(Long airlineId, FlightScheduleRequest flightScheduleRequest);
 
-    FlightScheduleResponse getFlightScheduleById(Long id);
+    FlightScheduleResponse createSchedule(Long flightId, FlightScheduleRequest request, Long airlineId);
+    FlightScheduleResponse getById(Long scheduleId);
 
-    Page<FlightScheduleResponse> getFlightScheduleByAirline(Long airlineId, Pageable pageable);
-    Page<FlightScheduleResponse> getScheduleByFlightId(Long flightId, Pageable pageable);
-    Page<FlightScheduleResponse> getScheduleByRoute(Long departureAirportId, Long arrivalAirportId, Pageable pageable);
+    Page<FlightScheduleResponse> getByFlight(Long flightId, Pageable pageable);
+    Page<FlightScheduleResponse> getByAirline(Long airlineId, Pageable pageable);
+    Page<FlightScheduleResponse> getByRoute(Long departureAirportId, Long arrivalAirportId, Pageable pageable);
 
-    FlightScheduleResponse updateFlightSchedule(Long airlineId, Long id, FlightScheduleRequest flightScheduleRequest);
-    FlightScheduleResponse changeActiveStatus(Long airlineId, Long id, Boolean active);
+    List<FlightScheduleResponse> getByOperatingDay(DayOfWeek day);
 
-    List<FlightScheduleResponse> getScheduleByOperatingDay(DayOfWeek day);
-    void generateFlightInstances(Long scheduleId);
+    FlightScheduleResponse updateSchedule(Long scheduleId, FlightScheduleRequest request, Long airlineId);
 
-    void deleteFlightSchedule(Long airlineId, Long id);
+    void deleteSchedule(Long scheduleId, Long airlineId);
+
+
 
 }

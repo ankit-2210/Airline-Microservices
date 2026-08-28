@@ -1,12 +1,9 @@
 package com.flightservice.controller;
 
-import com.flightservice.model.Flight;
-import com.flightservice.repository.FlightScheduleRepository;
+import com.airlineportal.payload.request.Flight.FlightScheduleRequest;
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.Flight.FlightScheduleResponse;
 import com.flightservice.service.FlightScheduleService;
-import com.microservices.payload.request.Flight.FlightScheduleRequest;
-import com.microservices.payload.response.ApiResponse;
-import com.microservices.payload.response.Flight.FlightInstanceResponse;
-import com.microservices.payload.response.Flight.FlightScheduleResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -20,76 +17,58 @@ import java.time.DayOfWeek;
 import java.util.*;
 
 @RestController
-@RequiredArgsConstructor
 @RequestMapping("/api/flights-schedules")
+@RequiredArgsConstructor
 public class FlightScheduleController {
     private final FlightScheduleService flightScheduleService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<FlightScheduleResponse>> create(@RequestParam Long airlineId, @Valid @RequestBody FlightScheduleRequest request){
-        FlightScheduleResponse response = flightScheduleService.createFlightSchedule(airlineId, request);
-        return ResponseEntity.status(HttpStatus.CREATED).body(new ApiResponse<>(true, "Schedule created successfully", response));
+    // Airline creates schedule for a flight
+    @PostMapping("/flight/{flightId}/airline/{airlineId}")
+    public ApiResponse<FlightScheduleResponse> createSchedule(@PathVariable Long flightId, @PathVariable Long airlineId, @Valid @RequestBody FlightScheduleRequest request){
+        return ApiResponse.success(flightScheduleService.createSchedule(flightId, request, airlineId));
     }
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<FlightScheduleResponse>> getByScheduleId(@PathVariable Long id){
-        FlightScheduleResponse response = flightScheduleService.getFlightScheduleById(id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule fetched successfully", response));
+    // Get schedule by ID
+    @GetMapping("/{scheduleId}")
+    public ApiResponse<FlightScheduleResponse> getById(@PathVariable Long scheduleId){
+        return ApiResponse.success(flightScheduleService.getById(scheduleId));
     }
 
-    @GetMapping
-    public ResponseEntity<ApiResponse<Page<FlightScheduleResponse>>> getByAirline(@RequestParam Long airlineId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<FlightScheduleResponse> response = flightScheduleService.getFlightScheduleByAirline(airlineId, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule fetched successfully", response));
-    }
-
+    // Get schedules of a flight
     @GetMapping("/flight/{flightId}")
-    public ResponseEntity<ApiResponse<Page<FlightScheduleResponse>>> getByFlight(@PathVariable Long flightId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<FlightScheduleResponse> responses = flightScheduleService.getScheduleByFlightId(flightId, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedules fetched", responses));
+    public ApiResponse<Page<FlightScheduleResponse>> getByFlight(@PathVariable Long flightId, Pageable pageable){
+        return ApiResponse.success(flightScheduleService.getByFlight(flightId, pageable));
     }
 
+    // Get schedules of an airline
+    @GetMapping("/airline/{airlineId}")
+    public ApiResponse<Page<FlightScheduleResponse>> getByAirline(@PathVariable Long airlineId, Pageable pageable){
+        return ApiResponse.success(flightScheduleService.getByAirline(airlineId, pageable));
+    }
 
+    // Get schedules by route
     @GetMapping("/route")
-    public ResponseEntity<ApiResponse<Page<FlightScheduleResponse>>> route(@RequestParam Long departureAirportId, @RequestParam Long arrivalAirportId,
-                                                                           @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<FlightScheduleResponse> responses = flightScheduleService.getScheduleByRoute(departureAirportId, arrivalAirportId, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Route schedules fetched", responses));
+    public ApiResponse<Page<FlightScheduleResponse>> getByRoute(@RequestParam Long departureAirportId, @RequestParam Long arrivalAirportId, Pageable pageable){
+        return ApiResponse.success(flightScheduleService.getByRoute(departureAirportId, arrivalAirportId, pageable));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<FlightScheduleResponse>> update(@RequestParam Long airlineId, @PathVariable Long id, @Valid @RequestBody FlightScheduleRequest request){
-        FlightScheduleResponse response = flightScheduleService.updateFlightSchedule(airlineId, id, request);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule updated successfully", response));
+    // Get schedules operating on a particular day
+    @GetMapping("/operating-day/{day}")
+    public ApiResponse<List<FlightScheduleResponse>> getByOperatingDay(@PathVariable DayOfWeek day){
+        return ApiResponse.success(flightScheduleService.getByOperatingDay(day));
     }
 
-    @PatchMapping("/{id}/active")
-    public ResponseEntity<ApiResponse<FlightScheduleResponse>> active(@RequestParam Long airlineId, @PathVariable Long id, @RequestParam Boolean active){
-        FlightScheduleResponse response = flightScheduleService.changeActiveStatus(airlineId, id, active);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule status changed", response));
-    }
-
-    @GetMapping("/day/{day}")
-    public ResponseEntity<ApiResponse<List<FlightScheduleResponse>>> day(@PathVariable DayOfWeek day){
-        List<FlightScheduleResponse> response = flightScheduleService.getScheduleByOperatingDay(day);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule fetched", response));
-    }
-
-    @PostMapping("/{scheduleId}/generate-instances")
-    public ResponseEntity<ApiResponse<Void>> generateFlightInstances(@PathVariable Long scheduleId){
-        flightScheduleService.generateFlightInstances(scheduleId);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Flight instances generated successfully", null));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> delete(@RequestParam Long airlineId, @PathVariable Long id){
-        flightScheduleService.deleteFlightSchedule(airlineId, id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Schedule deleted", null));
+    // Airline updates schedule
+    @PutMapping("/{scheduleId}/airline/{airlineId}")
+    public ApiResponse<FlightScheduleResponse> updateSchedule(@PathVariable Long scheduleId, @PathVariable Long airlineId, @Valid @RequestBody FlightScheduleRequest request){
+        return ApiResponse.success(flightScheduleService.updateSchedule(scheduleId, request, airlineId));
     }
 
 
+    // Airline deletes schedule
+    @DeleteMapping("/{scheduleId}/airline/{airlineId}")
+    public void deleteSchedule(@PathVariable Long scheduleId, @PathVariable Long airlineId){
+        flightScheduleService.deleteSchedule(scheduleId, airlineId);
+    }
 
 }

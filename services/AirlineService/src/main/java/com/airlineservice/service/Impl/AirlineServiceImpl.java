@@ -1,15 +1,14 @@
 package com.airlineservice.service.Impl;
 
+import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
+import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
+import com.airlineportal.utils.Airline.AirlineStatus;
+import com.airlineservice.helper.AirlineHelper;
 import com.airlineservice.mapper.AirlineMapper;
 import com.airlineservice.model.Airline;
 import com.airlineservice.repository.AirlineRepository;
 import com.airlineservice.service.AirlineService;
-import com.microservices.exception.ResourceAlreadyExistsException;
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Airlines.Airline.AirlineRequest;
-import com.microservices.payload.response.Airlines.Airline.AirlineDropdownItem;
-import com.microservices.payload.response.Airlines.Airline.AirlineResponse;
-import com.microservices.utils.Airline.AirlineStatus;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,31 +23,17 @@ import java.util.stream.Collectors;
 @Transactional(readOnly = true)
 public class AirlineServiceImpl implements AirlineService {
     private final AirlineRepository airlineRepository;
+    private final AirlineHelper airlineHelper;
 
-    private Airline findAirlineById(Long id){
-        return airlineRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Airline not found with id: " + id));
-    }
-
-    private Airline findAirlineByOwnerId(Long ownerId){
-        return airlineRepository.findByOwnerId(ownerId)
-                .orElseThrow(() -> new ResourceNotFoundException("Airline not found with owner id: " + ownerId));
-    }
-
-    @Transactional
+    // Create Airline
     @Override
-    public AirlineResponse createAirline(AirlineRequest airlineRequest, Long ownerId) {
-        if (airlineRepository.findByOwnerId(ownerId).isPresent()) {
-            throw new ResourceAlreadyExistsException("Owner already has an airline");
-        }
-        if (airlineRepository.existsByIataCode(airlineRequest.getIataCode().toUpperCase())) {
-            throw new ResourceAlreadyExistsException("Airline with IATA code already exists");
-        }
-        if (airlineRepository.existsByIcaoCode(airlineRequest.getIcaoCode().toUpperCase())) {
-            throw new ResourceAlreadyExistsException("Airline with ICAO code already exists");
-        }
+    @Transactional
+    public AirlineResponse createAirline(AirlineRequest airlineRequest, Long ownerId){
+        airlineHelper.validateCreate(airlineRequest, ownerId);
 
         Airline airline = AirlineMapper.toEntity(airlineRequest, ownerId);
+        airlineHelper.normalizeEntity(airline);
+
         if(airline.getAirlineStatus() == null){
             airline.setAirlineStatus(AirlineStatus.ACTIVE);
         }
@@ -57,76 +42,92 @@ public class AirlineServiceImpl implements AirlineService {
         return AirlineMapper.toResponse(savedAirline);
     }
 
+    // Get Airline By Owner
     @Override
     public AirlineResponse getAirlineByOwner(Long ownerId) {
-        Airline airline = findAirlineByOwnerId(ownerId);
+        Airline airline = airlineHelper.findByOwnerId(ownerId);
         return AirlineMapper.toResponse(airline);
     }
 
+    // Get Airline By Id
     @Override
     public AirlineResponse getAirlineById(Long id) {
-        Airline airline = findAirlineById(id);
+        Airline airline = airlineHelper.findById(id);
         return AirlineMapper.toResponse(airline);
     }
 
+    // Get All Airlines
     @Override
     public Page<AirlineResponse> getAllAirlines(Pageable pageable) {
         return airlineRepository.findAll(pageable)
                 .map(AirlineMapper::toResponse);
     }
 
+    // Search Airlines
     @Override
     public Page<AirlineResponse> searchAirlines(String keyword, Pageable pageable) {
-        return airlineRepository.findByNameContainingIgnoreCase(keyword, pageable)
+        if(keyword == null || keyword.isBlank()){
+            return airlineRepository.findAll(pageable)
+                    .map((AirlineMapper::toResponse));
+        }
+
+        String search = keyword.trim();
+        return airlineRepository.findByNameContainingIgnoreCase(search, pageable)
                 .map(AirlineMapper::toResponse);
     }
 
-    @Transactional
+    // Update Airline
     @Override
+    @Transactional
     public AirlineResponse updateAirline(Long airlineId, AirlineRequest airlineRequest, Long ownerId) {
-        Airline airline = findAirlineById(airlineId);
-        if(!airline.getOwnerId().equals(ownerId)) {
-            throw new ResourceNotFoundException("You are not allowed to update this airline");
-        }
-        if(airlineRepository.existsByIataCodeAndIdNot(airlineRequest.getIataCode().toUpperCase(), airlineId)) {
-            throw new ResourceAlreadyExistsException("Airline with IATA code already exists");
-        }
-        if(airlineRepository.existsByIcaoCodeAndIdNot(airlineRequest.getIcaoCode().toUpperCase(), airlineId)) {
-            throw new ResourceAlreadyExistsException("Airline with ICAO code already exists");
-        }
+        Airline airline = airlineHelper.findById(airlineId);
+
+        airlineHelper.validateUpdate(airline, airlineRequest, ownerId);
 
         AirlineMapper.updateEntity(airline, airlineRequest);
+        airlineHelper.normalizeEntity(airline);
+
         Airline updatedAirline = airlineRepository.save(airline);
         return AirlineMapper.toResponse(updatedAirline);
     }
 
-    @Transactional
+    // Delete Airline
     @Override
+    @Transactional
     public void deleteAirline(Long id, Long ownerId) {
-        Airline airline = findAirlineById(id);
+        Airline airline = airlineHelper.findById(id);
 
-        if (!airline.getOwnerId().equals(ownerId)) {
-            throw new ResourceNotFoundException(
-                    "You are not allowed to delete this airline");
+        airlineHelper.validateOwnership(airline, ownerId);
+        if(airline.getAircraft() != null && !airline.getAircraft().isEmpty()){
+            throw new IllegalStateException("Cannot delete airline while aircraft are assigned to it");
         }
 
         airlineRepository.delete(airline);
     }
 
-    @Transactional
+    // Change Status = Admin
     @Override
+    @Transactional
     public AirlineResponse changeStatusByAdmin(Long airlineId, AirlineStatus airlineStatus) {
-        Airline airline = findAirlineById(airlineId);
+        if (airlineStatus == null) {
+            throw new IllegalArgumentException("Airline status cannot be null");
+        }
 
+        Airline airline = airlineHelper.findById(airlineId);
         airline.setAirlineStatus(airlineStatus);
+
         Airline updatedAirline = airlineRepository.save(airline);
         return AirlineMapper.toResponse(updatedAirline);
     }
 
+    // Dropdown
     @Override
     public List<AirlineDropdownItem> getAirlineDropdown() {
-        return airlineRepository.findAll().stream()
+        return airlineRepository
+                .findAll()
+                .stream()
                 .map(AirlineMapper::toDropdown)
-                .collect(Collectors.toList());
+                .toList();
+
     }
 }
