@@ -1,13 +1,15 @@
 package com.locationservice.mapper;
 
+import com.airlineportal.payload.request.Location.City.CityRequest;
+import com.airlineportal.payload.response.Location.City.CityResponse;
 import com.locationservice.model.City;
-import com.microservices.payload.request.Location.City.CityRequest;
-import com.microservices.payload.response.Location.City.CityResponse;
+
 
 public class CityMapper {
     public static City toEntity(CityRequest cityRequest){
         if(cityRequest == null)
             return null;
+
         return City.builder()
                 .name(cityRequest.getName())
 
@@ -24,6 +26,7 @@ public class CityMapper {
     public static CityResponse toResponse(City city){
         if(city == null)
             return null;
+
         return CityResponse.builder()
                 .id(city.getId())
                 .name(city.getName())
@@ -37,24 +40,17 @@ public class CityMapper {
                 .timeZoneId(city.getTimeZoneId())
                 .build();
     }
-    public static void updateEntity(City city, CityRequest cityRequest){
-        if(cityRequest.getName() != null){
-            city.setName(cityRequest.getName());
-        }
-        if(cityRequest.getCityCode() != null){
-            city.setCityCode(cityRequest.getCityCode().toUpperCase().trim());
-        }
-        if(cityRequest.getCountryCode() != null){
-            city.setCityCode(cityRequest.getCountryCode().toUpperCase().trim());
-        }
-        if(cityRequest.getCountryName() != null){
-            city.setCountryName(cityRequest.getCountryName());
-        }
-        if(cityRequest.getRegionCode() != null){
-            city.setRegionCode(cityRequest.getRegionCode().toUpperCase().trim());
-        }
-        if(cityRequest.getTimeZoneId() != null){
-            city.setTimeZoneId(cityRequest.getTimeZoneId());
-        }
+    public static void updateEntity(City city, CityRequest request){
+        if(city == null || request == null)
+            return;
+
+        city.setName(request.getName());
+        city.setCityCode(request.getCityCode());
+        city.setCountryCode(request.getCountryCode());
+        city.setCountryName(request.getCountryName());
+        city.setRegionCode(request.getRegionCode());
+        city.setTimeZoneId(request.getTimeZoneId());
+
+
     }
 }

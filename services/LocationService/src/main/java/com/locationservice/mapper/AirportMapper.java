@@ -1,22 +1,24 @@
 package com.locationservice.mapper;
 
+import com.airlineportal.payload.request.Location.Airport.AirportRequest;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.locationservice.model.Airport;
-import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
+import com.locationservice.model.City;
 
 public class AirportMapper {
-    public static Airport toEntity(AirportRequest airportRequest){
-        if(airportRequest == null)
+    public static Airport toEntity(AirportRequest request, City city){
+        if(request == null)
             return null;
 
         return Airport.builder()
-                .iataCode(airportRequest.getIataCode().toUpperCase().trim())
-                .name(airportRequest.getName().trim())
+                .iataCode(request.getIataCode())
+                .name(request.getName())
 
-                .address(airportRequest.getAddress())
-                .geoCode(airportRequest.getGeoCode())
+                .address(request.getAddress())
+                .geoCode(request.getGeoCode())
 
-                .timeZoneId(airportRequest.getTimeZoneId())
+                .timeZoneId(request.getTimeZoneId())
+                .city(city)
                 .build();
     }
 
@@ -40,25 +42,16 @@ public class AirportMapper {
                 .build();
     }
 
-    public static void updateEntity(Airport airport, AirportRequest airportRequest){
-        if(airport == null || airportRequest == null)
+    public static void updateEntity(Airport airport, AirportRequest request, City city){
+        if(airport == null || request == null)
             return;
 
-        if(airportRequest.getIataCode() != null){
-            airport.setIataCode(airportRequest.getIataCode().toUpperCase().trim());
-        }
-        if(airportRequest.getName() != null){
-            airport.setName(airportRequest.getName().trim());
-        }
-        if(airportRequest.getAddress() != null){
-            airport.setAddress(airportRequest.getAddress());
-        }
-        if(airportRequest.getGeoCode() != null){
-            airport.setGeoCode(airportRequest.getGeoCode());
-        }
-        if(airportRequest.getTimeZoneId() != null){
-            airport.setTimeZoneId(airportRequest.getTimeZoneId());
-        }
+        airport.setIataCode(request.getIataCode());
+        airport.setName(request.getName());
+        airport.setAddress(request.getAddress());
+        airport.setGeoCode(request.getGeoCode());
+        airport.setTimeZoneId(request.getTimeZoneId());
+        airport.setCity(city);
 
     }
 }

@@ -1,8 +1,8 @@
 package com.airlineportal.payload.response.Location.Airport;
 
-import com.microservices.embeddable.Address;
-import com.microservices.embeddable.GeoCode;
-import com.microservices.payload.response.Location.City.CityResponse;
+import com.airlineportal.embeddable.Address;
+import com.airlineportal.embeddable.GeoCode;
+import com.airlineportal.payload.response.Location.City.CityResponse;
 import lombok.*;
 
 import java.time.ZoneId;

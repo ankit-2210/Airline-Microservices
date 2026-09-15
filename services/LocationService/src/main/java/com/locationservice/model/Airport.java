@@ -1,14 +1,14 @@
 package com.locationservice.model;
 
+import com.airlineportal.embeddable.Address;
+import com.airlineportal.embeddable.GeoCode;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.microservices.embeddable.Address;
-import com.microservices.embeddable.GeoCode;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.time.ZoneId;
 
 @Getter
 @Setter
@@ -19,18 +19,20 @@ import java.time.ZoneId;
 @Table(
         name = "airports",
         indexes = {
-                @Index(name = "idx_iata_code", columnList = "iataCode"),
-                @Index(name = "idx_city_id", columnList = "city_id")
+                @Index(name = "idx_airport_iata_code", columnList = "iata_code"),
+                @Index(name = "idx_airport_city_id", columnList = "city_id")
         }
 )
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Airport {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Long id;
 
     @NotBlank
+    @Size(min = 3, max = 3)
     @Column(name = "iata_code", unique = true, nullable = false, length = 3)
     private String iataCode;
 
@@ -49,7 +51,7 @@ public class Airport {
     @Column(name="time_zone_id", length = 50)
     private String timeZoneId;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "city_id", nullable = false)
     @JsonIgnore
     @ToString.Exclude

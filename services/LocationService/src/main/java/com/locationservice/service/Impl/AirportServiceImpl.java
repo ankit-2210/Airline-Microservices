@@ -1,15 +1,16 @@
 package com.locationservice.service.Impl;
 
+import com.airlineportal.exception.ResourceAlreadyExistsException;
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.payload.request.Location.Airport.AirportRequest;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
+import com.locationservice.helper.AirportHelper;
 import com.locationservice.mapper.AirportMapper;
 import com.locationservice.model.Airport;
 import com.locationservice.model.City;
 import com.locationservice.repository.AirportRepository;
 import com.locationservice.repository.CityRepository;
 import com.locationservice.service.AirportService;
-import com.microservices.exception.ResourceAlreadyExistsException;
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,47 +24,56 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class AirportServiceImpl implements AirportService {
     private final AirportRepository airportRepository;
-    private final CityRepository cityRepository;
+    private final AirportHelper helper;
 
-    private Airport findAirport(Long id){
-        return airportRepository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Airport not exist with id: " + id));
-    }
-    private City findCity(Long id){
-        return cityRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("City not found with id: " + id));
-    }
-
-
-    @Transactional
     @Override
-    public AirportResponse createAirport(AirportRequest airportRequest){
-        String code = airportRequest.getIataCode().toUpperCase();
-        if (airportRepository.existsByIataCode(airportRequest.getIataCode())) {
-            throw new ResourceAlreadyExistsException("Airport with IATA code already exists");
-        }
+    @Transactional
+    public AirportResponse createAirport(AirportRequest airportRequest) {
+        helper.normalizeRequest(airportRequest);
 
-        City city = findCity(airportRequest.getCityId());
+        helper.validateIataCodeForCreate(airportRequest.getIataCode());
 
-        Airport airport = AirportMapper.toEntity(airportRequest);
-        airport.setIataCode(code);
-        airport.setCity(city);
+        City city = helper.findCityById(airportRequest.getCityId());
+        Airport airport = AirportMapper.toEntity(airportRequest, city);
 
         Airport savedAirport = airportRepository.save(airport);
         return AirportMapper.toResponse(savedAirport);
     }
 
     @Override
-    public AirportResponse getAirportById(Long id){
-        Airport airport = findAirport(id);
+    public AirportResponse getAirportById(Long id) {
+        Airport airport = helper.findAirportById(id);
+
         return AirportMapper.toResponse(airport);
     }
 
     @Override
-    public AirportResponse getAirportByIataCode(String code){
-        Airport airport = airportRepository.findByIataCode(code.toUpperCase())
-                .orElseThrow(() -> new ResourceNotFoundException("Airport not found with code: " + code));
+    public AirportResponse getAirportByIataCode(String iataCode) {
+        Airport airport = helper.findAirportByIataCode(iataCode);
+
         return AirportMapper.toResponse(airport);
+    }
+
+    @Override
+    @Transactional
+    public AirportResponse updateAirport(Long id, AirportRequest airportRequest) {
+        Airport airport = helper.findAirportById(id);
+
+        helper.normalizeRequest(airportRequest);
+        helper.validateIataCodeForUpdate(airportRequest.getIataCode(), id);
+
+        City city = helper.findCityById(airportRequest.getCityId());
+        AirportMapper.updateEntity(airport, airportRequest, city);
+
+        Airport updatedAirport = airportRepository.save(airport);
+        return AirportMapper.toResponse(updatedAirport);
+    }
+
+    @Override
+    public void deleteAirport(Long id) {
+        Airport airport = helper.findAirportById(id);
+
+        airportRepository.delete(airport);
     }
 
     @Override
@@ -73,55 +83,52 @@ public class AirportServiceImpl implements AirportService {
     }
 
     @Override
-    public Page<AirportResponse> searchAirports(String keyword, Pageable pageable){
-        return airportRepository.search(keyword, pageable)
+    public Page<AirportResponse> searchAirports(String keyword, Pageable pageable) {
+        if(keyword == null || keyword.isBlank())
+            return getAllAirports(pageable);
+
+        return airportRepository.search(keyword.trim(), pageable)
                 .map(AirportMapper::toResponse);
     }
 
     @Override
-    public Page<AirportResponse> getAirportByCityId(Long cityId, Pageable pageable) {
+    public List<AirportResponse> getAirportsByCity(Long cityId) {
+        helper.findCityById(cityId);
+
+        return airportRepository.findByCityId(cityId).stream()
+                .map(AirportMapper::toResponse)
+                .toList();
+    }
+
+    @Override
+    public Page<AirportResponse> getAirportsByCity(Long cityId, Pageable pageable) {
+        helper.findCityById(cityId);
+
         return airportRepository.findByCityId(cityId, pageable)
                 .map(AirportMapper::toResponse);
     }
 
     @Override
-    public Page<AirportResponse> getAirportByCountryCode(String countryCode, Pageable pageable) {
-        return airportRepository.findByCityCountryCodeIgnoreCase(countryCode, pageable)
+    public Page<AirportResponse> getAirportsByCountry(String countryCode, Pageable pageable) {
+        String normalizedCountryCode = countryCode.trim().toUpperCase();
+
+        return airportRepository.findByCityCountryCodeIgnoreCase(normalizedCountryCode, pageable)
                 .map(AirportMapper::toResponse);
-    }
-
-    @Transactional
-    @Override
-    public AirportResponse updateAirport(Long id, AirportRequest airportRequest){
-        Airport airport = findAirport(id);
-
-        AirportMapper.updateEntity(airport, airportRequest);
-        if (!airport.getCity().getId().equals(airportRequest.getCityId())) {
-            City city = findCity(airportRequest.getCityId());
-            airport.setCity(city);
-        }
-        Airport updatedAirport = airportRepository.save(airport);
-        return AirportMapper.toResponse(updatedAirport);
-    }
-
-    @Override
-    public AirportResponse changeStatus(Long id, Boolean active) {
-        return null;
     }
 
     @Override
     public List<AirportResponse> getAirportDropdown() {
-        return airportRepository.findAll().stream()
+        return airportRepository.findDropdown().stream()
                 .map(AirportMapper::toResponse)
                 .toList();
     }
 
-    @Transactional
     @Override
-    public void deleteAirport(Long id){
-        Airport airport = findAirport(id);
-        airportRepository.delete(airport);
+    public boolean airportExists(String iataCode) {
+        String normalizedCode = helper.normalizeIataCode(iataCode);
+        if(normalizedCode == null || normalizedCode.isBlank())
+            return false;
+
+        return airportRepository.existsByIataCode(normalizedCode);
     }
-
-
 }

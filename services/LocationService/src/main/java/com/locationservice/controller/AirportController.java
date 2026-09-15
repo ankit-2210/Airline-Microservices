@@ -1,18 +1,16 @@
 package com.locationservice.controller;
 
+import com.airlineportal.payload.request.Location.Airport.AirportRequest;
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.locationservice.service.AirportService;
-import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
-import com.microservices.payload.response.ApiResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
-import org.springframework.http.HttpStatus;
+import org.springframework.data.domain.*;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import java.util.*;
 
 @RestController
 @RequiredArgsConstructor
@@ -22,69 +20,70 @@ public class AirportController {
 
     // create airport
     @PostMapping
-    public ResponseEntity<ApiResponse<AirportResponse>> createAirport(@Valid @RequestBody AirportRequest airportRequest){
-        AirportResponse airport = airportService.createAirport(airportRequest);
-        ApiResponse<AirportResponse> response = new ApiResponse<>(true, "Airport created successfully", airport);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    public ApiResponse<AirportResponse> createAirport(@Valid @RequestBody AirportRequest airportRequest){
+        return ApiResponse.success(airportService.createAirport(airportRequest));
     }
 
-    // get airport by id
-    @GetMapping("/{id}")
-    public ResponseEntity<ApiResponse<AirportResponse>> getAirportById(@PathVariable Long id){
-        AirportResponse airport = airportService.getAirportById(id);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airport fetched successfully", airport));
-    }
-
-    // get airport by iatacode
-    @GetMapping("/iata/{iataCode}")
-    public ResponseEntity<ApiResponse<AirportResponse>> getAirportByIataCode(@PathVariable String iataCode){
-        AirportResponse airport = airportService.getAirportByIataCode(iataCode);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airport fetched successfully", airport));
-    }
-
-    // get all airports
+    // GET ALL AIRPORTS
     @GetMapping
-    public ResponseEntity<ApiResponse<Page<AirportResponse>>> getAllAirports(@RequestParam(defaultValue = "0") int page,
-                                                                             @RequestParam(defaultValue = "20") int size,
-                                                                             @RequestParam(defaultValue = "name") String sortBy,
-                                                                             @RequestParam(defaultValue = "asc") String direction){
-        Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
-        Page<AirportResponse> airports = airportService.getAllAirports(pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "All airports fetched successfully", airports));
+    public ApiResponse<Page<AirportResponse>> getAllAirports(@PageableDefault(size = 20, sort = "name", direction = Sort.Direction.ASC) Pageable pageable){
+        return ApiResponse.success(airportService.getAllAirports(pageable));
     }
 
-    // search airports
+    // GET AIRPORT BY ID
+    @GetMapping("/{id}")
+    public ApiResponse<AirportResponse> getAirportById(@PathVariable Long id){
+        return ApiResponse.success(airportService.getAirportById(id));
+    }
+
+    // GET AIRPORT BY IATA CODE
+    @GetMapping("/iata/{iataCode}")
+    public ApiResponse<AirportResponse> getAirportByIataCode(@PathVariable String iataCode){
+        return ApiResponse.success(airportService.getAirportByIataCode(iataCode));
+    }
+
+    // SEARCH AIRPORTS
     @GetMapping("/search")
-    public ResponseEntity<ApiResponse<Page<AirportResponse>>> searchAirports(@RequestParam String keyword, @RequestParam(defaultValue = "0") int page,
-                                                                             @RequestParam(defaultValue = "20") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<AirportResponse> airport = airportService.searchAirports(keyword, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Search completed successfully", airport));
+    public ApiResponse<Page<AirportResponse>> searchAirports(@RequestParam String keyword, @PageableDefault(size = 20, sort = "name", direction = Sort.Direction.ASC) Pageable pageable){
+        return ApiResponse.success(airportService.searchAirports(keyword, pageable));
     }
 
-    // get airports by city id
+    // GET AIRPORTS BY CITY
     @GetMapping("/city/{cityId}")
-    public ResponseEntity<ApiResponse<Page<AirportResponse>>> getAirportByCityId(@PathVariable Long cityId, @RequestParam(defaultValue = "0") int page,
-                                                                                                            @RequestParam(defaultValue = "20") int size){
-        Pageable pageable = PageRequest.of(page, size);
-        Page<AirportResponse> airports = airportService.getAirportByCityId(cityId, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airports fetched by city successfully", airports));
+    public ApiResponse<Page<AirportResponse>> getAirportsByCity(@PathVariable Long cityId, @PageableDefault(size = 20, sort = "name", direction = Sort.Direction.ASC) Pageable pageable){
+        return ApiResponse.success(airportService.getAirportsByCity(cityId, pageable));
     }
 
-    // update airport
+    // GET AIRPORTS BY COUNTRY
+    @GetMapping("/country/{countryCode}")
+    public ApiResponse<Page<AirportResponse>> getAirportsByCountry(@PathVariable String countryCode, @PageableDefault(size = 20, sort = "name", direction = Sort.Direction.ASC) Pageable pageable){
+        return ApiResponse.success(airportService.getAirportsByCountry(countryCode, pageable));
+    }
+
+    // AIRPORT DROPDOWN
+    @GetMapping("/dropdown")
+    public ApiResponse<List<AirportResponse>> getAirportDropdown(){
+        return ApiResponse.success(airportService.getAirportDropdown());
+    }
+
+    // CHECK AIRPORT EXISTS
+    @GetMapping("/exists/{iataCode}")
+    public ApiResponse<Boolean> airportExists(@PathVariable String iataCode){
+        return ApiResponse.success(airportService.airportExists(iataCode));
+    }
+
+    // UPDATE AIRPORT
     @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse<AirportResponse>> updateAirport(@PathVariable Long id, @Valid @RequestBody AirportRequest airportRequest){
-        AirportResponse updatedAirport = airportService.updateAirport(id, airportRequest);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Airport updated successfully", updatedAirport));
+    public ApiResponse<AirportResponse> updateAirport(@PathVariable Long id, @Valid @RequestBody AirportRequest airportRequest){
+        return ApiResponse.success(airportService.updateAirport(id, airportRequest));
     }
 
-    // delete airport bu id
+    // DELETE AIRPORT
     @DeleteMapping("/{id}")
-    public ResponseEntity<ApiResponse<Void>> deleteAirportById(@PathVariable Long id){
+    public ResponseEntity<Void> deleteAirport(@PathVariable Long id){
         airportService.deleteAirport(id);
-        ApiResponse<Void> response = new ApiResponse<>(true, "Airport deleted successfully", null);
-        return ResponseEntity.ok(response);
+        return ResponseEntity.noContent().build();
     }
+
 
 }

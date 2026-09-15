@@ -1,12 +1,12 @@
 package com.locationservice.service.Impl;
 
+import com.airlineportal.payload.request.Location.City.CityRequest;
+import com.airlineportal.payload.response.Location.City.CityResponse;
+import com.locationservice.helper.CityHelper;
 import com.locationservice.mapper.CityMapper;
 import com.locationservice.model.City;
 import com.locationservice.repository.CityRepository;
 import com.locationservice.service.CityService;
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.request.Location.City.CityRequest;
-import com.microservices.payload.response.Location.City.CityResponse;
 import lombok.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,50 +20,45 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class CityServiceImpl implements CityService {
     private final CityRepository cityRepository;
+    private final CityHelper helper;
 
-    private City findCityById(Long id){
-        return cityRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("City not found with id: " + id));
-    }
-
-    @Transactional
     @Override
-    public CityResponse createCity(CityRequest cityRequest){
-        String code = cityRequest.getCityCode().toUpperCase().trim();
-        if(cityRepository.existsByCityCode(cityRequest.getCityCode())){
-            throw new ResourceNotFoundException("City with given code already exist");
-        }
+    @Transactional
+    public CityResponse createCity(CityRequest cityRequest) {
+        helper.normalizeRequest(cityRequest);
+
+        helper.validateCityCodeForCreate(cityRequest.getCityCode());
 
         City city = CityMapper.toEntity(cityRequest);
-        city.setCityCode(code);
-
-        City savedCity = cityRepository.save(city);
-        return CityMapper.toResponse(savedCity);
+        return CityMapper.toResponse(cityRepository.save(city));
     }
 
     @Override
-    public CityResponse getCityById(Long id){
-        City city = findCityById(id);
-        return CityMapper.toResponse(city);
+    public CityResponse getCityById(Long id) {
+        return CityMapper.toResponse(helper.findCityById(id));
     }
 
+    @Override
+    public CityResponse getCityByCode(String cityCode) {
+        return CityMapper.toResponse(helper.findCityByCode(cityCode));
+    }
+
+    @Override
     @Transactional
-    @Override
-    public CityResponse updateCity(Long id, CityRequest cityRequest){
-        City city = findCityById(id);
-        if(cityRequest.getCityCode() != null && cityRepository.existsByCityCodeAndIdNot(cityRequest.getCityCode(), id)){
-            throw new ResourceNotFoundException("City with given code already exists");
-        }
+    public CityResponse updateCity(Long id, CityRequest cityRequest) {
+        City city = helper.findCityById(id);
+
+        helper.normalizeRequest(cityRequest);
+        helper.validateCityCodeForUpdate(cityRequest.getCityCode(), id);
 
         CityMapper.updateEntity(city, cityRequest);
-        City updatedCity = cityRepository.save(city);
-        return CityMapper.toResponse(updatedCity);
+        return CityMapper.toResponse(cityRepository.save(city));
     }
 
-    @Transactional
     @Override
-    public void deleteCity(Long id){
-        City city = findCityById(id);
+    @Transactional
+    public void deleteCity(Long id) {
+        City city = helper.findCityById(id);
         cityRepository.delete(city);
     }
 
@@ -75,32 +70,31 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public Page<CityResponse> searchCities(String keyword, Pageable pageable) {
-        return cityRepository.searchByKeyword(keyword, pageable)
+        if(keyword == null || keyword.isBlank())
+            return getAllCities(pageable);
+
+        return cityRepository.searchByKeyword(keyword.trim(), pageable)
                 .map(CityMapper::toResponse);
     }
 
     @Override
     public Page<CityResponse> getCitiesByCountryCode(String countryCode, Pageable pageable) {
-        return cityRepository.findByCountryCodeIgnoreCase(countryCode, pageable)
+        String normalizedCountryCode = helper.normalizeCountryCode(countryCode);
+
+        return cityRepository.findByCountryCodeIgnoreCase(normalizedCountryCode, pageable)
                 .map(CityMapper::toResponse);
     }
 
     @Override
     public List<CityResponse> getCityDropdown() {
-        return List.of();
-    }
-
-    @Override
-    public CityResponse getCityByCode(String cityCode){
-        City city = cityRepository.findByCityCode(cityCode)
-                .orElseThrow(() -> new ResourceNotFoundException("City not found"));
-        return CityMapper.toResponse(city);
+        return cityRepository.findAll().stream()
+                .map(CityMapper::toResponse)
+                .toList();
     }
 
     @Override
     public boolean cityExists(String cityCode) {
-        return cityRepository.existsByCityCode(cityCode);
+        return helper.normalizeCityCode(cityCode) != null &&
+                cityRepository.existsByCityCode(helper.normalizeCityCode(cityCode));
     }
-
-
 }

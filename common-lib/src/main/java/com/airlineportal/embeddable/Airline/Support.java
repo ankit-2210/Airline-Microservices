@@ -1,4 +1,4 @@
-package com.microservices.embeddable.Airline;
+package com.airlineportal.embeddable.Airline;
 
 import jakarta.persistence.Embeddable;
 import lombok.*;

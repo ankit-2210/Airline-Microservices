@@ -17,36 +17,39 @@ import java.util.*;
         name = "cities",
         indexes = {
                 @Index(name = "idx_city_code", columnList = "city_code"),
-                @Index(name = "idx_country_id", columnList = "country_id")
+                @Index(name = "idx_city_country_code", columnList = "country_code")
         }
 )
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class City {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @EqualsAndHashCode.Include
     private Long id;
 
     @NotBlank
     @Size(max = 100)
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     private String name;
 
     @NotBlank
     @Size(max = 20)
-    @Column(name = "city_code", nullable = false, unique = true)
+    @Column(name = "city_code", nullable = false, unique = true, length = 20)
     private String cityCode;
 
     @NotBlank
     @Size(max = 10)
-    @Column(name = "country_code", nullable = false)
+    @Column(name = "country_code", nullable = false, length = 10)
     private String countryCode;
 
     @NotBlank
     @Size(max = 100)
-    @Column(name = "country_name", nullable = false)
+    @Column(name = "country_name", nullable = false, length = 100)
     private String countryName;
 
     @Size(max=10)
+    @Column(length = 10)
     private String regionCode;
 
     @Column(name = "time_zone_id", length = 50)
