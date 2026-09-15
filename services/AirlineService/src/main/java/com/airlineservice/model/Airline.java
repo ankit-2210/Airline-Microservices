@@ -1,7 +1,7 @@
 package com.airlineservice.model;
 
+import com.airlineportal.embeddable.Airline.Support;
 import com.airlineportal.utils.Airline.AirlineStatus;
-import com.microservices.embeddable.Airline.Support;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

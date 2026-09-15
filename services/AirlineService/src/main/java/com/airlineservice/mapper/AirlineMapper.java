@@ -1,11 +1,11 @@
 package com.airlineservice.mapper;
 
+import com.airlineportal.embeddable.Airline.Support;
 import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
 import com.airlineportal.utils.Airline.AirlineStatus;
 import com.airlineservice.model.Airline;
-import com.microservices.embeddable.Airline.Support;
 
 
 public class AirlineMapper {
@@ -84,8 +84,6 @@ public class AirlineMapper {
                 .alliance(airline.getAlliance())
 
                 .ownerId(airline.getOwnerId())
-
-                .support(airline.getSupport())
 
                 .headquartersCityId(airline.getHeadquartersCityId())
 

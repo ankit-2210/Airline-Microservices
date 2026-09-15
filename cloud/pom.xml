@@ -20,9 +20,9 @@
     <description>Aggregator for cloud infrastructure modules (Eureka, Config, Gateway)</description>
 
     <modules>
-        <module>EurekaServer</module>
-<!--        <module>apigateway</module>-->
-        <module>ConfigServer</module>
+        <module>eurekaserver</module>
+        <module>apigateway</module>
+        <module>configserver</module>
 
     </modules>
 

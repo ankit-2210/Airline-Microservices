@@ -67,28 +67,18 @@ public class GlobalExceptionHandler {
 
     // 400 - @Valid RequestBody Validation
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidation(
-            MethodArgumentNotValidException ex,
-            HttpServletRequest request
-    ) {
+    public ResponseEntity<ApiErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request){
         Map<String, String> errors =
                 ex.getBindingResult()
                         .getFieldErrors()
                         .stream()
                         .collect(Collectors.toMap(
                                 FieldError::getField,
-                                error -> error.getDefaultMessage() != null
-                                        ? error.getDefaultMessage()
-                                        : "Invalid value",
+                                error -> error.getDefaultMessage() != null ? error.getDefaultMessage() : "Invalid value",
                                 (oldValue, newValue) -> oldValue
                         ));
 
-        return buildResponse(
-                HttpStatus.BAD_REQUEST,
-                "Validation Failed",
-                request.getRequestURI(),
-                errors
-        );
+        return buildResponse(HttpStatus.BAD_REQUEST, "Validation Failed", request.getRequestURI(), errors);
     }
 
     // 400 - @RequestParam / @PathVariable Validation
