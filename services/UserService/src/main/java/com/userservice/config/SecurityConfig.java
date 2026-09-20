@@ -1,8 +1,8 @@
 package com.userservice.config;
 
-import com.userservice.config.jwt.AuthTokenFilter;
-import com.userservice.config.jwt.JwtAuthEntryPoint;
-import com.userservice.service.Impl.CustomUserDetailService;
+import com.userservice.security.AuthTokenFilter;
+import com.userservice.security.JwtAuthEntryPoint;
+import com.userservice.security.CustomUserDetailService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.*;
 import org.springframework.security.authentication.*;

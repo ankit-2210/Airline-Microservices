@@ -5,56 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Booking/BookingRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Booking/PassengerRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Booking/BookingResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Booking/PassengerResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/CurrentUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/JwtUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/SecurityUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/jwt/JwtConstant.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/jwt/JwtUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Booking/BookingStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Booking/PaymentStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/controller/BookingController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/helper/BookingHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/mapper/BookingMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/model/Booking.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/model/Passenger.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/repository/BookingRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/repository/PassengerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/AuthHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/UserHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/dto/UserDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/dto/UserDto.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ChangePasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ChangePasswordRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ForgotPasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ForgotPasswordRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ResetPasswordRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/ResetPasswordRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/UserRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/User/UserRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/AuthResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/AuthResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/UserResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/UserResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Users/UserRole.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Users/UserRole.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/AuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/AuthTokenFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/JwtAuthEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/JwtAuthEntryPoint.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/config/jwt/JwtUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/HomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/PasswordResetToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/PasswordResetToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/CustomUserDetailService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/CustomUserDetailService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -479,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789492827823</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1789918279817</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1789918279818</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

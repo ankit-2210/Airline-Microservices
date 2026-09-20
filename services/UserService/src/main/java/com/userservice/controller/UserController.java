@@ -1,5 +1,7 @@
 package com.userservice.controller;
 
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.User.UserResponse;
 import com.userservice.model.User;
 import com.userservice.service.UserService;
 import lombok.*;
@@ -15,22 +17,22 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/profile")
-    public ResponseEntity<ApiResponse<UserResponse>> getUserProfile(Authentication authentication){
+    public ApiResponse<UserResponse> getUserProfile(Authentication authentication){
         String email = authentication.getName();
         UserResponse userResponse = userService.getUserByEmail(email);
-        return ResponseEntity.ok(new ApiResponse<>(true, "User profile fetched successfully", userResponse));
+        return ApiResponse.success(userResponse);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable Long userId){
+    public ApiResponse<UserResponse> getUserById(@PathVariable Long userId){
         UserResponse userResponse = userService.getUserById(userId);
-        return ResponseEntity.ok(new ApiResponse<>(true, "User fetch by id", userResponse));
+        return ApiResponse.success(userResponse);
     }
 
     @GetMapping
-    public ResponseEntity<ApiResponse<List<UserResponse>>> getUsers(){
+    public ApiResponse<List<UserResponse>> getUsers(){
         List<UserResponse> users = userService.getAllUsers();
-        return ResponseEntity.ok(new ApiResponse<>(true, "Users fetched", users));
+        return ApiResponse.success(users);
     }
 
 }

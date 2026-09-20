@@ -1,9 +1,9 @@
 package com.userservice.controller;
 
 import com.microservices.payload.response.User.UserResponse;
-import com.userservice.config.jwt.AuthTokenFilter;
+import com.userservice.security.AuthTokenFilter;
 import com.userservice.config.jwt.JwtUtils;
-import com.userservice.service.Impl.CustomUserDetailService;
+import com.userservice.security.CustomUserDetailService;
 import com.userservice.service.UserService;
 
 import org.junit.jupiter.api.Test;

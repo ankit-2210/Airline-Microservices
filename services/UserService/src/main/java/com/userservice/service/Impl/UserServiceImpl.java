@@ -1,5 +1,6 @@
 package com.userservice.service.Impl;
 
+import com.airlineportal.payload.response.User.UserResponse;
 import com.userservice.helper.UserHelper;
 import com.userservice.mapper.UserMapper;
 import com.userservice.model.User;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getUserById(Long id) {
-        User user = helper.findUserById(id)
+        User user = helper.findUserById(id);
         return UserMapper.toResponse(user);
     }
 

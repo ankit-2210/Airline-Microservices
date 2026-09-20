@@ -1,4 +1,4 @@
-package com.userservice.config.jwt;
+package com.userservice.security;
 
 import com.airlineportal.exception.response.ApiErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.time.Instant;
-import java.util.*;
 
 @Component
 @RequiredArgsConstructor

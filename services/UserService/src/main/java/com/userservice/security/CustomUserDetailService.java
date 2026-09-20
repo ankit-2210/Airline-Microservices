@@ -1,4 +1,4 @@
-package com.userservice.service.Impl;
+package com.userservice.security;
 
 import com.userservice.model.User;
 import com.userservice.repository.UserRepository;
