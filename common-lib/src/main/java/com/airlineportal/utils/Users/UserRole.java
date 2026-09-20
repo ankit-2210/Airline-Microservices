@@ -1,4 +1,4 @@
-package com.microservices.utils.Users;
+package com.airlineportal.utils.Users;
 
 public enum UserRole {
     ROLE_SYSTEM_ADMIN,

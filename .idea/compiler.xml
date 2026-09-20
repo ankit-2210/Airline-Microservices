@@ -20,11 +20,12 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
-        <module name="eurekaserver" />
         <module name="locationservice" />
+        <module name="apigateway" />
+        <module name="eurekaserver" />
         <module name="configserver" />
       </profile>
-      <profile name="Annotation profile for ApiGateway" enabled="true">
+      <profile name="Annotation profile for BookingService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -33,10 +34,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
         </processorPath>
-        <module name="apigateway" />
         <module name="airlineservice" />
         <module name="common-lib" />
         <module name="flightservice" />
+        <module name="bookingservice" />
         <module name="userservice" />
       </profile>
     </annotationProcessing>
@@ -45,6 +46,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="airlineservice" options="-parameters" />
       <module name="apigateway" options="-parameters" />
+      <module name="bookingservice" options="-parameters" />
       <module name="common-lib" options="-parameters" />
       <module name="configserver" options="-parameters" />
       <module name="eurekaserver" options="-parameters" />

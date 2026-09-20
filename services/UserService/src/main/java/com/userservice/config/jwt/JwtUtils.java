@@ -7,19 +7,20 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
+import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
-import java.security.Key;
 import java.util.*;
 
 @Component
 public class JwtUtils {
+
     @Value("${security.jwt.secret}")
     private String secret;
 
     @Value("${security.jwt.expirationTime}")
     private long expirationTime;
 
-    private Key getSigningKey() {
+    private SecretKey getSigningKey() {
         return Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
     }
 
@@ -29,11 +30,11 @@ public class JwtUtils {
         String roles = populateAuthorities(authentication.getAuthorities());
 
         return Jwts.builder()
-                .setSubject(email)
+                .subject(email)
                 .claim("userId", userId)
                 .claim("roles", roles)
-                .setIssuedAt(new Date())
-                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+                .issuedAt(new Date())
+                .expiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(getSigningKey())
                 .compact();
     }
@@ -41,37 +42,62 @@ public class JwtUtils {
     // validate token
     public boolean validateToken(String token){
         try{
-            Jwts.parserBuilder()
-                    .setSigningKey(getSigningKey())
+            Jwts.parser()
+                    .verifyWith(getSigningKey())
                     .build()
-                    .parseClaimsJws(token);
+                    .parseSignedClaims(token);
+
             return true;
         }
-        catch(JwtException | IllegalArgumentException e){
-            throw e;
+        catch(Exception e){
+            return false;
         }
     }
 
     // extract email
     public String getEmailFromToken(String token){
-        return Jwts.parserBuilder()
-                .setSigningKey(getSigningKey())
+
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
                 .build()
-                .parseClaimsJws(token)
-                .getBody()
-                .getSubject();
+                .parseSignedClaims(token)
+                .getPayload();
+
+        return claims.getSubject();
     }
 
-    // Helper
+    public Long getUserIdFromToken(String token){
+
+        Claims claims = Jwts.parser()
+                .verifyWith(getSigningKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+
+        Object userId = claims.get("userId");
+        if(userId instanceof Number){
+            return ((Number) userId).longValue();
+        }
+
+        if(userId instanceof String){
+            return Long.valueOf((String) userId);
+        }
+
+        return null;
+    }
+
+
     private String populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
         Set<String> roles = new HashSet<>();
         for (GrantedAuthority auth : authorities) {
             roles.add(auth.getAuthority());
         }
+
         return String.join(",", roles);
     }
 
 }
+
 //
 //AuthServiceImpl
 //   ↓

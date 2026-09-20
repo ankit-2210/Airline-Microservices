@@ -1,8 +1,8 @@
 package com.userservice.service;
 
-import com.microservices.payload.dto.UserDto;
-import com.microservices.payload.request.User.ChangePasswordRequest;
-import com.microservices.payload.response.User.AuthResponse;
+
+import com.airlineportal.payload.dto.UserDto;
+import com.airlineportal.payload.response.User.AuthResponse;
 
 public interface AuthService {
     AuthResponse signup(UserDto userDto);

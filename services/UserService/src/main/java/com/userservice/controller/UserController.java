@@ -1,8 +1,5 @@
 package com.userservice.controller;
 
-import com.microservices.payload.dto.UserDto;
-import com.microservices.payload.response.ApiResponse;
-import com.microservices.payload.response.User.UserResponse;
 import com.userservice.model.User;
 import com.userservice.service.UserService;
 import lombok.*;

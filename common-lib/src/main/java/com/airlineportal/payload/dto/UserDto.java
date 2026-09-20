@@ -1,6 +1,6 @@
-package com.microservices.payload.dto;
+package com.airlineportal.payload.dto;
 
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.utils.Users.UserRole;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class UserDto {
+
     private Long id;
     private String fullName;
     private String email;

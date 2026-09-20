@@ -1,10 +1,13 @@
 package com.userservice.service.Impl;
 
-import com.microservices.exception.*;
-import com.microservices.payload.dto.UserDto;
-import com.microservices.payload.response.User.AuthResponse;
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.exception.ResourceAlreadyExistsException;
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.exception.UnauthorizedException;
+import com.airlineportal.payload.dto.UserDto;
+import com.airlineportal.payload.response.User.AuthResponse;
+import com.airlineportal.utils.Users.UserRole;
 import com.userservice.config.jwt.JwtUtils;
+import com.userservice.helper.AuthHelper;
 import com.userservice.mapper.UserMapper;
 import com.userservice.model.PasswordResetToken;
 import com.userservice.model.User;
@@ -30,6 +33,7 @@ public class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final JwtUtils jwtUtils;
     private final EmailUtil emailUtil;
+    private final AuthHelper helper;
 
 //    Check if email already exists
 //    Encode password using BCrypt
@@ -38,11 +42,16 @@ public class AuthServiceImpl implements AuthService {
 //    Return token and user information
     @Override
     public AuthResponse signup(UserDto userDto){
-        // Check if email exists
-        if (userRepository.existsByEmail(userDto.getEmail())) {
+        String email = helper.normalizeEmail(userDto.getEmail());
+
+        if(userRepository.existsByEmail(email)) {
             throw new ResourceAlreadyExistsException("Email already registered");
         }
-        // Prevent system admin signup
+
+        if(userDto.getUserRole() == null) {
+            throw new IllegalArgumentException("User role is required");
+        }
+
         if (userDto.getUserRole() == UserRole.ROLE_SYSTEM_ADMIN) {
             throw new IllegalArgumentException("You cannot sign up as system admin");
         }
@@ -55,15 +64,12 @@ public class AuthServiceImpl implements AuthService {
                 .userRole(userDto.getUserRole())
                 .fullName(userDto.getFullName())
                 .build();
+
         User savedUser = userRepository.save(user);
 
         // Authenticate via Spring Security
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        userDto.getEmail(),
-                        userDto.getPassword()
-                )
-        );
+                new UsernamePasswordAuthenticationToken(userDto.getEmail(), userDto.getPassword()));
 
         // Generate JWT
         String jwt = jwtUtils.generateToken(authentication, savedUser.getId());
@@ -83,17 +89,17 @@ public class AuthServiceImpl implements AuthService {
 //    Return token and user information
     @Override
     public AuthResponse login(String email, String password) {
+        String normalizedEmail = helper.normalizeEmail(email);
+
         // Authenticate via Spring Security
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(email, password)
+                new UsernamePasswordAuthenticationToken(normalizedEmail, password)
         );
-        // Fetch user
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
 
-        // Update last login
+        User user = helper.findUserByEmail(normalizedEmail);
         user.setLastLogin(LocalDateTime.now());
-        userRepository.save(user);
+
+        User savedUser = userRepository.save(user);
 
         // Generate JWT
         String jwt = jwtUtils.generateToken(authentication, user.getId());
@@ -109,8 +115,8 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void changePassword(String email, String oldPassword, String newPassword) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+        User user = helper.findUserByEmail(email);
+
         // check old password
         if (!passwordEncoder.matches(oldPassword, user.getPassword())) {
             throw new UnauthorizedException("Old password is incorrect");
@@ -118,17 +124,14 @@ public class AuthServiceImpl implements AuthService {
 
         // set new password
         user.setPassword(passwordEncoder.encode(newPassword));
-        user.setUpdatedAt(LocalDateTime.now());
         userRepository.save(user);
     }
 
     @Override
     public void forgotPassword(String email, String baseUrl) {
-        User user = userRepository.findByEmail(email)
-                .orElseThrow(()-> new ResourceNotFoundException("User not found"));
+        User user = helper.findUserByEmail(email);
 
         String token = UUID.randomUUID().toString();
-//        System.out.println("TOKEN: " + token);
         PasswordResetToken resetToken = PasswordResetToken.builder()
                 .token(token)
                 .user(user)
@@ -139,7 +142,7 @@ public class AuthServiceImpl implements AuthService {
         String url = baseUrl + "/auth/reset-password?token="+token;
 
         try{
-            emailUtil.sendResetMail(email, url);
+            emailUtil.sendResetMail(user.getEmail(), url);
         }
         catch (Exception e){
             throw new RuntimeException("Email sending failed");
@@ -152,13 +155,13 @@ public class AuthServiceImpl implements AuthService {
                 .orElseThrow(() -> new ResourceNotFoundException("Invalid token"));
 
         if(resetToken.getExpiryDate().isBefore(LocalDateTime.now())){
+            passwordResetTokenRepository.delete(resetToken);
             throw new UnauthorizedException("Token expired");
         }
 
         User user = resetToken.getUser();
 
         user.setPassword(passwordEncoder.encode(newPassword));
-        user.setUpdatedAt(LocalDateTime.now());
 
         userRepository.save(user);
         passwordResetTokenRepository.delete(resetToken);

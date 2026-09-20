@@ -1,7 +1,7 @@
-package com.microservices.payload.request.User;
+package com.airlineportal.payload.request.User;
 
 
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.utils.Users.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

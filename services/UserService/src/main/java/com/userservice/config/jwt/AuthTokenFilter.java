@@ -23,10 +23,10 @@ import org.slf4j.*;
 @Component
 @RequiredArgsConstructor
 public class AuthTokenFilter extends OncePerRequestFilter {
+    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
+
     private final JwtUtils jwtUtils;
     private final CustomUserDetailService customUserDetailService;
-
-    private static final Logger logger = LoggerFactory.getLogger(AuthTokenFilter.class);
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -34,15 +34,27 @@ public class AuthTokenFilter extends OncePerRequestFilter {
             String jwt = parseJwt(request);
             if(jwt != null && jwtUtils.validateToken(jwt)){
                 String email = jwtUtils.getEmailFromToken(jwt);
+
                 UserDetails userDetails = customUserDetailService.loadUserByUsername(email);
-                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
-                authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+                UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                        userDetails,
+                        null,
+                        userDetails.getAuthorities()
+                );
+
+                authentication.setDetails(
+                        new WebAuthenticationDetailsSource()
+                                .buildDetails(request));
+
+                SecurityContextHolder
+                        .getContext()
+                        .setAuthentication(authentication);
             }
         }
         catch (Exception e){
             logger.error("JWT Authentication failed: " + e);
         }
+
         filterChain.doFilter(request, response);
     }
 

@@ -1,7 +1,7 @@
 package com.userservice.config.jwt;
 
+import com.airlineportal.exception.response.ApiErrorResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.microservices.exception.response.ApiErrorResponse;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

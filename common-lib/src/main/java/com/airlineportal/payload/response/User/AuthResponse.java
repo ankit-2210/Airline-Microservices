@@ -1,6 +1,6 @@
-package com.microservices.payload.response.User;
+package com.airlineportal.payload.response.User;
 
-import com.microservices.payload.dto.UserDto;
+import com.airlineportal.payload.dto.UserDto;
 import lombok.*;
 
 @Data
@@ -12,4 +12,5 @@ public class AuthResponse {
     private String message;
     private String title;
     private UserDto userDto;
+
 }

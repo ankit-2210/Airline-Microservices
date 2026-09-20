@@ -14,6 +14,7 @@
         <option value="$PROJECT_DIR$/cloud/EurekaServer/pom.xml" />
         <option value="$PROJECT_DIR$/cloud/ConfigServer/pom.xml" />
         <option value="$PROJECT_DIR$/cloud/ApiGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/services/BookingService/pom.xml" />
       </list>
     </option>
   </component>

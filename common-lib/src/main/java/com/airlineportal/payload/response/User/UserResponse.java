@@ -1,6 +1,6 @@
 package com.airlineportal.payload.response.User;
 
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.utils.Users.UserRole;
 import lombok.*;
 
 import java.time.LocalDateTime;

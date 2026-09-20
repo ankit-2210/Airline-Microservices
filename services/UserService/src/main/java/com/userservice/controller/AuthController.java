@@ -1,10 +1,9 @@
 package com.userservice.controller;
 
-import com.microservices.payload.dto.UserDto;
-import com.microservices.payload.request.User.ChangePasswordRequest;
-import com.microservices.payload.request.User.LoginRequest;
-import com.microservices.payload.response.ApiResponse;
-import com.microservices.payload.response.User.AuthResponse;
+import com.airlineportal.payload.request.User.ChangePasswordRequest;
+import com.airlineportal.payload.request.User.LoginRequest;
+import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.User.AuthResponse;
 import com.userservice.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -20,17 +19,13 @@ public class AuthController {
     private final AuthService authService;
 
     @PostMapping("/signup")
-    public ResponseEntity<ApiResponse<AuthResponse>> signup(@Valid @RequestBody UserDto userDto) throws Exception {
-        AuthResponse authResponse = authService.signup(userDto);
-        ApiResponse<AuthResponse> response = new ApiResponse<>(true, "SignUp Successfully", authResponse);
-        return ResponseEntity.ok(response);
+    public ApiResponse<AuthResponse> signup(@Valid @RequestBody com.microservices.payload.dto.UserDto userDto) throws Exception {
+        return ApiResponse.success(authService.signup(userDto));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<ApiResponse<AuthResponse>> login(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
-        AuthResponse authResponse = authService.login(loginRequest.getEmail(), loginRequest.getPassword());
-        ApiResponse<AuthResponse> response = new ApiResponse<>(true, "Login Successfully", authResponse);
-        return ResponseEntity.ok(response);
+    public ApiResponse<AuthResponse> login(@Valid @RequestBody LoginRequest loginRequest) throws Exception {
+        return ApiResponse.success(authService.login(loginRequest.getEmail(), loginRequest.getPassword()));
     }
 
     @PostMapping("/change-password")

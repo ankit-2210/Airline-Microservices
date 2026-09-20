@@ -1,4 +1,4 @@
-package com.microservices.payload.request.User;
+package com.airlineportal.payload.request.User;
 
 import lombok.Data;
 
