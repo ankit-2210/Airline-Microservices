@@ -1,7 +1,7 @@
 package com.userservice.security;
 
-import com.jobportal.security.CurrentUser;
-import com.jobportal.security.JwtUser;
+import com.airlineportal.security.CurrentUser;
+import com.airlineportal.security.JwtUser;
 import org.springframework.core.MethodParameter;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

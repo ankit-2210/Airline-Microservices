@@ -1,18 +1,17 @@
 package com.userservice.service;
 
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.exception.UnauthorizedException;
-import com.microservices.payload.response.User.AuthResponse;
-import com.microservices.utils.Users.UserRole;
-import com.userservice.config.jwt.JwtUtils;
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.exception.UnauthorizedException;
+import com.airlineportal.payload.dto.UserDto;
+import com.airlineportal.payload.response.User.AuthResponse;
+import com.airlineportal.utils.Users.UserRole;
+import com.airlineportal.security.jwt.JwtUtils;
 import com.userservice.model.PasswordResetToken;
 import com.userservice.model.User;
 import com.userservice.repository.PasswordResetTokenRepository;
 import com.userservice.repository.UserRepository;
 import com.userservice.service.Impl.AuthServiceImpl;
 import com.userservice.utils.EmailUtil;
-import org.junit.jupiter.api.DisplayName;
-import com.microservices.payload.dto.UserDto;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

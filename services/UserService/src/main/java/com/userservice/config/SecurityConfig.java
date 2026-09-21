@@ -55,11 +55,19 @@ public class SecurityConfig {
                 )
                 .authorizeHttpRequests(auth ->
                         auth.requestMatchers(
-                                        "/auth/signup",
-                                        "/auth/login",
-                                        "/auth/forgot-password",
-                                        "/auth/reset-password"
-                                ).permitAll()
+                                        "/auth/*",
+                                        "/internal/**",
+                                        "/actuator/**",
+
+                                        // swagger
+                                        "/v2/api-docs/**",
+                                        "/v3/api-docs",
+                                        "/v3/api-docs/**",
+                                        "/swagger-ui/**",
+                                        "/swagger-ui.html"
+                                )
+                                .permitAll()
+
                                 .anyRequest().authenticated()
                 )
                 .authenticationProvider(authenticationProvider())

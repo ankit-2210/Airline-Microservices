@@ -1,6 +1,6 @@
 package com.userservice.repository;
 
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.utils.Users.UserRole;
 import com.userservice.model.PasswordResetToken;
 import com.userservice.model.User;
 import org.junit.jupiter.api.*;

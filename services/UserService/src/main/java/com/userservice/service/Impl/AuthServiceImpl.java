@@ -6,7 +6,7 @@ import com.airlineportal.exception.UnauthorizedException;
 import com.airlineportal.payload.dto.UserDto;
 import com.airlineportal.payload.response.User.AuthResponse;
 import com.airlineportal.utils.Users.UserRole;
-import com.userservice.config.jwt.JwtUtils;
+import com.airlineportal.security.jwt.JwtUtils;
 import com.userservice.helper.AuthHelper;
 import com.userservice.mapper.UserMapper;
 import com.userservice.model.PasswordResetToken;

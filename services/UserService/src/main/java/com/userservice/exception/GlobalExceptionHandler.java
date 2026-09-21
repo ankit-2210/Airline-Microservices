@@ -1,5 +1,8 @@
-package com.airlineportal.exception;
+package com.userservice.exception;
 
+import com.airlineportal.exception.ResourceAlreadyExistsException;
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.exception.UnauthorizedException;
 import com.airlineportal.exception.response.ApiErrorResponse;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.JwtException;

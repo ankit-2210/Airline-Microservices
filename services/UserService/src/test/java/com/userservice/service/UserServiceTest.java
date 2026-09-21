@@ -1,9 +1,8 @@
 package com.userservice.service;
 
-
-import com.microservices.exception.ResourceNotFoundException;
-import com.microservices.payload.response.User.UserResponse;
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.exception.ResourceNotFoundException;
+import com.airlineportal.payload.response.User.UserResponse;
+import com.airlineportal.utils.Users.UserRole;
 import com.userservice.model.User;
 import com.userservice.repository.UserRepository;
 import com.userservice.service.Impl.UserServiceImpl;

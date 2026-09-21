@@ -1,6 +1,6 @@
 package com.userservice.security;
 
-import com.userservice.config.jwt.JwtUtils;
+import com.airlineportal.security.jwt.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

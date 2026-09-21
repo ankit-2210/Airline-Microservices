@@ -1,6 +1,6 @@
 package com.userservice.model;
 
-import com.microservices.utils.Users.UserRole;
+import com.airlineportal.utils.Users.UserRole;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 

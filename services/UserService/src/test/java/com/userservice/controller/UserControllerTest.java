@@ -1,8 +1,8 @@
 package com.userservice.controller;
 
-import com.microservices.payload.response.User.UserResponse;
+import com.airlineportal.payload.response.User.UserResponse;
 import com.userservice.security.AuthTokenFilter;
-import com.userservice.config.jwt.JwtUtils;
+import com.airlineportal.security.jwt.JwtUtils;
 import com.userservice.security.CustomUserDetailService;
 import com.userservice.service.UserService;
 
@@ -19,7 +19,6 @@ import java.util.List;
 
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 

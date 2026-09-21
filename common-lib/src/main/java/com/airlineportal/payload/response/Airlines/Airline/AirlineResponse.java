@@ -1,9 +1,9 @@
 package com.airlineportal.payload.response.Airlines.Airline;
 
+import com.airlineportal.embeddable.Airline.Support;
 import com.airlineportal.payload.response.Location.City.CityResponse;
 import com.airlineportal.payload.response.User.UserResponse;
 import com.airlineportal.utils.Airline.AirlineStatus;
-import com.microservices.embeddable.Airline.Support;
 import lombok.*;
 
 import java.time.Instant;
