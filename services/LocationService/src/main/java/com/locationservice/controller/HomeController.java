@@ -1,6 +1,6 @@
 package com.locationservice.controller;
 
-import com.microservices.payload.response.ApiResponse;
+import com.airlineportal.payload.response.ApiResponse;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
