@@ -5,14 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/config/WebMvcConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/internal/InternalLocationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/external/ExternalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/external/ExternalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/internal/InternalAirlineController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/LocationReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/external/ExternalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/external/ExternalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/internal/InternalCityController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/LocationReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/LocationReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/airports.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/cities.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AirlineService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/LocationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/internal/InternalLocationController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/internal/InternalAirportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/location.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOCATIONSERVICE.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,85 +85,86 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AirlineserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ApigatewayApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.CommonLibApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.ConfigserverApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.EurekaserverApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.FlightserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AirportTest.testDetailedName.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.testChangePasswordSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.AuthServiceTest.testLoginSuccess.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.CityTest.testCityCreation.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testBuilder.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testExpiryLogic.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordResetTokenTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.PasswordTokenRepositoryTest.testFindByToken.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.getUserProfile.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.testGetAllUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.testGetUserById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserControllerTest.testGetUserProfile.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testFindByEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testGetAllUsers.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testGetUserByEmail.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testGetUserByEmail_NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testGetUserById.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.testGetUserById_NotFound.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserServiceTest.test_getUserByEmail_Success.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testNoArgsConstructor.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testUpdateUser.executor&quot;: &quot;Run&quot;,
-    &quot;JUnit.UserTest.testUserBuilder.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;ToolWindow.documentation.v2.ShowToolbar&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/SpringBoot/airline/airlineportal/cloud/ConfigServer/src/main/resources/config&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;vcs.Git&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AirlineserviceApplication.executor": "Run",
+    "Application.ApigatewayApplication.executor": "Run",
+    "Application.CommonLibApplication.executor": "Run",
+    "Application.ConfigserverApplication.executor": "Run",
+    "Application.EurekaserverApplication.executor": "Run",
+    "Application.FlightserviceApplication.executor": "Run",
+    "Application.LocationserviceApplication.executor": "Run",
+    "Application.UserserviceApplication.executor": "Run",
+    "JUnit.AirportTest.testAirportCreation.executor": "Run",
+    "JUnit.AirportTest.testDetailedName.executor": "Run",
+    "JUnit.AuthServiceTest.testChangePasswordSuccess.executor": "Run",
+    "JUnit.AuthServiceTest.testLoginSuccess.executor": "Run",
+    "JUnit.CityTest.testCityCreation.executor": "Run",
+    "JUnit.PasswordResetTokenTest.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testBuilder.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testExpiryLogic.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor": "Run",
+    "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
+    "JUnit.PasswordTokenRepositoryTest.testFindByToken.executor": "Run",
+    "JUnit.UserControllerTest.getUserProfile.executor": "Run",
+    "JUnit.UserControllerTest.testGetAllUsers.executor": "Run",
+    "JUnit.UserControllerTest.testGetUserById.executor": "Run",
+    "JUnit.UserControllerTest.testGetUserProfile.executor": "Run",
+    "JUnit.UserRepositoryTest.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail.executor": "Run",
+    "JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor": "Run",
+    "JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor": "Run",
+    "JUnit.UserServiceTest.executor": "Run",
+    "JUnit.UserServiceTest.testGetAllUsers.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserByEmail.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserByEmail_NotFound.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserById.executor": "Run",
+    "JUnit.UserServiceTest.testGetUserById_NotFound.executor": "Run",
+    "JUnit.UserServiceTest.test_getUserByEmail_Success.executor": "Run",
+    "JUnit.UserTest.testNoArgsConstructor.executor": "Run",
+    "JUnit.UserTest.testSettersAndGetters.executor": "Run",
+    "JUnit.UserTest.testUpdateUser.executor": "Run",
+    "JUnit.UserTest.testUserBuilder.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "ToolWindow.documentation.v2.ShowToolbar": "false",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/SpringBoot/airline/airlineportal/services/AirlineService/src/main/java/com/airlineservice/external",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "vcs.Git"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;JAVA&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "JAVA"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\SpringBoot\airline\airlineportal\services\AirlineService\src\main\java\com\airlineservice\external" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\AirlineService\src\main\java\com\airlineservice\security" />
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
       <recent name="C:\SpringBoot\airline\airlineportal\cloud" />
       <recent name="C:\Spring Boot\airline\microservices\services\UserService\src\integration" />
-      <recent name="C:\Spring Boot\airline\microservices\services\LocationService\src\main\java\com\locationservice" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.userservice.model" />
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.locationservice.config" />
+      <recent name="com.airlineservice.exception" />
+      <recent name="com.locationservice.exception" />
+      <recent name="com.airlineportal.security" />
       <recent name="com.locationservice.security" />
-      <recent name="com.userservice.security" />
       <recent name="com.userservice.config" />
-      <recent name="com.airlineportal.security.jwt" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserserviceApplication">
+  <component name="RunManager" selected="Application.ApigatewayApplication">
     <configuration name="AirlineserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.airlineservice.AirlineserviceApplication" />
       <module name="airlineservice" />
@@ -213,8 +232,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserserviceApplication" />
         <item itemvalue="Application.ApigatewayApplication" />
+        <item itemvalue="Application.UserserviceApplication" />
         <item itemvalue="Application.ConfigserverApplication" />
         <item itemvalue="Application.EurekaserverApplication" />
         <item itemvalue="Application.AirlineserviceApplication" />
@@ -470,7 +489,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789990247830</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1790052312064</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1790052312065</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
