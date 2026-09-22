@@ -5,18 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/location.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/config/WebMvcConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/internal/InternalLocationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/LocationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/LocationserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/controller/HomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/UserReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/resources/reports/users.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/resources/reports/users.jrxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/test/java/com/locationservice/service/AirportServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +138,8 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.locationservice.config" />
+      <recent name="com.locationservice.security" />
       <recent name="com.userservice.security" />
       <recent name="com.userservice.config" />
       <recent name="com.airlineportal.security.jwt" />
@@ -464,7 +462,15 @@
       <option name="project" value="LOCAL" />
       <updated>1789977935931</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1789990247829</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1789990247830</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

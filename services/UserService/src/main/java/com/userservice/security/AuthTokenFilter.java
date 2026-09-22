@@ -41,17 +41,16 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                         userDetails.getAuthorities()
                 );
 
-                authentication.setDetails(
-                        new WebAuthenticationDetailsSource()
-                                .buildDetails(request));
+                authentication.setDetails(new WebAuthenticationDetailsSource()
+                        .buildDetails(request));
 
-                SecurityContextHolder
-                        .getContext()
+                SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
             }
         }
         catch (Exception e){
             logger.error("JWT Authentication failed: " + e);
+            SecurityContextHolder.clearContext();
         }
 
         filterChain.doFilter(request, response);

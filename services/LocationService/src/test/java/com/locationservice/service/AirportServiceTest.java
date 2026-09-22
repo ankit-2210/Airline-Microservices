@@ -1,12 +1,12 @@
 package com.locationservice.service;
 
+import com.airlineportal.payload.request.Location.Airport.AirportRequest;
+import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.locationservice.model.Airport;
 import com.locationservice.model.City;
 import com.locationservice.repository.AirportRepository;
 import com.locationservice.repository.CityRepository;
 import com.locationservice.service.Impl.AirportServiceImpl;
-import com.microservices.payload.request.Location.Airport.AirportRequest;
-import com.microservices.payload.response.Location.Airport.AirportResponse;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
