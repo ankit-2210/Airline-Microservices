@@ -1,5 +1,7 @@
 package com.locationservice.service.Impl;
 
+import com.locationservice.dto.AirportReportData;
+import com.locationservice.mapper.AirportMapper;
 import com.locationservice.model.Airport;
 import com.locationservice.model.City;
 import com.locationservice.repository.AirportRepository;
@@ -28,6 +30,10 @@ public class LocationReportServiceImpl implements LocationReportService {
         try {
             List<Airport> airports = airportRepository.findAll();
 
+            List<AirportReportData> reportData = airports.stream()
+                    .map(AirportMapper::toAirportReportData)
+                    .toList();
+
             ClassPathResource resource = new ClassPathResource("reports/airports.jrxml");
             if (!resource.exists()) {
                 throw new RuntimeException("airports.jrxml not found in src/main/resources/reports/");
@@ -41,13 +47,23 @@ public class LocationReportServiceImpl implements LocationReportService {
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("REPORT_TITLE", "Airport Management Report");
 
-                JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(airports);
+                JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportData);
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
                 return JasperExportManager.exportReportToPdf(jasperPrint);
             }
         }
         catch (JRException e) {
+            System.err.println("========== AIRPORT JASPER ERROR ==========");
             e.printStackTrace();
+
+            Throwable cause = e.getCause();
+
+            while (cause != null) {
+                System.err.println("========== CAUSED BY ==========");
+                cause.printStackTrace();
+                cause = cause.getCause();
+            }
+
             throw new RuntimeException("Failed to generate airport PDF report", e);
         }
         catch (Exception e) {
@@ -80,7 +96,17 @@ public class LocationReportServiceImpl implements LocationReportService {
             }
         }
         catch (JRException e) {
+            System.err.println("========== CITY JASPER ERROR ==========");
             e.printStackTrace();
+
+            Throwable cause = e.getCause();
+
+            while (cause != null) {
+                System.err.println("========== CAUSED BY ==========");
+                cause.printStackTrace();
+                cause = cause.getCause();
+            }
+
             throw new RuntimeException("Failed to generate city PDF report", e);
         }
         catch (Exception e) {

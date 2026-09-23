@@ -2,6 +2,7 @@ package com.locationservice.mapper;
 
 import com.airlineportal.payload.request.Location.Airport.AirportRequest;
 import com.airlineportal.payload.response.Location.Airport.AirportResponse;
+import com.locationservice.dto.AirportReportData;
 import com.locationservice.model.Airport;
 import com.locationservice.model.City;
 
@@ -54,4 +55,41 @@ public class AirportMapper {
         airport.setCity(city);
 
     }
+
+
+    // Airport Report Mapping
+    public static AirportReportData toAirportReportData(Airport airport){
+        Double latitude = null;
+        Double longitude = null;
+
+        if(airport.getGeoCode() != null) {
+            latitude = airport.getGeoCode().getLatitude();
+            longitude = airport.getGeoCode().getLongitude();
+        }
+
+        return new AirportReportData(
+                airport.getId(),
+                airport.getIataCode(),
+                airport.getName(),
+
+                airport.getCity() != null ? airport.getCity().getName() : null,
+                airport.getCity() != null ? airport.getCity().getCityCode() : null,
+                airport.getCity() != null ? airport.getCity().getCountryCode() : null,
+                airport.getCity() != null ? airport.getCity().getCountryName() : null,
+
+                airport.getTimeZoneId(),
+
+                latitude,
+                longitude
+        );
+
+
+    }
+
+
+
+
+
+
+
 }

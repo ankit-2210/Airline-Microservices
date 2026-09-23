@@ -1,0 +1,572 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="cities"
+        pageWidth="842"
+        pageHeight="595"
+        orientation="Landscape"
+        columnWidth="782"
+        leftMargin="30"
+        rightMargin="30"
+        topMargin="30"
+        bottomMargin="30"
+        uuid="22222222-2222-2222-2222-222222222221">
+
+    <property name="com.jaspersoft.studio.data.defaultdataadapter"
+              value="One Empty Record"/>
+
+    <!-- ========================= -->
+    <!-- Fields                    -->
+    <!-- ========================= -->
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="name" class="java.lang.String"/>
+    <field name="cityCode" class="java.lang.String"/>
+    <field name="countryCode" class="java.lang.String"/>
+    <field name="countryName" class="java.lang.String"/>
+    <field name="regionCode" class="java.lang.String"/>
+    <field name="timeZoneId" class="java.lang.String"/>
+    <field name="airportCount" class="java.lang.Integer"/>
+
+    <!-- ========================= -->
+    <!-- Title                     -->
+    <!-- ========================= -->
+
+    <title>
+        <band height="65">
+
+            <rectangle>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="782"
+                        height="65"
+                        backcolor="#166534"
+                        uuid="22222222-2222-2222-2222-222222222222"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement
+                        x="20"
+                        y="10"
+                        width="742"
+                        height="30"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222223"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="22"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[CITY DIRECTORY]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="20"
+                        y="42"
+                        width="742"
+                        height="15"
+                        forecolor="#DCFCE7"
+                        uuid="22222222-2222-2222-2222-222222222224"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"/>
+                </textElement>
+
+                <text><![CDATA[City, country and airport information]]></text>
+
+            </staticText>
+
+        </band>
+    </title>
+
+    <!-- ========================= -->
+    <!-- Column Header             -->
+    <!-- ========================= -->
+
+    <columnHeader>
+        <band height="32">
+
+            <!-- ID -->
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222225"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <!-- City -->
+            <staticText>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="130"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222226"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[CITY]]></text>
+            </staticText>
+
+            <!-- City Code -->
+            <staticText>
+                <reportElement
+                        x="175"
+                        y="0"
+                        width="80"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222227"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[CITY CODE]]></text>
+            </staticText>
+
+            <!-- Country -->
+            <staticText>
+                <reportElement
+                        x="255"
+                        y="0"
+                        width="75"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222228"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[COUNTRY]]></text>
+            </staticText>
+
+            <!-- Country Name -->
+            <staticText>
+                <reportElement
+                        x="330"
+                        y="0"
+                        width="120"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222229"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[COUNTRY NAME]]></text>
+            </staticText>
+
+            <!-- Region -->
+            <staticText>
+                <reportElement
+                        x="450"
+                        y="0"
+                        width="75"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222230"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[REGION]]></text>
+            </staticText>
+
+            <!-- Timezone -->
+            <staticText>
+                <reportElement
+                        x="525"
+                        y="0"
+                        width="130"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222231"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[TIME ZONE]]></text>
+            </staticText>
+
+            <!-- Airports -->
+            <staticText>
+                <reportElement
+                        x="655"
+                        y="0"
+                        width="127"
+                        height="32"
+                        backcolor="#16A34A"
+                        forecolor="#FFFFFF"
+                        uuid="22222222-2222-2222-2222-222222222232"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[AIRPORTS]]></text>
+            </staticText>
+
+        </band>
+    </columnHeader>
+
+    <!-- ========================= -->
+    <!-- Detail                    -->
+    <!-- ========================= -->
+
+    <detail>
+        <band height="30">
+
+            <rectangle>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="782"
+                        height="30"
+                        backcolor="#F0FDF4"
+                        uuid="22222222-2222-2222-2222-222222222233"/>
+            </rectangle>
+
+            <!-- ID -->
+            <textField>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="30"
+                        forecolor="#1F2937"
+                        uuid="22222222-2222-2222-2222-222222222234"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+
+            </textField>
+
+            <!-- City -->
+            <textField>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="130"
+                        height="30"
+                        forecolor="#111827"
+                        uuid="22222222-2222-2222-2222-222222222235"/>
+
+                <textElement
+                        textAlignment="Left"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"
+                        isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+
+            </textField>
+
+            <!-- City Code -->
+            <textField>
+                <reportElement
+                        x="175"
+                        y="0"
+                        width="80"
+                        height="30"
+                        forecolor="#166534"
+                        uuid="22222222-2222-2222-2222-222222222236"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"
+                        isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[$F{cityCode}]]></textFieldExpression>
+
+            </textField>
+
+            <!-- Country -->
+            <textField>
+                <reportElement
+                        x="255"
+                        y="0"
+                        width="75"
+                        height="30"
+                        forecolor="#111827"
+                        uuid="22222222-2222-2222-2222-222222222237"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"
+                        isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[$F{countryCode}]]></textFieldExpression>
+
+            </textField>
+
+            <!-- Country Name -->
+            <textField>
+                <reportElement
+                        x="330"
+                        y="0"
+                        width="120"
+                        height="30"
+                        forecolor="#111827"
+                        uuid="22222222-2222-2222-2222-222222222238"/>
+
+                <textElement
+                        textAlignment="Left"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[$F{countryName}]]></textFieldExpression>
+
+            </textField>
+
+            <!-- Region -->
+            <textField>
+                <reportElement
+                        x="450"
+                        y="0"
+                        width="75"
+                        height="30"
+                        forecolor="#111827"
+                        uuid="22222222-2222-2222-2222-222222222239"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+
+                <font
+                        fontName="SansSerif"
+                        size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{regionCode} == null ? "" : $F{regionCode}
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Timezone -->
+            <textField>
+                <reportElement
+                        x="525"
+                        y="0"
+                        width="130"
+                        height="30"
+                        forecolor="#111827"
+                        uuid="22222222-2222-2222-2222-222222222240"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="7"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{timeZoneId} == null ? "" : $F{timeZoneId}
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Airport Count -->
+            <textField>
+                <reportElement
+                        x="655"
+                        y="0"
+                        width="127"
+                        height="30"
+                        forecolor="#166534"
+                        uuid="22222222-2222-2222-2222-222222222241"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="9"
+                        isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{airportCount} == null ? 0 : $F{airportCount}
+                ]]></textFieldExpression>
+            </textField>
+
+            <!-- Bottom border -->
+            <line>
+                <reportElement
+                        x="0"
+                        y="29"
+                        width="782"
+                        height="1"
+                        forecolor="#BBF7D0"
+                        uuid="22222222-2222-2222-2222-222222222242"/>
+            </line>
+
+        </band>
+    </detail>
+
+    <!-- ========================= -->
+    <!-- Footer                    -->
+    <!-- ========================= -->
+
+    <pageFooter>
+        <band height="25">
+
+            <line>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="782"
+                        height="1"
+                        forecolor="#BBF7D0"
+                        uuid="22222222-2222-2222-2222-222222222243"/>
+            </line>
+
+            <textField>
+                <reportElement
+                        x="0"
+                        y="5"
+                        width="400"
+                        height="15"
+                        forecolor="#64748B"
+                        uuid="22222222-2222-2222-2222-222222222244"/>
+
+                <textElement
+                        textAlignment="Left"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    "Generated City Directory"
+                ]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="582"
+                        y="5"
+                        width="200"
+                        height="15"
+                        forecolor="#64748B"
+                        uuid="22222222-2222-2222-2222-222222222245"/>
+
+                <textElement
+                        textAlignment="Right"
+                        verticalAlignment="Middle">
+                <font
+                        fontName="SansSerif"
+                        size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    "Page " + $V{PAGE_NUMBER}
+                ]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </pageFooter>
+
+</jasperReport>

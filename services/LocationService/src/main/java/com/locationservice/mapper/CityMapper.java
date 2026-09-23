@@ -2,6 +2,7 @@ package com.locationservice.mapper;
 
 import com.airlineportal.payload.request.Location.City.CityRequest;
 import com.airlineportal.payload.response.Location.City.CityResponse;
+import com.locationservice.dto.CityReportData;
 import com.locationservice.model.City;
 
 
@@ -32,7 +33,7 @@ public class CityMapper {
                 .name(city.getName())
 
                 .cityCode(city.getCityCode())
-                .countryCode(city.getCityCode())
+                .countryCode(city.getCountryCode())
 
                 .countryName(city.getCountryName())
 
@@ -51,6 +52,21 @@ public class CityMapper {
         city.setRegionCode(request.getRegionCode());
         city.setTimeZoneId(request.getTimeZoneId());
 
-
     }
+
+    // CITY REPORT MAPPING
+    public static CityReportData toCityReportData(City city) {
+        int airportCount = city.getAirports() == null ? 0 : city.getAirports().size();
+        return new CityReportData(
+                city.getId(),
+                city.getName(),
+                city.getCityCode(),
+                city.getCountryCode(),
+                city.getCountryName(),
+                city.getRegionCode(),
+                city.getTimeZoneId(),
+                airportCount
+        );
+    }
+
 }
