@@ -1,4 +1,4 @@
-package com.flightservice.external;
+package com.flightservice.exception;
 
 import com.airlineportal.exception.ResourceAlreadyExistsException;
 import com.airlineportal.exception.ResourceNotFoundException;

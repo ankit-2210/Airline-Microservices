@@ -136,4 +136,13 @@ public class AircraftServiceImpl implements AircraftService {
     }
 
 
+    @Override
+    public boolean belongsToAirline(Long aircraftId, Long airlineId) {
+        Aircraft aircraft = aircraftHelper.findById(aircraftId);
+
+        return aircraft.getAirline() != null
+                && airlineId.equals(aircraft.getAirline().getId());
+    }
+
+
 }

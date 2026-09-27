@@ -5,10 +5,7 @@ import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.locationservice.service.AirportService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor

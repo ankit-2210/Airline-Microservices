@@ -21,5 +21,7 @@ public interface AircraftService {
 
     void deleteAircraft(Long id, Long ownerId);
 
+    boolean belongsToAirline(Long aircraftId, Long airlineId);
+
 
 }
