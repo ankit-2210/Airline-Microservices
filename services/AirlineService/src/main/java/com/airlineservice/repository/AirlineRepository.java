@@ -29,7 +29,7 @@ public interface AirlineRepository extends JpaRepository<Airline, Long> {
     boolean existsByIcaoCodeAndIdNot(String icanCode, Long id);
 
     // Status
-    Page<Airline> findByAirlineStatus(AircraftStatus aircraftStatus, Pageable pageable);
+    Page<Airline> findByAirlineStatus(AirlineStatus aircraftStatus, Pageable pageable);
     List<Airline> findByAirlineStatus(AirlineStatus airlineStatus);
 
     // Country

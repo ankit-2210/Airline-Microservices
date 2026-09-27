@@ -5,6 +5,7 @@ import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
 import com.airlineportal.utils.Airline.AirlineStatus;
+import com.airlineservice.dto.AirlineReportData;
 import com.airlineservice.model.Airline;
 
 
@@ -108,6 +109,27 @@ public class AirlineMapper {
                 .country(airline.getCountry())
                 .build();
     }
+
+    // Entity -> Report Data
+    public static AirlineReportData toReportData(Airline airline){
+        if(airline == null)
+            return null;
+
+        int aircraftCount = airline.getAircraft() == null ? 0 : airline.getAircraft().size();
+
+        return new AirlineReportData(
+            airline.getId(),
+            airline.getIataCode(),
+            airline.getIcaoCode(),
+            airline.getName(),
+            airline.getCountry(),
+            airline.getAlliance(),
+            airline.getAirlineStatus(),
+            aircraftCount
+        );
+    }
+
+
 
     // Support Mapper
     private static Support buildSupport(AirlineRequest request){

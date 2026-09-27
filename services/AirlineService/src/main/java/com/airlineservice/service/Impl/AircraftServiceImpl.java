@@ -85,12 +85,12 @@ public class AircraftServiceImpl implements AircraftService {
 
     // Get Aircraft By Airport
     @Override
-    public Page<AircraftResponse> getAircraftByAirport(Long airlineId, Pageable pageable){
-        if(airlineId == null){
+    public Page<AircraftResponse> getAircraftByAirport(Long airportId, Pageable pageable){
+        if(airportId == null){
             throw new IllegalArgumentException("Airline id cannot be null");
         }
 
-        return aircraftRepository.findByCurrentAirportId(airlineId, pageable)
+        return aircraftRepository.findByCurrentAirportId(airportId, pageable)
                 .map(AircraftMapper::toResponse);
     }
 

@@ -3,6 +3,7 @@ package com.airlineservice.mapper;
 import com.airlineportal.payload.request.Airlines.Aircraft.AircraftRequest;
 import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
 import com.airlineportal.utils.Airline.AircraftStatus;
+import com.airlineservice.dto.AircraftReportData;
 import com.airlineservice.model.Aircraft;
 import com.airlineservice.model.Airline;
 
@@ -128,6 +129,28 @@ public class AircraftMapper {
                 .updatedAt(aircraft.getUpdatedAt())
 
                 .build();
+    }
+
+
+    // Entity -> Report Data
+    public static AircraftReportData toReportData(Aircraft aircraft) {
+        if(aircraft == null)
+            return null;
+
+        return new AircraftReportData(
+            aircraft.getId(),
+            aircraft.getCode(),
+            aircraft.getModel(),
+            aircraft.getManufacturer(),
+            aircraft.getSeatingCapacity(),
+            aircraft.getAircraftStatus(),
+            aircraft.getIsAvailable(),
+            aircraft.getCurrentAirportId(),
+            aircraft.getNextMaintenanceDate(),
+            aircraft.getTotalSeats(),
+            aircraft.getOperational()
+        );
+
     }
 
 

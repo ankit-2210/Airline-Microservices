@@ -120,7 +120,7 @@ public class AirlineHelper {
         String iataCode = normalizeIataCode(request.getIataCode());
         String icaoCode = normalizeIcaoCode(request.getIcaoCode());
 
-        validateIcaoCode(iataCode);
+        validateIataCode(iataCode);
         validateIcaoCode(icaoCode);
 
         if(airlineRepository.existsByIataCode(iataCode)){
