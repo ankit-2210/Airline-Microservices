@@ -35,7 +35,7 @@ public class AirlineAircraftReportServiceImpl implements AirlineAircraftReportSe
                     .map(AirlineMapper::toReportData)
                     .toList();
 
-            ClassPathResource resource = new ClassPathResource("reports/airports.jrxml");
+            ClassPathResource resource = new ClassPathResource("reports/airlines.jrxml");
             if (!resource.exists()) {
                 throw new RuntimeException("airlines.jrxml not found in src/main/resources/reports/");
             }

@@ -17,7 +17,7 @@ public class ReportController {
     private final AirlineAircraftReportService reportService;
 
     // Airline PDF Report
-    @GetMapping("/arlines/pdf")
+    @GetMapping("/airlines/pdf")
     public ResponseEntity<byte[]> generateAirlinesPdf() {
         byte[] pdf = reportService.generateAirlinesPdf();
 
