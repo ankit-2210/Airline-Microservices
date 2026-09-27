@@ -1,6 +1,7 @@
 package com.locationservice.internal;
 
 
+import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Location.Airport.AirportResponse;
 import com.locationservice.service.AirportService;
 import lombok.RequiredArgsConstructor;
@@ -16,13 +17,13 @@ public class InternalAirportController {
     private final AirportService airportService;
 
     @GetMapping("/{airportId}")
-    public AirportResponse getAirportById(@PathVariable Long airportId){
-        return airportService.getAirportById(airportId);
+    public ApiResponse<AirportResponse> getAirportById(@PathVariable Long airportId){
+        return ApiResponse.success(airportService.getAirportById(airportId));
     }
 
     @GetMapping("/iata/{iataCode}")
-    public AirportResponse getAirportByIataCode(@PathVariable String iataCode){
-        return airportService.getAirportByIataCode(iataCode);
+    public ApiResponse<AirportResponse> getAirportByIataCode(@PathVariable String iataCode){
+        return ApiResponse.success(airportService.getAirportByIataCode(iataCode));
     }
 
 }

@@ -28,8 +28,8 @@ public class AircraftReportData {
             Long currentAirportId,
             LocalDate nextMaintenanceDate,
             Integer totalSeats,
-            Boolean operational
-    ) {
+            Boolean operational){
+
         this.id = id;
         this.code = code;
         this.model = model;

@@ -20,8 +20,8 @@ public class AirlineReportData {
             String country,
             String alliance,
             AirlineStatus airlineStatus,
-            Integer aircraftCount
-    ) {
+            Integer aircraftCount) {
+
         this.id = id;
         this.iataCode = iataCode;
         this.icaoCode = icaoCode;

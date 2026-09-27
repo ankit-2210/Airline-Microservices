@@ -4,7 +4,9 @@ import com.airlineportal.payload.request.Airlines.Airline.AirlineRequest;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineDropdownItem;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
 import com.airlineportal.utils.Airline.AirlineStatus;
+import com.airlineservice.external.ExternalService;
 import com.airlineservice.helper.AirlineHelper;
+import com.airlineservice.helper.ExternalServiceHelper;
 import com.airlineservice.mapper.AirlineMapper;
 import com.airlineservice.model.Airline;
 import com.airlineservice.repository.AirlineRepository;
@@ -24,12 +26,19 @@ import java.util.stream.Collectors;
 public class AirlineServiceImpl implements AirlineService {
     private final AirlineRepository airlineRepository;
     private final AirlineHelper airlineHelper;
+    private final ExternalServiceHelper externalServiceHelper;
 
     // Create Airline
     @Override
     @Transactional
     public AirlineResponse createAirline(AirlineRequest airlineRequest, Long ownerId){
         airlineHelper.validateCreate(airlineRequest, ownerId);
+
+        externalServiceHelper.validateUserExists(ownerId);
+
+        if(airlineRequest.getHeadquartersCityId() != null){
+            externalServiceHelper.validateCityExists(airlineRequest.getHeadquartersCityId());
+        }
 
         Airline airline = AirlineMapper.toEntity(airlineRequest, ownerId);
         airlineHelper.normalizeEntity(airline);

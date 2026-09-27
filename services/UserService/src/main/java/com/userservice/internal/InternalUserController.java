@@ -1,5 +1,6 @@
 package com.userservice.internal;
 
+import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.User.UserResponse;
 import com.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,8 +13,8 @@ public class InternalUserController {
     private final UserService userService;
 
     @GetMapping("/{userId}")
-    public UserResponse getUserById(@PathVariable Long userId){
-        return userService.getUserById(userId);
+    public ApiResponse<UserResponse> getUserById(@PathVariable Long userId){
+        return ApiResponse.success(userService.getUserById(userId));
     }
 
 }

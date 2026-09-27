@@ -41,9 +41,8 @@ public class AircraftController {
 
     // Create Aircraft
     @PostMapping
-    public ResponseEntity<ApiResponse<AircraftResponse>> createAircraft(@Valid @RequestBody AircraftRequest aircraftRequest, @RequestParam Long ownerId){
-        AircraftResponse response = aircraftService.createAircraft(aircraftRequest, ownerId);
-        return ResponseEntity.status(HttpStatus.CREATED).body(ApiResponse.success(response));
+    public ApiResponse<AircraftResponse> createAircraft(@Valid @RequestBody AircraftRequest aircraftRequest, @RequestParam Long ownerId){
+        return ApiResponse.success(aircraftService.createAircraft(aircraftRequest, ownerId));
     }
 
     // Get Aircraft By Id
@@ -55,7 +54,7 @@ public class AircraftController {
     // Get Aircraft By Owner
     @GetMapping("/owner/{ownerId}")
     public ApiResponse<Page<AircraftResponse>> getAircraftByOwner(@PathVariable Long ownerId, @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
-                                                                                  @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
+                                                                  @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
         Pageable pageable = createPageable(page, size, sortBy, direction);
         return ApiResponse.success(aircraftService.allAircraftByOwner(ownerId, pageable));
     }
@@ -63,8 +62,8 @@ public class AircraftController {
     // Get Aircraft By Airline
     @GetMapping("/airline/{airlineId}")
     public ApiResponse<Page<AircraftResponse>> getAircraftByAirline(@PathVariable Long airlineId,
-            @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
-            @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction){
+                                                                    @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
+                                                                    @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction){
         Pageable pageable = createPageable(page, size, sortBy, direction);
         return ApiResponse.success(aircraftService.getAircraftByAirline(airlineId, pageable));
     }
@@ -72,8 +71,8 @@ public class AircraftController {
     // Search Aircraft
     @GetMapping("/search")
     public ApiResponse<Page<AircraftResponse>> searchAircraft(@RequestParam String keyword,
-                                                                    @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
-                                                                    @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction){
+                                                              @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
+                                                              @RequestParam(defaultValue = "code") String sortBy, @RequestParam(defaultValue = "asc") String direction){
         Pageable pageable = createPageable(page, size, sortBy, direction);
         return ApiResponse.success(aircraftService.searchAircraft(keyword, pageable));
     }
@@ -113,18 +112,19 @@ public class AircraftController {
     // Pageable Helper
     private Pageable createPageable(int page, int size, String sortBy, String direction){
         validatePagination(page, size);
-        validateSortField(sortBy);
 
-        Sort.Direction sortDirection;
-        try{
-            sortDirection = Sort.Direction.fromString(direction);
-        }
-        catch (IllegalArgumentException exception) {
-            throw new IllegalArgumentException("Invalid sort direction: " + direction + ". Use 'asc' or 'desc'.");
-        }
+        String validatedSortBy = validateSortField(sortBy);
+        Sort.Direction sortDirection = parseSortDirection(direction);
 
         int safeSize = Math.min(size, MAX_PAGE_SIZE);
-        return PageRequest.of(page, safeSize, Sort.by(sortDirection, sortBy));
+        return PageRequest.of(
+                page,
+                safeSize,
+                Sort.by(
+                        sortDirection,
+                        validatedSortBy
+                )
+        );
     }
 
     private void validatePagination(int page, int size){
@@ -137,13 +137,27 @@ public class AircraftController {
         }
     }
 
-    private void validateSortField(String sortBy){
+    private String validateSortField(String sortBy){
         if(sortBy == null || sortBy.isBlank()){
-            throw new IllegalArgumentException("Sort field cannot be blank");
+            return "code";
         }
-
         if(!ALLOWED_SORT_FIELDS.contains(sortBy)){
             throw new IllegalArgumentException("Invalid sort field: " + sortBy + ". Allowed fields: " + ALLOWED_SORT_FIELDS);
+        }
+
+        return sortBy;
+    }
+
+    private Sort.Direction parseSortDirection(String direction){
+        if(direction == null || direction.isBlank()){
+            return Sort.Direction.ASC;
+        }
+
+        try {
+            return Sort.Direction.fromString(direction);
+        }
+        catch(IllegalArgumentException ex){
+            throw new IllegalArgumentException("Invalid sort direction: " + direction + ". Use 'asc' or 'desc'.");
         }
     }
 

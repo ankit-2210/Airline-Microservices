@@ -5,6 +5,7 @@ import com.airlineportal.payload.request.Airlines.Aircraft.AircraftRequest;
 import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
 import com.airlineportal.utils.Airline.AircraftStatus;
 import com.airlineservice.helper.AircraftHelper;
+import com.airlineservice.helper.ExternalServiceHelper;
 import com.airlineservice.mapper.AircraftMapper;
 import com.airlineservice.model.Aircraft;
 import com.airlineservice.model.Airline;
@@ -23,12 +24,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class AircraftServiceImpl implements AircraftService {
     private final AircraftRepository aircraftRepository;
     private final AircraftHelper aircraftHelper;
+    private final ExternalServiceHelper externalServiceHelper;
 
     // Create Aircraft
     @Transactional
     @Override
     public AircraftResponse createAircraft(AircraftRequest aircraftRequest, Long ownerId) {
         aircraftHelper.validateCreate(aircraftRequest, ownerId);
+
+        externalServiceHelper.validateUserExists(ownerId);
+        if(aircraftRequest.getCurrentAirportId() != null){
+            externalServiceHelper.validateAirportExists(aircraftRequest.getCurrentAirportId());
+        }
 
         Airline airline = aircraftHelper.findAirlineByOwner(ownerId);
         Aircraft aircraft = AircraftMapper.toEntity(aircraftRequest, airline);

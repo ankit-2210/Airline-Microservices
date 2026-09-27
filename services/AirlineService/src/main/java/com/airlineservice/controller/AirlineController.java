@@ -60,9 +60,8 @@ public class AirlineController {
     // Get All Airlines
     @GetMapping
     public ApiResponse<Page<AirlineResponse>> getAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
-                                                                                @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
-        Sort sort = Sort.by(Sort.Direction.fromString(direction), sortBy);
-        Pageable pageable = PageRequest.of(page, size, sort);
+                                                     @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction) {
+        Pageable pageable = createPageable(page, size, sortBy, direction);
         return ApiResponse.success(airlineService.getAllAirlines(pageable));
     }
 
@@ -71,7 +70,7 @@ public class AirlineController {
     public ApiResponse<Page<AirlineResponse>> searchAirline(@RequestParam String keyword,
                                                             @RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "20") int size,
                                                             @RequestParam(defaultValue = "name") String sortBy, @RequestParam(defaultValue = "asc") String direction){
-        Pageable pageable = PageRequest.of(page,size);
+        Pageable pageable = createPageable(page, size, sortBy, direction);
         return ApiResponse.success(airlineService.searchAirlines(keyword, pageable));
     }
 
@@ -101,7 +100,7 @@ public class AirlineController {
     }
 
 
-
+    // Pageable Helper
     private Pageable createPageable(int page, int size, String sortBy, String direction){
         if(page < 0){
             throw new IllegalArgumentException("Page cannot be negative");
