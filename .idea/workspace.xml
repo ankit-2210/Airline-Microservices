@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/config/OpenApiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/dto/AirportReportData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/dto/CityReportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/AirportMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/AirportMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/CityMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/mapper/CityMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/jwt/JwtUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/security/jwt/JwtUtils.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/dto/CityReportData.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/dto/CityReportData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/LocationReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/java/com/locationservice/service/Impl/LocationReportServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/airports.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/airports.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/cities.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LocationService/src/main/resources/reports/cities.jrxml" afterDir="false" />
@@ -491,7 +485,15 @@
       <option name="project" value="LOCAL" />
       <updated>1790062545661</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1790145615348</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1790145615348</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

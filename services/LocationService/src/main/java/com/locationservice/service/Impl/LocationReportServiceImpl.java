@@ -1,7 +1,9 @@
 package com.locationservice.service.Impl;
 
 import com.locationservice.dto.AirportReportData;
+import com.locationservice.dto.CityReportData;
 import com.locationservice.mapper.AirportMapper;
+import com.locationservice.mapper.CityMapper;
 import com.locationservice.model.Airport;
 import com.locationservice.model.City;
 import com.locationservice.repository.AirportRepository;
@@ -77,6 +79,10 @@ public class LocationReportServiceImpl implements LocationReportService {
         try {
             List<City> cities = cityRepository.findAll();
 
+            List<CityReportData> reportData = cities.stream()
+                    .map(CityMapper::toCityReportData)
+                    .toList();
+
             ClassPathResource resource = new ClassPathResource("reports/cities.jrxml");
             if (!resource.exists()) {
                 throw new RuntimeException("cities.jrxml not found in src/main/resources/reports/");
@@ -90,7 +96,7 @@ public class LocationReportServiceImpl implements LocationReportService {
                 Map<String, Object> parameters = new HashMap<>();
                 parameters.put("REPORT_TITLE", "City Management Report");
 
-                JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(cities);
+                JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(reportData);
                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
                 return JasperExportManager.exportReportToPdf(jasperPrint);
             }

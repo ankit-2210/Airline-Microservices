@@ -25,9 +25,13 @@ public class JwtUtils {
     }
 
     // generate token
-    public String generateToken(Authentication authentication, Long userId){
+    public String generateToken(Authentication authentication, Long userId) {
+
         String email = authentication.getName();
-        String roles = populateAuthorities(authentication.getAuthorities());
+        List<String> roles = populateAuthorities(authentication.getAuthorities());
+
+        System.out.println("AUTHORITIES = " + authentication.getAuthorities());
+        System.out.println("ROLES = " + roles);
 
         return Jwts.builder()
                 .subject(email)
@@ -49,7 +53,6 @@ public class JwtUtils {
                 .expiration(new Date(System.currentTimeMillis() + expirationTime))
                 .signWith(getSigningKey(), Jwts.SIG.HS256)
                 .compact();
-
     }
 
     // validate token
@@ -98,18 +101,17 @@ public class JwtUtils {
     }
 
 
-    private String populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
+    private List<String> populateAuthorities(Collection<? extends GrantedAuthority> authorities) {
         Set<String> roles = new HashSet<>();
         for (GrantedAuthority auth : authorities) {
             roles.add(auth.getAuthority());
         }
 
-        return String.join(",", roles);
+        return new ArrayList<>(roles);
     }
 
     // Parse Claims
     private Claims getClaims(String token){
-
         return Jwts.parser()
                 .verifyWith(getSigningKey())
                 .build()

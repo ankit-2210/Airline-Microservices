@@ -1,28 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport
-        xmlns="http://jasperreports.sourceforge.net/jasperreports"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="
-        http://jasperreports.sourceforge.net/jasperreports
-        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
-        name="airports"
-        pageWidth="842"
-        pageHeight="595"
-        orientation="Landscape"
-        columnWidth="782"
-        leftMargin="30"
-        rightMargin="30"
-        topMargin="30"
-        bottomMargin="30"
-        uuid="11111111-1111-1111-1111-111111111111">
-
-    <property name="com.jaspersoft.studio.data.defaultdataadapter"
-              value="One Empty Record"/>
-
-    <!-- ========================= -->
-    <!-- Fields                    -->
-    <!-- ========================= -->
-
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="airports" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="782" leftMargin="30" rightMargin="30" topMargin="30" bottomMargin="30" uuid="2a9b5a5d-62ba-41b6-9f8a-cb6be9957050">
+    <parameter name="REPORT_TITLE" class="java.lang.String"/>
     <field name="id" class="java.lang.Long"/>
     <field name="iataCode" class="java.lang.String"/>
     <field name="name" class="java.lang.String"/>
@@ -34,578 +12,264 @@
     <field name="latitude" class="java.lang.Double"/>
     <field name="longitude" class="java.lang.Double"/>
 
-    <!-- ========================= -->
-    <!-- Title                     -->
-    <!-- ========================= -->
-
     <title>
-        <band height="65">
+        <band height="72">
             <rectangle>
-                <reportElement
-                        x="0"
-                        y="0"
-                        width="782"
-                        height="65"
-                        backcolor="#1E3A5F"
-                        uuid="11111111-1111-1111-1111-111111111112"/>
+                <reportElement x="0" y="0" width="782" height="72" backcolor="#163B5C" uuid="3558f071-736b-40b6-86dc-02e62ffac024"/>
+                <graphicElement><pen lineWidth="0.0"/></graphicElement>
             </rectangle>
-
             <staticText>
-                <reportElement
-                        x="20"
-                        y="10"
-                        width="742"
-                        height="30"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111113"/>
-
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="22"
-                        isBold="true"/>
-                </textElement>
-
+                <reportElement x="20" y="9" width="742" height="31" forecolor="#FFFFFF" uuid="db521374-aa72-40c7-8fa1-eb258c6bac22"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="23" isBold="true"/></textElement>
                 <text><![CDATA[AIRPORT DIRECTORY]]></text>
-
             </staticText>
-
-            <staticText>
-                <reportElement
-                        x="20"
-                        y="42"
-                        width="742"
-                        height="15"
-                        forecolor="#D9E8F5"
-                        uuid="11111111-1111-1111-1111-111111111114"/>
-
-                <textElement textAlignment="Center" verticalAlignment="Middle">
-                    <font
-                        fontName="SansSerif"
-                        size="9"/>
-                </textElement>
-
-                <text><![CDATA[Airport and location information]]></text>
-
-            </staticText>
-
+            <textField>
+                <reportElement x="20" y="43" width="742" height="16" forecolor="#DCEAF5" uuid="253a1dbc-c85a-47d6-b168-b46978d4d2f5"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle"><font fontName="SansSerif" size="9"/></textElement>
+                <textFieldExpression><![CDATA[$P{REPORT_TITLE} == null ? "Airport and location information" : $P{REPORT_TITLE}]]></textFieldExpression>
+            </textField>
+            <line>
+                <reportElement x="285" y="64" width="212" height="1" forecolor="#60A5FA" uuid="dcd3ea71-9c46-47ac-929e-56eb37ef47f2"/>
+            </line>
         </band>
     </title>
-
-    <!-- ========================= -->
-    <!-- Column Header             -->
-    <!-- ========================= -->
     <columnHeader>
-        <band height="32">
-
-            <!-- ID -->
+        <band height="34">
             <staticText>
-                <reportElement
-                        x="0"
-                        y="0"
-                        width="45"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111115"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="0" y="0" width="45" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="57913aab-954f-443a-9c41-7f1418f4bd3a"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[ID]]></text>
             </staticText>
-
-            <!-- IATA -->
             <staticText>
-                <reportElement
-                        x="45"
-                        y="0"
-                        width="60"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111116"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="45" y="0" width="60" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="2215d8bf-0044-4b52-a9fb-f797df477c95"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[IATA]]></text>
             </staticText>
-
-            <!-- Airport -->
             <staticText>
-                <reportElement
-                        x="105"
-                        y="0"
-                        width="145"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111117"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="105" y="0" width="145" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="7fa9a34e-981d-4a2c-ba81-e06de62c8ce5"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[AIRPORT]]></text>
             </staticText>
-
-            <!-- City -->
             <staticText>
-                <reportElement
-                        x="250"
-                        y="0"
-                        width="95"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111118"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="250" y="0" width="95" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="79a5f210-4678-4fdd-879b-c818c5aa16ad"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[CITY]]></text>
             </staticText>
-
-            <!-- Country -->
             <staticText>
-                <reportElement
-                        x="345"
-                        y="0"
-                        width="65"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111119"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
-
+                <reportElement x="345" y="0" width="65" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="bc43638d-43ee-4a34-bb76-ca18aa93b299"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[COUNTRY]]></text>
             </staticText>
-
-            <!-- Country Name -->
             <staticText>
-                <reportElement
-                        x="410"
-                        y="0"
-                        width="105"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111120"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="410" y="0" width="105" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="3236f3bb-ad32-4ffd-8fd1-f111b1f74f1b"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[COUNTRY NAME]]></text>
             </staticText>
-
-            <!-- Timezone -->
             <staticText>
-                <reportElement
-                        x="515"
-                        y="0"
-                        width="105"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111121"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="515" y="0" width="105" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="0d40b173-92b7-4c9e-a630-87a962d06ae7"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[TIME ZONE]]></text>
             </staticText>
-
-            <!-- Latitude -->
             <staticText>
-                <reportElement
-                        x="620"
-                        y="0"
-                        width="81"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111122"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="620" y="0" width="81" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="d9b1d0ee-c908-4e78-a2b9-18ead6ced1c7"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[LATITUDE]]></text>
             </staticText>
-
-            <!-- Longitude -->
             <staticText>
-                <reportElement
-                        x="701"
-                        y="0"
-                        width="81"
-                        height="32"
-                        backcolor="#3B82F6"
-                        forecolor="#FFFFFF"
-                        uuid="11111111-1111-1111-1111-111111111123"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="701" y="0" width="81" height="34" mode="Opaque" forecolor="#FFFFFF" backcolor="#2563EB" uuid="668c5478-7a21-40fa-9767-89ae10ca053b"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
                 <text><![CDATA[LONGITUDE]]></text>
             </staticText>
-
         </band>
     </columnHeader>
-
-    <!-- ========================= -->
-    <!-- Detail                    -->
-    <!-- ========================= -->
-
     <detail>
         <band height="30">
-
-            <!-- Row background -->
-            <rectangle>
-                <reportElement
-                        x="0"
-                        y="0"
-                        width="782"
-                        height="30"
-                        backcolor="#F4F8FC"
-                        uuid="11111111-1111-1111-1111-111111111124"/>
-            </rectangle>
-
-            <!-- ID -->
             <textField>
-                <reportElement
-                        x="0"
-                        y="0"
-                        width="45"
-                        height="30"
-                        forecolor="#1F2937"
-                        uuid="11111111-1111-1111-1111-111111111125"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
+                <reportElement x="0" y="0" width="45" height="30" mode="Opaque" forecolor="#334155" backcolor="#FFFFFF" uuid="58c2c69e-e5b7-4321-9999-e516cf6c50fd"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8"/>
                 </textElement>
-
                 <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
             </textField>
-
-            <!-- IATA -->
             <textField>
-                <reportElement
-                        x="45"
-                        y="0"
-                        width="60"
-                        height="30"
-                        forecolor="#1D4ED8"
-                        uuid="11111111-1111-1111-1111-111111111126"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="9"
-                        isBold="true"/>
+                <reportElement x="45" y="0" width="60" height="30" mode="Opaque" forecolor="#1D4ED8" backcolor="#F8FBFF" uuid="0b1a4dd0-face-44d3-8f90-4c544dc850a7"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="9" isBold="true"/>
                 </textElement>
-
                 <textFieldExpression><![CDATA[$F{iataCode}]]></textFieldExpression>
             </textField>
-
-            <!-- Airport -->
             <textField>
-                <reportElement
-                        x="105"
-                        y="0"
-                        width="145"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111127"/>
-
-                <textElement
-                        textAlignment="Left"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
+                <reportElement x="105" y="0" width="145" height="30" mode="Opaque" forecolor="#0F172A" backcolor="#FFFFFF" uuid="aaa796c3-9a4c-4b07-8085-d85f7d989f9f"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8"/>
                 </textElement>
-
                 <textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
             </textField>
-
-            <!-- City -->
             <textField>
-                <reportElement
-                        x="250"
-                        y="0"
-                        width="95"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111128"/>
-
-                <textElement
-                        textAlignment="Left"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
+                <reportElement x="250" y="0" width="95" height="30" mode="Opaque" forecolor="#0F172A" backcolor="#FFFFFF" uuid="4399089b-56e6-4194-95bd-b39ffaafcc8f"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8"/>
                 </textElement>
-
-                <textFieldExpression><![CDATA[
-                    $F{cityName} == null ? "" : $F{cityName}
-                ]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{cityName} == null ? "" : $F{cityName}]]></textFieldExpression>
             </textField>
-
-            <!-- Country Code -->
             <textField>
-                <reportElement
-                        x="345"
-                        y="0"
-                        width="65"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111129"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"
-                        isBold="true"/>
+                <reportElement x="345" y="0" width="65" height="30" mode="Opaque" forecolor="#0F172A" backcolor="#F8FBFF" uuid="7034a11a-9b6b-41f8-9f74-45cb623c95fd"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8" isBold="true"/>
                 </textElement>
-
-                <textFieldExpression><![CDATA[
-                    $F{countryCode} == null ? "" : $F{countryCode}
-                ]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{countryCode} == null ? "" : $F{countryCode}]]></textFieldExpression>
             </textField>
-
-            <!-- Country Name -->
             <textField>
-                <reportElement
-                        x="410"
-                        y="0"
-                        width="105"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111130"/>
-
-                <textElement
-                        textAlignment="Left"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
+                <reportElement x="410" y="0" width="105" height="30" mode="Opaque" forecolor="#0F172A" backcolor="#FFFFFF" uuid="ba86f9cb-972b-4a40-977c-cddc48c088f4"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="8"/>
                 </textElement>
-
-                <textFieldExpression><![CDATA[
-                    $F{countryName} == null ? "" : $F{countryName}
-                ]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{countryName} == null ? "" : $F{countryName}]]></textFieldExpression>
             </textField>
-
-            <!-- Timezone -->
             <textField>
-                <reportElement
-                        x="515"
-                        y="0"
-                        width="105"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111131"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="7"/>
+                <reportElement x="515" y="0" width="105" height="30" mode="Opaque" forecolor="#334155" backcolor="#F8FBFF" uuid="d6c2df77-bba5-4f3f-ba98-f4c1ea8f2c60"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="7"/>
                 </textElement>
-
-                <textFieldExpression><![CDATA[
-                    $F{timeZoneId} == null ? "" : $F{timeZoneId}
-                ]]></textFieldExpression>
+                <textFieldExpression><![CDATA[$F{timeZoneId} == null ? "" : $F{timeZoneId}]]></textFieldExpression>
             </textField>
-
-            <!-- Latitude -->
             <textField pattern="0.000000">
-                <reportElement
-                        x="620"
-                        y="0"
-                        width="81"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111132"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="7"/>
+                <reportElement x="620" y="0" width="81" height="30" mode="Opaque" forecolor="#334155" backcolor="#FFFFFF" uuid="8eb26063-52a2-4edf-921e-f98025fe991e"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="7"/>
                 </textElement>
-
                 <textFieldExpression><![CDATA[$F{latitude}]]></textFieldExpression>
             </textField>
-
-            <!-- Longitude -->
             <textField pattern="0.000000">
-                <reportElement
-                        x="701"
-                        y="0"
-                        width="81"
-                        height="30"
-                        forecolor="#111827"
-                        uuid="11111111-1111-1111-1111-111111111133"/>
-
-                <textElement
-                        textAlignment="Center"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="7"/>
+                <reportElement x="701" y="0" width="81" height="30" mode="Opaque" forecolor="#334155" backcolor="#FFFFFF" uuid="a632ea6e-1924-4dbf-82b7-a408715996e1"/>
+                <box>
+                    <pen lineWidth="0.55" lineColor="#CBD5E1"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font fontName="SansSerif" size="7"/>
                 </textElement>
-
                 <textFieldExpression><![CDATA[$F{longitude}]]></textFieldExpression>
             </textField>
-
-            <!-- Bottom border -->
-            <line>
-                <reportElement
-                        x="0"
-                        y="29"
-                        width="782"
-                        height="1"
-                        forecolor="#D1D5DB"
-                        uuid="11111111-1111-1111-1111-111111111134"/>
-            </line>
-
         </band>
     </detail>
-
-    <!-- ========================= -->
-    <!-- Footer                    -->
-    <!-- ========================= -->
-
     <pageFooter>
-        <band height="25">
-
+        <band height="30">
             <line>
-                <reportElement
-                        x="0"
-                        y="0"
-                        width="782"
-                        height="1"
-                        forecolor="#CBD5E1"
-                        uuid="11111111-1111-1111-1111-111111111135"/>
+                <reportElement x="0" y="0" width="782" height="1" forecolor="#CBD5E1" uuid="af178761-4875-4b9f-9b9c-967c073568ce"/>
             </line>
-
             <textField>
-                <reportElement
-                        x="0"
-                        y="5"
-                        width="400"
-                        height="15"
-                        forecolor="#64748B"
-                        uuid="11111111-1111-1111-1111-111111111136"/>
-
-                <textElement
-                        textAlignment="Left"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
-                </textElement>
-
-                <textFieldExpression><![CDATA[
-                    "Generated Airport Directory"
-                ]]></textFieldExpression>
+                <reportElement x="0" y="7" width="390" height="15" forecolor="#64748B" uuid="cc6f916d-049c-4ca1-a506-334ce2c398ee"/>
+                <textElement textAlignment="Left" verticalAlignment="Middle"><font fontName="SansSerif" size="8"/></textElement>
+                <textFieldExpression><![CDATA["Generated by Location Service  •  " + new java.text.SimpleDateFormat("dd MMM yyyy, hh:mm a").format(new java.util.Date())]]></textFieldExpression>
             </textField>
-
             <textField>
-                <reportElement
-                        x="582"
-                        y="5"
-                        width="200"
-                        height="15"
-                        forecolor="#64748B"
-                        uuid="11111111-1111-1111-1111-111111111137"/>
-
-                <textElement
-                        textAlignment="Right"
-                        verticalAlignment="Middle">
-                <font
-                        fontName="SansSerif"
-                        size="8"/>
-                </textElement>
-
-                <textFieldExpression><![CDATA[
-                    "Page " + $V{PAGE_NUMBER}
-                ]]></textFieldExpression>
+                <reportElement x="582" y="7" width="200" height="15" forecolor="#64748B" uuid="177ba089-064e-4d38-8a88-2780daea98c3"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle"><font fontName="SansSerif" size="8" isBold="true"/></textElement>
+                <textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
             </textField>
-
         </band>
     </pageFooter>
+    <summary>
+        <band height="320" splitType="Stretch">
+            <barChart>
+                <chart evaluationTime="Report" isShowLegend="false">
+                    <reportElement x="0" y="0" width="782" height="300" mode="Opaque" uuid="d9a1c2e0-8f6d-4a63-9c9c-7d3f9a1b41c7"/>
+                    <box>
+                        <pen lineWidth="0.80" lineColor="#CBD5E1"/>
+                    </box>
+                    <chartTitle position="Top" color="#163B5C">
+                        <font fontName="SansSerif" size="16" isBold="true"/>
+                        <titleExpression><![CDATA["AIRPORT LATITUDE BY IATA"]]></titleExpression>
+                    </chartTitle>
+                    <chartSubtitle color="#64748B">
+                        <font fontName="SansSerif" size="9"/>
+                        <subtitleExpression><![CDATA["Geographic latitude of each airport"]]></subtitleExpression>
+                    </chartSubtitle>
+                </chart>
+                <categoryDataset>
+                    <categorySeries>
+                        <seriesExpression><![CDATA["Latitude"]]></seriesExpression>
+                        <categoryExpression><![CDATA[$F{iataCode}]]></categoryExpression>
+                        <valueExpression><![CDATA[$F{latitude} == null ? 0.0d : $F{latitude}]]></valueExpression>
+                        <labelExpression><![CDATA[$F{latitude} == null ? "0.00°" : String.format("%.2f°", $F{latitude})]]></labelExpression>
+                    </categorySeries>
+                </categoryDataset>
+                <barPlot isShowLabels="true" isShowTickMarks="true" isShowTickLabels="true">
+                    <plot backcolor="#F8FAFC"/>
+                    <categoryAxisLabelExpression><![CDATA["IATA Code"]]></categoryAxisLabelExpression>
+                    <valueAxisLabelExpression><![CDATA["Latitude (°)"]]></valueAxisLabelExpression>
+                </barPlot>
+            </barChart>
+        </band>
+    </summary>
 
 </jasperReport>
