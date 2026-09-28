@@ -12,6 +12,7 @@ public interface FlightService {
     FlightResponse createFlight(Long airlineId, FlightRequest flightRequest);
 
     FlightResponse getById(Long flightId);
+    FlightResponse getByAirlineAndId(Long airlineId, Long flightId);
 
     Page<FlightResponse> getAllByAirline(Long airlineId, Pageable pageable);
     Page<FlightResponse> searchByRoute(Long airlineId, Long departureAirportId, Long arrivalAirportId, Pageable pageable);

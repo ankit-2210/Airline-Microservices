@@ -55,6 +55,13 @@ public class FlightServiceImpl implements FlightService {
     }
 
     @Override
+    public FlightResponse getByAirlineAndId(Long airlineId, Long flightId) {
+        Flight flight = flightHelper.findByAirlineAndId(airlineId, flightId);
+        return FlightMapper.toResponse(flight);
+    }
+
+
+    @Override
     public Page<FlightResponse> getAllByAirline(Long airlineId, Pageable pageable) {
         if(airlineId == null){
             throw new IllegalArgumentException("Airline id cannot be null");
