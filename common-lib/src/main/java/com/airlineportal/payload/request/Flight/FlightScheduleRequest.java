@@ -12,8 +12,6 @@ import java.util.*;
 @NoArgsConstructor
 @Builder
 public class FlightScheduleRequest {
-    @NotNull(message = "Flight id is required")
-    private Long flightId;
 
     @NotNull(message = "Departure time is required")
     private LocalTime departureTime;

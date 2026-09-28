@@ -14,12 +14,6 @@ import java.util.*;
 @Builder
 public class FlightInstanceRequest {
 
-    @NotNull(message = "Flight id is required")
-    private Long flightId;
-
-    @NotNull(message = "Schedule id is required")
-    private Long scheduleId;
-
     @NotNull(message = "Departure date time is required")
     private LocalDateTime departureDateTime;
 
