@@ -5,6 +5,7 @@ import com.airlineportal.exception.ResourceAlreadyExistsException;
 import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Flight.FlightRequest;
 import com.airlineportal.utils.Flight.FlightStatus;
+import com.flightservice.external.ExternalService;
 import com.flightservice.model.Flight;
 import com.flightservice.repository.FlightRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,6 +17,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class FlightHelper {
     private final FlightRepository flightRepository;
+    private final ExternalService externalService;
 
     public Flight findById(Long flightId) {
         if(flightId == null){
@@ -37,11 +39,18 @@ public class FlightHelper {
                 .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId + " for airline: " + airlineId));
     }
 
-
     public String normalizeFlightNumber(String flightNumber){
         if(flightNumber == null)
             return null;
         return flightNumber.trim().toUpperCase();
+    }
+
+    // Normalize Entity
+    public void normalizeEntity(Flight flight){
+        if(flight == null)
+            return;
+
+        flight.setFlightNumber(normalizeFlightNumber(flight.getFlightNumber()));
     }
 
 
@@ -55,6 +64,8 @@ public class FlightHelper {
 
         validateAirlineId(request.getAirlineId());
         validateAircraftId(request.getAircraftId());
+
+        validateAircraftBelongsToAirline(request.getAircraftId(), request.getAirlineId());
 
         validateAirportIds(request.getDepartureAirportId(), request.getArrivalAirportId());
         validateSchedule(request.getScheduledDeparture(), request.getScheduledArrival());
@@ -75,6 +86,8 @@ public class FlightHelper {
 
         validateAirlineId(request.getAirlineId());
         validateAircraftId(request.getAircraftId());
+
+        validateAircraftBelongsToAirline(request.getAircraftId(), request.getAirlineId());
 
         validateAirportIds(request.getDepartureAirportId(), request.getArrivalAirportId());
         validateSchedule(request.getScheduledDeparture(), request.getScheduledArrival());
@@ -114,11 +127,21 @@ public class FlightHelper {
         if(airlineId == null){
             throw new IllegalArgumentException("Airline id cannot be null");
         }
+
+        externalService.getAirlineById(airlineId);
     }
 
     private void validateAircraftId(Long aircraftId) {
         if(aircraftId == null){
             throw new IllegalArgumentException("Aircraft id cannot be null");
+        }
+
+        externalService.getAircraftById(aircraftId);
+    }
+
+    private void validateAircraftBelongsToAirline(Long aircraftId, Long airlineId){
+        if (!externalService.aircraftBelongsToAirline(aircraftId, airlineId).getData()){
+            throw new ResourceNotFoundException("Aircraft does not belong to the specified airline");
         }
     }
 
@@ -127,20 +150,21 @@ public class FlightHelper {
         if(departureAirportId == null){
             throw new IllegalArgumentException("Departure airport id cannot be null");
         }
-
         if(arrivalAirportId == null){
             throw new IllegalArgumentException("Arrival airport id cannot be null");
         }
-
         if(departureAirportId.equals(arrivalAirportId)){
             throw new IllegalArgumentException("Departure and arrival airports cannot be the same");
         }
+
+        externalService.getAirportById(departureAirportId);
+        externalService.getAirportById(arrivalAirportId);
 
     }
 
 
 
-
+    // Schedule
     private void validateSchedule(LocalDateTime scheduledDeparture, LocalDateTime scheduledArrival){
         if(scheduledDeparture == null){
             throw new IllegalArgumentException("Scheduled departure cannot be null");
@@ -159,26 +183,24 @@ public class FlightHelper {
             return;
         }
 
-        // Keep this method for future business rules.
+        // Keep status business rules here.
         //
-        // Example:
-        // - A newly created flight cannot be ARRIVED
-        // - A CANCELLED flight cannot become ACTIVE
-        // - DEPARTED flight cannot be changed back to SCHEDULED
+        // Examples for future:
+        // SCHEDULED -> DEPARTED
+        // DEPARTED -> ARRIVED
+        // CANCELLED -> cannot be reactivated
     }
 
 
 
-    // Normalize Entity
-    public void normalizeEntity(Flight flight){
-        if(flight == null)
-            return;
-        flight.setFlightNumber(flight.getFlightNumber());
-    }
-
+    // Delete
     public void validateCanDelete(Flight flight){
         if(flight == null) {
             throw new ResourceNotFoundException("Flight not found");
+        }
+
+        if(FlightStatus.DEPARTED.equals(flight.getFlightStatus()) || FlightStatus.ARRIVED.equals(flight.getFlightStatus())){
+            throw new IllegalArgumentException("Departed or arrived flight cannot be deleted");
         }
 
         /*

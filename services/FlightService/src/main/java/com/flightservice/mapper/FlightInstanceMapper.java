@@ -5,6 +5,7 @@ import com.airlineportal.payload.response.Airlines.Aircraft.AircraftResponse;
 import com.airlineportal.payload.response.Airlines.Airline.AirlineResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.airlineportal.payload.response.Location.Airport.AirportResponse;
+import com.flightservice.dto.FlightInstanceReportData;
 import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
 import com.flightservice.model.FlightSchedule;
@@ -105,8 +106,34 @@ public class FlightInstanceMapper {
                 .createdAt(flightInstance.getCreatedAt())
                 .updatedAt(flightInstance.getUpdatedAt())
                 .build();
-
-
     }
+
+    public static FlightInstanceReportData toReportData(FlightInstance instance){
+        if(instance == null)
+            return null;
+
+        return new FlightInstanceReportData(
+                instance.getId(),
+                instance.getFlight().getId(),
+
+                instance.getFlight().getFlightNumber(),
+
+                instance.getDepartureDateTime(),
+                instance.getArrivalDateTime(),
+
+                instance.getTotalSeats(),
+                instance.getAvailableSeats(),
+                instance.getBookedSeats(),
+
+                instance.getFlightStatus(),
+                instance.getActive(),
+
+                instance.getFormatedDuration(),
+
+                instance.isSoldOut(),
+                instance.isBookingOpen()
+        );
+    }
+
 
 }

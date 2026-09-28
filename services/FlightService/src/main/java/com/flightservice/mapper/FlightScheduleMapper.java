@@ -2,7 +2,10 @@ package com.flightservice.mapper;
 
 import com.airlineportal.payload.request.Flight.FlightScheduleRequest;
 import com.airlineportal.payload.response.Flight.FlightScheduleResponse;
+import com.flightservice.dto.FlightScheduleReportData;
 import com.flightservice.model.FlightSchedule;
+
+import java.util.stream.Collectors;
 
 public class FlightScheduleMapper {
     private FlightScheduleMapper(){
@@ -62,5 +65,33 @@ public class FlightScheduleMapper {
                 .updatedAt(schedule.getUpdatedAt())
                 .build();
     }
+
+    public static FlightScheduleReportData toReportData(FlightSchedule schedule){
+        if(schedule == null)
+            return null;
+
+        String operatingDays = schedule.getOperatingDays() == null ? " "
+                : schedule.getOperatingDays().stream()
+                .sorted()
+                .map(Enum::name)
+                .collect(Collectors.joining(", "));
+
+        return new FlightScheduleReportData(
+                schedule.getId(),
+                schedule.getFlight().getId(),
+
+                schedule.getFlight().getFlightNumber(),
+
+                schedule.getDepartureTime(),
+                schedule.getArrivalTime(),
+
+                schedule.getStartDate(),
+                schedule.getEndDate(),
+                operatingDays,
+                schedule.getActive()
+        );
+
+    }
+
 
 }

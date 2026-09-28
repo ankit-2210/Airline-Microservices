@@ -75,6 +75,9 @@ public class FlightServiceImpl implements FlightService {
         if(arrivalAirportId == null){
             throw new IllegalArgumentException("Arrival airport id cannot be null");
         }
+        if(departureAirportId.equals(arrivalAirportId)){
+            throw new IllegalArgumentException("Departure and arrival airports cannot be the same");
+        }
 
         return flightRepository.findByAirlineIdAndDepartureAirportIdAndArrivalAirportId(
                 airlineId,
@@ -166,6 +169,9 @@ public class FlightServiceImpl implements FlightService {
     public FlightResponse updateFlight(Long flightId, FlightRequest request, Long airlineId) {
         if(airlineId == null){
             throw new IllegalArgumentException("Airline id cannot be null");
+        }
+        if(request == null){
+            throw new IllegalArgumentException("Flight request cannot be null");
         }
 
         Flight flight = flightHelper.findByAirlineAndId(airlineId, flightId);

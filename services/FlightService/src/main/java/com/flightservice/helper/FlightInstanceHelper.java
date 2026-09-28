@@ -8,6 +8,8 @@ import com.flightservice.model.Flight;
 import com.flightservice.model.FlightInstance;
 import com.flightservice.model.FlightSchedule;
 import com.flightservice.repository.FlightInstanceRepository;
+import com.flightservice.repository.FlightRepository;
+import com.flightservice.repository.FlightScheduleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,6 +19,9 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 public class FlightInstanceHelper {
     private final FlightInstanceRepository flightInstanceRepository;
+    private final FlightRepository flightRepository;
+    private final FlightScheduleRepository flightScheduleRepository;
+
 
     public FlightInstance findById(Long instanceId){
         if(instanceId == null){
@@ -37,6 +42,25 @@ public class FlightInstanceHelper {
 
         return flightInstanceRepository.findByIdAndFlightAirlineId(instanceId, airlineId)
                 .orElseThrow(() -> new ResourceNotFoundException("Flight instance not found or you are not authorized"));
+    }
+
+    public Flight findFlight(Long flightId){
+        if(flightId == null){
+            throw new IllegalArgumentException("Flight id cannot be null");
+        }
+
+        return flightRepository.findById(flightId)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight not found with id: " + flightId));
+    }
+
+
+    public FlightSchedule findSchedule(Long scheduleId){
+        if(scheduleId == null){
+            throw new IllegalArgumentException("Schedule id cannot be null");
+        }
+
+        return flightScheduleRepository.findById(scheduleId)
+                .orElseThrow(() -> new ResourceNotFoundException("Flight schedule not found with id: " + scheduleId));
     }
 
 
@@ -147,6 +171,9 @@ public class FlightInstanceHelper {
 
         if(totalSeats == null || totalSeats < 1){
             throw new IllegalArgumentException("Total seats must be greater than zero");
+        }
+        if(availableSeats == null){
+            availableSeats = totalSeats;
         }
         if(availableSeats < 0){
             throw new IllegalArgumentException("Available seats cannot be negative");

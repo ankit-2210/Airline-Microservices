@@ -2,6 +2,7 @@ package com.flightservice.mapper;
 
 import com.airlineportal.payload.request.Flight.FlightRequest;
 import com.airlineportal.payload.response.Flight.FlightResponse;
+import com.flightservice.dto.FlightReportData;
 import com.flightservice.model.Flight;
 
 
@@ -79,5 +80,39 @@ public class FlightMapper {
                 .updatedAt(flight.getUpdatedAt())
                 .build();
     }
+
+
+    public static FlightReportData toReportData(Flight flight){
+        if(flight == null)
+            return null;
+
+        return new FlightReportData(
+                flight.getId(),
+                flight.getFlightNumber(),
+
+                flight.getAirlineId(),
+                flight.getAircraftId(),
+
+                flight.getDepartureAirportId(),
+                flight.getArrivalAirportId(),
+
+                flight.getScheduledDeparture(),
+                flight.getScheduledArrival(),
+
+                flight.getActualDeparture(),
+                flight.getActualArrival(),
+
+                flight.getFlightStatus(),
+                flight.getActive(),
+
+                flight.getDelayed(),
+                flight.getDelayMinutes(),
+                flight.getScheduledDurationMinutes(),
+
+                flight.getOperational()
+        );
+    }
+
+
 
 }

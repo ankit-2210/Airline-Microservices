@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/flights/search")
+@RequestMapping("/api/flights/elasticsearch/search")
 @RequiredArgsConstructor
 public class FlightSearchController {
     private final FlightSearchService flightSearchService;

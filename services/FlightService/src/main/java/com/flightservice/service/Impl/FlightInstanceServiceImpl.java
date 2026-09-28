@@ -47,14 +47,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
 
         validateFlightOwnership(flight, airlineId);
 
-        FlightSchedule schedule =
-                flightScheduleRepository.findById(scheduleId)
-                        .orElseThrow(() -> new ResourceNotFoundException("Flight schedule not found with id: " + scheduleId));
-
-        // Verify schedule belongs to flight
-        if(schedule.getFlight() == null || schedule.getFlight().getId() == null || !schedule.getFlight().getId().equals(flightId)) {
-            throw new ResourceNotFoundException("Schedule does not belong to this flight");
-        }
+        FlightSchedule schedule = flightInstanceHelper.findSchedule(scheduleId);
 
         flightInstanceHelper.validateCreate(request, flight, schedule);
         FlightInstance instance = FlightInstanceMapper.toEntity(request, flight, schedule);
@@ -116,6 +109,7 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
 
         FlightInstance flightInstance = flightInstanceHelper.findByIdAndAirline(instanceId, airlineId);
 
+        flightInstanceHelper.validateUpdate(flightInstance, request);
         FlightInstanceMapper.updateEntity(flightInstance, request);
 
         FlightInstance updatedFlightInstance = flightInstanceRepository.save(flightInstance);

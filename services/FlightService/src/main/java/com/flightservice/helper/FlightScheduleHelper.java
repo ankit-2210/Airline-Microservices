@@ -76,6 +76,9 @@ public class FlightScheduleHelper {
         if (flight.getId() == null) {
             throw new IllegalArgumentException("Flight id cannot be null");
         }
+        if(flight.getAirlineId() == null){
+            throw new IllegalArgumentException("Flight airline id cannot be null");
+        }
     }
 
     private void validateOwnership(FlightSchedule schedule, Long airlineId){
