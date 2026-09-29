@@ -2,22 +2,25 @@ package com.bookingservice.mapper;
 
 import com.airlineportal.payload.request.Booking.BookingRequest;
 import com.airlineportal.payload.response.Booking.BookingResponse;
+import com.airlineportal.payload.response.Booking.PassengerResponse;
 import com.bookingservice.model.Booking;
 
 import java.util.stream.Collectors;
+import java.util.*;
 
 public final class BookingMapper {
     private BookingMapper(){
 
     }
 
-    public static Booking toEntity(BookingRequest request, String pnr){
+    public static Booking toEntity(BookingRequest request, String pnr, Long flightId){
         if(request == null)
             return null;
 
         Booking booking = Booking.builder()
                 .pnr(pnr)
                 .userId(request.getUserId())
+                .flightId(flightId)
                 .flightInstanceId(request.getFlightInstanceId())
                 .build();
 
@@ -34,6 +37,11 @@ public final class BookingMapper {
         if(booking == null)
             return null;
 
+        List<PassengerResponse> passengers = booking.getPassengers() == null ? List.of()
+                : booking.getPassengers().stream()
+                .map(PassengerMapper::toResponse)
+                .toList();
+
         return BookingResponse.builder()
                 .id(booking.getId())
                 .pnr(booking.getPnr())
@@ -46,9 +54,7 @@ public final class BookingMapper {
                 .confirmedAt(booking.getConfirmedAt())
                 .cancelledAt(booking.getCancelledAt())
                 .cancellationReason(booking.getCancellationReason())
-                .passengers(booking.getPassengers().stream()
-                        .map(PassengerMapper::toResponse)
-                        .collect(Collectors.toList()))
+                .passengers(passengers)
                 .build();
     }
 

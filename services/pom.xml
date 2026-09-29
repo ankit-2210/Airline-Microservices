@@ -25,6 +25,7 @@
         <module>AirlineService</module>
         <module>FlightService</module>
         <module>BookingService</module>
+        <module>PaymentService</module>
     </modules>
 
 </project>

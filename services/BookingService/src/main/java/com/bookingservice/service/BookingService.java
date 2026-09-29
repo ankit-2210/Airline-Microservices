@@ -12,6 +12,7 @@ public interface BookingService {
 
     Page<BookingResponse> getByUser(Long userId, Pageable pageable);
     Page<BookingResponse> getByFlight(Long flightId, Pageable pageable);
+    Page<BookingResponse> getByFlightInstance(Long flightInstanceId, Pageable pageable);
     Page<BookingResponse> getAll(Pageable pageable);
 
     BookingResponse cancelBooking(Long bookingId, Long userId, String reason);

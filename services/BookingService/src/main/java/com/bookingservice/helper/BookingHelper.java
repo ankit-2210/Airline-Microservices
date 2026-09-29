@@ -9,6 +9,8 @@ import com.bookingservice.model.Booking;
 import com.bookingservice.repository.BookingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+
 import java.util.*;
 
 @Component
@@ -24,6 +26,14 @@ public class BookingHelper {
         return bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new ResourceNotFoundException("Booking not found with id: " + bookingId));
     }
+
+    public Booking findByPnr(String pnr) {
+        String normalizedPnr = normalizePnr(pnr);
+
+        return bookingRepository.findByPnr(normalizedPnr)
+                .orElseThrow(() -> new ResourceNotFoundException("Booking not found with PNR: " + normalizedPnr));
+    }
+
 
     public Booking findByIdAndUser(Long bookingId, Long userId){
         if(bookingId == null){
@@ -47,11 +57,15 @@ public class BookingHelper {
         if(request.getFlightInstanceId() == null){
             throw new IllegalArgumentException("Flight id cannot be null");
         }
+        if(request.getPassengers() == null || request.getPassengers().isEmpty()){
+            throw new IllegalArgumentException("At least one passenger is required");
+        }
 
         validatePassengers(request.getPassengers());
     }
 
     private void validatePassengers(List<PassengerRequest> passengers){
+        Set<String> seatNumbers = new HashSet<>();
         if(passengers == null || passengers.isEmpty()){
             throw new IllegalArgumentException("At least one passenger is required");
         }
@@ -93,6 +107,14 @@ public class BookingHelper {
         } while (bookingRepository.existsByPnr(pnr));
 
         return pnr;
+    }
+
+    public String normalizePnr(String pnr){
+        if(!StringUtils.hasText(pnr)){
+            throw new IllegalArgumentException("PNR cannot be blank");
+        }
+
+        return pnr.trim().toUpperCase();
     }
 
 
