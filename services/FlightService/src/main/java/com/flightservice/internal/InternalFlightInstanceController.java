@@ -17,4 +17,14 @@ public class InternalFlightInstanceController {
         return ApiResponse.success(flightInstanceService.getById(instanceId));
     }
 
+    @PostMapping("/{instanceId}/reserve")
+    public ApiResponse<Boolean> reserveSeats(@PathVariable("instanceId") Long instanceId, @RequestParam("seats") Integer seats){
+        return ApiResponse.success(flightInstanceService.reserveSeats(instanceId, seats));
+    }
+
+    @PostMapping("/{instanceId}/release")
+    public ApiResponse<Boolean> releaseSeats(@PathVariable("instanceId") Long instanceId, @RequestParam("seats") Integer seats){
+        return ApiResponse.success(flightInstanceService.releaseSeats(instanceId, seats));
+    }
+
 }

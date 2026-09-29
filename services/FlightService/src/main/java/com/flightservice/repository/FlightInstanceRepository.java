@@ -4,6 +4,7 @@ import com.flightservice.model.FlightInstance;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -44,5 +45,24 @@ public interface FlightInstanceRepository extends JpaRepository<FlightInstance, 
     boolean existsByScheduleIdAndDepartureDateTime(Long scheduleId, LocalDateTime departureDateTime);
     boolean existsByScheduleIdAndDepartureDateTimeAndIdNot(Long scheduleId, LocalDateTime departureDateTime, Long id);
 
+
+    @Modifying
+    @Query("""
+            update FlightInstance fi
+            set fi.availableSeats = fi.availableSeats - :seats
+            where f.id = :instanceId
+                and fi.availableSeats >= :seats
+                and fi.active = true
+            """)
+    int reserveSeats(@Param("instanceId") Long instanceId, @Param("seats") Integer seats);
+
+    @Modifying
+    @Query("""
+            update FlightInstance fi
+            set fi.availableSeats = fi.availableSeats + :seats
+            where fi.id = :instanceId
+                and fi.availableSeats + :seats <= fi.totalSeats
+            """)
+    int releaseSeats(@Param("instanceId") Long instanceId, @Param("seats") Integer seats);
 
 }

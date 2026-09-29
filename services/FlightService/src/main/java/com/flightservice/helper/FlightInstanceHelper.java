@@ -221,5 +221,35 @@ public class FlightInstanceHelper {
          */
     }
 
+    public void validateAvailableSeats(FlightInstance instance, int requiredSeats){
+        if(instance == null){
+            throw new IllegalArgumentException("Flight instance cannot be null");
+        }
+        if(requiredSeats <= 0){
+            throw new IllegalArgumentException("Required seats must be greater than zero");
+        }
+        if(!Boolean.TRUE.equals(instance.getActive())){
+            throw new IllegalArgumentException("Flight instance is inactive");
+        }
+        if(!instance.isBookingOpen()){
+            throw new IllegalArgumentException("Booking is not open for this flight instance");
+        }
+        if(instance.getAvailableSeats() == null || instance.getAvailableSeats() < requiredSeats) {
+            throw new IllegalArgumentException("Insufficient available seats");
+        }
+    }
+
+    public void validateCanReserveSeats(FlightInstance instance, int seats){
+        validateAvailableSeats(instance, seats);
+
+        if(instance.isCancelled()){
+            throw new IllegalArgumentException("Cannot reserve seats for a cancelled flight");
+        }
+        if(instance.isDeparted()){
+            throw new IllegalArgumentException("Cannot reserve seats after flight departure");
+        }
+    }
+
+
 
 }

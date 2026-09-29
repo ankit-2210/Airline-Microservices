@@ -128,6 +128,46 @@ public class FlightInstanceServiceImpl implements FlightInstanceService {
         flightInstanceRepository.delete(flightInstance);
     }
 
+    @Override
+    @Transactional
+    public boolean reserveSeats(Long instanceId, Integer seats) {
+        if(instanceId == null){
+            throw new IllegalArgumentException("Flight instance id cannot be null");
+        }
+        if(seats == null || seats <= 0){
+            throw new IllegalArgumentException("Seats must be greater than zero");
+        }
+
+        FlightInstance instance = flightInstanceHelper.findById(instanceId);
+        flightInstanceHelper.validateCanReserveSeats(instance, seats);
+
+        int updated = flightInstanceRepository.reserveSeats(instanceId, seats);
+        if(updated == 0){
+            throw new IllegalArgumentException("Unable to reserve seats. " + "Seats may no longer be available.");
+        }
+
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean releaseSeats(Long instanceId, Integer seats) {
+        if(instanceId == null){
+            throw new IllegalArgumentException("Flight instance id cannot be null");
+        }
+        if(seats == null || seats <= 0){
+            throw new IllegalArgumentException("Seats must be greater than zero");
+        }
+
+        FlightInstance instance = flightInstanceHelper.findById(instanceId);
+        int updated = flightInstanceRepository.releaseSeats(instanceId, seats);
+        if(updated == 0){
+            throw new IllegalArgumentException("Unable to release seats");
+        }
+
+        return true;
+    }
+
 
     private FlightInstanceResponse convertToInstanceResponse(FlightInstance flightInstance){
         Flight flight = flightInstance.getFlight();

@@ -17,6 +17,7 @@ public class BookingResponse {
 
     private Long userId;
     private Long flightId;
+    private Long flightInstanceId;
 
     private BigDecimal totalAmount;
 

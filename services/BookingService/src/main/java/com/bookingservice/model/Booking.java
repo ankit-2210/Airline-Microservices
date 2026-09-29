@@ -22,6 +22,7 @@ import java.util.*;
                 @Index(name = "idx_booking_pnr", columnList = "pnr"),
                 @Index(name = "idx_booking_user_id", columnList = "user_id"),
                 @Index(name = "idx_booking_flight_id", columnList = "flight_id"),
+                @Index(name = "idx_booking_instance_id", columnList = "flight_instance_id"),
                 @Index(name = "idx_booking_status", columnList = "booking_status")
         }
 )
@@ -43,6 +44,10 @@ public class Booking {
     @NotNull
     @Column(name = "flight_id", nullable = false)
     private Long flightId;
+
+    @NotNull
+    @Column(name = "flight_instance_id", nullable = false)
+    private Long flightInstanceId;
 
     @NotNull
     @Column(name = "total_amount", nullable = false, precision = 12, scale = 2)

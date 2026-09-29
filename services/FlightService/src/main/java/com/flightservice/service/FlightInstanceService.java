@@ -22,5 +22,7 @@ public interface FlightInstanceService {
 
     void deleteInstance(Long instanceId, Long airlineId);
 
+    boolean reserveSeats(Long instanceId, Integer seats);
+    boolean releaseSeats(Long instanceId, Integer seats);
 
 }

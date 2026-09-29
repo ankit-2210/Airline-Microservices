@@ -20,6 +20,7 @@ public class PassengerRequest {
     @Size(max = 20, message = "Gender must not exceed 20 characters")
     private String gender;
 
+    @NotBlank(message = "Passport number is required")
     @Size(max = 50, message = "Passport number must not exceed 50 characters")
     private String passportNumber;
 
