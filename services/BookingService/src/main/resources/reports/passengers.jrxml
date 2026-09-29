@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="passengers"
+              pageWidth="842"
+              pageHeight="595"
+              orientation="Landscape"
+              columnWidth="782"
+              leftMargin="30"
+              rightMargin="30"
+              topMargin="30"
+              bottomMargin="30"
+              whenNoDataType="AllSectionsNoDetail"
+              uuid="9c8f4db2-0e6d-4dc9-b2e3-1c4eeb4ef002">
+
+    <property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+
+    <parameter name="REPORT_TITLE" class="java.lang.String" isForPrompting="false">
+        <defaultValueExpression><![CDATA["PASSENGER MANIFEST REPORT"]]></defaultValueExpression>
+    </parameter>
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="bookingId" class="java.lang.Long"/>
+    <field name="pnr" class="java.lang.String"/>
+    <field name="firstName" class="java.lang.String"/>
+    <field name="lastName" class="java.lang.String"/>
+    <field name="gender" class="java.lang.String"/>
+    <field name="passportNumber" class="java.lang.String"/>
+    <field name="seatNumber" class="java.lang.String"/>
+
+    <title>
+        <band height="75">
+            <rectangle>
+                <reportElement x="0" y="0" width="782" height="75" backcolor="#1F4E78" mode="Opaque" uuid="c1000001-0000-0000-0000-000000000001"/>
+                <graphicElement>
+                    <pen lineWidth="0.0"/>
+                </graphicElement>
+            </rectangle>
+
+            <textField>
+                <reportElement x="0" y="0" width="782" height="42" forecolor="#FFFFFF" uuid="c1000001-0000-0000-0000-000000000002"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="22" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$P{REPORT_TITLE}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement x="0" y="42" width="782" height="25" forecolor="#FFFFFF" uuid="c1000001-0000-0000-0000-000000000003"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+                <textFieldExpression><![CDATA["Generated: " + new java.text.SimpleDateFormat("dd MMM yyyy, HH:mm").format(new java.util.Date())]]></textFieldExpression>
+            </textField>
+        </band>
+    </title>
+
+    <columnHeader>
+        <band height="40">
+            <staticText><reportElement x="0" y="0" width="55" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000001"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[ID]]></text></staticText>
+            <staticText><reportElement x="55" y="0" width="70" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000002"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[BOOKING ID]]></text></staticText>
+            <staticText><reportElement x="125" y="0" width="70" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000003"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[PNR]]></text></staticText>
+            <staticText><reportElement x="195" y="0" width="105" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000004"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[FIRST NAME]]></text></staticText>
+            <staticText><reportElement x="300" y="0" width="105" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000005"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[LAST NAME]]></text></staticText>
+            <staticText><reportElement x="405" y="0" width="70" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000006"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[GENDER]]></text></staticText>
+            <staticText><reportElement x="475" y="0" width="120" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000007"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[PASSPORT NUMBER]]></text></staticText>
+            <staticText><reportElement x="595" y="0" width="187" height="40" backcolor="#D9EAF7" mode="Opaque" uuid="c2000001-0000-0000-0000-000000000008"/><box><pen lineWidth="0.6"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="9" isBold="true"/></textElement><text><![CDATA[SEAT]]></text></staticText>
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height="34">
+            <textField><reportElement x="0" y="0" width="55" height="34" uuid="c3000001-0000-0000-0000-000000000001"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{id}]]></textFieldExpression></textField>
+            <textField><reportElement x="55" y="0" width="70" height="34" uuid="c3000001-0000-0000-0000-000000000002"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{bookingId}]]></textFieldExpression></textField>
+            <textField><reportElement x="125" y="0" width="70" height="34" uuid="c3000001-0000-0000-0000-000000000003"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8" isBold="true"/></textElement><textFieldExpression><![CDATA[$F{pnr}]]></textFieldExpression></textField>
+            <textField><reportElement x="195" y="0" width="105" height="34" uuid="c3000001-0000-0000-0000-000000000004"/><box><pen lineWidth="0.5"/></box><textElement verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{firstName}]]></textFieldExpression></textField>
+            <textField><reportElement x="300" y="0" width="105" height="34" uuid="c3000001-0000-0000-0000-000000000005"/><box><pen lineWidth="0.5"/></box><textElement verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{lastName}]]></textFieldExpression></textField>
+            <textField><reportElement x="405" y="0" width="70" height="34" uuid="c3000001-0000-0000-0000-000000000006"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{gender}]]></textFieldExpression></textField>
+            <textField isBlankWhenNull="true"><reportElement x="475" y="0" width="120" height="34" uuid="c3000001-0000-0000-0000-000000000007"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA[$F{passportNumber}]]></textFieldExpression></textField>
+            <textField isBlankWhenNull="true"><reportElement x="595" y="0" width="187" height="34" uuid="c3000001-0000-0000-0000-000000000008"/><box><pen lineWidth="0.5"/></box><textElement textAlignment="Center" verticalAlignment="Middle"><font size="8" isBold="true"/></textElement><textFieldExpression><![CDATA[$F{seatNumber}]]></textFieldExpression></textField>
+        </band>
+    </detail>
+
+    <pageFooter>
+        <band height="30">
+            <line><reportElement x="0" y="0" width="782" height="1" uuid="c4000001-0000-0000-0000-000000000001"/></line>
+            <staticText><reportElement x="0" y="7" width="500" height="18" uuid="c4000001-0000-0000-0000-000000000002"/><textElement verticalAlignment="Middle"><font size="8"/></textElement><text><![CDATA[Airline Portal - Booking Service]]></text></staticText>
+            <textField><reportElement x="620" y="7" width="162" height="18" uuid="c4000001-0000-0000-0000-000000000003"/><textElement textAlignment="Right" verticalAlignment="Middle"><font size="8"/></textElement><textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression></textField>
+        </band>
+    </pageFooter>
+    <summary>
+        <band height="270">
+            <staticText>
+                <reportElement x="0" y="5" width="782" height="25" backcolor="#EAF3F8" mode="Opaque" uuid="c5000001-0000-0000-0000-000000000001"/>
+                <box><pen lineWidth="0.5"/></box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="13" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Passenger Gender Distribution]]></text>
+            </staticText>
+
+            <pieChart>
+                <chart>
+                    <reportElement x="191" y="35" width="400" height="220" uuid="c5000001-0000-0000-0000-000000000002"/>
+                    <chartTitle>
+                        <font size="12" isBold="true"/>
+                    </chartTitle>
+                    <chartLegend>
+                        <font size="9"/>
+                    </chartLegend>
+                </chart>
+                <pieDataset>
+                    <keyExpression><![CDATA[$F{gender}]]></keyExpression>
+                    <valueExpression><![CDATA[1]]></valueExpression>
+                    <labelExpression><![CDATA[$F{gender}]]></labelExpression>
+                </pieDataset>
+                <piePlot>
+                    <plot/>
+                    <itemLabel>
+                        <font size="9"/>
+                    </itemLabel>
+                </piePlot>
+            </pieChart>
+        </band>
+    </summary>
+
+</jasperReport>
