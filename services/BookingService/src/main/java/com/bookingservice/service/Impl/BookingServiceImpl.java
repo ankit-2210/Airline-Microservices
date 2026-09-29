@@ -34,7 +34,7 @@ public class BookingServiceImpl implements BookingService {
         bookingHelper.validateCreate(request);
 
         externalService.getUserById(request.getUserId());
-        externalService.getFlightById(request.getFlightId());
+        externalService.getInstanceById(request.getFlightInstanceId());
 
         String pnr = bookingHelper.generateUniquePnr();
         Booking booking = BookingMapper.toEntity(request, pnr);
