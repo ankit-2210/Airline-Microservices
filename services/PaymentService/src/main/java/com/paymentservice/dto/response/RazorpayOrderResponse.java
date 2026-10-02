@@ -6,7 +6,6 @@ import lombok.*;
 @Data
 public class RazorpayOrderResponse {
     private String id;
-
     private String entity;
 
     private Long amount;
@@ -18,11 +17,8 @@ public class RazorpayOrderResponse {
     private Long amountDue;
 
     private String currency;
-
     private String status;
-
     private String receipt;
-
     private Integer attempts;
 
 }

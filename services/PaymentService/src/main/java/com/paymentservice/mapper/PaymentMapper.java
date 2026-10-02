@@ -10,7 +10,10 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class PaymentMapper {
+public final class PaymentMapper {
+    private PaymentMapper(){
+
+    }
 
     public static Payment toEntity(PaymentRequest request){
         if(request == null)

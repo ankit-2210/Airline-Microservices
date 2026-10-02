@@ -2,7 +2,6 @@ package com.paymentservice.service.Impl;
 
 import com.airlineportal.event.Payment.PaymentCompletedEvent;
 import com.airlineportal.event.Payment.PaymentFailedEvent;
-import com.airlineportal.payload.request.Payment.PaymentRequest;
 import com.airlineportal.payload.response.Payment.PaymentResponse;
 import com.airlineportal.utils.Booking.PaymentStatus;
 import com.paymentservice.dto.request.VerifyPaymentRequest;
@@ -14,15 +13,12 @@ import com.paymentservice.mapper.PaymentMapper;
 import com.paymentservice.model.Payment;
 import com.paymentservice.repository.PaymentRepository;
 import com.paymentservice.service.PaymentService;
-import com.razorpay.RazorpayException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
-
 
 @Service
 @RequiredArgsConstructor
@@ -33,69 +29,58 @@ public class PaymentServiceImpl implements PaymentService {
     private final RazorpayService razorpayService;
     private final PaymentEventPublisher paymentEventPublisher;
 
-    // Create Razorpay Order
     @Override
     @Transactional
-    public PaymentResponse createRazorpayOrder(Long paymentId){
+    public PaymentResponse createRazorpayOrder(Long paymentId) {
         Payment payment = paymentHelper.findById(paymentId);
 
         paymentHelper.validateCanCreateOrder(payment);
         long amountInPaise = payment.getAmount().multiply(BigDecimal.valueOf(100)).longValueExact();
 
-        try {
-            RazorpayOrderResponse order = razorpayService.createOrder(amountInPaise, "BOOKING-" + payment.getBookingId());
-            if (order == null || order.getId() == null) {
-                throw new IllegalStateException("Unable to create Razorpay order");
-            }
-
-            payment.setRazorpayOrderId(order.getId());
-            payment.setUpdatedAt(LocalDateTime.now());
-
-            Payment saved = paymentRepository.save(payment);
-            PaymentResponse response = PaymentMapper.toResponse(saved);
-
-            response.setRazorpayKeyId(razorpayService.getKeyId());
-            return response;
+        RazorpayOrderResponse order = razorpayService.createOrder(amountInPaise, "BOOKING-" + payment.getBookingId());
+        if (order == null || order.getId() == null) {
+            throw new IllegalStateException("Unable to create Razorpay order");
         }
-        catch (RazorpayException e) {
-            throw new IllegalStateException("Razorpay order creation failed", e);
-        }
+
+        payment.setRazorpayOrderId(order.getId());
+        payment.setUpdatedAt(LocalDateTime.now());
+
+        Payment saved = paymentRepository.save(payment);
+        PaymentResponse response = PaymentMapper.toResponse(saved);
+
+        response.setRazorpayKeyId(razorpayService.getKeyId());
+        return response;
     }
 
-    // Verify Payment
     @Override
+    @Transactional
     public PaymentResponse verifyPayment(Long paymentId, VerifyPaymentRequest request) {
         Payment payment = paymentHelper.findById(paymentId);
 
         paymentHelper.validateOrder(payment, request.getRazorpayOrderId());
-        try{
-            boolean verified = razorpayService.verifyPaymentSignature(request.getRazorpayOrderId(), request.getRazorpayPaymentId(), request.getRazorpaySignature());
-            if(!verified){
-                payment.setPaymentStatus(PaymentStatus.FAILED);
-                payment.setUpdatedAt(LocalDateTime.now());
 
-                Payment failed = paymentRepository.save(payment);
-                publishPaymentFailed(failed, "Invalid Razorpay signature");
-                throw new IllegalArgumentException("Invalid Razorpay payment signature");
-            }
-
-            payment.setRazorpayPaymentId(request.getRazorpayPaymentId());
-            payment.setRazorpaySignature(request.getRazorpaySignature());
-            payment.setPaymentStatus(PaymentStatus.SUCCESS);
-            payment.setTransactionId(request.getRazorpayPaymentId());
-            payment.setPaidAt(LocalDateTime.now());
+        boolean verified = razorpayService.verifyPaymentSignature(request.getRazorpayOrderId(), request.getRazorpayPaymentId(), request.getRazorpaySignature());
+        if (!verified) {
+            payment.setPaymentStatus(PaymentStatus.FAILED);
             payment.setUpdatedAt(LocalDateTime.now());
 
-            Payment saved = paymentRepository.save(payment);
-            publishPaymentCompleted(saved);
+            Payment failed = paymentRepository.save(payment);
+            publishPaymentFailed(failed, "Invalid Razorpay signature");
+            throw new IllegalArgumentException("Invalid Razorpay payment signature");
+        }
 
-            return PaymentMapper.toResponse(saved);
-        }
-        catch (RazorpayException e) {
-            throw new IllegalStateException("Payment verification failed", e);
-        }
+        payment.setRazorpayPaymentId(request.getRazorpayPaymentId());
+        payment.setRazorpaySignature(request.getRazorpaySignature());
+        payment.setTransactionId(request.getRazorpayPaymentId());
+        payment.setPaymentStatus(PaymentStatus.SUCCESS);
+        payment.setPaidAt(LocalDateTime.now());
+        payment.setUpdatedAt(LocalDateTime.now());
+
+        Payment saved = paymentRepository.save(payment);
+
+        publishPaymentCompleted(saved);
+        return PaymentMapper.toResponse(saved);
     }
-
 
     @Override
     public PaymentResponse getById(Long paymentId) {
@@ -107,10 +92,10 @@ public class PaymentServiceImpl implements PaymentService {
         return PaymentMapper.toResponse(paymentHelper.findByBookingId(bookingId));
     }
 
-    // Events
+
+    // PUBLISH PAYMENT COMPLETED
     private void publishPaymentCompleted(Payment payment){
-        PaymentCompletedEvent event =
-                PaymentCompletedEvent.builder()
+        PaymentCompletedEvent event = PaymentCompletedEvent.builder()
                         .paymentId(payment.getId())
                         .bookingId(payment.getBookingId())
                         .userId(payment.getUserId())
@@ -128,6 +113,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
 
+    // PUBLISH FAILURE EVENT
     private void publishPaymentFailed(Payment payment, String reason){
         PaymentFailedEvent event = PaymentFailedEvent.builder()
                         .paymentId(payment.getId())
@@ -136,6 +122,7 @@ public class PaymentServiceImpl implements PaymentService {
 
                         .pnr(payment.getPnr())
                         .amount(payment.getAmount())
+
                         .razorpayOrderId(payment.getRazorpayOrderId())
 
                         .reason(reason)
@@ -144,14 +131,6 @@ public class PaymentServiceImpl implements PaymentService {
 
         paymentEventPublisher.publishPaymentFailed(event);
     }
-
-    private String generateTransactionId() {
-        return "TXN-" + UUID.randomUUID().toString()
-                .replace("-", "")
-                .substring(0, 20)
-                .toUpperCase();
-    }
-
 
 
 }

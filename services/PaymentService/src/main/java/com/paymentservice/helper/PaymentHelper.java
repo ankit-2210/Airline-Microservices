@@ -69,12 +69,7 @@ public class PaymentHelper {
         if(!payment.getRazorpayOrderId().equals(razorpayOrderId)){
             throw new IllegalArgumentException("Razorpay order does not belong to this payment");
         }
-    }
 
-    public void validateWebhookSignature(String signature){
-        if(!StringUtils.hasText(signature)){
-            throw new IllegalArgumentException("Webhook signature is required");
-        }
     }
 
 }

@@ -4,57 +4,66 @@ import com.paymentservice.config.RazorpayConfig;
 import com.paymentservice.dto.response.RazorpayOrderResponse;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
-
-import com.razorpay.Order;
-import com.razorpay.RazorpayClient;
-import com.razorpay.RazorpayException;
-import com.razorpay.Utils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestClient;
+
+import javax.crypto.Mac;
+import javax.crypto.spec.SecretKeySpec;
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class RazorpayService {
     private final RazorpayConfig razorpayConfig;
+    private final RestClient restClient;
 
     // CREATE RAZORPAY ORDER
-    public RazorpayOrderResponse createOrder(long amountInPaise, String receipt) throws RazorpayException {
-        RazorpayClient client = new RazorpayClient(razorpayConfig.getKeyId(), razorpayConfig.getKeySecret());
+    public RazorpayOrderResponse createOrder(long amountInPaise, String receipt){
+        String credentials = razorpayConfig.getKeyId() + ":" + razorpayConfig.getKeySecret();
 
-        JSONObject request = new JSONObject();
-        request.put("amount", amountInPaise);
-        request.put("currency", razorpayConfig.getCurrency());
-        request.put("receipt", receipt);
+        String encodedCredentials = Base64.getEncoder()
+                        .encodeToString(credentials.getBytes(StandardCharsets.UTF_8));
 
-        Order order = client.orders.create(request);
+        Map<String, Object> request = Map.of(
+                        "amount", amountInPaise,
+                        "currency", razorpayConfig.getCurrency(),
+                        "receipt", receipt);
 
-        RazorpayOrderResponse response = new RazorpayOrderResponse();
-        response.setId(order.get("id"));
-        response.setEntity(order.get("entity"));
-        response.setAmount(((Number) order.get("amount")).longValue());
-        response.setAmountPaid(((Number) order.get("amount_paid")).longValue());
-        response.setAmountDue(((Number) order.get("amount_due")).longValue());
-        response.setCurrency(order.get("currency"));
-        response.setStatus(order.get("status"));
-        response.setReceipt(order.get("receipt"));
-        response.setAttempts(((Number) order.get("attempts")).intValue());
-
-        return response;
+        return restClient
+                .post()
+                .uri("/v1/orders")
+                .header(HttpHeaders.AUTHORIZATION, "Basic " + encodedCredentials)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(request)
+                .retrieve()
+                .body(RazorpayOrderResponse.class);
     }
 
 
     // VERIFY PAYMENT SIGNATURE
-    public boolean verifyPaymentSignature(String orderId, String paymentId, String signature) throws RazorpayException{
-        JSONObject attributes = new JSONObject();
-        attributes.put("razorpay_order_id", orderId);
-        attributes.put("razorpay_payment_id", paymentId);
-        attributes.put("razorpay_signature", signature);
+    public boolean verifyPaymentSignature(String orderId, String paymentId, String signature){
+        try {
+            String payload = orderId + "|" + paymentId;
+            Mac mac = Mac.getInstance("HmacSHA256");
 
-        return Utils.verifyPaymentSignature(attributes, razorpayConfig.getKeySecret());
+            SecretKeySpec secretKey = new SecretKeySpec(razorpayConfig.getKeySecret()
+                                    .getBytes(StandardCharsets.UTF_8), "HmacSHA256");
+
+            mac.init(secretKey);
+            byte[] digest = mac.doFinal(payload.getBytes(StandardCharsets.UTF_8));
+
+            String generatedSignature = Base64.getEncoder().encodeToString(digest);
+            return generatedSignature.equals(signature);
+        }
+        catch (Exception e) {
+            throw new IllegalStateException("Unable to verify Razorpay signature", e);
+        }
     }
 
-    public boolean verifyWebhookSignature(String payload, String signature) throws RazorpayException {
-        return Utils.verifyWebhookSignature(payload, signature, razorpayConfig.getWebhookSecret());
-    }
 
 
     public String getKeyId() {
