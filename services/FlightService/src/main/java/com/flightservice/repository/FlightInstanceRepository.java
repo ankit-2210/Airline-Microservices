@@ -50,7 +50,7 @@ public interface FlightInstanceRepository extends JpaRepository<FlightInstance, 
     @Query("""
             update FlightInstance fi
             set fi.availableSeats = fi.availableSeats - :seats
-            where f.id = :instanceId
+            where fi.id = :instanceId
                 and fi.availableSeats >= :seats
                 and fi.active = true
             """)

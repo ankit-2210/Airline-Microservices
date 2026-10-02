@@ -1,5 +1,6 @@
 package com.bookingservice.service.Impl;
 
+import com.airlineportal.event.Booking.BookingCreatedEvent;
 import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Booking.BookingRequest;
 import com.airlineportal.payload.response.ApiResponse;
@@ -9,8 +10,10 @@ import com.airlineportal.payload.response.Flight.FlightResponse;
 import com.airlineportal.payload.response.User.UserResponse;
 import com.airlineportal.utils.Booking.BookingStatus;
 import com.airlineportal.utils.Booking.PaymentStatus;
+import com.bookingservice.event.BookingEventPublisher;
 import com.bookingservice.external.ExternalService;
 import com.bookingservice.helper.BookingHelper;
+import com.bookingservice.mapper.BookingEventMapper;
 import com.bookingservice.mapper.BookingMapper;
 import com.bookingservice.model.Booking;
 import com.bookingservice.repository.BookingRepository;
@@ -31,6 +34,7 @@ public class BookingServiceImpl implements BookingService {
     private final BookingRepository bookingRepository;
     private final BookingHelper bookingHelper;
     private final ExternalService externalService;
+    private final BookingEventPublisher bookingEventPublisher;
 
     @Override
     @Transactional
@@ -79,6 +83,10 @@ public class BookingServiceImpl implements BookingService {
             booking.setTotalAmount(BigDecimal.ZERO);
 
             Booking saved = bookingRepository.save(booking);
+
+            BookingCreatedEvent event = BookingEventMapper.toEvent(saved);
+            bookingEventPublisher.publishBookingCreated(event);
+
             return BookingMapper.toResponse(saved);
         }
         catch (RuntimeException exception){
