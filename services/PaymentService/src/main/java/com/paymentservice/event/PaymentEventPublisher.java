@@ -1,8 +1,8 @@
 package com.paymentservice.event;
 
 
-import com.airlineportal.event.Payment.PaymentCompletedEvent;
-import com.airlineportal.event.Payment.PaymentFailedEvent;
+import com.airlineportal.event.payment.PaymentCompletedEvent;
+import com.airlineportal.event.payment.PaymentFailedEvent;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Component;

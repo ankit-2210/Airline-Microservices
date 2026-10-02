@@ -1,7 +1,6 @@
 package com.bookingservice.mapper;
 
-import com.airlineportal.event.Booking.BookingCreatedEvent;
-import com.airlineportal.payload.request.Booking.BookingRequest;
+import com.airlineportal.event.booking.BookingCreatedEvent;
 import com.bookingservice.model.Booking;
 
 import java.time.LocalDateTime;

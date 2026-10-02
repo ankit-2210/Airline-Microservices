@@ -1,4 +1,4 @@
-package com.airlineportal.event.Payment;
+package com.airlineportal.event.payment;
 
 import lombok.*;
 

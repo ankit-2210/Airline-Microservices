@@ -1,6 +1,6 @@
 package com.paymentservice.event;
 
-import com.airlineportal.event.Booking.BookingCreatedEvent;
+import com.airlineportal.event.booking.BookingCreatedEvent;
 import com.airlineportal.utils.Booking.PaymentStatus;
 import com.paymentservice.model.Payment;
 import com.paymentservice.repository.PaymentRepository;
@@ -25,9 +25,8 @@ public class BookingEventConsumer {
         if(paymentRepository.existsByBookingId(event.getBookingId()))
             return;
 
-        if(event.getTotalAmount() == null || event.getTotalAmount().compareTo(BigDecimal.ZERO) <= 0){
-            throw new IllegalArgumentException("Invalid booking amount: " + event.getTotalAmount());
-        }
+        if(event.getTotalAmount() == null || event.getTotalAmount().compareTo(BigDecimal.ZERO) < 0)
+            return;
 
         Payment payment = Payment.builder()
                 .bookingId(event.getBookingId())

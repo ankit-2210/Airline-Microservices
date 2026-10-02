@@ -5,7 +5,6 @@ import com.airlineportal.payload.request.Booking.BookingRequest;
 import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Booking.BookingResponse;
 import com.bookingservice.service.BookingService;
-import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.*;

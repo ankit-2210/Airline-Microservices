@@ -66,16 +66,16 @@ public class ExternalServiceImpl implements ExternalService{
     }
 
 
-    public FlightInstanceResponse flightInstanceFallback(Long instanceId, Throwable throwable){
-        throw new IllegalStateException("Flight Service is currently unavailable.");
+    public ApiResponse<FlightInstanceResponse> flightInstanceFallback(Long instanceId, Throwable throwable){
+        return ApiResponse.failure("Flight Service is currently unavailable.");
     }
 
-    public boolean reserveSeatsFallback(Long instanceId, Integer seats, Throwable throwable){
-        throw new IllegalStateException("Flight Service is currently unavailable. " + "Seats could not be reserved.");
+    public ApiResponse<Boolean> reserveSeatsFallback(Long instanceId, Integer seats, Throwable throwable){
+        return ApiResponse.failure("Flight Service is currently unavailable. " + "Seats could not be reserved.");
     }
 
-    public boolean releaseSeatsFallback(Long instanceId, Integer seats, Throwable throwable){
-        throw new IllegalStateException("Flight Service is currently unavailable. " + "Seats could not be released.");
+    public ApiResponse<Boolean> releaseSeatsFallback(Long instanceId, Integer seats, Throwable throwable){
+        return ApiResponse.failure("Flight Service is currently unavailable. " + "Seats could not be released.");
     }
 
 }

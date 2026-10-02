@@ -1,7 +1,7 @@
 package com.paymentservice.service.Impl;
 
-import com.airlineportal.event.Payment.PaymentCompletedEvent;
-import com.airlineportal.event.Payment.PaymentFailedEvent;
+import com.airlineportal.event.payment.PaymentCompletedEvent;
+import com.airlineportal.event.payment.PaymentFailedEvent;
 import com.airlineportal.payload.response.Payment.PaymentResponse;
 import com.airlineportal.utils.Booking.PaymentStatus;
 import com.paymentservice.dto.request.VerifyPaymentRequest;

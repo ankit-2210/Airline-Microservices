@@ -1,6 +1,6 @@
 package com.bookingservice.service.Impl;
 
-import com.airlineportal.event.Booking.BookingCreatedEvent;
+import com.airlineportal.event.booking.BookingCreatedEvent;
 import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Booking.BookingRequest;
 import com.airlineportal.payload.response.ApiResponse;
