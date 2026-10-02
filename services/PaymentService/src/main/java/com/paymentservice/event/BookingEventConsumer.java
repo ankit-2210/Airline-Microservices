@@ -13,10 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class BookingEventConsumer {
     private final PaymentRepository paymentRepository;
 
-    @KafkaListener(
-            topics = "booking.created.v1",
-            groupId = "payment-service"
-    )
+    @KafkaListener(topics = "booking.created.v1", groupId = "payment-service")
     @Transactional
     public void handleBookingCreated(BookingCreatedEvent event) {
         if (event == null) {

@@ -1,13 +1,16 @@
 package com.paymentservice.mapper;
 
+import com.airlineportal.event.Payment.PaymentCompletedEvent;
+import com.airlineportal.event.Payment.PaymentFailedEvent;
 import com.airlineportal.payload.request.Payment.PaymentRequest;
 import com.airlineportal.payload.response.Payment.PaymentResponse;
+import com.paymentservice.event.PaymentEventPublisher;
 import com.paymentservice.model.Payment;
+import lombok.RequiredArgsConstructor;
 
-public final class PaymentMapper {
-    private PaymentMapper(){
+import java.time.LocalDateTime;
 
-    }
+public class PaymentMapper {
 
     public static Payment toEntity(PaymentRequest request){
         if(request == null)
@@ -45,6 +48,9 @@ public final class PaymentMapper {
                 .updatedAt(payment.getUpdatedAt())
                 .build();
     }
+
+
+
 
 
 }

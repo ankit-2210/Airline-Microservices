@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ConfigurationProperties(prefix = "razorpay")
 public class RazorpayConfig {
-    private String ketId;
+    private String keyId;
 
     private String keySecret;
 
