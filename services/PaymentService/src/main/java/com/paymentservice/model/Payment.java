@@ -56,6 +56,14 @@ public class Payment {
         @Column(name = "razorpay_order_id", unique = true, length = 100)
         private String razorpayOrderId;
 
+
+        @Column(name = "razorpay_payment_link_id", unique = true, length = 100)
+        private String razorpayPaymentLinkId;
+
+        @Column(name = "razorpay_payment_link_url", length = 500)
+        private String razorpayPaymentLinkUrl;
+
+
         @Column(name = "razorpay_payment_id", unique = true, length = 100)
         private String razorpayPaymentId;
 

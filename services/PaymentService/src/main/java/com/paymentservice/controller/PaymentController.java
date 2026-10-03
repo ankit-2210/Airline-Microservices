@@ -15,14 +15,19 @@ import org.springframework.web.bind.annotation.*;
 public class PaymentController {
     private final PaymentService paymentService;
 
-    @PostMapping("/{paymentId}/order")
-    public ApiResponse<PaymentResponse> createPayment(@PathVariable Long paymentId){
-        return ApiResponse.success(paymentService.createRazorpayOrder(paymentId));
-    }
+//    @PostMapping("/{paymentId}/order")
+//    public ApiResponse<PaymentResponse> createPayment(@PathVariable Long paymentId){
+//        return ApiResponse.success(paymentService.createRazorpayOrder(paymentId));
+//    }
+//
+//    @PostMapping("/{paymentId}/verify")
+//    public ApiResponse<PaymentResponse> verifyPayment(@PathVariable Long paymentId, @Valid @RequestBody VerifyPaymentRequest request){
+//        return ApiResponse.success(paymentService.verifyPayment(paymentId, request));
+//    }
 
-    @PostMapping("/{paymentId}/verify")
-    public ApiResponse<PaymentResponse> verifyPayment(@PathVariable Long paymentId, @Valid @RequestBody VerifyPaymentRequest request){
-        return ApiResponse.success(paymentService.verifyPayment(paymentId, request));
+    @PostMapping("/{paymentId}/link")
+    public ApiResponse<PaymentResponse> createPaymentLink(@PathVariable Long paymentId){
+        return ApiResponse.success(paymentService.createPaymentLink(paymentId));
     }
 
     @GetMapping("/{paymentId}")

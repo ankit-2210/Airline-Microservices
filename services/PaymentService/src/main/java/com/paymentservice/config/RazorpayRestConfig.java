@@ -7,11 +7,16 @@ import org.springframework.web.client.RestClient;
 @Configuration
 public class RazorpayRestConfig {
 
+//    @Bean
+//    public RestClient razorpayRestClient(RazorpayConfig razorpayConfig){
+//        return RestClient.builder()
+//                .baseUrl(razorpayConfig.getBaseUrl())
+//                .build();
+//    }
+
     @Bean
-    public RestClient razorpayRestClient(RazorpayConfig razorpayConfig){
-        return RestClient.builder()
-                .baseUrl(razorpayConfig.getBaseUrl())
-                .build();
+    public RestClient razorpayRestClient(){
+        return RestClient.builder().build();
     }
 
 }

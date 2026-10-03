@@ -18,7 +18,8 @@ public class PaymentFailedEvent {
     private String pnr;
     private BigDecimal amount;
 
-    private String razorpayOrderId;
+//    private String razorpayOrderId;
+    private String razorpayPaymentLinkId;
     private String reason;
 
     private LocalDateTime occurredAt;

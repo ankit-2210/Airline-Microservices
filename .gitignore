@@ -1,0 +1,4 @@
+# Local secrets
+cloud/config-secrets/
+*.env
+*.secret

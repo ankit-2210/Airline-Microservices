@@ -47,6 +47,23 @@ public class SecurityConfig {
                                 )
                                 .permitAll()
 
+                                // Razorpay callback
+                                // Browser is redirected here by Razorpay
+                                .requestMatchers(
+                                    "/api/payments/callback/razorpay"
+                                ).permitAll()
+
+                                // Razorpay webhook
+                                // Razorpay server calls this endpoint
+                                .requestMatchers(
+                                        "/api/payments/webhook/razorpay"
+                                ).permitAll()
+
+                                // All other payment APIs require JWT
+                                .requestMatchers(
+                                        "/api/payments/**"
+                                ).authenticated()
+
                                 .anyRequest().authenticated()
                 )
                 .addFilterBefore(

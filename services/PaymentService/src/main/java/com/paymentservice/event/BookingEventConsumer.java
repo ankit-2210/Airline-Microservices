@@ -21,12 +21,17 @@ public class BookingEventConsumer {
         if(event == null)
             return;
 
+        if(event.getBookingId() == null)
+            return;
+
         // Prevent duplicate payment records
         if(paymentRepository.existsByBookingId(event.getBookingId()))
             return;
 
-        if(event.getTotalAmount() == null || event.getTotalAmount().compareTo(BigDecimal.ZERO) < 0)
+        if(event.getTotalAmount() == null || event.getTotalAmount().compareTo(BigDecimal.ZERO) < 0) {
+            System.out.println("Invalid booking amount for booking: " + event.getBookingId());
             return;
+        }
 
         Payment payment = Payment.builder()
                 .bookingId(event.getBookingId())
@@ -40,6 +45,8 @@ public class BookingEventConsumer {
                 .build();
 
         paymentRepository.save(payment);
+        System.out.println("Payment created for Booking: " + event.getBookingId());
+
     }
 
 }

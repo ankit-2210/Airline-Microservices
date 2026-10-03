@@ -18,7 +18,8 @@ public class PaymentCompletedEvent {
     private String pnr;
     private BigDecimal amount;
 
-    private String razorpayOrderId;
+//    private String razorpayOrderId;
+    private String razorpayPaymentLinkId;
     private String razorpayPaymentId;
 
     private LocalDateTime occurredAt;

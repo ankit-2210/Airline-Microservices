@@ -37,7 +37,10 @@ public final class PaymentMapper {
                 .paymentMethod(payment.getPaymentMethod())
 
                 .transactionId(payment.getTransactionId())
-                .razorpayOrderId(payment.getRazorpayOrderId())
+
+                .razorpayPaymentLinkId(payment.getRazorpayPaymentLinkId())
+                .razorpayPaymentLinkUrl(payment.getRazorpayPaymentLinkUrl())
+//                .razorpayOrderId(payment.getRazorpayOrderId())
                 .razorpayPaymentId(payment.getRazorpayPaymentId())
 
                 .paidAt(payment.getPaidAt())

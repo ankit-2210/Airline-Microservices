@@ -32,12 +32,8 @@ public class PaymentEventConsumer {
         if (booking == null)
             return;
 
-        /*
-         * Idempotency:
-         * If the payment event is delivered again,
-         * don't process it again.
-         */
-        if (booking.getPaymentStatus() == PaymentStatus.SUCCESS)
+        // Idempotency
+        if (booking.getPaymentStatus() == PaymentStatus.SUCCESS && booking.getBookingStatus() == BookingStatus.CONFIRMED)
             return;
 
 
@@ -46,6 +42,8 @@ public class PaymentEventConsumer {
         booking.setConfirmedAt(LocalDateTime.now());
 
         bookingRepository.save(booking);
+        System.out.println("Booking confirmed: " + booking.getId());
+
     }
 
 
@@ -58,6 +56,7 @@ public class PaymentEventConsumer {
 
         Booking booking = bookingRepository.findById(event.getBookingId())
                         .orElse(null);
+
         if (booking == null)
             return;
 

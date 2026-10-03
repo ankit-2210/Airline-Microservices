@@ -22,9 +22,14 @@ public class PaymentResponse {
     private String paymentMethod;
 
     private String transactionId;
-    private String razorpayOrderId;
+//    private String razorpayOrderId;
+
+    private String razorpayPaymentLinkId;
+    private String razorpayPaymentLinkUrl;
+
+
     private String razorpayPaymentId;
-    private String razorpayKeyId;
+//    private String razorpayKeyId;
 
     private LocalDateTime paidAt;
     private LocalDateTime createdAt;

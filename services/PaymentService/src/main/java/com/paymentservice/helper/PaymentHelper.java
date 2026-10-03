@@ -42,6 +42,24 @@ public class PaymentHelper {
         }
     }
 
+
+    public void validateCanCreatePaymentLink(Payment payment){
+        if(payment == null){
+            throw new IllegalArgumentException("Payment cannot be null");
+        }
+
+        validateAmount(payment.getAmount());
+        if(payment.getPaymentStatus() == PaymentStatus.SUCCESS){
+            throw new IllegalArgumentException("Payment is already completed");
+        }
+
+        if(payment.getRazorpayPaymentLinkId() != null && !payment.getRazorpayPaymentLinkId().isBlank()){
+            throw new IllegalArgumentException("Payment link already exists");
+        }
+
+    }
+
+
     public void validateCanCreateOrder(Payment payment){
         if(payment == null){
             throw new IllegalArgumentException("Payment cannot be null");

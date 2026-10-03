@@ -80,7 +80,7 @@ public class BookingServiceImpl implements BookingService {
 
             booking.setBookingStatus(BookingStatus.PENDING);
             booking.setPaymentStatus(PaymentStatus.PENDING);
-            booking.setTotalAmount(BigDecimal.ZERO);
+            booking.setTotalAmount(BigDecimal.valueOf(100));
 
             Booking saved = bookingRepository.save(booking);
 
