@@ -694,17 +694,21 @@ AI provider integration
 AI-powered flight and booking assistance
 Further end-to-end booking/payment improvements
 ---
+
+
 🚀 Future Enhancements
 Potential future modules include:
-NotificationService
-Seat selection service
-Baggage management
-Check-in service
-Fare management
-Loyalty/rewards
-Coupon and discount management
-Distributed tracing
-Centralized logging
-Prometheus and Grafana monitoring
+- NotificationService
+- Seat selection service
+- Baggage management
+- Check-in service
+- Fare management
+- Loyalty/rewards
+- Coupon and discount management
+- Distributed tracing
+- Centralized logging
+- Prometheus and Grafana monitoring
 These are planned enhancements and are not currently represented as
 implemented microservices.
+
+
