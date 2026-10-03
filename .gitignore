@@ -1,4 +1,6 @@
-# Local secrets
+# Local configuration secrets
 cloud/config-secrets/
+
+# Environment files
+.env
 *.env
-*.secret
