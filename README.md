@@ -595,6 +595,7 @@ Lombok	Boilerplate reduction
 Bean Validation	Request validation
 Docker	Containerization
 Postman	API testing
+
 ---
 🔄 High-Level System Architecture
 ```text
@@ -661,40 +662,38 @@ Postman	API testing
 ---
 📌 Current Development Status
 ✅ Implemented
-User Service
-JWT authentication
-Role-based authorization
-Location Service
-City and Airport management
-Airline management
-Aircraft management
-Flight management
-Flight schedules
-Flight instances
-Flight search
-Elasticsearch integration
-OpenFeign inter-service communication
-Resilience4j Retry / Circuit Breaker
-JasperReports PDF generation
-Booking and Passenger domain
-Booking validation architecture
-Atomic flight-instance seat reservation/release
-Booking cancellation and seat release
-Apache Kafka integration
-Booking Kafka events
-Payment Kafka events
-PaymentService
-Razorpay Payment Links
-Razorpay callback/webhook handling
-Payment reporting
+- User Service
+- JWT authentication
+- Role-based authorization
+- Location Service
+- City and Airport management
+- Airline management
+- Aircraft management
+- Flight management
+- Flight schedules
+- Flight instances
+- Flight search
+- Elasticsearch integration
+- OpenFeign inter-service communication
+- Resilience4j Retry / Circuit Breaker
+- JasperReports PDF generation
+- Booking and Passenger domain
+- Booking validation architecture
+- Atomic flight-instance seat reservation/release
+- Booking cancellation and seat release
+- Apache Kafka integration
+- Booking Kafka events
+- Payment Kafka events
+- PaymentService
+- Razorpay Payment Links
+- Razorpay callback/webhook handling
+- Payment reporting
 🚧 In Development
-AIService
-PromptService
-AI provider integration
-AI-powered flight and booking assistance
-Further end-to-end booking/payment improvements
----
-
+- AIService
+- PromptService
+- AI provider integration
+- AI-powered flight and booking assistance
+- Further end-to-end booking/payment improvements
 
 🚀 Future Enhancements
 Potential future modules include:
