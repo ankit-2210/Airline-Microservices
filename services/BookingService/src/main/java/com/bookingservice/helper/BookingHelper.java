@@ -73,12 +73,20 @@ public class BookingHelper {
             throw new IllegalArgumentException("At least one passenger is required");
         }
 
+        Set<String> seatNumbers = new HashSet<>();
         for(PassengerRequest passenger: passengers){
            if(passenger == null){
                throw new IllegalArgumentException("Passenger cannot be null");
            }
 
-           validatePassenger(passenger);
+            validatePassenger(passenger);
+            String seatNumber = passenger.getSeatNumber().trim().toUpperCase();
+            if (!seatNumbers.add(seatNumber)) {
+                throw new IllegalArgumentException("Duplicate seat number: " + seatNumber);
+            }
+
+            passenger.setSeatNumber(seatNumber);
+
         }
     }
 
@@ -95,9 +103,11 @@ public class BookingHelper {
         if(passenger.getPassportNumber() != null && passenger.getPassportNumber().isBlank()){
             throw new IllegalArgumentException("Passport number cannot be blank");
         }
-        if (passenger.getSeatNumber() != null && passenger.getSeatNumber().isBlank()){
-            passenger.setSeatNumber(null);
+        if(passenger.getSeatNumber() == null || passenger.getSeatNumber().isBlank()) {
+            throw new IllegalArgumentException("Seat number is required for passenger");
         }
+
+        passenger.setSeatNumber(passenger.getSeatNumber().trim().toUpperCase());
     }
 
     public String generateUniquePnr(){

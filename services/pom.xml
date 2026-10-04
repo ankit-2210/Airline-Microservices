@@ -28,6 +28,7 @@
         <module>PaymentService</module>
         <module>FareService</module>
         <module>SeatService</module>
+        <module>CheckInService</module>
     </modules>
 
 </project>

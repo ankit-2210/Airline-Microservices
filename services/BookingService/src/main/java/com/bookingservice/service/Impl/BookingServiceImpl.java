@@ -9,6 +9,7 @@ import com.airlineportal.payload.response.Booking.BookingResponse;
 import com.airlineportal.payload.response.Fare.FareResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.airlineportal.payload.response.Flight.FlightResponse;
+import com.airlineportal.payload.response.Seat.SeatResponse;
 import com.airlineportal.payload.response.User.UserResponse;
 import com.airlineportal.utils.Booking.BookingStatus;
 import com.airlineportal.utils.Booking.PaymentStatus;
@@ -28,6 +29,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.*;
 
 @Service
 @RequiredArgsConstructor
@@ -88,7 +90,6 @@ public class BookingServiceImpl implements BookingService {
             throw new IllegalArgumentException("Invalid fare amount");
         }
 
-
         // Reserve Seats
         ApiResponse<Boolean> reserveResponse = externalService.reserveSeats(request.getFlightInstanceId(), passengerCount);
         if (reserveResponse == null || !Boolean.TRUE.equals(reserveResponse.getData())) {
@@ -97,6 +98,7 @@ public class BookingServiceImpl implements BookingService {
 
         String pnr = bookingHelper.generateUniquePnr();
 
+        List<String> reservedSeatNumbers = new ArrayList<>();
         try {
             Booking booking = BookingMapper.toEntity(request, pnr, flightId);
 
@@ -106,7 +108,22 @@ public class BookingServiceImpl implements BookingService {
             // Actual fare from FareService
             booking.setTotalAmount(totalAmount);
 
+            // Save first so booking ID is generated
             Booking saved = bookingRepository.save(booking);
+
+            // Reserve individual seats
+            for(var passenger: saved.getPassengers()){
+                String seatNumber = passenger.getSeatNumber();
+                if(seatNumber == null || seatNumber.isBlank())
+                    continue;
+
+                ApiResponse<SeatResponse> seatResponse = externalService.bookSeat(saved.getFlightInstanceId(), seatNumber, saved.getId());
+                if(seatResponse == null || seatResponse.getData() == null){
+                    throw new IllegalArgumentException("Unable to reserve seat: " + seatNumber);
+                }
+
+                reservedSeatNumbers.add(seatNumber.trim().toUpperCase());
+            }
 
             BookingCreatedEvent event = BookingEventMapper.toEvent(saved);
             bookingEventPublisher.publishBookingCreated(event);
@@ -114,6 +131,12 @@ public class BookingServiceImpl implements BookingService {
             return BookingMapper.toResponse(saved);
         }
         catch (RuntimeException exception){
+            // Release individual seats
+            for(String seatNumber : reservedSeatNumbers){
+                externalService.releaseSeat(request.getFlightInstanceId(), seatNumber);
+            }
+
+            // Release FlightInstance capacity
             externalService.releaseSeats(request.getFlightInstanceId(), passengerCount);
             throw exception;
         }
@@ -185,6 +208,12 @@ public class BookingServiceImpl implements BookingService {
         Booking updated = bookingRepository.save(booking);
 
         if(passengerCount>0){
+            for (var passenger : booking.getPassengers()){
+                if (passenger.getSeatNumber() != null && !passenger.getSeatNumber().isBlank()){
+                    externalService.releaseSeat(booking.getFlightInstanceId(), passenger.getSeatNumber());
+                }
+            }
+
             externalService.releaseSeats(booking.getFlightInstanceId(), passengerCount);
         }
 

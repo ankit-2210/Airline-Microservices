@@ -5,14 +5,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
+      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/SEATSERVICE.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/external/ExternalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/external/ExternalServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/FareFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/FareFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Fare/FareQuoteRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Fare/FareQuoteRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/SeatFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/SeatFeignClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Seat/SeatAssignmentRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Seat/SeatAssignmentRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Seat/SeatCreateRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Seat/SeatCreateRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Seat/SeatResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Seat/SeatResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/external/ExternalService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/external/ExternalService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/external/ExternalServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/external/ExternalServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/helper/BookingHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/helper/BookingHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/service/Impl/BookingServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/service/Impl/BookingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/FareService/src/main/java/com/fareservice/service/Impl/FareServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/FareService/src/main/java/com/fareservice/service/Impl/FareServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/controller/SeatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/controller/SeatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/helper/SeatHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/helper/SeatHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/internal/InternalSeatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/internal/InternalSeatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/mapper/SeatMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/mapper/SeatMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/model/Seat.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/model/Seat.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/repository/SeatRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/repository/SeatRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/Impl/SeatServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/Impl/SeatServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/SeatService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/SeatService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -28,9 +43,9 @@
       <list>
         <option value="Exception" />
         <option value="package-info" />
-        <option value="Enum" />
-        <option value="Interface" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -81,6 +96,7 @@
     "Application.FlightserviceApplication.executor": "Run",
     "Application.LocationserviceApplication.executor": "Run",
     "Application.PaymentserviceApplication.executor": "Run",
+    "Application.SeatserviceApplication.executor": "Run",
     "Application.UserserviceApplication.executor": "Run",
     "JUnit.AirportTest.testAirportCreation.executor": "Run",
     "JUnit.AirportTest.testDetailedName.executor": "Run",
@@ -134,10 +150,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\main\java\com\seatservice\external" />
+      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\main\java\com\seatservice\security" />
       <recent name="C:\SpringBoot\airline\airlineportal\services\FareService\src\main\java\com\fareservice\security" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\PaymentService\src\main\java\com\paymentservice" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\BookingService\src\test" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\FlightService\src\test" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\config-secrets" />
@@ -148,20 +164,20 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.seatservice.config" />
+      <recent name="com.seatservice.exception" />
       <recent name="com.fareservice.config" />
       <recent name="com.fareservice.exception" />
       <recent name="com.paymentservice.config" />
-      <recent name="com.bookingservice.exception" />
-      <recent name="com.flightservice.external" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FareserviceApplication">
-    <configuration name="BookingserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.bookingservice.BookingserviceApplication" />
-      <module name="bookingservice" />
+  <component name="RunManager" selected="Application.SeatserviceApplication">
+    <configuration name="EurekaserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.eurekaserver.EurekaserverApplication" />
+      <module name="eurekaserver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.bookingservice.*" />
+          <option name="PATTERN" value="com.eurekaserver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -195,12 +211,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaymentserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.paymentservice.PaymentserviceApplication" />
-      <module name="paymentservice" />
+    <configuration name="SeatserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.SeatserviceApplication" />
+      <module name="seatservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.paymentservice.*" />
+          <option name="PATTERN" value="com.seatservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -222,19 +238,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.BookingserviceApplication" />
       <item itemvalue="Application.FareserviceApplication" />
       <item itemvalue="Application.FlightserviceApplication" />
+      <item itemvalue="Application.SeatserviceApplication" />
+      <item itemvalue="Application.EurekaserverApplication" />
       <item itemvalue="Application.UserserviceApplication" />
-      <item itemvalue="Application.PaymentserviceApplication" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FlightserviceApplication" />
         <item itemvalue="Application.FareserviceApplication" />
-        <item itemvalue="Application.BookingserviceApplication" />
-        <item itemvalue="Application.PaymentserviceApplication" />
+        <item itemvalue="Application.SeatserviceApplication" />
+        <item itemvalue="Application.EurekaserverApplication" />
         <item itemvalue="Application.UserserviceApplication" />
+        <item itemvalue="Application.FlightserviceApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -246,14 +262,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00006" summary="added airline service">
-      <option name="closed" value="true" />
-      <created>1781344755892</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1781344755892</updated>
     </task>
     <task id="LOCAL-00007" summary="added airline service">
       <option name="closed" value="true" />
@@ -639,7 +647,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791047950897</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791098981711</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1791098981711</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
