@@ -7,6 +7,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="seatservice" />
       </profile>
       <profile name="Annotation profile for airline-portal-system" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -121,6 +122,7 @@
       <module name="flightservice" options="-parameters" />
       <module name="locationservice" options="-parameters" />
       <module name="paymentservice" options="-parameters" />
+      <module name="seatservice" options="-parameters" />
       <module name="userservice" options="-parameters" />
     </option>
   </component>

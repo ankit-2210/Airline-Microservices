@@ -55,8 +55,12 @@ public class BookingHelper {
             throw new IllegalArgumentException("User id cannot be null");
         }
         if(request.getFlightInstanceId() == null){
-            throw new IllegalArgumentException("Flight id cannot be null");
+            throw new IllegalArgumentException("Flight instance id cannot be null");
         }
+        if(request.getFareClass() == null){
+            throw new IllegalArgumentException("Fare class cannot be null");
+        }
+
         if(request.getPassengers() == null || request.getPassengers().isEmpty()){
             throw new IllegalArgumentException("At least one passenger is required");
         }
@@ -65,7 +69,6 @@ public class BookingHelper {
     }
 
     private void validatePassengers(List<PassengerRequest> passengers){
-        Set<String> seatNumbers = new HashSet<>();
         if(passengers == null || passengers.isEmpty()){
             throw new IllegalArgumentException("At least one passenger is required");
         }

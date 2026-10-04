@@ -3,8 +3,10 @@ package com.bookingservice.service.Impl;
 import com.airlineportal.event.booking.BookingCreatedEvent;
 import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Booking.BookingRequest;
+import com.airlineportal.payload.request.Fare.FareQuoteRequest;
 import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Booking.BookingResponse;
+import com.airlineportal.payload.response.Fare.FareResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.airlineportal.payload.response.Flight.FlightResponse;
 import com.airlineportal.payload.response.User.UserResponse;
@@ -67,6 +69,26 @@ public class BookingServiceImpl implements BookingService {
             throw new ResourceNotFoundException("Flight not found with id: " + flightId);
         }
 
+        // Get Fare
+        FareQuoteRequest fareRequest = FareQuoteRequest.builder()
+                .flightInstanceId(request.getFlightInstanceId())
+                .fareClass(request.getFareClass())
+                .passengerCount(passengerCount)
+                .build();
+
+        ApiResponse<FareResponse> fareResponse = externalService.getFareQuote(fareRequest);
+        if(fareResponse == null || fareResponse.getData() == null){
+            throw new IllegalArgumentException("Unable to calculate fare");
+        }
+
+        FareResponse fare = fareResponse.getData();
+
+        BigDecimal totalAmount = fare.getTotalFare();
+        if(totalAmount == null || totalAmount.compareTo(BigDecimal.ZERO) <= 0){
+            throw new IllegalArgumentException("Invalid fare amount");
+        }
+
+
         // Reserve Seats
         ApiResponse<Boolean> reserveResponse = externalService.reserveSeats(request.getFlightInstanceId(), passengerCount);
         if (reserveResponse == null || !Boolean.TRUE.equals(reserveResponse.getData())) {
@@ -80,7 +102,9 @@ public class BookingServiceImpl implements BookingService {
 
             booking.setBookingStatus(BookingStatus.PENDING);
             booking.setPaymentStatus(PaymentStatus.PENDING);
-            booking.setTotalAmount(BigDecimal.valueOf(100));
+
+            // Actual fare from FareService
+            booking.setTotalAmount(totalAmount);
 
             Booking saved = bookingRepository.save(booking);
 

@@ -1,9 +1,12 @@
 package com.bookingservice.external;
 
+import com.airlineportal.payload.request.Fare.FareQuoteRequest;
 import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.Fare.FareResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.airlineportal.payload.response.Flight.FlightResponse;
 import com.airlineportal.payload.response.User.UserResponse;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 public interface ExternalService {
@@ -26,6 +29,8 @@ public interface ExternalService {
     ApiResponse<Boolean> releaseSeats(@PathVariable("instanceId") Long instanceId, @RequestParam("seats") Integer seats);
 
 
+    @PostMapping("/internal/fares/quote")
+    ApiResponse<FareResponse> getFareQuote(@Valid @RequestBody FareQuoteRequest request);
 
 
 }

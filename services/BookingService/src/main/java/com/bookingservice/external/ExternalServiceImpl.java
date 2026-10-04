@@ -1,8 +1,11 @@
 package com.bookingservice.external;
 
+import com.airlineportal.client.FareFeignClient;
 import com.airlineportal.client.FlightFeignClient;
 import com.airlineportal.client.UserFeignClient;
+import com.airlineportal.payload.request.Fare.FareQuoteRequest;
 import com.airlineportal.payload.response.ApiResponse;
+import com.airlineportal.payload.response.Fare.FareResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
 import com.airlineportal.payload.response.Flight.FlightResponse;
 import com.airlineportal.payload.response.User.UserResponse;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Service;
 public class ExternalServiceImpl implements ExternalService{
     private final UserFeignClient userFeignClient;
     private final FlightFeignClient flightFeignClient;
+    private final FareFeignClient fareFeignClient;
 
     // User
     @Override
@@ -55,6 +59,13 @@ public class ExternalServiceImpl implements ExternalService{
         return flightFeignClient.releaseSeats(instanceId, seats);
     }
 
+    @Override
+    @Retry(name = "fareRetry", fallbackMethod = "fareFallback")
+    @CircuitBreaker(name = "fareCB", fallbackMethod = "fareFallback")
+    public ApiResponse<FareResponse> getFareQuote(FareQuoteRequest request) {
+        return fareFeignClient.getFareQuote(request);
+    }
+
 
     // FALLBACK METHODS
     public ApiResponse<UserResponse> userFallback(Long userId, Throwable t){
@@ -77,5 +88,10 @@ public class ExternalServiceImpl implements ExternalService{
     public ApiResponse<Boolean> releaseSeatsFallback(Long instanceId, Integer seats, Throwable throwable){
         return ApiResponse.failure("Flight Service is currently unavailable. " + "Seats could not be released.");
     }
+
+    public ApiResponse<FareResponse> fareFallback(FareQuoteRequest request, Throwable t){
+        return ApiResponse.failure("Fare Service is unavailable.");
+    }
+
 
 }

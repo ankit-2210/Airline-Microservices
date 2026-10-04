@@ -27,6 +27,7 @@
         <module>BookingService</module>
         <module>PaymentService</module>
         <module>FareService</module>
+        <module>SeatService</module>
     </modules>
 
 </project>
