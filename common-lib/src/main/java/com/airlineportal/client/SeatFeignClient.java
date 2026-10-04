@@ -3,8 +3,7 @@ package com.airlineportal.client;
 import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Seat.SeatResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @FeignClient(
         name = "SEATSERVICE",
@@ -16,6 +15,10 @@ public interface SeatFeignClient {
 
     @PostMapping("/release")
     ApiResponse<SeatResponse> releaseSeat(@RequestParam Long flightInstanceId, @RequestParam String seatNumber);
+
+
+    @GetMapping("/flight-instance/{flightInstanceId}/{seatNumber}")
+    ApiResponse<SeatResponse> getSeat(@PathVariable Long flightInstanceId, @PathVariable String seatNumber);
 
 
 }

@@ -23,5 +23,10 @@ public class InternalSeatController {
         return ApiResponse.success(seatService.releaseSeat(flightInstanceId, seatNumber));
     }
 
+    @GetMapping("/flight-instance/{flightInstanceId}/{seatNumber}")
+    public ApiResponse<SeatResponse> getSeat(@PathVariable Long flightInstanceId, @PathVariable String seatNumber){
+        return ApiResponse.success(seatService.getBySeatNumber(flightInstanceId, seatNumber));
+    }
+
 
 }
