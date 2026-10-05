@@ -29,6 +29,12 @@
         <module>FareService</module>
         <module>SeatService</module>
         <module>CheckInService</module>
+        <module>BaggageService</module>
+        <module>RefundService</module>
+        <module>LoyaltyService</module>
+        <module>AdminService</module>
+        <module>NotificationService</module>
+        <module>AIService</module>
     </modules>
 
 </project>

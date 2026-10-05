@@ -17,6 +17,10 @@ public interface CheckInRepository extends JpaRepository<CheckIn, Long> {
     Page<CheckIn> findByPassengerId(Long passengerId, Pageable pageable);
     Page<CheckIn> findByFlightInstanceId(Long flightInstanceId, Pageable pageable);
 
+    // Reports
+    List<CheckIn> findAllByBookingId(Long bookingId);
+    List<CheckIn> findAllByFlightInstanceId(Long flightInstanceId);
+
     boolean existsByBookingIdAndPassengerId(Long bookingId, Long passengerId);
     boolean existsByBookingIdAndPassengerIdAndStatus(Long bookingId, Long passengerId, CheckInStatus status);
 

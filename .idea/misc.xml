@@ -19,6 +19,12 @@
         <option value="$PROJECT_DIR$/services/FareService/pom.xml" />
         <option value="$PROJECT_DIR$/services/SeatService/pom.xml" />
         <option value="$PROJECT_DIR$/services/CheckInService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/LoyaltyService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/RefundService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/BaggageService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/AdminService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/AIService/pom.xml" />
+        <option value="$PROJECT_DIR$/services/NotificationService/pom.xml" />
       </list>
     </option>
   </component>

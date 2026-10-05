@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="checkins_report"
+        pageWidth="842"
+        pageHeight="595"
+        columnWidth="782"
+        leftMargin="30"
+        rightMargin="30"
+        topMargin="30"
+        bottomMargin="30"
+        uuid="7c8c4a5a-3d77-4d67-a7a4-8e3e4b3d2c10">
+
+    <!-- ==================== FIELDS ==================== -->
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="bookingId" class="java.lang.Long"/>
+    <field name="passengerId" class="java.lang.Long"/>
+    <field name="flightInstanceId" class="java.lang.Long"/>
+    <field name="pnr" class="java.lang.String"/>
+    <field name="seatNumber" class="java.lang.String"/>
+    <field name="status" class="java.lang.String"/>
+    <field name="checkedInAt" class="java.time.LocalDateTime"/>
+    <field name="createdAt" class="java.time.LocalDateTime"/>
+    <field name="updatedAt" class="java.time.LocalDateTime"/>
+
+
+    <!-- ==================== TITLE ==================== -->
+
+    <title>
+        <band height="70">
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="5"
+                        width="782"
+                        height="35"
+                    />
+
+                <textElement textAlignment="Center">
+                    <font
+                            size="22"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[AIRLINE PORTAL]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="40"
+                        width="782"
+                        height="25"
+                        uuid="2"/>
+
+                <textElement textAlignment="Center">
+                    <font
+                            size="14"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[CHECK-IN REPORT]]></text>
+            </staticText>
+
+        </band>
+    </title>
+
+
+    <!-- ==================== COLUMN HEADER ==================== -->
+
+    <columnHeader>
+        <band height="35">
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="35"
+                        uuid="3"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="70"
+                        height="35"
+                        uuid="4"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Booking]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="115"
+                        y="0"
+                        width="70"
+                        height="35"
+                        uuid="5"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Passenger]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="185"
+                        y="0"
+                        width="80"
+                        height="35"
+                        uuid="6"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Flight]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="265"
+                        y="0"
+                        width="90"
+                        height="35"
+                        uuid="7"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[PNR]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="355"
+                        y="0"
+                        width="65"
+                        height="35"
+                        uuid="8"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Seat]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="420"
+                        y="0"
+                        width="85"
+                        height="35"
+                        uuid="9"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Status]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="505"
+                        y="0"
+                        width="135"
+                        height="35"
+                        uuid="10"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Checked In At]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="640"
+                        y="0"
+                        width="142"
+                        height="35"
+                        uuid="11"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true"/>
+                </textElement>
+                <text><![CDATA[Created At]]></text>
+            </staticText>
+
+        </band>
+    </columnHeader>
+
+
+    <!-- ==================== DETAIL ==================== -->
+
+    <detail>
+        <band height="30">
+
+            <textField>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="30"
+                        uuid="12"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="70"
+                        height="30"
+                        uuid="13"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{bookingId}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="115"
+                        y="0"
+                        width="70"
+                        height="30"
+                        uuid="14"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{passengerId}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="185"
+                        y="0"
+                        width="80"
+                        height="30"
+                        uuid="15"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{flightInstanceId}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="265"
+                        y="0"
+                        width="90"
+                        height="30"
+                        uuid="16"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{pnr}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="355"
+                        y="0"
+                        width="65"
+                        height="30"
+                        uuid="17"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{seatNumber}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="420"
+                        y="0"
+                        width="85"
+                        height="30"
+                        uuid="18"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement textAlignment="Center" verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="505"
+                        y="0"
+                        width="135"
+                        height="30"
+                        uuid="19"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[
+                    $F{checkedInAt}
+                ]]></textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="640"
+                        y="0"
+                        width="142"
+                        height="30"
+                        uuid="20"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle"/>
+                <textFieldExpression><![CDATA[
+                    $F{createdAt}
+                ]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </detail>
+
+
+    <!-- ==================== FOOTER ==================== -->
+
+    <pageFooter>
+        <band height="30">
+
+            <textField>
+                <reportElement
+                        x="0"
+                        y="5"
+                        width="782"
+                        height="20"
+                        uuid="21"/>
+
+                <textElement textAlignment="Right"/>
+
+                <textFieldExpression><![CDATA[
+                    "Page " + $V{PAGE_NUMBER}
+                ]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </pageFooter>
+
+</jasperReport>

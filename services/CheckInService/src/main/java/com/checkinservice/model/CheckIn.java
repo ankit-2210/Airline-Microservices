@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @Table(
         name = "check_ins",
         uniqueConstraints = {
-                @UniqueConstraint(
-                        name = "uk_checkin_booking_passenger",
-                        columnNames = {"booking_id", "passenger_id"}
-                )
+                @UniqueConstraint(name = "uk_checkin_booking_passenger", columnNames = {"booking_id", "passenger_id"})
         }
 )
 @Getter

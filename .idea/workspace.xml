@@ -5,26 +5,47 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/CHECKINSERVICE.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/CheckIn/CheckInStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/external/ExternalService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/external/ExternalServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/helper/CheckInHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/AIFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/AdminFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/BaggageFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/LoyaltyFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/RefundFeignClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Baggage/BaggageCreateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Baggage/BaggageStatusUpdateRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Baggage/BaggageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Baggage/BaggageStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Baggage/BaggageType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/controller/BaggageController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/external/ExternalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/external/ExternalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/helper/BaggageHelper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/mapper/BaggageMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/model/Baggage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/repository/BaggageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/service/BaggageService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/BaggageService/src/main/java/com/baggageservice/service/Impl/BaggageServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/controller/CheckInReportController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/dto/CheckInReportData.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/CheckInReportService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/Impl/CheckInReportServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/CheckInService/src/main/resources/reports/checkins_report.jrxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/BookingFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/BookingFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/SeatFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/SeatFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/CheckIn/CheckInRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/CheckIn/CheckInRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/CheckIn/CheckInResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/CheckIn/CheckInResponse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/CheckInFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/CheckInFeignClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/controller/CheckInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/controller/CheckInController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/internal/InternalCheckInController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/internal/InternalCheckInController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/mapper/CheckInMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/mapper/CheckInMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/model/CheckIn.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/model/CheckIn.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/repository/CheckInRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/repository/CheckInRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/CheckInService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/CheckInService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/Impl/CheckInServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/CheckInService/src/main/java/com/checkinservice/service/Impl/CheckInServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/internal/InternalSeatController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/internal/InternalSeatController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +60,9 @@
       <list>
         <option value="Exception" />
         <option value="package-info" />
+        <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
-        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -131,7 +152,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/SpringBoot/airline/airlineportal/services/CheckInService/src/main/java/com/checkinservice/external",
+    "last_opened_file_path": "C:/SpringBoot/airline/airlineportal/services/BaggageService/src/main/java/com/baggageservice/external",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -145,11 +166,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\SpringBoot\airline\airlineportal\services\CheckInService\src\main\java\com\checkinservice\external" />
-      <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\CheckInService\src\main\java\com\checkinservice\security" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\main\java\com\seatservice\external" />
-      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\BaggageService\src\main\java\com\baggageservice\external" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\BaggageService\src\main\java\com\baggageservice\security" />
+      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\request" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\AIService\src\main\java\com\aiservice" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\AdminService\src\main\java\com\adminservice" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\config-secrets" />
@@ -160,11 +181,11 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.baggageservice.exception" />
+      <recent name="com.baggageservice.config" />
       <recent name="com.checkinservice.config" />
       <recent name="com.checkinservice.exception" />
       <recent name="com.seatservice.config" />
-      <recent name="com.seatservice.exception" />
-      <recent name="com.fareservice.config" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SeatserviceApplication">
@@ -258,14 +279,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00008" summary="added airline service">
-      <option name="closed" value="true" />
-      <created>1781345097742</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1781345097742</updated>
     </task>
     <task id="LOCAL-00009" summary="added airline service">
       <option name="closed" value="true" />
@@ -651,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791112068806</updated>
     </task>
-    <option name="localTasksCounter" value="57" />
+    <task id="LOCAL-00057" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791127590822</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1791127590822</updated>
+    </task>
+    <option name="localTasksCounter" value="58" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
