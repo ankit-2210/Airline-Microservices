@@ -92,10 +92,7 @@ public class GlobalExceptionHandler {
                 ex.getConstraintViolations()
                         .stream()
                         .collect(Collectors.toMap(
-                                violation ->
-                                        violation
-                                                .getPropertyPath()
-                                                .toString(),
+                                violation -> violation.getPropertyPath().toString(),
                                 ConstraintViolation::getMessage,
                                 (oldValue, newValue) -> oldValue
                         ));

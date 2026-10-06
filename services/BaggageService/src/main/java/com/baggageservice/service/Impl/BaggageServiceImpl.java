@@ -1,8 +1,13 @@
 package com.baggageservice.service.Impl;
 
+import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Baggage.BaggageCreateRequest;
 import com.airlineportal.payload.request.Baggage.BaggageStatusUpdateRequest;
+import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Baggage.BaggageResponse;
+import com.airlineportal.payload.response.Booking.BookingResponse;
+import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
+import com.airlineportal.payload.response.User.UserResponse;
 import com.airlineportal.utils.Baggage.BaggageStatus;
 import com.baggageservice.external.ExternalService;
 import com.baggageservice.helper.BaggageHelper;
@@ -16,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -29,7 +35,30 @@ public class BaggageServiceImpl implements BaggageService {
     @Override
     @Transactional
     public BaggageResponse addBaggage(BaggageCreateRequest request) {
-        return null;
+        baggageHelper.validateCreateRequest(request);
+
+        // Get Booking
+        ApiResponse<BookingResponse> bookingResponse = externalService.getBookingById(request.getBookingId());
+        if (bookingResponse == null || bookingResponse.getData() == null) {
+            throw new ResourceNotFoundException("Booking not found with id: " + request.getBookingId());
+        }
+
+        baggageHelper.validateBooking(bookingResponse.getData(), request.getBookingId(), request.getPassengerId(), request.getFlightInstanceId());
+
+        // Get Flight Instance
+        ApiResponse<FlightInstanceResponse> instanceResponse = externalService.getInstanceById(request.getFlightInstanceId());
+        if (instanceResponse == null || instanceResponse.getData() == null) {
+            throw new ResourceNotFoundException("Flight instance not found with id: " + request.getFlightInstanceId());
+        }
+
+        baggageHelper.validateFlightInstance(instanceResponse.getData(), request.getFlightInstanceId());
+
+        BigDecimal price = baggageHelper.calculatePrice(request.getBaggageType(), request.getWeight(), request.getQuantity());
+
+        Baggage baggage = BaggageMapper.toEntity(request, request.getFlightInstanceId(), price);
+        baggage.setStatus(BaggageStatus.ADDED);
+        Baggage saved = baggageRepository.save(baggage);
+        return BaggageMapper.toResponse(saved);
     }
 
     @Override
