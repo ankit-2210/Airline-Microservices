@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @FeignClient(
-        name = "BBOKINGSERVICE",
+        name = "BOOKINGSERVICE",
         path = "/internal/bookings"
 )
 public interface BookingFeignClient {

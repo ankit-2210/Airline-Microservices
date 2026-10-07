@@ -4,6 +4,7 @@ import com.airlineportal.exception.ResourceNotFoundException;
 import com.airlineportal.payload.request.Baggage.BaggageCreateRequest;
 import com.airlineportal.payload.response.Booking.BookingResponse;
 import com.airlineportal.payload.response.Flight.FlightInstanceResponse;
+import com.airlineportal.utils.Baggage.BaggageStatus;
 import com.airlineportal.utils.Baggage.BaggageType;
 import com.baggageservice.model.Baggage;
 import com.baggageservice.repository.BaggageRepository;
@@ -94,6 +95,28 @@ public class BaggageHelper {
 
         return pricePerKg.multiply(weight)
                 .multiply(BigDecimal.valueOf(quantity));
+    }
+
+    public void validateStatusTransition(BaggageStatus current, BaggageStatus next){
+        if(current == null || next == null){
+            throw new IllegalArgumentException("Baggage status cannot be null");
+        }
+
+        if(current == BaggageStatus.CANCELLED){
+            throw new IllegalArgumentException("Cancelled baggage cannot be updated");
+        }
+
+        if(current == BaggageStatus.DELIVERED){
+            throw new IllegalArgumentException("Delivered baggage cannot be updated");
+        }
+
+        boolean valid = (current == BaggageStatus.ADDED && (next == BaggageStatus.CHECKED_IN || next == BaggageStatus.CANCELLED))
+                        || (current == BaggageStatus.CHECKED_IN && (next == BaggageStatus.LOADED || next == BaggageStatus.CANCELLED))
+                        || (current == BaggageStatus.LOADED && next == BaggageStatus.DELIVERED);
+
+        if(!valid){
+            throw new IllegalArgumentException("Invalid baggage status transition: " + current + " -> " + next);
+        }
     }
 
 

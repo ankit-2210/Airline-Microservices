@@ -2,6 +2,7 @@ package com.baggageservice.mapper;
 
 import com.airlineportal.payload.request.Baggage.BaggageCreateRequest;
 import com.airlineportal.payload.response.Baggage.BaggageResponse;
+import com.baggageservice.dto.BaggageReportData;
 import com.baggageservice.model.Baggage;
 
 import java.math.BigDecimal;
@@ -40,6 +41,28 @@ public final class BaggageMapper {
                 .quantity(baggage.getQuantity())
                 .price(baggage.getPrice())
                 .status(baggage.getStatus())
+
+                .createdAt(baggage.getCreatedAt())
+                .updatedAt(baggage.getUpdatedAt())
+                .build();
+    }
+
+
+    public static BaggageReportData toReportData(Baggage baggage){
+
+        return BaggageReportData.builder()
+                .id(baggage.getId())
+                .bookingId(baggage.getBookingId())
+                .passengerId(baggage.getPassengerId())
+                .flightInstanceId(baggage.getFlightInstanceId())
+
+                .baggageType(baggage.getBaggageType() != null ? baggage.getBaggageType().name() : null)
+                .weight(baggage.getWeight())
+                .quantity(baggage.getQuantity())
+                .price(baggage.getPrice())
+
+                .status(
+                        baggage.getStatus() != null ? baggage.getStatus().name() : null)
 
                 .createdAt(baggage.getCreatedAt())
                 .updatedAt(baggage.getUpdatedAt())

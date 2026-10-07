@@ -45,14 +45,20 @@ public final class BookingMapper {
         return BookingResponse.builder()
                 .id(booking.getId())
                 .pnr(booking.getPnr())
+
                 .userId(booking.getUserId())
                 .flightId(booking.getFlightId())
+                .flightInstanceId(booking.getFlightInstanceId())
+
                 .totalAmount(booking.getTotalAmount())
+
                 .bookingStatus(booking.getBookingStatus() == null ? null : booking.getBookingStatus().name())
                 .paymentStatus(booking.getPaymentStatus() == null ? null : booking.getPaymentStatus().name())
+
                 .bookedAt(booking.getBookedAt())
                 .confirmedAt(booking.getConfirmedAt())
                 .cancelledAt(booking.getCancelledAt())
+
                 .cancellationReason(booking.getCancellationReason())
                 .passengers(passengers)
                 .build();

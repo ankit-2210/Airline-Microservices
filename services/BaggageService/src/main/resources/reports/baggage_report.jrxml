@@ -1,0 +1,466 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://jasperreports.sourceforge.net/jasperreports
+        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="baggage_report"
+        pageWidth="842"
+        pageHeight="595"
+        orientation="Landscape"
+        columnWidth="782"
+        leftMargin="30"
+        rightMargin="30"
+        topMargin="30"
+        bottomMargin="30"
+        uuid="7a1d8e4b-2c9f-4b75-9c61-51f3a0d2b847">
+
+    <property name="com.jaspersoft.studio.data.defaultdataadapter"
+              value="One Empty Record"/>
+
+    <!-- ========================= -->
+    <!-- Fields -->
+    <!-- ========================= -->
+
+    <field name="id"
+           class="java.lang.Long"/>
+
+    <field name="bookingId"
+           class="java.lang.Long"/>
+
+    <field name="passengerId"
+           class="java.lang.Long"/>
+
+    <field name="flightInstanceId"
+           class="java.lang.Long"/>
+
+    <field name="baggageType"
+           class="java.lang.String"/>
+
+    <field name="weight"
+           class="java.math.BigDecimal"/>
+
+    <field name="quantity"
+           class="java.lang.Integer"/>
+
+    <field name="price"
+           class="java.math.BigDecimal"/>
+
+    <field name="status"
+           class="java.lang.String"/>
+
+    <field name="createdAt"
+           class="java.time.Instant"/>
+
+    <field name="updatedAt"
+           class="java.time.Instant"/>
+
+
+    <!-- ========================= -->
+    <!-- Title -->
+    <!-- ========================= -->
+
+    <title>
+
+        <band height="90">
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="5"
+                        width="782"
+                        height="35"
+                        uuid="8f9b17b4-73e6-4d1c-a52f-9e8c4b61d203"/>
+
+                <textElement textAlignment="Center">
+                    <font size="24"
+                          isBold="true"/>
+                </textElement>
+
+                <text>
+                    <![CDATA[AIRLINE PORTAL]]>
+                </text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="45"
+                        width="782"
+                        height="25"
+                        uuid="4c8e62d1-91b5-4e73-8a26-37f1d9b40518"/>
+
+                <textElement textAlignment="Center">
+                    <font size="16"
+                          isBold="true"/>
+                </textElement>
+
+                <text>
+                    <![CDATA[BAGGAGE REPORT]]>
+                </text>
+            </staticText>
+
+        </band>
+
+    </title>
+
+
+    <!-- ========================= -->
+    <!-- Column Header -->
+    <!-- ========================= -->
+
+    <columnHeader>
+
+        <band height="35">
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="30"
+                        uuid="c3a71d42-5f89-4e16-9b24-6d0f81a52739"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="75"
+                        height="30"
+                        uuid="9f2d61a7-8e34-4b52-a901-63c7d5f21840"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Booking]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="120"
+                        y="0"
+                        width="75"
+                        height="30"
+                        uuid="5b7e13c9-2d46-4a85-91f0-8c63e7a21450"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Passenger]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="195"
+                        y="0"
+                        width="85"
+                        height="30"
+                        uuid="6d9a42e1-7c35-4f80-b216-5e73d9a81462"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Flight]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="280"
+                        y="0"
+                        width="85"
+                        height="30"
+                        uuid="2e51b7d4-93a6-4c80-a215-7f64d9b32851"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Type]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="365"
+                        y="0"
+                        width="70"
+                        height="30"
+                        uuid="1a84d6c2-5f73-4e91-b208-6c37d9a51482"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Weight]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="435"
+                        y="0"
+                        width="60"
+                        height="30"
+                        uuid="8d37b2e5-41c9-4a60-97f3-6e52d8a71403"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Qty]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="495"
+                        y="0"
+                        width="80"
+                        height="30"
+                        uuid="3f92c6a1-74d8-4e50-b315-8a67d2f91420"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Price]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="575"
+                        y="0"
+                        width="85"
+                        height="30"
+                        uuid="7e14b9c5-62a3-4f80-91d7-35c8a6e21459"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Status]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="660"
+                        y="0"
+                        width="122"
+                        height="30"
+                        uuid="4a63e8d2-95b7-4c10-a281-7f35d9b62458"/>
+
+                <textElement textAlignment="Center">
+                    <font isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Created At]]></text>
+            </staticText>
+
+        </band>
+
+    </columnHeader>
+
+
+    <!-- ========================= -->
+    <!-- Detail -->
+    <!-- ========================= -->
+
+    <detail>
+
+        <band height="30">
+
+            <textField>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="45"
+                        height="25"
+                        uuid="a2c7e914-53d8-4f60-b281-9e46d7a31502"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{id}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="45"
+                        y="0"
+                        width="75"
+                        height="25"
+                        uuid="b6e13d92-84a7-4c51-9f20-63d8a7251046"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{bookingId}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="120"
+                        y="0"
+                        width="75"
+                        height="25"
+                        uuid="c8f41a73-95d2-4e60-b217-6a83d9c51402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{passengerId}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="195"
+                        y="0"
+                        width="85"
+                        height="25"
+                        uuid="d7a52e81-63f4-4b90-a218-5c36e9d71403"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{flightInstanceId}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="280"
+                        y="0"
+                        width="85"
+                        height="25"
+                        uuid="e9c63f72-51a4-4d80-b217-6a35d8f91402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{baggageType}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="365"
+                        y="0"
+                        width="70"
+                        height="25"
+                        uuid="f2a74c91-83d5-4e60-b218-7d36a9f51402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{weight}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="435"
+                        y="0"
+                        width="60"
+                        height="25"
+                        uuid="a5b82d71-94c3-4e60-b217-6f35d9a81402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{quantity}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="495"
+                        y="0"
+                        width="80"
+                        height="25"
+                        uuid="b4c93e62-71d5-4a80-b218-6f35d9a81402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{price}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="575"
+                        y="0"
+                        width="85"
+                        height="25"
+                        uuid="c6d14f83-52a7-4e90-b218-7f35d9a61402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{status}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement
+                        x="660"
+                        y="0"
+                        width="122"
+                        height="25"
+                        uuid="d8e25a94-63b7-4f80-a219-5c36d9a71402"/>
+
+                <textElement textAlignment="Center"/>
+
+                <textFieldExpression>
+                    <![CDATA[$F{createdAt}]]>
+                </textFieldExpression>
+            </textField>
+
+        </band>
+
+    </detail>
+
+
+    <!-- ========================= -->
+    <!-- Footer -->
+    <!-- ========================= -->
+
+    <pageFooter>
+
+        <band height="30">
+
+            <textField>
+
+                <reportElement
+                        x="650"
+                        y="5"
+                        width="132"
+                        height="20"
+                        uuid="e7f36b85-42c9-4a70-b218-6d35d9a71402"/>
+
+                <textElement textAlignment="Right"/>
+
+                <textFieldExpression>
+                    <![CDATA[
+                        "Page " + $V{PAGE_NUMBER}
+                    ]]>
+                </textFieldExpression>
+
+            </textField>
+
+        </band>
+
+    </pageFooter>
+
+</jasperReport>

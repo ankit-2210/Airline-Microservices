@@ -20,6 +20,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
@@ -58,7 +60,6 @@ public class CheckInServiceImpl implements CheckInService {
 
         // 6. Get flight instance
         ApiResponse<FlightInstanceResponse> flightResponse = externalService.getInstanceById(booking.getFlightInstanceId());
-
         if(flightResponse == null || flightResponse.getData() == null){
             throw new IllegalArgumentException("Unable to retrieve flight instance");
         }
@@ -82,6 +83,7 @@ public class CheckInServiceImpl implements CheckInService {
         // 10. Create check-in
         CheckIn checkIn = CheckInMapper.toEntity(request, booking, seatNumber);
         checkIn.setStatus(CheckInStatus.CHECKED_IN);
+        checkIn.setCheckedInAt(LocalDateTime.now());
 
         CheckIn savedCheckIn = checkInRepository.save(checkIn);
         return CheckInMapper.toResponse(savedCheckIn);

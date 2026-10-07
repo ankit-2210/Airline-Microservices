@@ -118,6 +118,7 @@ public class BaggageServiceImpl implements BaggageService {
             throw new IllegalArgumentException("Cancelled baggage cannot be updated");
         }
 
+        baggageHelper.validateStatusTransition(baggage.getStatus(), request.getStatus());
         baggage.setStatus(request.getStatus());
         return BaggageMapper.toResponse(baggageRepository.save(baggage));
     }

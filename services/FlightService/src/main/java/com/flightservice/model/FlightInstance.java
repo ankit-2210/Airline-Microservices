@@ -160,14 +160,29 @@ public class FlightInstance {
 
     @Transient
     public Boolean canCheckIn(){
-        if(departureDateTime == null){
+        if (departureDateTime == null) {
             return false;
         }
-        if(isCancelled() || isDeparted())
+
+        if (isCancelled() || isDeparted()) {
             return false;
+        }
 
         LocalDateTime now = LocalDateTime.now();
-        return !now.isBefore(departureDateTime.minusHours(24)) && now.isBefore(departureDateTime);
+        LocalDateTime checkInOpenTime = departureDateTime.minusHours(24);
+
+        System.out.println("========== CHECK-IN DEBUG ==========");
+        System.out.println("Current Time       : " + now);
+        System.out.println("Departure Time     : " + departureDateTime);
+        System.out.println("Check-In Opens     : " + checkInOpenTime);
+        System.out.println("Before Open Time   : " + now.isBefore(checkInOpenTime));
+        System.out.println("Before Departure   : " + now.isBefore(departureDateTime));
+        System.out.println("Cancelled          : " + isCancelled());
+        System.out.println("Departed           : " + isDeparted());
+        System.out.println("====================================");
+
+        return !now.isBefore(checkInOpenTime)
+                && now.isBefore(departureDateTime);
     }
 
 
