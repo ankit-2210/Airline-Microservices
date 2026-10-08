@@ -3,6 +3,7 @@ package com.paymentservice.external;
 import com.paymentservice.config.RazorpayConfig;
 import com.paymentservice.dto.response.RazorpayOrderResponse;
 import com.paymentservice.dto.response.RazorpayPaymentLinkResponse;
+import com.paymentservice.dto.response.RazorpayRefundResponse;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.json.JSONObject;
@@ -121,6 +122,29 @@ public class RazorpayService {
                 .body(request)
                 .retrieve()
                 .body(RazorpayPaymentLinkResponse.class);
+
+    }
+
+
+    // Refund Payment
+    public RazorpayRefundResponse refundPayment(String razorpayPaymentId, long amountInPaise){
+        Map<String, Object> request = new HashMap<>();
+
+        request.put("amount", amountInPaise);
+
+        return restClient
+                .post()
+                .uri(razorpayConfig.getBaseUrl() + "/v1/payments/" + razorpayPaymentId + "/refund")
+                .headers(headers ->
+                        headers.setBasicAuth(
+                                razorpayConfig.getKeyId(),
+                                razorpayConfig.getKeySecret()
+                        )
+                )
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(request)
+                .retrieve()
+                .body(RazorpayRefundResponse.class);
 
     }
 

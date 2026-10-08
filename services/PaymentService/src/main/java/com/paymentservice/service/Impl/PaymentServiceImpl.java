@@ -1,12 +1,13 @@
 package com.paymentservice.service.Impl;
 
-import com.airlineportal.event.payment.PaymentCompletedEvent;
-import com.airlineportal.event.payment.PaymentFailedEvent;
-import com.airlineportal.payload.response.Payment.PaymentResponse;
+import com.airlineportal.event.payment.PaymentRefundedEvent;
 import com.airlineportal.utils.Booking.PaymentStatus;
-import com.paymentservice.dto.request.VerifyPaymentRequest;
-import com.paymentservice.dto.response.RazorpayOrderResponse;
+import com.airlineportal.payload.request.Payment.PaymentRefundRequest;
+import com.airlineportal.payload.response.Payment.PaymentResponse;
+import com.airlineportal.payload.response.Payment.PaymentRefundResponse;
 import com.paymentservice.dto.response.RazorpayPaymentLinkResponse;
+import com.paymentservice.dto.response.RazorpayRefundResponse;
+import com.paymentservice.event.PaymentEventProducer;
 import com.paymentservice.event.PaymentEventPublisher;
 import com.paymentservice.external.RazorpayService;
 import com.paymentservice.helper.PaymentHelper;
@@ -28,7 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     private final PaymentRepository paymentRepository;
     private final PaymentHelper paymentHelper;
     private final RazorpayService razorpayService;
-    private final PaymentEventPublisher paymentEventPublisher;
+    private final PaymentEventProducer paymentEventProducer;
 
 //    @Override
 //    @Transactional
@@ -134,6 +135,59 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentResponse getByBookingId(Long bookingId) {
         return PaymentMapper.toResponse(paymentHelper.findByBookingId(bookingId));
+    }
+
+    @Override
+    @Transactional
+    public PaymentRefundResponse refundPayment(PaymentRefundRequest request) {
+        Payment payment = paymentHelper.findByBookingId(request.getBookingId());
+
+        if(payment.getPaymentStatus() != PaymentStatus.SUCCESS){
+            throw new IllegalStateException("Payment cannot be refunded because payment status is " + payment.getPaymentStatus());
+        }
+        if(payment.getRazorpayPaymentId() == null || payment.getRazorpayPaymentId().isBlank()){
+            throw new IllegalStateException("Razorpay payment ID not found for booking ID: " + request.getBookingId());
+        }
+
+        if(request.getAmount() == null || request.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("Refund amount must be greater than zero");
+        }
+        if(request.getAmount().compareTo(payment.getAmount()) > 0){
+            throw new IllegalArgumentException("Refund amount cannot exceed payment amount");
+        }
+
+        long amountInPaise = request.getAmount().multiply(BigDecimal.valueOf(100))
+                .longValueExact();
+
+        RazorpayRefundResponse response = razorpayService.refundPayment(payment.getRazorpayPaymentId(), amountInPaise);
+        if(response == null || response.getId() == null){
+            throw new IllegalStateException("Unable to process Razorpay refund");
+        }
+
+        payment.setPaymentStatus(PaymentStatus.REFUNDED);
+        payment.setUpdatedAt(LocalDateTime.now());
+
+        Payment saved = paymentRepository.save(payment);
+
+        // Publish Kafka event
+        PaymentRefundedEvent event = PaymentRefundedEvent.builder()
+                        .paymentId(saved.getId())
+                        .bookingId(saved.getBookingId())
+                        .userId(saved.getUserId())
+
+                        .pnr(saved.getPnr())
+                        .refundAmount(request.getAmount())
+                        .gatewayRefundId(response.getId())
+                        .build();
+
+        paymentEventProducer.publishPaymentRefunded(event);
+
+        return PaymentRefundResponse.builder()
+                .paymentId(saved.getId())
+                .gatewayRefundId(response.getId())
+                .status(response.getStatus())
+                .message("Payment refunded successfully")
+                .build();
     }
 
 

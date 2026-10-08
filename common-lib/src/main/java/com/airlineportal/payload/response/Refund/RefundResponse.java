@@ -1,6 +1,7 @@
-package com.refundservice.dto;
+package com.airlineportal.payload.response.Refund;
 
-
+import com.airlineportal.utils.Refund.RefundReason;
+import com.airlineportal.utils.Refund.RefundStatus;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -10,10 +11,11 @@ import java.time.LocalDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class RefundReportData {
+public class RefundResponse {
     private Long id;
     private Long bookingId;
     private Long userId;
+    private Long paymentId;
 
     private String pnr;
 
@@ -21,14 +23,14 @@ public class RefundReportData {
     private BigDecimal cancellationFee;
     private BigDecimal refundAmount;
 
-    private String reason;
-    private String status;
+    private RefundReason reason;
+    private RefundStatus status;
+
     private String gatewayRefundId;
     private String remarks;
 
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-
 
 
 }

@@ -1,5 +1,6 @@
 package com.airlineportal.payload.response.Booking;
 
+import com.airlineportal.utils.Booking.BookingStatus;
 import lombok.*;
 
 import java.math.BigDecimal;

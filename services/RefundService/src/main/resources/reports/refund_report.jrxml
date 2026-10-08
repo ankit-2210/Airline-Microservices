@@ -1,0 +1,808 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                                  http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="refund_report"
+              pageWidth="842"
+              pageHeight="595"
+              orientation="Landscape"
+              columnWidth="782"
+              leftMargin="30"
+              rightMargin="30"
+              topMargin="25"
+              bottomMargin="25"
+              uuid="7d7d3d91-3d12-4f9b-a1c8-9c2c4d1f8a21">
+
+
+    <!-- ========================================================= -->
+    <!-- FIELDS                                                    -->
+    <!-- ========================================================= -->
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="bookingId" class="java.lang.Long"/>
+    <field name="userId" class="java.lang.Long"/>
+    <field name="pnr" class="java.lang.String"/>
+    <field name="originalAmount" class="java.math.BigDecimal"/>
+    <field name="cancellationFee" class="java.math.BigDecimal"/>
+    <field name="refundAmount" class="java.math.BigDecimal"/>
+    <field name="reason" class="java.lang.String"/>
+    <field name="status" class="java.lang.String"/>
+    <field name="gatewayRefundId" class="java.lang.String"/>
+    <field name="remarks" class="java.lang.String"/>
+    <field name="createdAt" class="java.time.LocalDateTime"/>
+    <field name="updatedAt" class="java.time.LocalDateTime"/>
+
+
+    <!-- ========================================================= -->
+    <!-- TITLE                                                     -->
+    <!-- ========================================================= -->
+
+    <title>
+
+        <band height="70">
+
+            <rectangle>
+
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="782"
+                        height="65"
+                        backcolor="#1F4E78"/>
+
+            </rectangle>
+
+
+            <staticText>
+
+                <reportElement
+                        x="20"
+                        y="10"
+                        width="742"
+                        height="28"
+                        forecolor="#FFFFFF"/>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+
+                    <font
+                            size="20"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[REFUND REPORT]]></text>
+
+            </staticText>
+
+
+            <staticText>
+
+                <reportElement
+                        x="20"
+                        y="40"
+                        width="742"
+                        height="18"
+                        forecolor="#FFFFFF"/>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+
+                    <font size="10"/>
+
+                </textElement>
+
+                <text><![CDATA[Airline Portal - Refund Summary]]></text>
+
+            </staticText>
+
+        </band>
+
+    </title>
+
+
+    <!-- ========================================================= -->
+    <!-- COLUMN HEADER                                             -->
+    <!-- ========================================================= -->
+
+    <columnHeader>
+
+        <band height="35">
+            <rectangle>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="782"
+                        height="32"
+                        backcolor="#D9EAF7"/>
+            </rectangle>
+
+            <!-- ID -->
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="35"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+
+            <!-- BOOKING -->
+
+            <staticText>
+                <reportElement
+                        x="35"
+                        y="0"
+                        width="55"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[Booking]]></text>
+            </staticText>
+
+
+            <!-- PNR -->
+            <staticText>
+                <reportElement
+                        x="90"
+                        y="0"
+                        width="90"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[PNR]]></text>
+            </staticText>
+
+
+            <!-- ORIGINAL AMOUNT -->
+            <staticText>
+                <reportElement
+                        x="180"
+                        y="0"
+                        width="90"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Original Amount]]></text>
+            </staticText>
+
+
+            <!-- CANCELLATION FEE -->
+            <staticText>
+                <reportElement
+                        x="270"
+                        y="0"
+                        width="85"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Cancellation Fee]]></text>
+            </staticText>
+
+
+            <!-- REFUND AMOUNT -->
+            <staticText>
+                <reportElement
+                        x="355"
+                        y="0"
+                        width="85"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Refund Amount]]></text>
+            </staticText>
+
+
+            <!-- REASON -->
+            <staticText>
+                <reportElement
+                        x="440"
+                        y="0"
+                        width="90"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[Reason]]></text>
+            </staticText>
+
+
+            <!-- STATUS -->
+            <staticText>
+                <reportElement
+                        x="530"
+                        y="0"
+                        width="75"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[Status]]></text>
+            </staticText>
+
+
+            <!-- GATEWAY REFUND ID -->
+            <staticText>
+                <reportElement
+                        x="605"
+                        y="0"
+                        width="100"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[Gateway Refund ID]]></text>
+            </staticText>
+
+
+            <!-- CREATED -->
+            <staticText>
+                <reportElement
+                        x="705"
+                        y="0"
+                        width="77"
+                        height="32"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <text><![CDATA[Created]]></text>
+            </staticText>
+        </band>
+
+    </columnHeader>
+
+
+    <!-- ========================================================= -->
+    <!-- DETAIL                                                     -->
+    <!-- ========================================================= -->
+
+    <detail>
+        <band height="32">
+            <!-- ID -->
+
+            <textField>
+                <reportElement
+                        x="0"
+                        y="0"
+                        width="35"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{id}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- BOOKING ID -->
+            <textField>
+                <reportElement
+                        x="35"
+                        y="0"
+                        width="55"
+                        height="30"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{bookingId}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- PNR -->
+            <textField>
+                <reportElement
+                        x="90"
+                        y="0"
+                        width="90"
+                        height="30"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{pnr}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- ORIGINAL AMOUNT -->
+            <textField pattern="#,##0.00">
+                <reportElement
+                        x="180"
+                        y="0"
+                        width="90"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="8"/>
+
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{originalAmount}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- CANCELLATION FEE -->
+            <textField pattern="#,##0.00">
+                <reportElement
+                        x="270"
+                        y="0"
+                        width="85"
+                        height="30"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+
+                    <font size="8"/>
+
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{cancellationFee}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- REFUND AMOUNT -->
+            <textField pattern="#,##0.00">
+                <reportElement
+                        x="355"
+                        y="0"
+                        width="85"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+
+                    <font
+                            size="8"
+                            isBold="true"/>
+
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{refundAmount}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- REASON -->
+            <textField>
+                <reportElement
+                        x="440"
+                        y="0"
+                        width="90"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="7"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{reason}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- STATUS -->
+            <textField>
+                <reportElement
+                        x="530"
+                        y="0"
+                        width="75"
+                        height="30"/>
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="8"
+                            isBold="true"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{status}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- GATEWAY REFUND ID -->
+            <textField>
+                <reportElement
+                        x="605"
+                        y="0"
+                        width="100"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="7"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{gatewayRefundId}
+                ]]></textFieldExpression>
+
+            </textField>
+
+
+            <!-- CREATED -->
+
+            <textField pattern="dd-MM-yyyy HH:mm">
+
+                <reportElement
+                        x="705"
+                        y="0"
+                        width="77"
+                        height="30"/>
+
+                <box>
+                    <pen lineWidth="0.5"/>
+                </box>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font size="7"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    $F{createdAt}
+                ]]></textFieldExpression>
+
+            </textField>
+
+        </band>
+
+    </detail>
+
+
+    <!-- ========================================================= -->
+    <!-- PAGE FOOTER                                               -->
+    <!-- IMPORTANT: BEFORE SUMMARY                                  -->
+    <!-- ========================================================= -->
+
+    <pageFooter>
+        <band height="30">
+            <line>
+                <reportElement
+                        x="0"
+                        y="2"
+                        width="782"
+                        height="1"/>
+            </line>
+
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="8"
+                        width="500"
+                        height="18"/>
+
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+
+                <text><![CDATA[Airline Portal - Refund Service]]></text>
+            </staticText>
+
+
+            <textField>
+                <reportElement
+                        x="600"
+                        y="8"
+                        width="182"
+                        height="18"/>
+
+                <textElement textAlignment="Right"
+                             verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+
+                <textFieldExpression><![CDATA[
+                    "Page " + $V{PAGE_NUMBER}
+                ]]></textFieldExpression>
+
+            </textField>
+
+        </band>
+
+    </pageFooter>
+
+
+    <!-- ========================================================= -->
+    <!-- SUMMARY                                                    -->
+    <!-- ========================================================= -->
+
+    <summary>
+        <band height="340">
+            <!-- CHART TITLE -->
+            <staticText>
+                <reportElement
+                        x="0"
+                        y="10"
+                        width="782"
+                        height="30"/>
+
+                <textElement textAlignment="Center"
+                             verticalAlignment="Middle">
+                    <font
+                            size="15"
+                            isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Refund Amount Analysis]]></text>
+            </staticText>
+
+
+            <!-- ================================================= -->
+            <!-- BAR CHART                                          -->
+            <!-- ================================================= -->
+
+            <barChart>
+                <chart>
+                    <reportElement
+                            x="30"
+                            y="50"
+                            width="722"
+                            height="270"/>
+
+                    <chartTitle>
+                        <font
+                                size="12"
+                                isBold="true"/>
+                    </chartTitle>
+
+                    <chartLegend/>
+                </chart>
+
+
+                <!-- ============================================= -->
+                <!-- DATASET                                        -->
+                <!-- ============================================= -->
+
+                <categoryDataset>
+                    <!-- ORIGINAL AMOUNT -->
+                    <categorySeries>
+
+                        <seriesExpression><![CDATA[
+                            "Original Amount"
+                        ]]></seriesExpression>
+
+                        <categoryExpression><![CDATA[
+                            $F{pnr}
+                        ]]></categoryExpression>
+
+                        <valueExpression><![CDATA[
+                            $F{originalAmount}
+                        ]]></valueExpression>
+
+                    </categorySeries>
+
+
+                    <!-- CANCELLATION FEE -->
+                    <categorySeries>
+                        <seriesExpression><![CDATA[
+                            "Cancellation Fee"
+                        ]]></seriesExpression>
+
+                        <categoryExpression><![CDATA[
+                            $F{pnr}
+                        ]]></categoryExpression>
+
+                        <valueExpression><![CDATA[
+                            $F{cancellationFee}
+                        ]]></valueExpression>
+
+                    </categorySeries>
+
+
+                    <!-- REFUND AMOUNT -->
+                    <categorySeries>
+                        <seriesExpression><![CDATA[
+                            "Refund Amount"
+                        ]]></seriesExpression>
+
+
+                        <categoryExpression><![CDATA[
+                            $F{pnr}
+                        ]]></categoryExpression>
+
+                        <valueExpression><![CDATA[
+                            $F{refundAmount}
+                        ]]></valueExpression>
+
+                    </categorySeries>
+
+                </categoryDataset>
+
+
+                <!-- ============================================= -->
+                <!-- BAR PLOT                                       -->
+                <!-- ============================================= -->
+
+                <barPlot>
+                    <plot
+                            orientation="Vertical"/>
+                    <categoryAxisFormat>
+                        <axisFormat
+                                verticalTickLabels="false"/>
+                    </categoryAxisFormat>
+
+                    <valueAxisFormat>
+                        <axisFormat
+                                tickLabelMask="#,##0"/>
+                    </valueAxisFormat>
+                </barPlot>
+
+            </barChart>
+
+        </band>
+
+    </summary>
+
+
+</jasperReport>

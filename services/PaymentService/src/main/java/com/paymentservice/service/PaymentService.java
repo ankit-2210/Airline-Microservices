@@ -1,8 +1,8 @@
 package com.paymentservice.service;
 
-import com.airlineportal.payload.request.Payment.PaymentRequest;
+import com.airlineportal.payload.request.Payment.PaymentRefundRequest;
 import com.airlineportal.payload.response.Payment.PaymentResponse;
-import com.paymentservice.dto.request.VerifyPaymentRequest;
+import com.airlineportal.payload.response.Payment.PaymentRefundResponse;
 
 public interface PaymentService {
 
@@ -14,6 +14,6 @@ public interface PaymentService {
     PaymentResponse getById(Long paymentId);
     PaymentResponse getByBookingId(Long bookingId);
 
-
+    PaymentRefundResponse refundPayment(PaymentRefundRequest request);
     
 }
