@@ -5,13 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/dto/SeatReportData.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/main/resources/reports/seat_report.jrxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/model/Admin.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/repository/AdminRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/internal/InternalLoyaltyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/controller/SeatReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/controller/SeatReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/mapper/SeatMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/mapper/SeatMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/Impl/SeatReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/Impl/SeatReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/SeatReportService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/main/java/com/seatservice/service/SeatReportService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AdminService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/controller/LoyaltyController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/controller/LoyaltyController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/controller/LoyaltyReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/controller/LoyaltyReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/helper/LoyaltyHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/helper/LoyaltyHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/mapper/LoyaltyMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/mapper/LoyaltyMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/service/Impl/LoyaltyReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/service/Impl/LoyaltyReportServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/service/Impl/LoyaltyServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/java/com/loyaltyservice/service/Impl/LoyaltyServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,10 +146,10 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
+      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\utils" />
+      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
       <recent name="C:\SpringBoot\airline\airlineportal\services\LoyaltyService\src\main\java\com\loyaltyservice\security" />
       <recent name="C:\SpringBoot\airline\airlineportal\services\RefundService\src\main\java\com\refundservice\external" />
-      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\RefundService\src\main\java\com\refundservice\security" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\config-secrets" />
@@ -152,11 +160,11 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.adminservice.exception" />
+      <recent name="com.loyaltyservice.exception" />
       <recent name="com.loyaltyservice.config" />
       <recent name="com.refundservice.exception" />
       <recent name="com.refundservice.config" />
-      <recent name="com.baggageservice.exception" />
-      <recent name="com.baggageservice.config" />
     </key>
   </component>
   <component name="RunManager" selected="Application.SeatserviceApplication">
@@ -250,22 +258,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00013" summary="added flight service and controller">
-      <option name="closed" value="true" />
-      <created>1781544791014</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1781544791014</updated>
-    </task>
-    <task id="LOCAL-00014" summary="added flight instance service and controller">
-      <option name="closed" value="true" />
-      <created>1781847960894</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1781847960894</updated>
     </task>
     <task id="LOCAL-00015" summary="added flight instance service and controller">
       <option name="closed" value="true" />
@@ -643,7 +635,23 @@
       <option name="project" value="LOCAL" />
       <updated>1791444108495</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791469231157</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1791469231159</updated>
+    </task>
+    <task id="LOCAL-00063" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791470858830</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1791470858830</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
