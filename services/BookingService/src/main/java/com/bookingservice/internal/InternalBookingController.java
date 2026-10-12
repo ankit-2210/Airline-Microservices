@@ -5,6 +5,7 @@ import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Booking.BookingResponse;
 import com.bookingservice.service.BookingService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.data.domain.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +35,11 @@ public class InternalBookingController {
         return ApiResponse.success(bookingService.getByFlight(flightId, pageable));
     }
 
+
+    @GetMapping
+    public ApiResponse<Page<BookingResponse>> getAllBookings(@SpringQueryMap Pageable pageable){
+        return ApiResponse.success(bookingService.getAll(pageable));
+    }
 
 
 

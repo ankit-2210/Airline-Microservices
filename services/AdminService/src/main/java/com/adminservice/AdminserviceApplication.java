@@ -2,8 +2,13 @@ package com.adminservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {
+		"com.adminservice",
+		"com.airlineportal"
+})
+@EnableFeignClients(basePackages = "com.airlineportal.client")
 public class AdminserviceApplication {
 
 	public static void main(String[] args) {

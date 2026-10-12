@@ -5,6 +5,10 @@ import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Refund.RefundResponse;
 import com.refundservice.service.RefundService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cloud.openfeign.SpringQueryMap;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -24,6 +28,10 @@ public class InternalRefundController {
         return ApiResponse.success(refundService.getByBookingId(bookingId));
     }
 
+    @GetMapping("/status/{status}")
+    public ApiResponse<Page<RefundResponse>> getByStatus(@PathVariable String status,  @SpringQueryMap Pageable pageable){
+        return ApiResponse.success(refundService.getByStatus(status, pageable));
+    }
 
 
 

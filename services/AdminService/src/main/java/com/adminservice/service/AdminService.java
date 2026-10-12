@@ -1,4 +1,0 @@
-package com.adminservice.service;
-
-public interface AdminService {
-}

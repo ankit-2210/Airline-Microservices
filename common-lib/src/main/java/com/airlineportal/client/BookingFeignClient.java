@@ -4,6 +4,7 @@ import com.airlineportal.payload.response.ApiResponse;
 import com.airlineportal.payload.response.Booking.BookingResponse;
 import com.airlineportal.payload.response.Payment.PaymentResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.cloud.openfeign.SpringQueryMap;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +28,9 @@ public interface BookingFeignClient {
     @GetMapping("/flight/{flightId}")
     ApiResponse<Page<BookingResponse>> getBookingsByFlight(@PathVariable Long flightId, Pageable pageable);
 
+
+    @GetMapping
+    ApiResponse<Page<BookingResponse>> getAllBookings(@SpringQueryMap Pageable pageable);
 
 
 }

@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<jasperReport
+        xmlns="http://jasperreports.sourceforge.net/jasperreports"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports
+                        http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+        name="loyalty_report"
+        pageWidth="842"
+        pageHeight="595"
+        orientation="Landscape"
+        columnWidth="782"
+        leftMargin="30"
+        rightMargin="30"
+        topMargin="25"
+        bottomMargin="25">
+
+    <!-- ========================= -->
+    <!-- FIELDS -->
+    <!-- ========================= -->
+
+    <field name="id" class="java.lang.Long"/>
+    <field name="userId" class="java.lang.Long"/>
+    <field name="loyaltyTier" class="java.lang.String"/>
+    <field name="totalPoints" class="java.lang.Long"/>
+    <field name="availablePoints" class="java.lang.Long"/>
+    <field name="lifetimePoints" class="java.lang.Long"/>
+    <field name="createdAt" class="java.lang.String"/>
+    <field name="updatedAt" class="java.lang.String"/>
+
+    <!-- ========================= -->
+    <!-- TITLE -->
+    <!-- ========================= -->
+
+    <title>
+        <band height="70">
+
+            <rectangle>
+                <reportElement
+                        x="0" y="0"
+                        width="782" height="65"
+                        backcolor="#1F4E78"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement
+                        x="20" y="10"
+                        width="742" height="28"
+                        forecolor="#FFFFFF"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                    <font size="20" isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[LOYALTY REPORT]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement
+                        x="20" y="40"
+                        width="742" height="18"
+                        forecolor="#FFFFFF"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                    <font size="10"/>
+                </textElement>
+
+                <text><![CDATA[Airline Portal - Loyalty Accounts Summary]]></text>
+            </staticText>
+
+        </band>
+    </title>
+
+    <!-- ========================= -->
+    <!-- COLUMN HEADER -->
+    <!-- ========================= -->
+
+    <columnHeader>
+        <band height="35">
+
+            <rectangle>
+                <reportElement
+                        x="0" y="0"
+                        width="782" height="32"
+                        backcolor="#D9EAF7"/>
+            </rectangle>
+
+            <staticText>
+                <reportElement x="0" y="0" width="52" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[ID]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="52" y="0" width="55" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[User ID]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="107" y="0" width="85" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Tier]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="192" y="0" width="95" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Total Points]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="287" y="0" width="105" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Available Points]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="392" y="0" width="105" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Lifetime Points]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="497" y="0" width="142" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Created At]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement x="639" y="0" width="143" height="32"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <text><![CDATA[Updated At]]></text>
+            </staticText>
+
+        </band>
+    </columnHeader>
+
+    <!-- ========================= -->
+    <!-- DETAIL -->
+    <!-- ========================= -->
+
+    <detail>
+        <band height="32">
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="0" y="0" width="52" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="52" y="0" width="55" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{userId}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="107" y="0" width="85" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8" isBold="true"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{loyaltyTier}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="192" y="0" width="95" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{totalPoints}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="287" y="0" width="105" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{availablePoints}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="392" y="0" width="105" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[$F{lifetimePoints}]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="497" y="0" width="142" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    $F{createdAt} == null ? "-" : $F{createdAt}
+                ]]></textFieldExpression>
+            </textField>
+
+            <textField isBlankWhenNull="true">
+                <reportElement x="639" y="0" width="143" height="30"/>
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font size="7"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    $F{updatedAt} == null ? "-" : $F{updatedAt}
+                ]]></textFieldExpression>
+            </textField>
+
+            <line>
+                <reportElement
+                        x="0" y="31"
+                        width="782" height="1"/>
+            </line>
+
+        </band>
+    </detail>
+
+    <!-- ========================= -->
+    <!-- PAGE FOOTER -->
+    <!-- ========================= -->
+
+    <pageFooter>
+        <band height="30">
+
+            <line>
+                <reportElement x="0" y="2" width="782" height="1"/>
+            </line>
+
+            <staticText>
+                <reportElement x="0" y="8" width="500" height="18"/>
+                <textElement verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <text><![CDATA[Airline Portal - Loyalty Service]]></text>
+            </staticText>
+
+            <textField>
+                <reportElement x="600" y="8" width="182" height="18"/>
+                <textElement textAlignment="Right" verticalAlignment="Middle">
+                    <font size="8"/>
+                </textElement>
+                <textFieldExpression><![CDATA[
+                    "Page " + $V{PAGE_NUMBER}
+                ]]></textFieldExpression>
+            </textField>
+
+        </band>
+    </pageFooter>
+
+    <!-- ========================= -->
+    <!-- SUMMARY / PIE CHART -->
+    <!-- ========================= -->
+
+    <summary>
+        <band height="360">
+
+            <staticText>
+                <reportElement
+                        x="0" y="10"
+                        width="782" height="30"/>
+
+                <textElement
+                        textAlignment="Center"
+                        verticalAlignment="Middle">
+                    <font size="15" isBold="true"/>
+                </textElement>
+
+                <text><![CDATA[Loyalty Tier Distribution]]></text>
+            </staticText>
+
+            <pieChart>
+
+                <chart>
+                    <reportElement
+                            x="100" y="45"
+                            width="582" height="300"/>
+
+                    <chartTitle>
+                        <font size="12" isBold="true"/>
+                    </chartTitle>
+
+                    <chartLegend/>
+                </chart>
+
+                <pieDataset>
+
+                    <keyExpression><![CDATA[
+                        $F{loyaltyTier}
+                    ]]></keyExpression>
+
+                    <valueExpression><![CDATA[
+                        java.lang.Integer.valueOf(1)
+                    ]]></valueExpression>
+
+                </pieDataset>
+
+                <piePlot isShowLabels="true">
+                    <plot/>
+                </piePlot>
+
+            </pieChart>
+
+        </band>
+    </summary>
+
+</jasperReport>

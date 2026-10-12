@@ -14,25 +14,25 @@ import java.util.*;
 @RequiredArgsConstructor
 @RequestMapping("/api/users")
 public class UserController {
-    private final UserService userService;
+private final UserService userService;
 
-    @GetMapping("/profile")
-    public ApiResponse<UserResponse> getUserProfile(Authentication authentication){
-        String email = authentication.getName();
-        UserResponse userResponse = userService.getUserByEmail(email);
-        return ApiResponse.success(userResponse);
-    }
+@GetMapping("/profile")
+public ApiResponse<UserResponse> getUserProfile(Authentication authentication){
+    String email = authentication.getName();
+    UserResponse userResponse = userService.getUserByEmail(email);
+    return ApiResponse.success(userResponse);
+}
 
-    @GetMapping("/{userId}")
-    public ApiResponse<UserResponse> getUserById(@PathVariable Long userId){
-        UserResponse userResponse = userService.getUserById(userId);
-        return ApiResponse.success(userResponse);
-    }
+@GetMapping("/{userId}")
+public ApiResponse<UserResponse> getUserById(@PathVariable Long userId){
+    UserResponse userResponse = userService.getUserById(userId);
+    return ApiResponse.success(userResponse);
+}
 
-    @GetMapping
-    public ApiResponse<List<UserResponse>> getUsers(){
-        List<UserResponse> users = userService.getAllUsers();
-        return ApiResponse.success(users);
-    }
+@GetMapping
+public ApiResponse<List<UserResponse>> getUsers(){
+    List<UserResponse> users = userService.getAllUsers();
+    return ApiResponse.success(users);
+}
 
 }

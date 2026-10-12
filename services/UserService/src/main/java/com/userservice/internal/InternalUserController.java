@@ -6,6 +6,8 @@ import com.userservice.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.*;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/internal/users")
@@ -16,5 +18,11 @@ public class InternalUserController {
     public ApiResponse<UserResponse> getUserById(@PathVariable Long userId){
         return ApiResponse.success(userService.getUserById(userId));
     }
+
+    @GetMapping
+    public ApiResponse<List<UserResponse>> getAllUsers(){
+        return ApiResponse.success(userService.getAllUsers());
+    }
+
 
 }
