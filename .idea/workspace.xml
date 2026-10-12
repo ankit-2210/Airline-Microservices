@@ -5,57 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Admin/AdminActionRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Admin/DashboardStatsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Admin/RecentActivityResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/config/AdminConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/controller/AdminController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/external/ExternalService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/external/ExternalServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/helper/AdminDashboardHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/helper/AdminReportHelper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/mapper/AdminDashboardMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/mapper/AdminReportMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/security/AuthTokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/security/JwtAuthEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminAirlineService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminFlightService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminPaymentService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminRefundService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminUserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminAirlineServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminFlightServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminPaymentServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminUserServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatReportControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/helper/SeatHelperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/mapper/SeatMapperTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/repository/SeatRepositoryTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/service/SeatReportServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/service/SeatServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/AirlineFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/AirlineFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/BookingFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/BookingFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/RefundFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/RefundFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/UserFeignClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/client/UserFeignClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/AirlineFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/AirlineFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/BookingFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/BookingFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/LoyaltyFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/LoyaltyFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/RefundFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/RefundFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/UserFeignClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/classes/com/airlineportal/client/UserFeignClient.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/AdminserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/AdminserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/AdminBookingService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/src/main/java/com/adminservice/service/Impl/AdminBookingServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/internal/InternalAirlineController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AirlineService/src/main/java/com/airlineservice/internal/InternalAirlineController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/internal/InternalBookingController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/BookingService/src/main/java/com/bookingservice/internal/InternalBookingController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/LoyaltyService/src/main/resources/reports/loyalty_report.jrxml" beforeDir="false" afterPath="$PROJECT_DIR$/services/LoyaltyService/src/main/resources/reports/loyalty_report.jrxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/internal/InternalRefundController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/internal/InternalRefundController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/internal/InternalUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/internal/InternalUserController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/helper/SeatHelperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/helper/SeatHelperTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,6 +93,10 @@
     "JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor": "Run",
     "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
     "JUnit.PasswordTokenRepositoryTest.testFindByToken.executor": "Run",
+    "JUnit.SeatControllerTest.executor": "Run",
+    "JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats.executor": "Run",
+    "JUnit.SeatControllerTest.getById_shouldReturnSuccess.executor": "Run",
+    "JUnit.SeatHelperTest.executor": "Run",
     "JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest.executor": "Run",
     "JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull.executor": "Run",
     "JUnit.SeatRepositoryTest.existsByFlightInstanceIdAndSeatNumber_shouldReturnTrue.executor": "Run",
@@ -211,101 +167,99 @@
       <recent name="com.refundservice.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows">
-    <configuration name="SeatMapperTest.toEntity_shouldMapCreateRequest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat">
+    <configuration name="SeatControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="seatservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.mapper.*" />
+          <option name="PATTERN" value="com.seatservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.mapper.SeatMapperTest" />
-      <option name="METHOD_NAME" value="toEntity_shouldMapCreateRequest" />
+      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SeatControllerTest.getByFlightInstance_shouldReturnSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="seatservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.seatservice.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
+      <option name="METHOD_NAME" value="getByFlightInstance_shouldReturnSeats" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SeatControllerTest.getById_shouldReturnSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="seatservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.mapper.*" />
+          <option name="PATTERN" value="com.seatservice.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.mapper" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.mapper.SeatMapperTest" />
-      <option name="METHOD_NAME" value="toReportData_shouldUseDashWhenTimestampsAreNull" />
+      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
+      <option name="METHOD_NAME" value="getById_shouldReturnSuccess" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatRepositoryTest.findByFlightInstanceIdAndSeatNumber_shouldFindSeat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SeatHelperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="seatservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.repository.*" />
+          <option name="PATTERN" value="com.seatservice.helper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.repository.SeatRepositoryTest" />
-      <option name="METHOD_NAME" value="findByFlightInstanceIdAndSeatNumber_shouldFindSeat" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="com.seatservice.helper" />
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.helper.SeatHelperTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatRepositoryTest.releaseSeat_shouldClearBookingAndMakeSeatAvailable" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="seatservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.repository.*" />
+          <option name="PATTERN" value="com.seatservice.helper.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.repository" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.repository.SeatRepositoryTest" />
-      <option name="METHOD_NAME" value="releaseSeat_shouldClearBookingAndMakeSeatAvailable" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.seatservice.service.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.service" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.service.SeatServiceImplTest" />
-      <option name="METHOD_NAME" value="bookSeat_shouldThrowWhenUpdateAffectsNoRows" />
+      <option name="PACKAGE_NAME" value="com.seatservice.helper" />
+      <option name="MAIN_CLASS_NAME" value="com.seatservice.helper.SeatHelperTest" />
+      <option name="METHOD_NAME" value="findByInstanceAndNumber_shouldReturnSeat" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest" />
-      <item itemvalue="JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull" />
-      <item itemvalue="JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatNumber_shouldFindSeat" />
-      <item itemvalue="JUnit.SeatRepositoryTest.releaseSeat_shouldClearBookingAndMakeSeatAvailable" />
-      <item itemvalue="JUnit.SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows" />
+      <item itemvalue="JUnit.SeatControllerTest" />
+      <item itemvalue="JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats" />
+      <item itemvalue="JUnit.SeatControllerTest.getById_shouldReturnSuccess" />
+      <item itemvalue="JUnit.SeatHelperTest" />
+      <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows" />
-        <item itemvalue="JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull" />
-        <item itemvalue="JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest" />
-        <item itemvalue="JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatNumber_shouldFindSeat" />
-        <item itemvalue="JUnit.SeatRepositoryTest.releaseSeat_shouldClearBookingAndMakeSeatAvailable" />
+        <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
+        <item itemvalue="JUnit.SeatHelperTest" />
+        <item itemvalue="JUnit.SeatControllerTest" />
+        <item itemvalue="JUnit.SeatControllerTest.getById_shouldReturnSuccess" />
+        <item itemvalue="JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats" />
       </list>
     </recent_temporary>
   </component>
@@ -317,14 +271,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00016" summary="added flight instance service and controller">
-      <option name="closed" value="true" />
-      <created>1781889851687</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1781889851687</updated>
     </task>
     <task id="LOCAL-00017" summary="added flight instance service and controller">
       <option name="closed" value="true" />
@@ -710,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791612860717</updated>
     </task>
-    <option name="localTasksCounter" value="65" />
+    <task id="LOCAL-00065" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791797923404</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1791797923405</updated>
+    </task>
+    <option name="localTasksCounter" value="66" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
