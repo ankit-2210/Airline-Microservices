@@ -5,9 +5,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
+      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/ADMINSERVICE.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/GeminiConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/RestTemplateConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/config/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/controller/NotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/internal/InternalNotificationController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationSpecification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/model/Notification.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/scheduler/NotificationScheduler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/EmailService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/Impl/EmailServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/resources/templates/notification-email.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/SeatServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/controller/SeatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/controller/SeatLifecycle.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/repository/SeatRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/resources/application-test.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/controller/SeatControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/helper/SeatHelperTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/helper/SeatHelperTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/AIService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AdminService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/NotificationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/NotificationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/NotificationserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/SeatserviceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/SeatserviceApplicationTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -22,10 +54,10 @@
       <list>
         <option value="Exception" />
         <option value="package-info" />
-        <option value="HTML File" />
         <option value="Enum" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -97,6 +129,7 @@
     "JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats.executor": "Run",
     "JUnit.SeatControllerTest.getById_shouldReturnSuccess.executor": "Run",
     "JUnit.SeatHelperTest.executor": "Run",
+    "JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat.executor": "Run",
     "JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest.executor": "Run",
     "JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull.executor": "Run",
     "JUnit.SeatRepositoryTest.existsByFlightInstanceIdAndSeatNumber_shouldReturnTrue.executor": "Run",
@@ -131,7 +164,7 @@
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/SpringBoot/BankingSystem/bankingportal",
+    "last_opened_file_path": "C:/SpringBoot/airline/airlineportal/services/NotificationService/src/main/java/com/notificationservice/security",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -145,13 +178,16 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\SpringBoot\airline\airlineportal\services\NotificationService\src\main\java\com\notificationservice\security" />
+      <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java" />
       <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\request" />
       <recent name="C:\SpringBoot\airline\airlineportal\services\AdminService\src\main\java\com\adminservice\security" />
-      <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
-      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\utils" />
-      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java\com\seatsercive" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java\com.seatsercive" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java\com" />
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\config-secrets" />
       <recent name="C:\SpringBoot\airline\airlineportal\cloud\ApiGateway\src\test\resources" />
     </key>
@@ -160,11 +196,11 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.notificationservice.config" />
+      <recent name="com.aiservice.config" />
+      <recent name="com.notificationservice.exception" />
       <recent name="com.adminservice.config" />
       <recent name="com.adminservice.exception" />
-      <recent name="com.loyaltyservice.exception" />
-      <recent name="com.loyaltyservice.config" />
-      <recent name="com.refundservice.exception" />
     </key>
   </component>
   <component name="RunManager" selected="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat">
@@ -271,14 +307,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00017" summary="added flight instance service and controller">
-      <option name="closed" value="true" />
-      <created>1781927788662</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1781927788663</updated>
     </task>
     <task id="LOCAL-00018" summary="update instances, services and controller">
       <option name="closed" value="true" />
@@ -664,7 +692,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791797923405</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791800321761</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1791800321761</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
