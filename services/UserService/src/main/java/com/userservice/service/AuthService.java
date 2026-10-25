@@ -3,6 +3,7 @@ package com.userservice.service;
 
 import com.airlineportal.payload.dto.UserDto;
 import com.airlineportal.payload.response.User.AuthResponse;
+import com.airlineportal.payload.response.User.RefreshResult;
 
 public interface AuthService {
     AuthResponse signup(UserDto userDto);
@@ -11,5 +12,11 @@ public interface AuthService {
     void changePassword(String email, String oldPassword, String newPassword);
     void forgotPassword(String email, String baseUrl);
     void resetPassword(String token, String newPassword);
+
+    String issueRefreshToken(String email);
+
+    RefreshResult refreshAccessToken(String refreshToken);
+
+    void logout(String refreshToken);
 
 }

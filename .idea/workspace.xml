@@ -5,67 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/exception/NotificationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Notification/NotificationRetryRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Notification/NotificationSearchRequest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationCountsResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationRetryResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationChannel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationStatus.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/AuthTokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAuthEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/java/com/faresercive/FareServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/java/com/faresercive/controller/FareController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/resources/application-test.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/FareService/src/test/java/com/fareservice/controller/FareController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/config/KafkaTopicConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/event/BookingEventConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/event/PaymentNotificationConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/external/ExternalService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/external/ExternalServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/message/NotificationMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/model/NotificationJob.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/repository/NotificationJobRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/repository/NotificationRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/Impl/NotificationServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationIngestionService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationIngestionServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/utils/EmailSender.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/RefreshResult.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/RefreshToken.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/repository/RefreshTokenRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/CorsConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AIRLINESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AIRLINESERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BAGGAGESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BAGGAGESERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/CHECKINSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/CHECKINSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FARESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FARESERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FLIGHTSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FLIGHTSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOCATIONSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOCATIONSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOYALTYSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOYALTYSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/REFUNDSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/REFUNDSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/SEATSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/SEATSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/USERSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/USERSERVICE.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/EurekaServer/src/main/java/com/eurekaserver/EurekaserverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/EurekaServer/src/main/java/com/eurekaserver/EurekaserverApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cloud/EurekaServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/EurekaServer/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/CommonLibApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/CommonLibApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/CommonLibApplication.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/FareService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/FareService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/NotificationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/specification/NotificationSpecification.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/AuthHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/AuthHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -82,9 +28,10 @@
         <option value="package-info" />
         <option value="HTML File" />
         <option value="Exception" />
-        <option value="Interface" />
         <option value="Enum" />
         <option value="Class" />
+        <option value="Interface" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -324,14 +271,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00019" summary="update instances, services and controller">
-      <option name="closed" value="true" />
-      <created>1781936862924</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1781936862924</updated>
     </task>
     <task id="LOCAL-00020" summary="update instances, services and controller">
       <option name="closed" value="true" />
@@ -717,7 +656,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791953000609</updated>
     </task>
-    <option name="localTasksCounter" value="68" />
+    <task id="LOCAL-00068" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1792912262228</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1792912262229</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
