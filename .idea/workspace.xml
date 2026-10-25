@@ -5,41 +5,68 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/ADMINSERVICE.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/GeminiConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/RestTemplateConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/controller/NotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/exception/GlobalExceptionHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/internal/InternalNotificationController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationSpecification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/model/Notification.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/scheduler/NotificationScheduler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/AuthTokenFilter.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/security/JwtAuthEntryPoint.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/EmailService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/Impl/EmailServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/resources/templates/notification-email.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/SeatServiceIntegrationTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/controller/SeatController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/controller/SeatLifecycle.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/java/com/seatsercive/repository/SeatRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/SeatService/src/integration/resources/application-test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/exception/NotificationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Notification/NotificationRetryRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/Notification/NotificationSearchRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationCountsResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/Notification/NotificationRetryResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationChannel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/Notification/NotificationType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/java/com/faresercive/FareServiceIntegrationTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/java/com/faresercive/controller/FareController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FareService/src/integration/resources/application-test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/FareService/src/test/java/com/fareservice/controller/FareController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/config/KafkaTopicConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/event/BookingEventConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/event/PaymentNotificationConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/external/ExternalService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/external/ExternalServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/message/NotificationMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/model/NotificationJob.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/repository/NotificationJobRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/repository/NotificationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/Impl/NotificationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationIngestionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationIngestionServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/service/NotificationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/utils/EmailSender.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/AIService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/AdminService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/AdminService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/CorsConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/CorsConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ApiGateway/src/main/java/com/apigateway/filter/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AIRLINESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AIRLINESERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BAGGAGESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BAGGAGESERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/BOOKINGSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/CHECKINSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/CHECKINSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FARESERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FARESERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FLIGHTSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/FLIGHTSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOCATIONSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOCATIONSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOYALTYSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/LOYALTYSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/NOTIFICATIONSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/REFUNDSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/REFUNDSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/SEATSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/SEATSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/USERSERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/USERSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/EurekaServer/src/main/java/com/eurekaserver/EurekaserverApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/EurekaServer/src/main/java/com/eurekaserver/EurekaserverApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/EurekaServer/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/EurekaServer/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/CommonLibApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/CommonLibApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/classes/com/microservices/CommonLibApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/FareService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/FareService/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/services/NotificationService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/NotificationserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/NotificationserviceApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/SeatserviceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/SeatService/src/test/java/com/seatservice/SeatserviceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/mapper/NotificationSpecification.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/NotificationService/src/main/java/com/notificationservice/specification/NotificationSpecification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,12 +79,12 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Exception" />
         <option value="package-info" />
-        <option value="Enum" />
-        <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
+        <option value="Exception" />
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -95,94 +122,94 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "Application.AirlineserviceApplication.executor": "Run",
-    "Application.ApigatewayApplication.executor": "Run",
-    "Application.BaggageserviceApplication.executor": "Run",
-    "Application.BookingserviceApplication.executor": "Run",
-    "Application.CheckinserviceApplication.executor": "Run",
-    "Application.CommonLibApplication.executor": "Run",
-    "Application.ConfigserverApplication.executor": "Run",
-    "Application.EurekaserverApplication.executor": "Run",
-    "Application.FareserviceApplication.executor": "Run",
-    "Application.FlightserviceApplication.executor": "Run",
-    "Application.LocationserviceApplication.executor": "Run",
-    "Application.PaymentserviceApplication.executor": "Run",
-    "Application.RefundserviceApplication.executor": "Run",
-    "Application.SeatserviceApplication.executor": "Run",
-    "Application.UserserviceApplication.executor": "Run",
-    "DefaultHtmlFileTemplate": "HTML File",
-    "JUnit.AirportTest.testAirportCreation.executor": "Run",
-    "JUnit.AirportTest.testDetailedName.executor": "Run",
-    "JUnit.AuthServiceTest.testChangePasswordSuccess.executor": "Run",
-    "JUnit.AuthServiceTest.testLoginSuccess.executor": "Run",
-    "JUnit.CityTest.testCityCreation.executor": "Run",
-    "JUnit.PasswordResetTokenTest.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testBuilder.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testExpiryLogic.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor": "Run",
-    "JUnit.PasswordResetTokenTest.testSettersAndGetters.executor": "Run",
-    "JUnit.PasswordTokenRepositoryTest.testFindByToken.executor": "Run",
-    "JUnit.SeatControllerTest.executor": "Run",
-    "JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats.executor": "Run",
-    "JUnit.SeatControllerTest.getById_shouldReturnSuccess.executor": "Run",
-    "JUnit.SeatHelperTest.executor": "Run",
-    "JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat.executor": "Run",
-    "JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest.executor": "Run",
-    "JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull.executor": "Run",
-    "JUnit.SeatRepositoryTest.existsByFlightInstanceIdAndSeatNumber_shouldReturnTrue.executor": "Run",
-    "JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatNumber_shouldFindSeat.executor": "Run",
-    "JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatStatus_shouldFilterByStatus.executor": "Run",
-    "JUnit.SeatRepositoryTest.findByFlightInstanceId_shouldReturnMatchingSeats.executor": "Run",
-    "JUnit.SeatRepositoryTest.releaseSeat_shouldClearBookingAndMakeSeatAvailable.executor": "Run",
-    "JUnit.SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows.executor": "Run",
-    "JUnit.UserControllerTest.getUserProfile.executor": "Run",
-    "JUnit.UserControllerTest.testGetAllUsers.executor": "Run",
-    "JUnit.UserControllerTest.testGetUserById.executor": "Run",
-    "JUnit.UserControllerTest.testGetUserProfile.executor": "Run",
-    "JUnit.UserRepositoryTest.executor": "Run",
-    "JUnit.UserRepositoryTest.testFindByEmail.executor": "Run",
-    "JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor": "Run",
-    "JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor": "Run",
-    "JUnit.UserServiceTest.executor": "Run",
-    "JUnit.UserServiceTest.testGetAllUsers.executor": "Run",
-    "JUnit.UserServiceTest.testGetUserByEmail.executor": "Run",
-    "JUnit.UserServiceTest.testGetUserByEmail_NotFound.executor": "Run",
-    "JUnit.UserServiceTest.testGetUserById.executor": "Run",
-    "JUnit.UserServiceTest.testGetUserById_NotFound.executor": "Run",
-    "JUnit.UserServiceTest.test_getUserByEmail_Success.executor": "Run",
-    "JUnit.UserTest.testNoArgsConstructor.executor": "Run",
-    "JUnit.UserTest.testSettersAndGetters.executor": "Run",
-    "JUnit.UserTest.testUpdateUser.executor": "Run",
-    "JUnit.UserTest.testUserBuilder.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "ToolWindow.documentation.v2.ShowToolbar": "false",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/SpringBoot/airline/airlineportal/services/NotificationService/src/main/java/com/notificationservice/security",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Application.AirlineserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ApigatewayApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BaggageserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.BookingserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CheckinserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.CommonLibApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ConfigserverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.EurekaserverApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FareserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.FlightserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PaymentserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.RefundserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.SeatserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AirportTest.testDetailedName.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.testChangePasswordSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.AuthServiceTest.testLoginSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.CityTest.testCityCreation.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testExpiryLogic.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testNoArgsConstructor.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordResetTokenTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PasswordTokenRepositoryTest.testFindByToken.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatControllerTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatControllerTest.getById_shouldReturnSuccess.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatHelperTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatMapperTest.toEntity_shouldMapCreateRequest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatMapperTest.toReportData_shouldUseDashWhenTimestampsAreNull.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatRepositoryTest.existsByFlightInstanceIdAndSeatNumber_shouldReturnTrue.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatNumber_shouldFindSeat.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatRepositoryTest.findByFlightInstanceIdAndSeatStatus_shouldFilterByStatus.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatRepositoryTest.findByFlightInstanceId_shouldReturnMatchingSeats.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatRepositoryTest.releaseSeat_shouldClearBookingAndMakeSeatAvailable.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.SeatServiceImplTest.bookSeat_shouldThrowWhenUpdateAffectsNoRows.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.getUserProfile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.testGetAllUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.testGetUserById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserControllerTest.testGetUserProfile.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testFindByEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testFindByEmail_NotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserRepositoryTest.testUniqueEmailConstraint.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testGetAllUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testGetUserByEmail.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testGetUserByEmail_NotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testGetUserById.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.testGetUserById_NotFound.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserServiceTest.test_getUserByEmail_Success.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testNoArgsConstructor.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testSettersAndGetters.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testUpdateUser.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserTest.testUserBuilder.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;ToolWindow.documentation.v2.ShowToolbar&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/SpringBoot/airline/airlineportal/common-lib/src/main/java/com/airlineportal/payload/response&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "JAVA"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;JAVA&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\response" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\AIService\src\main\java\com\aiservice\security" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\FareService\src\test\java\com\fareservice" />
+      <recent name="C:\SpringBoot\airline\airlineportal\services\FareService\src\integration" />
       <recent name="C:\SpringBoot\airline\airlineportal\services\NotificationService\src\main\java\com\notificationservice\security" />
-      <recent name="C:\SpringBoot\airline\airlineportal\cloud\ConfigServer\src\main\resources\config" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java" />
-      <recent name="C:\SpringBoot\airline\airlineportal\common-lib\src\main\java\com\airlineportal\payload\request" />
-      <recent name="C:\SpringBoot\airline\airlineportal\services\AdminService\src\main\java\com\adminservice\security" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\SpringBoot\airline\airlineportal\services\SeatService\src\integration\java\com\seatsercive" />
@@ -196,72 +223,62 @@
       <recent name="com.userservice.service" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.aiservice.exception" />
       <recent name="com.notificationservice.config" />
       <recent name="com.aiservice.config" />
       <recent name="com.notificationservice.exception" />
       <recent name="com.adminservice.config" />
-      <recent name="com.adminservice.exception" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat">
-    <configuration name="SeatControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
+  <component name="RunManager" selected="Application.UserserviceApplication">
+    <configuration name="ApigatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.apigateway.ApigatewayApplication" />
+      <module name="apigateway" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.controller.*" />
+          <option name="PATTERN" value="com.apigateway.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatControllerTest.getByFlightInstance_shouldReturnSeats" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
+    <configuration name="ConfigserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.configserver.ConfigserverApplication" />
+      <module name="configserver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.controller.*" />
+          <option name="PATTERN" value="com.configserver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
-      <option name="METHOD_NAME" value="getByFlightInstance_shouldReturnSeats" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatControllerTest.getById_shouldReturnSuccess" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
+    <configuration name="EurekaserverApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.eurekaserver.EurekaserverApplication" />
+      <module name="eurekaserver" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.controller.*" />
+          <option name="PATTERN" value="com.eurekaserver.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.controller" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.controller.SeatControllerTest" />
-      <option name="METHOD_NAME" value="getById_shouldReturnSuccess" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatHelperTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
+    <configuration name="UserserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.userservice.UserserviceApplication" />
+      <module name="userservice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.seatservice.helper.*" />
+          <option name="PATTERN" value="com.userservice.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.helper" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.helper.SeatHelperTest" />
-      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -283,19 +300,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.SeatControllerTest" />
-      <item itemvalue="JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats" />
-      <item itemvalue="JUnit.SeatControllerTest.getById_shouldReturnSuccess" />
-      <item itemvalue="JUnit.SeatHelperTest" />
+      <item itemvalue="Application.ApigatewayApplication" />
+      <item itemvalue="Application.ConfigserverApplication" />
+      <item itemvalue="Application.EurekaserverApplication" />
+      <item itemvalue="Application.UserserviceApplication" />
       <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserserviceApplication" />
+        <item itemvalue="Application.ApigatewayApplication" />
+        <item itemvalue="Application.ConfigserverApplication" />
+        <item itemvalue="Application.EurekaserverApplication" />
         <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
-        <item itemvalue="JUnit.SeatHelperTest" />
-        <item itemvalue="JUnit.SeatControllerTest" />
-        <item itemvalue="JUnit.SeatControllerTest.getById_shouldReturnSuccess" />
-        <item itemvalue="JUnit.SeatControllerTest.getByFlightInstance_shouldReturnSeats" />
       </list>
     </recent_temporary>
   </component>
@@ -307,14 +324,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00018" summary="update instances, services and controller">
-      <option name="closed" value="true" />
-      <created>1781932979723</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1781932979723</updated>
     </task>
     <task id="LOCAL-00019" summary="update instances, services and controller">
       <option name="closed" value="true" />
@@ -700,7 +709,15 @@
       <option name="project" value="LOCAL" />
       <updated>1791800321761</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1791953000608</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1791953000609</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

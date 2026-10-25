@@ -6,6 +6,8 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+import java.util.*;
+
 @Configuration
 public class CorsConfig {
     @Bean
@@ -13,14 +15,30 @@ public class CorsConfig {
 
         CorsConfiguration config = new CorsConfiguration();
 
+        config.setAllowedOrigins(List.of(
+                "http://localhost:3000",
+                "http://localhost:5173"
+        ));
+
         config.setAllowCredentials(true);
-        config.addAllowedOrigin("http://localhost:3000");
-        config.addAllowedOrigin("http://localhost:5173");
+        config.setAllowedMethods(List.of(
+                "GET", "POST", "PUT", "PATCH",
+                "DELETE", "OPTIONS"
+        ));
+        config.setAllowedHeaders(List.of(
+                "Authorization",
+                "Content-Type",
+                "Accept",
+                "Origin",
+                "X-Requested-With"
+        ));
 
-        config.addAllowedHeader("*");
-        config.addAllowedMethod("*");
+        config.setExposedHeaders(List.of("Authorization"));
+        config.setMaxAge(3600L);
 
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        UrlBasedCorsConfigurationSource source =
+                new UrlBasedCorsConfigurationSource();
+
         source.registerCorsConfiguration("/**", config);
 
         return new CorsWebFilter(source);

@@ -59,11 +59,25 @@ public class JwtAuthenticationFilter implements GlobalFilter, Ordered {
             String email = jwtUtils.getEmailFromToken(token);
             List<String> roles = jwtUtils.getRolesFromToken(token);
 
+            if (userId == null
+                    || !StringUtils.hasText(email)
+                    || roles == null
+                    || roles.isEmpty()) {
+                exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
+                return exchange.getResponse().setComplete();
+            }
+
             ServerHttpRequest request = exchange.getRequest()
                     .mutate()
-                    .header("X-User-Id", String.valueOf(userId))
-                    .header("X-User-Email", email)
-                    .header("X-User-Roles", String.join(",", roles))
+                    .headers(headers -> {
+                        headers.remove("X-User-Id");
+                        headers.remove("X-User-Email");
+                        headers.remove("X-User-Roles");
+
+                        headers.set("X-User-Id", String.valueOf(userId));
+                        headers.set("X-User-Email", email);
+                        headers.set("X-User-Roles", String.join(",", roles));
+                    })
                     .build();
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(

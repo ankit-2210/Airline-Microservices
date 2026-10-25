@@ -1,8 +1,9 @@
 package com.aiservice.config;
 
-import com.seatservice.security.AuthTokenFilter;
-import com.seatservice.security.JwtAccessDeniedHandler;
-import com.seatservice.security.JwtAuthEntryPoint;
+
+import com.aiservice.security.AuthTokenFilter;
+import com.aiservice.security.JwtAccessDeniedHandler;
+import com.aiservice.security.JwtAuthEntryPoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

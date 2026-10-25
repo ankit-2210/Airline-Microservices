@@ -61,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .phone(userDto.getPhone())
-                .userRole(userDto.getUserRole())
+                .userRole(UserRole.ROLE_USER)
                 .fullName(userDto.getFullName())
                 .build();
 
@@ -69,7 +69,7 @@ public class AuthServiceImpl implements AuthService {
 
         // Authenticate via Spring Security
         Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(userDto.getEmail(), userDto.getPassword()));
+                new UsernamePasswordAuthenticationToken(email, userDto.getPassword()));
 
         // Generate JWT
         String jwt = jwtUtils.generateToken(authentication, savedUser.getId());
@@ -102,13 +102,13 @@ public class AuthServiceImpl implements AuthService {
         User savedUser = userRepository.save(user);
 
         // Generate JWT
-        String jwt = jwtUtils.generateToken(authentication, user.getId());
+        String jwt = jwtUtils.generateToken(authentication, savedUser.getId());
 
         // Response
         return AuthResponse.builder()
                 .jwt(jwt)
-                .userDto(UserMapper.toDto(user))
-                .title("Welcome " + user.getFullName())
+                .userDto(UserMapper.toDto(savedUser))
+                .title("Welcome " + savedUser.getFullName())
                 .message("Login successful")
                 .build();
     }

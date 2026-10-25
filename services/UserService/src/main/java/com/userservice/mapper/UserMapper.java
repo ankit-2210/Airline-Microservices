@@ -37,6 +37,7 @@ public class UserMapper {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .userRole(user.getUserRole())
+                .lastLogin(user.getLastLogin())
                 .build();
     }
 

@@ -77,6 +77,8 @@
             <artifactId>spring-security-core</artifactId>
         </dependency>
 
+
+
     </dependencies>
 
 <!--    target/common-lib-0.0.1-SNAPSHOT.jar-->
