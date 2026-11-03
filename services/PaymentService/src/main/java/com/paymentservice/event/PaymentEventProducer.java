@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class PaymentEventProducer {
-    private static final String PAYMENT_REFUNDED_TOPIC =
-            "payment.refunded.v1";
+    private static final String PAYMENT_REFUNDED_TOPIC = "payment.refunded.v1";
 
     private final KafkaTemplate<String, Object> kafkaTemplate;
 

@@ -1,138 +1,142 @@
-pipeline {
 
+pipeline {
     agent any
 
+    options {
+        timestamps()
+        disableConcurrentBuilds()
+    }
+
     environment {
-        USER_IMAGE = "user-service"
-        LOCATION_IMAGE = "location-service"
-        AIRLINE_IMAGE = "airline-service"
+        IMAGE_TAG = 'local'
     }
 
     stages {
-
-        stage('Checkout Code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
         }
 
-        stage('Build Maven Project') {
+        stage('Verify Tools') {
             steps {
-                sh 'mvn clean package -DskipTests'
+                sh '''
+                    java -version
+                    mvn -version
+                    docker --version
+                '''
             }
         }
 
-        // =========================
-        // Build User Service Image
-        // =========================
-        stage('Build UserService Image') {
+        stage('Build and Test Backend') {
             steps {
-                sh """
-                    docker rm -f user-service || true
-                    docker rmi $USER_IMAGE || true
-
-                    docker build --no-cache \
-                    --build-arg JAR_FILE=services/UserService/target/userservice-0.0.1-SNAPSHOT.jar \
-                    -t $USER_IMAGE .
-                """
+                sh 'mvn -B clean verify -DskipTests'
             }
         }
 
-        // =========================
-        // Build Location Service Image
-        // =========================
-        stage('Build LocationService Image') {
+        stage('Build Cloud Images') {
             steps {
-                sh """
-                    docker rm -f location-service || true
-                    docker rmi $LOCATION_IMAGE || true
+                script {
+                    def cloudServices = [
+                        [
+                            name: 'eureka-server',
+                            jar: 'cloud/eurekaserver/target/eurekaserver-0.0.1-SNAPSHOT.jar'
+                        ],
+                        [
+                            name: 'config-server',
+                            jar: 'cloud/configserver/target/configserver-0.0.1-SNAPSHOT.jar'
+                        ],
+                        [
+                            name: 'api-gateway',
+                            jar: 'cloud/apigateway/target/apigateway-0.0.1-SNAPSHOT.jar'
+                        ]
+                    ]
 
-                    docker build --no-cache \
-                    --build-arg JAR_FILE=services/LocationService/target/locationservice-0.0.1-SNAPSHOT.jar \
-                    -t $LOCATION_IMAGE .
-                """
+                    cloudServices.each { svc ->
+                        sh """
+                            test -f '${svc.jar}'
+                            docker build \
+                              --build-arg JAR_FILE='${svc.jar}' \
+                              -t '${svc.name}:${IMAGE_TAG}' .
+                        """
+                    }
+                }
             }
         }
 
-        // =========================
-        // Build Airline Service Image
-        // =========================
-        stage('Build AirlineService Image') {
+        stage('Build Business Service Images') {
             steps {
-                sh """
-                    docker rm -f airline-service || true
-                    docker rmi $AIRLINE_IMAGE || true
+                script {
+                    def services = [
+                        'AdminService',
+                        'AirlineService',
+                        'AIService',
+                        'BaggageService',
+                        'BookingService',
+                        'CheckInService',
+                        'FareService',
+                        'FlightService',
+                        'LocationService',
+                        'LoyaltyService',
+                        'NotificationService',
+                        'PaymentService',
+                        'RefundService',
+                        'SeatService',
+                        'UserService'
+                    ]
 
-                    docker build --no-cache \
-                    --build-arg JAR_FILE=services/AirlineService/target/airlineservice-0.0.1-SNAPSHOT.jar \
-                    -t $AIRLINE_IMAGE .
-                """
+                    services.each { serviceName ->
+                        def artifactId = serviceName.toLowerCase()
+
+                        def jarPath =
+                            "services/${serviceName}/target/${artifactId}-0.0.1-SNAPSHOT.jar"
+
+                        def imageName =
+                            serviceName.replaceAll(
+                                /([a-z])([A-Z])/,
+                                '$1-$2'
+                            ).toLowerCase()
+
+                        sh """
+                            test -f '${jarPath}'
+                            docker build \
+                              --build-arg JAR_FILE='${jarPath}' \
+                              -t '${imageName}:${IMAGE_TAG}' .
+                        """
+                    }
+                }
             }
         }
 
-
-        // =========================
-        // Run UserService
-        // =========================
-        stage('Run UserService') {
+        stage('Build Frontend Image') {
+            when {
+                expression {
+                    fileExists('airlines/Dockerfile')
+                }
+            }
             steps {
-                sh """
-                    docker run -d \
-                    --restart unless-stopped \
-                    --name user-service \
-                    -p 5005:5005 \
-                    $USER_IMAGE
-                """
+                sh '''
+                    docker build \
+                      -t airline-frontend:${IMAGE_TAG} \
+                      ./airlines
+                '''
             }
         }
 
-        // =========================
-        // Run LocationService
-        // =========================
-        stage('Run LocationService') {
+        stage('List Images') {
             steps {
-                sh """
-                    docker run -d \
-                    --restart unless-stopped \
-                    --name location-service \
-                    -p 5004:5004 \
-                    $LOCATION_IMAGE
-                """
-            }
-        }
-
-        // =========================
-        // Run AirlineService
-        // =========================
-        stage('Run AirlineService') {
-            steps {
-                sh """
-                    docker run -d \
-                    --restart unless-stopped \
-                    --name airline-service \
-                    -p 5006:5006 \
-                    $AIRLINE_IMAGE
-                """
-            }
-        }
-
-        // =========================
-        // Verify
-        // =========================
-        stage('Verify Running Containers') {
-            steps {
-                sh 'docker ps'
+                sh 'docker image ls'
             }
         }
     }
 
     post {
         success {
-            echo 'Deployment Successful!'
+            echo 'Backend build and Docker image creation completed.'
         }
 
         failure {
-            echo 'Deployment Failed!'
+            echo 'Pipeline failed. Check the stage logs.'
         }
     }
 }

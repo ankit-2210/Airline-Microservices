@@ -5,14 +5,70 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/User/RefreshResult.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/model/RefreshToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/repository/RefreshTokenRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Jenkinsfilesss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/request/AI/AIChatRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/AI/AIChatResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/AI/AIConversationResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/payload/response/AI/AIMessageResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/AI/ConversationStatus.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/common-lib/src/main/java/com/airlineportal/utils/AI/MessageRole.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/assistant/AirlineAssistant.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/config/GeminiConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/config/LangChain4jConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/config/WebClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/controller/AIChatController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/helper/AIResponseMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/helper/JsonResponseParser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/mapper/AIConversationMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/memory/PostgresChatMemoryStore.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/model/AIConversation.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/model/AIMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/repository/AIConversationRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/repository/AIMessageRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/service/AIChatService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/service/AIContextService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/service/AIConversationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/service/GeminiService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/BaggageTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/BookingTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/FareTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/FlightTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/LocationTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/LoyaltyTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/RefundTools.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/tools/SeatTools.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/AuthHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/helper/AuthHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/AuthService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/UserService/src/main/java/com/userservice/service/Impl/AuthServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Jenkinsfile" beforeDir="false" afterPath="$PROJECT_DIR$/Jenkinsfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/AISERVICE.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/PROMPTSERVICE.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" beforeDir="false" afterPath="$PROJECT_DIR$/cloud/ConfigServer/src/main/resources/config/API-GATEWAY.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/airlineportal-common-lib-0.0.1-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/airlineportal-common-lib-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/common-lib/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/.gitattributes" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/.gitattributes" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/mvnw" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/mvnw" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/mvnw.cmd" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/mvnw.cmd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/AiserviceApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/PromptserviceApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/GeminiConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/RestTemplateConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/config/RestTemplateConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/controller/AIController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/exception/GlobalExceptionHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/AuthTokenFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/security/AuthTokenFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/CurrentUserArgumentResolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/security/CurrentUserArgumentResolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAccessDeniedHandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/security/JwtAccessDeniedHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/java/com/aiservice/security/JwtAuthEntryPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/java/com/promptservice/security/JwtAuthEntryPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/AIService/src/test/java/com/aiservice/AiserviceApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PromptService/src/test/java/com/promptservice/PromptserviceApplicationTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/PaymentService/src/main/java/com/paymentservice/event/PaymentEventProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/PaymentService/src/main/java/com/paymentservice/event/PaymentEventProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/services/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,9 +85,9 @@
         <option value="HTML File" />
         <option value="Exception" />
         <option value="Enum" />
-        <option value="Class" />
-        <option value="Interface" />
         <option value="Record" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -73,6 +129,7 @@
   &quot;keyToString&quot;: {
     &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;Application.AirlineserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.AiserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.ApigatewayApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.BaggageserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.BookingserviceApplication.executor&quot;: &quot;Run&quot;,
@@ -84,9 +141,11 @@
     &quot;Application.FlightserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.LocationserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.PaymentserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.PromptserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.RefundserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.SeatserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;Application.UserserviceApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.com.promptservice.AiserviceApplication.executor&quot;: &quot;Run&quot;,
     &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
     &quot;JUnit.AirportTest.testAirportCreation.executor&quot;: &quot;Run&quot;,
     &quot;JUnit.AirportTest.testDetailedName.executor&quot;: &quot;Run&quot;,
@@ -177,7 +236,7 @@
       <recent name="com.adminservice.config" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserserviceApplication">
+  <component name="RunManager" selected="Application.PromptserviceApplication">
     <configuration name="ApigatewayApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.apigateway.ApigatewayApplication" />
       <module name="apigateway" />
@@ -217,6 +276,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PromptserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.promptservice.PromptserviceApplication" />
+      <module name="promptservice" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.promptservice.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserserviceApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.userservice.UserserviceApplication" />
       <module name="userservice" />
@@ -230,36 +302,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="seatservice" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.seatservice.helper.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.seatservice.helper" />
-      <option name="MAIN_CLASS_NAME" value="com.seatservice.helper.SeatHelperTest" />
-      <option name="METHOD_NAME" value="findByInstanceAndNumber_shouldReturnSeat" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
+      <item itemvalue="Application.EurekaserverApplication" />
+      <item itemvalue="Application.PromptserviceApplication" />
       <item itemvalue="Application.ApigatewayApplication" />
       <item itemvalue="Application.ConfigserverApplication" />
-      <item itemvalue="Application.EurekaserverApplication" />
       <item itemvalue="Application.UserserviceApplication" />
-      <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserserviceApplication" />
+        <item itemvalue="Application.PromptserviceApplication" />
         <item itemvalue="Application.ApigatewayApplication" />
+        <item itemvalue="Application.UserserviceApplication" />
         <item itemvalue="Application.ConfigserverApplication" />
         <item itemvalue="Application.EurekaserverApplication" />
-        <item itemvalue="JUnit.SeatHelperTest.findByInstanceAndNumber_shouldReturnSeat" />
       </list>
     </recent_temporary>
   </component>
@@ -271,14 +327,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00020" summary="update instances, services and controller">
-      <option name="closed" value="true" />
-      <created>1781936868652</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1781936868652</updated>
     </task>
     <task id="LOCAL-00021" summary="update instances, services and controller">
       <option name="closed" value="true" />
@@ -664,7 +712,15 @@
       <option name="project" value="LOCAL" />
       <updated>1792912262229</updated>
     </task>
-    <option name="localTasksCounter" value="69" />
+    <task id="LOCAL-00069" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1792925796467</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1792925796467</updated>
+    </task>
+    <option name="localTasksCounter" value="70" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

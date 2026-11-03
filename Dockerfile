@@ -8,8 +8,8 @@ WORKDIR /app
 # Copy complete project
 COPY . .
 
-# Build all modules
-RUN mvn clean package -DskipTests
+# Build all Maven modules, including common-lib, cloud and services
+RUN mvn -B clean package -DskipTests
 
 # =========================
 # RUNTIME STAGE
@@ -21,10 +21,12 @@ WORKDIR /app
 # Jar passed dynamically from Jenkins
 ARG JAR_FILE
 
-COPY --from=build /app/${JAR_FILE} app.jar
+RUN test -n "$JAR_FILE"
+
+COPY --from=build /app/${JAR_FILE} /app/app.jar
 
 # Run app
-ENTRYPOINT ["java","-jar","app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
 
 

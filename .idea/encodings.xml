@@ -8,7 +8,6 @@
     <file url="file://$PROJECT_DIR$/cloud/src/main/resources" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common-lib/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/common-lib/src/main/resources" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/services/AIService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/AdminService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/AirlineService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/AirlineService/src/main/resources" charset="UTF-8" />
@@ -23,6 +22,7 @@
     <file url="file://$PROJECT_DIR$/services/LoyaltyService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/NotificationService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/PaymentService/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/services/PromptService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/RefundService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/SeatService/src/main/java" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/services/UserService/src/main/java" charset="UTF-8" />

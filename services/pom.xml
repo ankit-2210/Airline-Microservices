@@ -34,7 +34,7 @@
         <module>LoyaltyService</module>
         <module>AdminService</module>
         <module>NotificationService</module>
-        <module>AIService</module>
+        <module>PromptService</module>
     </modules>
 
 </project>

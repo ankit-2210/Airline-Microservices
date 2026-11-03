@@ -13,7 +13,6 @@
 		<relativePath>../pom.xml</relativePath>
 	</parent>
 
-
 	<artifactId>configserver</artifactId>
 	<name>ConfigServer</name>
 

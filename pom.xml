@@ -37,6 +37,8 @@
         <mapstruct.version>1.6.3</mapstruct.version>
         <lombok.version>1.18.38</lombok.version>
         <resilience4j.version>2.3.0</resilience4j.version>
+
+        <langchain4j.version>1.23.0</langchain4j.version>
     </properties>
 
     <dependencyManagement>
@@ -104,6 +106,19 @@
                 <groupId>io.github.resilience4j</groupId>
                 <artifactId>resilience4j-spring-boot3</artifactId>
                 <version>${resilience4j.version}</version>
+            </dependency>
+
+            <!-- LangChain4j -->
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j</artifactId>
+                <version>${langchain4j.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>dev.langchain4j</groupId>
+                <artifactId>langchain4j-google-ai-gemini</artifactId>
+                <version>${langchain4j.version}</version>
             </dependency>
 
         </dependencies>
