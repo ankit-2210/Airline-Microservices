@@ -32,6 +32,7 @@ public class SecurityConfig {
 
                         .pathMatchers(
                                 "/auth/**",
+                                "/api/ai/test",
                                 "/actuator/health",
                                 "/swagger-ui/**",
                                 "/swagger-ui.html",

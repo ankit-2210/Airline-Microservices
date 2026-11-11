@@ -27,9 +27,15 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        try{
+        logger.info("Incoming request: {} {}", request.getMethod(), request.getRequestURI());
+
+        try {
             String jwt = parseJwt(request);
-            if(jwt != null && jwtUtils.validateToken(jwt)){
+
+            if (jwt == null) {
+                logger.info("No JWT token found. Continuing without authentication.");
+            }
+            else if (jwtUtils.validateToken(jwt)) {
                 JwtUser jwtUser = JwtUser.builder()
                         .id(jwtUtils.getUserIdFromToken(jwt))
                         .email(jwtUtils.getEmailFromToken(jwt))
@@ -43,15 +49,24 @@ public class AuthTokenFilter extends OncePerRequestFilter {
                                 jwtUser.getAuthorities()
                         );
 
-                authentication.setDetails(new WebAuthenticationDetailsSource()
-                        .buildDetails(request));
+                authentication.setDetails(
+                        new WebAuthenticationDetailsSource()
+                                .buildDetails(request)
+                );
 
                 SecurityContextHolder.getContext()
                         .setAuthentication(authentication);
+
+                logger.info("JWT authenticated successfully for: {}", jwtUser.getEmail());
+
             }
+            else {
+                logger.warn("JWT validation failed.");
+            }
+
         }
-        catch (Exception e){
-            logger.error("JWT Authentication failed: " + e);
+        catch (Exception e) {
+            logger.error("JWT Authentication failed", e);
             SecurityContextHolder.clearContext();
         }
 

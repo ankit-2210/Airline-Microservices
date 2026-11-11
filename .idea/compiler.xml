@@ -20,10 +20,9 @@
         <module name="loyaltyservice" />
         <module name="seatservice" />
         <module name="fareservice" />
-        <module name="bookingservice" />
-        <module name="userservice" />
         <module name="adminservice" />
         <module name="checkinservice" />
+        <module name="userservice" />
         <module name="airlineservice" />
         <module name="locationservice" />
         <module name="promptservice" />
@@ -33,9 +32,23 @@
         <module name="eurekaserver" />
         <module name="baggageservice" />
         <module name="flightservice" />
-        <module name="refundservice" />
         <module name="paymentservice" />
+        <module name="refundservice" />
         <module name="notificationservice" />
+      </profile>
+      <profile name="Annotation profile for bookingservice" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.3/mapstruct-processor-1.6.3.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.3/mapstruct-1.6.3.jar" />
+        </processorPath>
+        <module name="bookingservice" />
       </profile>
     </annotationProcessing>
   </component>

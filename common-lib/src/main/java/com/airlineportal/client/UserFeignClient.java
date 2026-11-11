@@ -19,7 +19,7 @@ public interface UserFeignClient {
     ApiResponse<UserResponse> getUserById(@PathVariable Long userId);
 
     @GetMapping
-    public ApiResponse<List<UserResponse>> getAllUsers();
+    ApiResponse<List<UserResponse>> getAllUsers();
 
 
 }

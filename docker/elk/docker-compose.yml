@@ -1,0 +1,74 @@
+services:
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.19.0
+    container_name: airline-elasticsearch
+
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+      - xpack.security.enrollment.enabled=false
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+
+    ports:
+      - "9200:9200"
+
+    volumes:
+      - elasticsearch-data:/usr/share/elasticsearch/data
+
+    networks:
+      - airline-elk
+
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:8.19.0
+    container_name: airline-kibana
+
+    environment:
+      - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
+
+    ports:
+      - "5601:5601"
+
+    depends_on:
+      - elasticsearch
+
+    networks:
+      - airline-elk
+
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:8.19.0
+    container_name: airline-filebeat
+
+    user: root
+
+    command: >
+      filebeat
+      -e
+      --strict.perms=false
+
+    volumes:
+      - ./filebeat/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+
+      - ../../services/UserService/logs:/var/log/airline/userservice:ro
+      - ../../services/FlightService/logs:/var/log/airline/flightservice:ro
+      - ../../services/BookingService/logs:/var/log/airline/bookingservice:ro
+      - ../../services/PaymentService/logs:/var/log/airline/paymentservice:ro
+      - ../../services/PromptService/logs:/var/log/airline/promptservice:ro
+      - ../../cloud/ApiGateway/logs:/var/log/airline/apigateway:ro
+
+    depends_on:
+      - elasticsearch
+
+    networks:
+      - airline-elk
+
+
+volumes:
+  elasticsearch-data:
+
+
+networks:
+  airline-elk:
+    driver: bridge

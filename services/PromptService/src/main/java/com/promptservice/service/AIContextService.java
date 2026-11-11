@@ -2,6 +2,7 @@ package com.promptservice.service;
 
 import java.util.*;
 
+import com.airlineportal.security.JwtUser;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,32 +15,17 @@ public class AIContextService {
 
     public Long getCurrentUserId() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication == null || !authentication.isAuthenticated() || authentication instanceof AnonymousAuthenticationToken) {
             throw new IllegalStateException("User is not authenticated");
         }
 
         Object principal = authentication.getPrincipal();
 
-        // Standard Spring Security JWT authentication
-        JwtAuthenticationToken jwtAuth = (JwtAuthenticationToken) authentication;
-        Object userId = jwtAuth.getToken().getClaim("userId");
-        return parseUserId(userId);
-
-        // Custom authentication with a Map principal
-    }
-
-    private Long parseUserId(Object value) {
-        if (value == null) {
-            throw new IllegalStateException("Authenticated principal does not contain userId");
+        if (principal instanceof JwtUser jwtUser) {
+            return jwtUser.getId();
         }
 
-        try {
-            return Long.valueOf(value.toString());
-        }
-        catch (NumberFormatException ex) {
-            throw new IllegalStateException("Authenticated userId is not a valid number");
-        }
+        throw new IllegalStateException("Unsupported authentication principal: " + principal.getClass().getName());
     }
 
 }

@@ -22,6 +22,8 @@ import com.bookingservice.model.Booking;
 import com.bookingservice.repository.BookingRepository;
 import com.bookingservice.service.BookingService;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -35,6 +37,8 @@ import java.util.*;
 @RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class BookingServiceImpl implements BookingService {
+    private static final Logger log = LoggerFactory.getLogger(BookingServiceImpl.class);
+
     private final BookingRepository bookingRepository;
     private final BookingHelper bookingHelper;
     private final ExternalService externalService;
@@ -43,125 +47,221 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse createBooking(BookingRequest request) {
-        bookingHelper.validateCreate(request);
+        long startTime = System.currentTimeMillis();
 
-        int passengerCount = request.getPassengers().size();
+        log.info(
+                "Booking creation started: userId={}, flightInstanceId={}, passengerCount={}",
+                request.getUserId(),
+                request.getFlightInstanceId(),
+                request.getPassengers() == null ? 0 : request.getPassengers().size()
+        );
 
-        // Verify User
-        ApiResponse<UserResponse> userResponse = externalService.getUserById(request.getUserId());
-        if (userResponse == null || userResponse.getData() == null) {
-            throw new ResourceNotFoundException("User not found with id: " + request.getUserId());
-        }
-
-        // Get Flight Instance
-        ApiResponse<FlightInstanceResponse> instanceResponse = externalService.getInstanceById(request.getFlightInstanceId());
-        if (instanceResponse == null || instanceResponse.getData() == null) {
-            throw new ResourceNotFoundException("Flight instance not found with id: " + request.getFlightInstanceId());
-        }
-
-        FlightInstanceResponse instance = instanceResponse.getData();
-        Long flightId = instance.getFlightId();
-        if (flightId == null) {
-            throw new IllegalArgumentException("Flight instance is not associated with a flight");
-        }
-
-        // Verify Flight
-        ApiResponse<FlightResponse> flightResponse = externalService.getFlightById(flightId);
-        if (flightResponse == null || flightResponse.getData() == null) {
-            throw new ResourceNotFoundException("Flight not found with id: " + flightId);
-        }
-
-        // Get Fare
-        FareQuoteRequest fareRequest = FareQuoteRequest.builder()
-                .flightInstanceId(request.getFlightInstanceId())
-                .fareClass(request.getFareClass())
-                .passengerCount(passengerCount)
-                .build();
-
-        ApiResponse<FareResponse> fareResponse = externalService.getFareQuote(fareRequest);
-        if(fareResponse == null || fareResponse.getData() == null){
-            throw new IllegalArgumentException("Unable to calculate fare");
-        }
-
-        FareResponse fare = fareResponse.getData();
-
-        BigDecimal totalAmount = fare.getTotalFare();
-        if(totalAmount == null || totalAmount.compareTo(BigDecimal.ZERO) <= 0){
-            throw new IllegalArgumentException("Invalid fare amount");
-        }
-
-        // Reserve Seats
-        ApiResponse<Boolean> reserveResponse = externalService.reserveSeats(request.getFlightInstanceId(), passengerCount);
-        if (reserveResponse == null || !Boolean.TRUE.equals(reserveResponse.getData())) {
-            throw new IllegalArgumentException("Unable to reserve seats");
-        }
-
-        String pnr = bookingHelper.generateUniquePnr();
-
-        List<String> reservedSeatNumbers = new ArrayList<>();
         try {
-            Booking booking = BookingMapper.toEntity(request, pnr, flightId);
+            bookingHelper.validateCreate(request);
 
-            booking.setBookingStatus(BookingStatus.PENDING);
-            booking.setPaymentStatus(PaymentStatus.PENDING);
+            int passengerCount = request.getPassengers().size();
 
-            // Actual fare from FareService
-            booking.setTotalAmount(totalAmount);
+            // Verify User
+            ApiResponse<UserResponse> userResponse = externalService.getUserById(request.getUserId());
+            if (userResponse == null || userResponse.getData() == null) {
+                log.warn("Booking creation failed: user not found, userId={}", request.getUserId());
+                throw new ResourceNotFoundException("User not found with id: " + request.getUserId());
+            }
+            log.debug("User verified successfully: userId={}", request.getUserId());
 
-            // Save first so booking ID is generated
-            Booking saved = bookingRepository.save(booking);
+            // Get Flight Instance
+            ApiResponse<FlightInstanceResponse> instanceResponse = externalService.getInstanceById(request.getFlightInstanceId());
+            if (instanceResponse == null || instanceResponse.getData() == null) {
+                log.warn("Booking creation failed: flight instance not found, flightInstanceId={}", request.getFlightInstanceId());
+                throw new ResourceNotFoundException("Flight instance not found with id: " + request.getFlightInstanceId());
+            }
 
-            // Reserve individual seats
-            for(var passenger: saved.getPassengers()){
-                String seatNumber = passenger.getSeatNumber();
-                if(seatNumber == null || seatNumber.isBlank())
-                    continue;
+            FlightInstanceResponse instance = instanceResponse.getData();
+            Long flightId = instance.getFlightId();
+            if (flightId == null) {
+                log.error("Booking creation failed: flight instance has no associated flight, flightInstanceId={}", request.getFlightInstanceId());
+                throw new IllegalArgumentException("Flight instance is not associated with a flight");
+            }
 
-                ApiResponse<SeatResponse> seatResponse = externalService.bookSeat(saved.getFlightInstanceId(), seatNumber, saved.getId());
-                if(seatResponse == null || seatResponse.getData() == null){
-                    throw new IllegalArgumentException("Unable to reserve seat: " + seatNumber);
+            // Verify Flight
+            ApiResponse<FlightResponse> flightResponse = externalService.getFlightById(flightId);
+            if (flightResponse == null || flightResponse.getData() == null) {
+                log.warn("Booking creation failed: flight not found, flightId={}", flightId);
+                throw new ResourceNotFoundException("Flight not found with id: " + flightId);
+            }
+            log.debug("Flight verified successfully: flightId={}, flightInstanceId={}", flightId, request.getFlightInstanceId());
+
+            // Get Fare
+            FareQuoteRequest fareRequest = FareQuoteRequest.builder()
+                    .flightInstanceId(request.getFlightInstanceId())
+                    .fareClass(request.getFareClass())
+                    .passengerCount(passengerCount)
+                    .build();
+
+            ApiResponse<FareResponse> fareResponse = externalService.getFareQuote(fareRequest);
+            if (fareResponse == null || fareResponse.getData() == null) {
+                log.error("Booking creation failed: unable to calculate fare, flightInstanceId={}, fareClass={}", request.getFlightInstanceId(), request.getFareClass());
+                throw new IllegalArgumentException("Unable to calculate fare");
+            }
+
+            FareResponse fare = fareResponse.getData();
+
+            BigDecimal totalAmount = fare.getTotalFare();
+            if (totalAmount == null || totalAmount.compareTo(BigDecimal.ZERO) <= 0) {
+                log.error("Booking creation failed: invalid fare amount, flightInstanceId={}", request.getFlightInstanceId());
+                throw new IllegalArgumentException("Invalid fare amount");
+            }
+            log.info("Fare calculated successfully: flightInstanceId={}, passengerCount={}, amount={}", request.getFlightInstanceId(), passengerCount, totalAmount);
+
+            // Reserve Seats
+            ApiResponse<Boolean> reserveResponse = externalService.reserveSeats(request.getFlightInstanceId(), passengerCount);
+            if (reserveResponse == null || !Boolean.TRUE.equals(reserveResponse.getData())) {
+                log.error("Booking creation failed: unable to reserve flight capacity, flightInstanceId={}, passengerCount={}", request.getFlightInstanceId(), passengerCount);
+                throw new IllegalArgumentException("Unable to reserve seats");
+            }
+            log.info("Flight capacity reserved: flightInstanceId={}, passengerCount={}", request.getFlightInstanceId(), passengerCount);
+
+            String pnr = bookingHelper.generateUniquePnr();
+
+            List<String> reservedSeatNumbers = new ArrayList<>();
+            try {
+                Booking booking = BookingMapper.toEntity(request, pnr, flightId);
+
+                booking.setBookingStatus(BookingStatus.PENDING);
+                booking.setPaymentStatus(PaymentStatus.PENDING);
+
+                // Actual fare from FareService
+                booking.setTotalAmount(totalAmount);
+
+                // Save first so booking ID is generated
+                Booking saved = bookingRepository.save(booking);
+
+                log.info(
+                        "Booking persisted successfully: bookingId={}, pnr={}, userId={}, flightId={}",
+                        saved.getId(),
+                        saved.getPnr(),
+                        request.getUserId(),
+                        flightId
+                );
+
+                // Reserve individual seats
+                for (var passenger : saved.getPassengers()) {
+                    String seatNumber = passenger.getSeatNumber();
+                    if (seatNumber == null || seatNumber.isBlank())
+                        continue;
+
+                    ApiResponse<SeatResponse> seatResponse = externalService.bookSeat(saved.getFlightInstanceId(), seatNumber, saved.getId());
+                    if (seatResponse == null || seatResponse.getData() == null) {
+                        log.error("Seat reservation failed: bookingId={}, flightInstanceId={}, seatNumber={}", saved.getId(), saved.getFlightInstanceId(), seatNumber);
+                        throw new IllegalArgumentException("Unable to reserve seat: " + seatNumber);
+                    }
+
+                    String normalizedSeat = seatNumber.trim().toUpperCase();
+                    reservedSeatNumbers.add(normalizedSeat);
+                    log.info("Seat reserved successfully: bookingId={}, seatNumber={}", saved.getId(), normalizedSeat);
                 }
 
-                reservedSeatNumbers.add(seatNumber.trim().toUpperCase());
+                BookingCreatedEvent event = BookingEventMapper.toEvent(saved);
+                bookingEventPublisher.publishBookingCreated(event);
+
+                long duration = System.currentTimeMillis() - startTime;
+                log.info(
+                        "Booking created successfully: bookingId={}, pnr={}, userId={}, totalAmount={}, durationMs={}",
+                        saved.getId(),
+                        saved.getPnr(),
+                        request.getUserId(),
+                        totalAmount,
+                        duration
+                );
+
+                return BookingMapper.toResponse(saved);
             }
+            catch (RuntimeException exception) {
+                log.error(
+                        "Booking creation failed after capacity reservation: userId={}, flightInstanceId={}, reservedSeats={}, reason={}",
+                        request.getUserId(),
+                        request.getFlightInstanceId(),
+                        reservedSeatNumbers,
+                        exception.getMessage(),
+                        exception
+                );
 
-            BookingCreatedEvent event = BookingEventMapper.toEvent(saved);
-            bookingEventPublisher.publishBookingCreated(event);
+                // Release individual seats
+                for (String seatNumber : reservedSeatNumbers) {
+                    try {
+                        externalService.releaseSeat(request.getFlightInstanceId(), seatNumber);
+                        log.info("Individual seat released after booking failure: flightInstanceId={}, seatNumber={}", request.getFlightInstanceId(), seatNumber);
+                    }
+                    catch (RuntimeException releaseException) {
+                        log.error(
+                                "Failed to release individual seat after booking failure: flightInstanceId={}, seatNumber={}",
+                                request.getFlightInstanceId(),
+                                seatNumber,
+                                releaseException
+                        );
+                    }
+                }
 
-            return BookingMapper.toResponse(saved);
+                // Release FlightInstance capacity
+                try {
+                    externalService.releaseSeats(request.getFlightInstanceId(), passengerCount);
+                    log.info(
+                            "Flight capacity released after booking failure: flightInstanceId={}, passengerCount={}",
+                            request.getFlightInstanceId(),
+                            passengerCount
+                    );
+                } catch (RuntimeException releaseException) {
+                    log.error(
+                            "Failed to release flight capacity after booking failure: flightInstanceId={}, passengerCount={}",
+                            request.getFlightInstanceId(),
+                            passengerCount,
+                            releaseException
+                    );
+                }
+                throw exception;
+            }
         }
-        catch (RuntimeException exception){
-            // Release individual seats
-            for(String seatNumber : reservedSeatNumbers){
-                externalService.releaseSeat(request.getFlightInstanceId(), seatNumber);
-            }
+        catch (RuntimeException exception) {
+            long duration = System.currentTimeMillis() - startTime;
+            log.error(
+                    "Booking creation failed: userId={}, flightInstanceId={}, durationMs={}, reason={}",
+                    request.getUserId(),
+                    request.getFlightInstanceId(),
+                    duration,
+                    exception.getMessage(),
+                    exception
+            );
 
-            // Release FlightInstance capacity
-            externalService.releaseSeats(request.getFlightInstanceId(), passengerCount);
             throw exception;
         }
     }
 
     @Override
     public BookingResponse getById(Long bookingId) {
+        log.debug("Fetching booking by ID: bookingId={}", bookingId);
         Booking booking = bookingHelper.findById(bookingId);
 
+        log.debug("Booking retrieved successfully: bookingId={}, pnr={}", booking.getId(), booking.getPnr());
         return BookingMapper.toResponse(booking);
     }
 
     @Override
     public BookingResponse getByPnr(String pnr){
+        log.debug("Fetching booking by PNR: pnr={}", pnr);
         Booking booking = bookingHelper.findByPnr(pnr);
 
+        log.debug("Booking retrieve successfully: bookingId={}, pnr={}", booking.getId(), booking.getPnr());
         return BookingMapper.toResponse(booking);
     }
 
     @Override
     public Page<BookingResponse> getByUser(Long userId, Pageable pageable) {
         if(userId == null){
+            log.warn("Invalid booking lookup request: userId is null");
             throw new IllegalArgumentException("User id cannot be null");
         }
 
+        log.debug("Fetching bookings for user: userId={}, page={}, size={}", userId, pageable.getPageNumber(), pageable.getPageSize());
         return bookingRepository.findByUserId(userId, pageable)
                 .map(BookingMapper::toResponse);
     }
@@ -169,9 +269,11 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Page<BookingResponse> getByFlight(Long flightId, Pageable pageable) {
         if(flightId == null){
+            log.warn("Invalid booking lookup request: flightId is null");
             throw new IllegalArgumentException("Flight id cannot be null");
         }
 
+        log.debug("Fetching bookings for flight: flightId={}, page={}, size={}", flightId, pageable.getPageNumber(), pageable.getPageSize());
         return bookingRepository.findByFlightId(flightId, pageable)
                 .map(BookingMapper::toResponse);
     }
@@ -179,15 +281,27 @@ public class BookingServiceImpl implements BookingService {
     @Override
     public Page<BookingResponse> getByFlightInstance(Long flightInstanceId, Pageable pageable){
         if(flightInstanceId == null){
+            log.warn("Invalid booking lookup request: flightInstanceId is null");
             throw new IllegalArgumentException("Flight instance id cannot be null");
         }
 
+        log.debug(
+                "Fetching bookings for flight instance: flightInstanceId={}, page={}, size={}",
+                flightInstanceId,
+                pageable.getPageNumber(),
+                pageable.getPageSize()
+        );
         return bookingRepository.findByFlightInstanceId(flightInstanceId, pageable)
                 .map(BookingMapper::toResponse);
     }
 
     @Override
     public Page<BookingResponse> getAll(Pageable pageable) {
+        log.debug(
+                "Fetching all bookings: page={}, size={}",
+                pageable.getPageNumber(),
+                pageable.getPageSize()
+        );
         return bookingRepository.findAll(pageable)
                 .map(BookingMapper::toResponse);
     }
@@ -195,28 +309,61 @@ public class BookingServiceImpl implements BookingService {
     @Override
     @Transactional
     public BookingResponse cancelBooking(Long bookingId, Long userId, String reason) {
-        Booking booking = bookingHelper.findByIdAndUser(bookingId, userId);
+        long startTime = System.currentTimeMillis();
 
-        bookingHelper.validateCanCancel(booking);
+        log.info("Booking cancellation started: bookingId={}, userId={}", bookingId, userId);
 
-        int passengerCount = booking.getPassengers() == null ? 0 : booking.getPassengers().size();
+        try {
+            Booking booking = bookingHelper.findByIdAndUser(bookingId, userId);
 
-        booking.setBookingStatus(BookingStatus.CANCELLED);
-        booking.setCancelledAt(LocalDateTime.now());
-        booking.setCancellationReason(reason);
+            bookingHelper.validateCanCancel(booking);
 
-        Booking updated = bookingRepository.save(booking);
+            int passengerCount = booking.getPassengers() == null ? 0 : booking.getPassengers().size();
 
-        if(passengerCount>0){
-            for (var passenger : booking.getPassengers()){
-                if (passenger.getSeatNumber() != null && !passenger.getSeatNumber().isBlank()){
-                    externalService.releaseSeat(booking.getFlightInstanceId(), passenger.getSeatNumber());
+            booking.setBookingStatus(BookingStatus.CANCELLED);
+            booking.setCancelledAt(LocalDateTime.now());
+            booking.setCancellationReason(reason);
+
+            Booking updated = bookingRepository.save(booking);
+
+            if (passengerCount > 0) {
+                for (var passenger : booking.getPassengers()) {
+                    if (passenger.getSeatNumber() != null && !passenger.getSeatNumber().isBlank()) {
+
+                        String seatNumber = passenger.getSeatNumber()
+                                        .trim()
+                                        .toUpperCase();
+                        try {
+                            externalService.releaseSeat(booking.getFlightInstanceId(), seatNumber);
+                            log.info("Seat released after booking cancellation: bookingId={}, seatNumber={}", bookingId, seatNumber);
+                        }
+                        catch (RuntimeException exception) {
+                            log.error("Failed to release seat during booking cancellation: bookingId={}, seatNumber={}", bookingId, seatNumber, exception);
+                            throw exception;
+                        }
+
+                    }
+                }
+
+                try {
+                    externalService.releaseSeats(booking.getFlightInstanceId(), passengerCount);
+                    log.info("Flight capacity released after cancellation: bookingId={}, flightInstanceId={}, passengerCount={}", bookingId, booking.getFlightInstanceId(), passengerCount);
+                }
+                catch (RuntimeException exception) {
+                    log.error("Failed to release flight capacity during cancellation: bookingId={}, flightInstanceId={}, passengerCount={}", bookingId, booking.getFlightInstanceId(), passengerCount, exception);
+                    throw exception;
                 }
             }
 
-            externalService.releaseSeats(booking.getFlightInstanceId(), passengerCount);
+            long duration = System.currentTimeMillis() - startTime;
+            log.info("Booking cancelled successfully: bookingId={}, userId={}, durationMs={}", bookingId, userId, duration);
+            return BookingMapper.toResponse(updated);
         }
+        catch (RuntimeException exception) {
+            long duration = System.currentTimeMillis() - startTime;
 
-        return BookingMapper.toResponse(updated);
+            log.error("Booking cancellation failed: bookingId={}, userId={}, durationMs={}, reason={}", bookingId, userId, duration, exception.getMessage(), exception);
+            throw exception;
+        }
     }
 }

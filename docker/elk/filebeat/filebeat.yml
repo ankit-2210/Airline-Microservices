@@ -1,0 +1,114 @@
+filebeat.inputs:
+
+  - type: filestream
+    id: airline-userservice
+    enabled: true
+    paths:
+      - /var/log/airline/userservice/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: USERSERVICE
+    fields_under_root: true
+
+
+  - type: filestream
+    id: airline-flightservice
+    enabled: true
+    paths:
+      - /var/log/airline/flightservice/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: FLIGHTSERVICE
+    fields_under_root: true
+
+
+  - type: filestream
+    id: airline-bookingservice
+    enabled: true
+    paths:
+      - /var/log/airline/bookingservice/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: BOOKINGSERVICE
+    fields_under_root: true
+
+
+  - type: filestream
+    id: airline-paymentservice
+    enabled: true
+    paths:
+      - /var/log/airline/paymentservice/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: PAYMENTSERVICE
+    fields_under_root: true
+
+
+  - type: filestream
+    id: airline-promptservice
+    enabled: true
+    paths:
+      - /var/log/airline/promptservice/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: PROMPTSERVICE
+    fields_under_root: true
+
+
+  - type: filestream
+    id: airline-apigateway
+    enabled: true
+    paths:
+      - /var/log/airline/apigateway/*.log
+
+    parsers:
+      - ndjson:
+          target: ""
+          overwrite_keys: true
+
+    fields:
+      service: APIGATEWAY
+    fields_under_root: true
+
+
+output.elasticsearch:
+  hosts:
+    - "http://elasticsearch:9200"
+
+  index: "airline-logs-%{+yyyy.MM.dd}"
+
+
+setup.template.name: "airline-logs"
+setup.template.pattern: "airline-logs-*"
+
+
+setup.kibana:
+  host: "http://kibana:5601"
+
+
+logging.level: info

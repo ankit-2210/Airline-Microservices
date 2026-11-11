@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication(scanBasePackages = {
-		"com.aiservice",
+		"com.promptservice",
 		"com.airlineportal"
 })
 @EnableFeignClients(basePackages = "com.airlineportal.client")

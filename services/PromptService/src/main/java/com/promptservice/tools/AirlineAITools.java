@@ -1,4 +1,4 @@
 package com.promptservice.tools;
 
-public class FareTools {
+public class AirlineAITools {
 }
