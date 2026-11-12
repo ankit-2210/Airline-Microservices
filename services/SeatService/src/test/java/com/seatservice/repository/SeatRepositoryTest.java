@@ -99,17 +99,8 @@ public class SeatRepositoryTest {
 
     @Test
     void existsByFlightInstanceIdAndSeatNumber_shouldReturnTrue() {
-        assertTrue(
-                seatRepository.existsByFlightInstanceIdAndSeatNumber(
-                        100L, "12A"
-                )
-        );
-
-        assertFalse(
-                seatRepository.existsByFlightInstanceIdAndSeatNumber(
-                        100L, "99A"
-                )
-        );
+        assertTrue(seatRepository.existsByFlightInstanceIdAndSeatNumber(100L, "12A"));
+        assertFalse(seatRepository.existsByFlightInstanceIdAndSeatNumber(100L, "99A"));
     }
 
     @Test

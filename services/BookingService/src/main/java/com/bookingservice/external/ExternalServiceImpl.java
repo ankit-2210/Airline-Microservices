@@ -14,11 +14,15 @@ import com.airlineportal.payload.response.User.UserResponse;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import io.github.resilience4j.retry.annotation.Retry;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 public class ExternalServiceImpl implements ExternalService{
+    private static final Logger log = LoggerFactory.getLogger(ExternalServiceImpl.class);
+
     private final UserFeignClient userFeignClient;
     private final FlightFeignClient flightFeignClient;
     private final FareFeignClient fareFeignClient;
@@ -29,7 +33,17 @@ public class ExternalServiceImpl implements ExternalService{
     @Retry(name = "userRetry", fallbackMethod = "userFallback")
     @CircuitBreaker(name = "userCB", fallbackMethod = "userFallback")
     public ApiResponse<UserResponse> getUserById(Long userId) {
-        return userFeignClient.getUserById(userId);
+        long start = System.currentTimeMillis();
+        try {
+            log.info("Calling UserService: operation=getUserById, userId={}", userId);
+            ApiResponse<UserResponse> response = userFeignClient.getUserById(userId);
+            log.info("UserService call completed: operation=getUserById, userId={}, durationMs={}, success={}", userId, System.currentTimeMillis() - start, response != null && response.getData() != null);
+            return response;
+        }
+        catch (RuntimeException exception) {
+            log.error("UserService call failed: operation=getUserById, userId={}, durationMs={}", userId, System.currentTimeMillis() - start, exception);
+            throw exception;
+        }
     }
 
     // Flight
@@ -45,7 +59,17 @@ public class ExternalServiceImpl implements ExternalService{
     @Retry(name = "flightRetry", fallbackMethod = "flightInstanceFallback")
     @CircuitBreaker(name = "flightCB", fallbackMethod = "flightInstanceFallback")
     public ApiResponse<FlightInstanceResponse> getInstanceById(Long instanceId) {
-        return flightFeignClient.getInstanceById(instanceId);
+        long start = System.currentTimeMillis();
+        try {
+            log.info("Calling FlightService: operation=getInstanceById, flightInstanceId={}", instanceId);
+            ApiResponse<FlightInstanceResponse> response = flightFeignClient.getInstanceById(instanceId);
+            log.info("FlightService call completed: operation=getInstanceById, flightInstanceId={}, durationMs={}, success={}", instanceId, System.currentTimeMillis() - start, response != null && response.getData() != null);
+            return response;
+        }
+        catch (RuntimeException exception) {
+            log.error("FlightService call failed: operation=getInstanceById, flightInstanceId={}, durationMs={}", instanceId, System.currentTimeMillis() - start, exception);
+            throw exception;
+        }
     }
 
     @Override

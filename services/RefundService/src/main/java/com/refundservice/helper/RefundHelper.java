@@ -70,34 +70,18 @@ public class RefundHelper {
         return refundAmount.setScale(2, RoundingMode.HALF_UP);
     }
 
-    public void validateCanProcessRefund(
-            Refund refund) {
-
+    public void validateCanProcessRefund(Refund refund) {
         if (refund == null) {
-            throw new IllegalArgumentException(
-                    "Refund not found"
-            );
+            throw new IllegalArgumentException("Refund not found");
         }
-
         if (refund.getStatus() != RefundStatus.REQUESTED) {
-            throw new IllegalStateException(
-                    "Refund can only be processed when status is REQUESTED"
-            );
+            throw new IllegalStateException("Refund can only be processed when status is REQUESTED");
         }
-
         if (refund.getBookingId() == null) {
-            throw new IllegalStateException(
-                    "Booking ID is missing from refund"
-            );
+            throw new IllegalStateException("Booking ID is missing from refund");
         }
-
-        if (refund.getRefundAmount() == null
-                || refund.getRefundAmount()
-                .compareTo(BigDecimal.ZERO) <= 0) {
-
-            throw new IllegalStateException(
-                    "Refund amount must be greater than zero"
-            );
+        if (refund.getRefundAmount() == null || refund.getRefundAmount().compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalStateException("Refund amount must be greater than zero");
         }
     }
 
