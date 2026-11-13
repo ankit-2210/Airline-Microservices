@@ -18,7 +18,6 @@ public final class RefundMapper {
     }
 
     public static Refund toEntity(RefundCreateRequest request, BookingResponse booking, BigDecimal originalAmount, BigDecimal cancellationFee, BigDecimal refundAmount){
-
         return Refund.builder()
                 .bookingId(booking.getId())
                 .userId(booking.getUserId())
