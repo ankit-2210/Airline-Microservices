@@ -21,7 +21,6 @@ import java.util.Map;
 public class RefundReportServiceImpl implements RefundReportService {
     private final RefundRepository refundRepository;
 
-
     @Override
     public byte[] generateRefundsPdf() {
         try {

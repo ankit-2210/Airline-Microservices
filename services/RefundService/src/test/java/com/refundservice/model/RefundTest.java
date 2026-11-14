@@ -29,30 +29,22 @@ public class RefundTest {
 
         assertThat(refund.getCreatedAt())
                 .isNull();
-
         assertThat(refund.getUpdatedAt())
                 .isNull();
-
         assertThat(refund.getStatus())
                 .isNull();
 
         refund.onCreate();
 
-        assertThat(refund.getCreatedAt())
-                .isNotNull();
-
-        assertThat(refund.getUpdatedAt())
-                .isNotNull();
-
-        assertThat(refund.getStatus())
-                .isEqualTo(RefundStatus.REQUESTED);
+        assertThat(refund.getCreatedAt()).isNotNull();
+        assertThat(refund.getUpdatedAt()).isNotNull();
+        assertThat(refund.getStatus()).isEqualTo(RefundStatus.REQUESTED);
     }
 
     @Test
     void onCreate_shouldNotOverwriteExistingCreatedAt() {
 
         LocalDateTime existingCreatedAt = LocalDateTime.of(2026, 1, 1, 10, 0);
-
         Refund refund = Refund.builder()
                 .bookingId(100L)
                 .userId(10L)

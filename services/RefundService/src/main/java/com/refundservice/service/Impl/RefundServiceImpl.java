@@ -35,8 +35,7 @@ public class RefundServiceImpl implements RefundService {
     @Override
     @Transactional
     public RefundResponse createRefund(RefundCreateRequest request) {
-
-        // 3. Get booking
+        // Get booking
         ApiResponse<BookingResponse> bookingResponse = externalService.getBookingById(request.getBookingId());
         if(bookingResponse == null || bookingResponse.getData() == null){
             throw new IllegalArgumentException("Unable to retrieve booking");
@@ -153,8 +152,6 @@ public class RefundServiceImpl implements RefundService {
 
         Refund completedRefund = refundRepository.save(refund);
         return RefundMapper.toResponse(completedRefund);
-
-
     }
 
     @Override
