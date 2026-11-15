@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1ceac78e-1902-4c94-8052-e8c3dce9f6a0" name="Changes" comment="update instances, services and controller">
-      <change afterPath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/internal/InternalRefundControllerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/service/RefundReportServiceImplTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/service/Impl/RefundReportServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/service/Impl/RefundReportServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/service/Impl/RefundServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/RefundService/src/main/java/com/refundservice/service/Impl/RefundServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/model/RefundTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/model/RefundTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/service/RefundServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/services/RefundService/src/test/java/com/refundservice/service/RefundServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -290,22 +284,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1777441915170</updated>
-    </task>
-    <task id="LOCAL-00025" summary="update instances, services and controller">
-      <option name="closed" value="true" />
-      <created>1789488957675</created>
-      <option name="number" value="00025" />
-      <option name="presentableId" value="LOCAL-00025" />
-      <option name="project" value="LOCAL" />
-      <updated>1789488957675</updated>
-    </task>
-    <task id="LOCAL-00026" summary="update instances, services and controller">
-      <option name="closed" value="true" />
-      <created>1789492827823</created>
-      <option name="number" value="00026" />
-      <option name="presentableId" value="LOCAL-00026" />
-      <option name="project" value="LOCAL" />
-      <updated>1789492827823</updated>
     </task>
     <task id="LOCAL-00027" summary="update instances, services and controller">
       <option name="closed" value="true" />
@@ -683,7 +661,23 @@
       <option name="project" value="LOCAL" />
       <updated>1794557537668</updated>
     </task>
-    <option name="localTasksCounter" value="74" />
+    <task id="LOCAL-00074" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1794678683370</created>
+      <option name="number" value="00074" />
+      <option name="presentableId" value="LOCAL-00074" />
+      <option name="project" value="LOCAL" />
+      <updated>1794678683370</updated>
+    </task>
+    <task id="LOCAL-00075" summary="update instances, services and controller">
+      <option name="closed" value="true" />
+      <created>1794679446633</created>
+      <option name="number" value="00075" />
+      <option name="presentableId" value="LOCAL-00075" />
+      <option name="project" value="LOCAL" />
+      <updated>1794679446633</updated>
+    </task>
+    <option name="localTasksCounter" value="76" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
