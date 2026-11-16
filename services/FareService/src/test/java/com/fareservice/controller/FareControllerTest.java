@@ -1,4 +1,4 @@
 package com.fareservice.controller;
 
-public class FareController {
+public class FareControllerTest {
 }
