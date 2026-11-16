@@ -162,8 +162,51 @@ public class RefundRepositoryTest {
     }
 
     // findByStatus()
+    @Test
+    void findByStatus_shouldReturnMatchingRefunds() {
+        Page<Refund> result =
+                refundRepository.findByStatus(
+                        RefundStatus.REQUESTED,
+                        PageRequest.of(0, 10)
+                );
 
+        assertThat(result).isNotNull();
+        assertThat(result.getTotalElements())
+                .isEqualTo(1);
+        assertThat(result.getContent())
+                .hasSize(1);
+        assertThat(result.getContent().get(0).getStatus())
+                .isEqualTo(RefundStatus.REQUESTED);
+    }
 
+    @Test
+    void findByStatus_shouldReturnCompletedRefunds() {
+        Page<Refund> result =
+                refundRepository.findByStatus(
+                        RefundStatus.COMPLETED,
+                        PageRequest.of(0, 10)
+                );
+
+        assertThat(result.getTotalElements())
+                .isEqualTo(1);
+        assertThat(result.getContent().get(0).getStatus())
+                .isEqualTo(RefundStatus.COMPLETED);
+    }
+
+    @Test
+    void findByStatus_shouldReturnEmptyPageWhenStatusNotFound() {
+        Page<Refund> result =
+                refundRepository.findByStatus(
+                        RefundStatus.REJECTED,
+                        PageRequest.of(0, 10)
+                );
+
+        assertThat(result).isNotNull();
+        assertThat(result.getTotalElements())
+                .isZero();
+        assertThat(result.getContent())
+                .isEmpty();
+    }
 
 
     // existsByBookingId()
